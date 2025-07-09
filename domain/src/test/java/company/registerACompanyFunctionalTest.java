@@ -1,7 +1,9 @@
 package company;
 
 import company.api.CompanyRegistrator;
+import company.application.RegisterACompany;
 import company.spi.CompanyRepository;
+import company.model.Company;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +28,7 @@ public class registerACompanyFunctionalTest {
 
         Assert.assertNotNull(company);
         System.out.println("Id: " + company.getId());
-        System.out.println("Name: " + company.getCompanyName());
+        System.out.println("Name: " + company.getName());
     }
 
     @Test
@@ -70,6 +72,5 @@ public class registerACompanyFunctionalTest {
                 "202380061600",
                 "2008770xxxx"
         ));
-
     }
 }

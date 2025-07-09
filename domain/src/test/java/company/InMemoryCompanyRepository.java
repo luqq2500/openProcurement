@@ -1,6 +1,7 @@
 package company;
 
 import company.spi.CompanyRepository;
+import company.model.Company;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +24,16 @@ public class InMemoryCompanyRepository implements CompanyRepository {
     }
 
     @Override
-    public Optional<Company> findByBusinessRegistrationNumber(String businessRegistrationNumber) {
+    public Optional<Company> findByBrn(String brn) {
         return companies.stream()
-                .filter(company -> company.getBusinessRegistrationNumber().equals(businessRegistrationNumber))
+                .filter(company -> company.getBrn().equals(brn))
                 .findFirst();
     }
 
     @Override
-    public Optional<Company> findByTaxIdentificationNumber(String taxIdentificationNumber) {
+    public Optional<Company> findByTin(String tin) {
         return companies.stream()
-                .filter(company -> company.getTaxIdentificationNumber().equals(taxIdentificationNumber))
+                .filter(company -> company.getTin().equals(tin))
                 .findFirst();
     }
 }
