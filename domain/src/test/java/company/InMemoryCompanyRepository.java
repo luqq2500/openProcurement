@@ -24,16 +24,16 @@ public class InMemoryCompanyRepository implements CompanyRepository {
     }
 
     @Override
-    public Optional<Company> findByBrn(String brn) {
+    public Optional<Company> findByRegistrationNumber(String brn) {
         return companies.stream()
-                .filter(company -> company.getBrn().equals(brn))
+                .filter(company -> company.getRegistrationNumber().equals(brn))
                 .findFirst();
     }
 
     @Override
-    public Optional<Company> findByTin(String tin) {
+    public Optional<Company> findByTaxNumber(String tin) {
         return companies.stream()
-                .filter(company -> company.getTin().equals(tin))
+                .filter(company -> company.getTaxNumber().equals(tin))
                 .findFirst();
     }
 }

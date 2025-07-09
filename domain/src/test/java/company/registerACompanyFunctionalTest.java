@@ -1,31 +1,39 @@
 package company;
 
 import company.api.CompanyRegistrator;
-import company.application.RegisterACompany;
+import company.application.*;
+import company.exception.CompanyAlreadyExistException;
+import company.exception.InvalidCompanyException;
+import company.exception.InvalidCountryRegistrationRulesException;
+import company.model.RegisterCompanyCommand;
+import company.spi.CountryRegistrationRulesRepository;
 import company.spi.CompanyRepository;
 import company.model.Company;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class registerACompanyFunctionalTest {
+public class registerACompanyFunctionalTest{
     private CompanyRegistrator companyRegistrator;
-
     @Before
     public void setUp(){
         CompanyRepository companyRepository = new InMemoryCompanyRepository();
-        this.companyRegistrator = new RegisterACompany(companyRepository);
+        CountryRegistrationRulesRepository countryRegistrationRulesRepository = new InMemoryCountryRegistrationRulesRepository();
+        ValidateRegisterCompanyIsUnique validateRegisterCompanyIsUnique = new ValidateRegisterCompanyIsUnique(companyRepository);
+        ValidateCountryRegistrationRegulation validateCountryRegistrationRegulation = new ValidateCountryRegistrationRegulation(countryRegistrationRulesRepository);
+        this.companyRegistrator = new RegisterACompany(companyRepository, validateRegisterCompanyIsUnique, validateCountryRegistrationRegulation);
     }
 
     @Test
     public void registerACompanyShouldReturnCompany(){
-
-        Company company = companyRegistrator.register(
+        RegisterCompanyCommand command = new RegisterCompanyCommand(
                 "ForgeNet",
-                "Sole Proprietorship",
                 "202380061600",
-                "200877000000");
-
+                "200877000000",
+                "Sole Proprietorship",
+                "MY"
+        );
+        Company company = companyRegistrator.register(command);
         Assert.assertNotNull(company);
         System.out.println("Id: " + company.getId());
         System.out.println("Name: " + company.getName());
@@ -33,44 +41,56 @@ public class registerACompanyFunctionalTest {
 
     @Test
     public void registerDuplicateCompanyShouldThrowException(){
-        Company company = companyRegistrator.register(
+        RegisterCompanyCommand command = new RegisterCompanyCommand(
                 "ForgeNet",
-                "Sole Proprietorship",
                 "202380061600",
-                "200877000000");
-
-        Assert.assertThrows(RuntimeException.class, () -> companyRegistrator.register(
-                "ForgeNet",
+                "200877000000",
                 "Sole Proprietorship",
-                "202380061600",
-                "200877000000"
-        ));
+                "MY"
+        );
+        Company company = companyRegistrator.register(command);
+        Assert.assertThrows(CompanyAlreadyExistException.class, ()->companyRegistrator.register(command));
     }
 
     @Test
-    public void registerEmptyInformationCompanyShouldThrowException(){
-        Assert.assertThrows(RuntimeException.class, () -> companyRegistrator.register(
-                "",
-                "",
+    public void registerInvalidNameShouldThrowException(){
+        RegisterCompanyCommand noName = new RegisterCompanyCommand(
                 " ",
-                " "));
-        Assert.assertThrows(RuntimeException.class, () -> companyRegistrator.register(
-                "ForgeNet",
-                "no structure",
                 "202380061600",
-                "200877000000"
-        ));
-        Assert.assertThrows(RuntimeException.class, () -> companyRegistrator.register(
-                "ForgeNet",
+                "200877000000",
                 "Sole Proprietorship",
-                "2023800xxxxx",
-                "200877000000"
-        ));
-        Assert.assertThrows(RuntimeException.class, () -> companyRegistrator.register(
+                "MY"
+        );
+        Assert.assertThrows(InvalidCompanyException.class, ()->companyRegistrator.register(noName));
+    }
+
+    @Test
+    public void registerInvalidCountryRuleInformationShouldThrowException(){
+        RegisterCompanyCommand invalidRegistrationNumber = new RegisterCompanyCommand(
                 "ForgeNet",
-                "no structure",
-                "202380061600",
-                "2008770xxxx"
+                " ",
+                "200877000000",
+                "Sole Proprietorship",
+                "MY"
+        );
+        Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> companyRegistrator.register(
+                invalidRegistrationNumber
         ));
+        RegisterCompanyCommand invalidTaxNumber = new RegisterCompanyCommand(
+                "ForgeNet",
+                "202380061600",
+                "20087700xxx",
+                "Sole Proprietorship",
+                "US"
+        );
+        Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> companyRegistrator.register(invalidTaxNumber));
+        RegisterCompanyCommand invalidCountryCode = new RegisterCompanyCommand(
+                "ForgeNet",
+                "202380061600",
+                "200877000000",
+                "Sole Proprietorship",
+                "Selangor"
+        );
+        Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> companyRegistrator.register(invalidCountryCode));
     }
 }
