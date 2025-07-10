@@ -8,12 +8,12 @@ import company.model.RegisterCompanyCommand;
 
 public class ValidateRegisterCompanyCommandFormat implements CompanyRegistrationValidator {
     @Override
-    public void validate(RegisterCompanyCommand command) throws InvalidCompanyException, CompanyAlreadyExistException, InvalidCountryRegistrationRulesException {
+    public void validate(RegisterCompanyCommand command) throws InvalidCompanyException {
         if (command.name() == null || command.name().isBlank()) {
             throw new InvalidCompanyException("Company name cannot be empty");
         }
-        if (command.structure() == null || command.structure().isBlank()) {
-            throw new InvalidCompanyException("Company structure cannot be empty");
+        if (command.businessStructure() == null || command.businessStructure().isBlank()) {
+            throw new InvalidCompanyException("Company businessStructure cannot be empty");
         }
         if (command.registrationNumber() == null || command.registrationNumber().isBlank()) {
             throw new InvalidCompanyException("Business registration number cannot be empty");

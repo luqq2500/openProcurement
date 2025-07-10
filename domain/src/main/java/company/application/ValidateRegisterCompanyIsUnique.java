@@ -15,7 +15,7 @@ public class ValidateRegisterCompanyIsUnique implements CompanyRegistrationValid
     }
 
     @Override
-    public void validate(RegisterCompanyCommand command) throws InvalidCompanyException, CompanyAlreadyExistException, InvalidCountryRegistrationRulesException {
+    public void validate(RegisterCompanyCommand command) throws CompanyAlreadyExistException {
         if (companyRepository.findByRegistrationNumber(command.registrationNumber()).isPresent()) {
             throw new CompanyAlreadyExistException("Company " + command.registrationNumber() + "is already exists");
         }

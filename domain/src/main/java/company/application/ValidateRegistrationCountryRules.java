@@ -16,10 +16,10 @@ public class ValidateRegistrationCountryRules implements CompanyRegistrationVali
     }
 
     @Override
-    public void validate(RegisterCompanyCommand command) throws InvalidCompanyException, CompanyAlreadyExistException, InvalidCountryRegistrationRulesException {
+    public void validate(RegisterCompanyCommand command) throws InvalidCountryRegistrationRulesException {
         CountryRegistrationRules countryRegistrationRules = countryRegistrationRulesRepository.findByCountryCode(command.countryCode())
                 .orElseThrow(() -> new InvalidCountryRegistrationRulesException("No rules found for country: " + command.countryCode()));
-        countryRegistrationRules.validateBusinessStructure(command.structure());
+        countryRegistrationRules.validateBusinessStructure(command.businessStructure());
         countryRegistrationRules.validateRegistrationNumber(command.registrationNumber());
         countryRegistrationRules.validateTaxNumber(command.taxNumber());
     }

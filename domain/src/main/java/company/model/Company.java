@@ -10,15 +10,15 @@ public class Company {
     private final UUID id;
     private String name;
     private String registrationNumber;
-    private String structure;
+    private String businessStructure;
     private String taxNumber;
     private String countryCode;
     private List<User> users = new ArrayList<>();
 
-    public Company(String name, String registrationNumber, String taxNumber, String structure, String countryCode) {
+    public Company(String name, String registrationNumber, String taxNumber, String businessStructure, String countryCode) {
         this.id = UUID.randomUUID();
         this.name = name;
-        this.structure = structure;
+        this.businessStructure = businessStructure;
         this.registrationNumber = registrationNumber;
         this.taxNumber = taxNumber;
         this.countryCode = countryCode;
@@ -41,8 +41,8 @@ public class Company {
         return taxNumber;
     }
     public void setTaxNumber(String taxNumber) { this.taxNumber = taxNumber; }
-    public String getStructure() { return structure; }
-    public void setStructure(String structure) { this.structure = structure; }
+    public String getBusinessStructure() { return businessStructure; }
+    public void setBusinessStructure(String businessStructure) { this.businessStructure = businessStructure; }
     public String getCountryCode() {return countryCode;}
     public void setCountryCode(String countryCode) {this.countryCode = countryCode;}
     public List<User> getUsers() {
