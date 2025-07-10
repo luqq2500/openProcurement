@@ -1,5 +1,6 @@
 package company;
 
+import company.api.CompanyRegistrationValidator;
 import company.api.CompanyRegistrator;
 import company.application.*;
 import company.exception.CompanyAlreadyExistException;
@@ -13,15 +14,23 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class registerACompanyFunctionalTest{
+import java.util.ArrayList;
+import java.util.List;
+
+public class registerACompanyIntegrationTest {
     private CompanyRegistrator companyRegistrator;
     @Before
     public void setUp(){
         CompanyRepository companyRepository = new InMemoryCompanyRepository();
         CountryRegistrationRulesRepository countryRegistrationRulesRepository = new InMemoryCountryRegistrationRulesRepository();
-        ValidateRegisterCompanyIsUnique validateRegisterCompanyIsUnique = new ValidateRegisterCompanyIsUnique(companyRepository);
-        ValidateCountryRegistrationRegulation validateCountryRegistrationRegulation = new ValidateCountryRegistrationRegulation(countryRegistrationRulesRepository);
-        this.companyRegistrator = new RegisterACompany(companyRepository, validateRegisterCompanyIsUnique, validateCountryRegistrationRegulation);
+        CompanyRegistrationValidator formatValidator = new ValidateRegisterCompanyCommandFormat();
+        CompanyRegistrationValidator uniquenessValidator = new ValidateRegisterCompanyIsUnique(companyRepository);
+        CompanyRegistrationValidator countryRuleValidator = new ValidateRegistrationCountryRules(countryRegistrationRulesRepository);
+        List<CompanyRegistrationValidator> validators = new ArrayList<>();
+        validators.add(formatValidator);
+        validators.add(countryRuleValidator);
+        validators.add(uniquenessValidator);
+        this.companyRegistrator = new RegisterACompany(companyRepository, validators);
     }
 
     @Test
@@ -68,7 +77,7 @@ public class registerACompanyFunctionalTest{
     public void registerInvalidCountryRuleInformationShouldThrowException(){
         RegisterCompanyCommand invalidRegistrationNumber = new RegisterCompanyCommand(
                 "ForgeNet",
-                " ",
+                "2008770",
                 "200877000000",
                 "Sole Proprietorship",
                 "MY"

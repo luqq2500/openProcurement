@@ -1,6 +1,5 @@
 package company.model;
 
-import company.exception.InvalidCompanyException;
 import user.User;
 
 import java.util.ArrayList;
@@ -17,19 +16,12 @@ public class Company {
     private List<User> users = new ArrayList<>();
 
     public Company(String name, String registrationNumber, String taxNumber, String structure, String countryCode) {
-        validateFormat(name);
         this.id = UUID.randomUUID();
         this.name = name;
         this.structure = structure;
         this.registrationNumber = registrationNumber;
         this.taxNumber = taxNumber;
         this.countryCode = countryCode;
-    }
-
-    private void validateFormat(String name) {
-        if (name == null || name.isBlank()) {
-            throw new InvalidCompanyException("Company name cannot be empty");
-        }
     }
 
     public UUID getId() {

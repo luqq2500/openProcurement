@@ -1,27 +1,24 @@
 package company.application;
+import company.api.CompanyRegistrationValidator;
 import company.api.CompanyRegistrator;
+import company.exception.InvalidCompanyException;
 import company.model.RegisterCompanyCommand;
 import company.spi.CompanyRepository;
 import company.model.Company;
 
+import java.util.List;
+
 public class RegisterACompany implements CompanyRegistrator {
     private final CompanyRepository repository;
-    private final ValidateRegisterCompanyIsUnique validateRegisterCompanyIsUnique;
-    private final ValidateCountryRegistrationRegulation validateCountryRegistrationRegulation;
-    public RegisterACompany(
-            CompanyRepository repository,
-            ValidateRegisterCompanyIsUnique validateRegisterCompanyIsUnique,
-            ValidateCountryRegistrationRegulation validateCountryRegistrationRegulation
-    ) {
+    private final List<CompanyRegistrationValidator> validators;
+    public RegisterACompany(CompanyRepository repository, List<CompanyRegistrationValidator> validators) {
         this.repository = repository;
-        this.validateRegisterCompanyIsUnique = validateRegisterCompanyIsUnique;
-        this.validateCountryRegistrationRegulation = validateCountryRegistrationRegulation;
+        this.validators = validators;
     }
 
     @Override
     public Company register(RegisterCompanyCommand command) {
-        validateRegisterCompanyIsUnique.validateCompanyIsUnique(command.registrationNumber(), command.taxNumber());
-        validateCountryRegistrationRegulation.validateCompanyDetails(command.countryCode(), command.registrationNumber(), command.taxNumber());
+        validateWithValidators(command);
         Company company = new Company(
                 command.name(),
                 command.registrationNumber(),
@@ -32,8 +29,11 @@ public class RegisterACompany implements CompanyRegistrator {
         this.repository.add(company);
         return company;
     }
-//    private void validateCompanyStructure(String structure) {
-//        if (!CompanyStructure.COMPANY_STRUCTURES.contains(structure))
-//            throw new InvalidCompanyException("Invalid company structure: " + structure);
-//    }
+
+    private void validateWithValidators(RegisterCompanyCommand command) {
+        for (CompanyRegistrationValidator validator : validators) {
+            validator.validate(command);
+        }
+    }
+
 }
