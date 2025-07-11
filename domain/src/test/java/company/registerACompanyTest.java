@@ -3,6 +3,7 @@ package company;
 import company.api.CompanyRegistrationValidator;
 import company.api.CompanyRegistrator;
 import company.application.*;
+import company.exception.CompanyAlreadyExistException;
 import company.exception.InvalidRegisterCompanyCommand;
 import company.model.RegisterCompanyCommand;
 import company.spi.CountryRegistrationRulesRepository;
@@ -11,21 +12,16 @@ import company.model.Company;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class registerACompanyTest {
-    private CompanyRegistrator companyRegistrator;
+    private CompanyRegistrator registrator;
     @Before
     public void setUp(){
         CompanyRepository companyRepository = new InMemoryCompanyRepository();
         CountryRegistrationRulesRepository countryRegistrationRulesRepository = new InMemoryCountryRegistrationRulesRepository();
-        CompanyRegistrationValidator uniquenessValidator = new ValidateRegisterCompanyIsUnique(companyRepository);
         CompanyRegistrationValidator countryRuleValidator = new ValidateRegistrationCountryRules(countryRegistrationRulesRepository);
-        List<CompanyRegistrationValidator> validators = new ArrayList<>();
-        validators.add(countryRuleValidator);
-        validators.add(uniquenessValidator);
-        this.companyRegistrator = new RegisterACompany(companyRepository, validators);
+        this.registrator = new RegisterACompany(companyRepository, countryRuleValidator);
     }
 
     @Test
@@ -37,7 +33,7 @@ public class registerACompanyTest {
                 "Sole Proprietorship",
                 "MY"
         );
-        Company company = companyRegistrator.register(command);
+        Company company = registrator.register(command);
         Assert.assertNotNull(company);
         System.out.println("Id: " + company.getId());
         System.out.println("Name: " + company.getName());
@@ -54,5 +50,38 @@ public class registerACompanyTest {
                     " "
             );
         });
+    }
+
+    @Test
+    public void registerDuplicateCompanyShouldThrowException() {
+        RegisterCompanyCommand command = new RegisterCompanyCommand(
+                "ForgeNet",
+                "202380061600",
+                "202380061600",
+                "Cooperative",
+                "MY"
+        );
+        registrator.register(command);
+        Assert.assertThrows(CompanyAlreadyExistException.class, ()->registrator.register(command));
+    }
+
+    @Test
+    public void registerAUniqueCompanyShouldNotThrowException(){
+        RegisterCompanyCommand command1 = new RegisterCompanyCommand(
+                "ForgeNet",
+                "202380061600",
+                "202380061600",
+                "Cooperative",
+                "MY"
+        );
+        registrator.register(command1);
+        RegisterCompanyCommand command2 = new RegisterCompanyCommand(
+                "ForgeNet",
+                "202080061600",
+                "202080061600",
+                "Cooperative",
+                "MY"
+        );
+        registrator.register(command2);
     }
 }

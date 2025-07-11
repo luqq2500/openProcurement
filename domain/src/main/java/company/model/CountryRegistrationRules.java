@@ -9,8 +9,7 @@ public record CountryRegistrationRules(
         String registrationNumberPattern,
         int taxNumberLength,
         String taxNumberPattern,
-        List<String> businessStructures
-){
+        List<String> businessStructures){
     public void validateRegistrationNumber(String registrationNumber) {
         if (registrationNumber==null || registrationNumber.length()!=registrationNumberLength || !registrationNumber.matches(registrationNumberPattern)){
             throw new InvalidCountryRegistrationRulesException(
@@ -20,6 +19,7 @@ public record CountryRegistrationRules(
             );
         }
     }
+
     public void validateTaxNumber(String taxNumber) {
         if (taxNumber==null || taxNumber.length()!=taxNumberLength || !taxNumber.matches(taxNumberPattern)){
             throw new InvalidCountryRegistrationRulesException(
@@ -29,6 +29,7 @@ public record CountryRegistrationRules(
             );
         }
     }
+
     public void validateBusinessStructure(String businessStructure) {
         if (!businessStructures.contains(businessStructure.trim())){
             throw new InvalidCountryRegistrationRulesException(
