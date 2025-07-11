@@ -1,8 +1,6 @@
 package company.application;
 
 import company.api.CompanyRegistrationValidator;
-import company.exception.CompanyAlreadyExistException;
-import company.exception.InvalidCompanyException;
 import company.exception.InvalidCountryRegistrationRulesException;
 import company.model.CountryRegistrationRules;
 import company.model.RegisterCompanyCommand;
