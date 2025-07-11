@@ -2,12 +2,9 @@ package company.spi;
 
 import company.model.Company;
 
-import java.util.Optional;
-import java.util.UUID;
+import java.util.stream.Stream;
 
+@FunctionalInterface
 public interface CompanyRepository {
-    public void add(Company company);
-    public Optional<Company> findById(UUID id);
-    public Optional<Company> findByRegistrationNumber(String businessRegistrationNumber);
-    public Optional<Company> findByTaxNumber(String taxIdentificationNumber);
+    Stream<Company> companies();
 }

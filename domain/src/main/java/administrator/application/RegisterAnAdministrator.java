@@ -15,19 +15,18 @@ public class RegisterAnAdministrator implements AdministratorRegistrator {
 
     @Override
     public Administrator register(RegisterAdministratorCommand command) {
-        validateEmail(command);
-        Administrator administrator = new Administrator(
+        validateEmailIsUnique(command);
+        return new Administrator(
                 command.email(),
                 command.password(),
                 command.firstName(),
-                command.lastName()
+                command.lastName(),
+                command.role()
         );
-        this.repository.add(administrator);
-        return administrator;
     }
 
-    private void validateEmail(RegisterAdministratorCommand command) {
-        if (repository.findByEmail(command.email()).isPresent()){
+    private void validateEmailIsUnique(RegisterAdministratorCommand command) throws AdministratorAlreadyExistException {
+        if (repository.administrators().anyMatch(administrator -> administrator.getEmail().equals(command.email()))) {
             throw new AdministratorAlreadyExistException("Administrator " + command.email() + " is already exist.");
         }
     }

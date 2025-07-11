@@ -2,8 +2,9 @@ package company.spi;
 
 import company.model.CountryRegistrationRules;
 
-import java.util.Optional;
+import java.util.stream.Stream;
 
+@FunctionalInterface
 public interface CountryRegistrationRulesRepository {
-    Optional<CountryRegistrationRules> findByCountryCode(String countryCode);
+    Stream<CountryRegistrationRules> countryRegistrationRules();
 }

@@ -2,9 +2,9 @@ package administrator.spi;
 
 import administrator.model.Administrator;
 
-import java.util.Optional;
+import java.util.stream.Stream;
 
+@FunctionalInterface
 public interface AdministratorRepository {
-    void add(Administrator administrator);
-    Optional<Administrator> findByEmail(String email);
+    Stream<Administrator> administrators();
 }

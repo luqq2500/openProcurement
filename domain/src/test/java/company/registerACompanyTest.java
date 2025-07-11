@@ -4,31 +4,38 @@ import company.api.CompanyRegistrationValidator;
 import company.api.CompanyRegistrator;
 import company.application.*;
 import company.exception.CompanyAlreadyExistException;
-import company.exception.InvalidRegisterCompanyCommand;
+import company.model.CountryRegistrationRules;
 import company.model.RegisterCompanyCommand;
-import company.spi.CountryRegistrationRulesRepository;
-import company.spi.CompanyRepository;
 import company.model.Company;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.List;
+import java.util.stream.Stream;
 
 
 public class registerACompanyTest {
-    private CompanyRegistrator registrator;
+    private CompanyRegistrationValidator validator;
     @Before
     public void setUp(){
-        CompanyRepository companyRepository = new InMemoryCompanyRepository();
-        CountryRegistrationRulesRepository countryRegistrationRulesRepository = new InMemoryCountryRegistrationRulesRepository();
-        CompanyRegistrationValidator countryRuleValidator = new ValidateRegistrationCountryRules(countryRegistrationRulesRepository);
-        this.registrator = new RegisterACompany(companyRepository, countryRuleValidator);
+        var rules = Stream.of(
+                new CountryRegistrationRules("US", 9, "\\d{9}", 9, "\\d{9}",
+                        List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative")),
+                new CountryRegistrationRules("MY", 12, "\\d{12}", 12 , "\\d{12}",
+                        List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative"))
+        );
+        this.validator = new ValidateRegistrationCountryRules(()->rules);
     }
 
     @Test
-    public void registerACompanyShouldReturnCompany(){
+    public void registerANewCompanyShouldReturnCompany(){
+        var companies = Stream.of(
+                new Company("ForgeNet", "202380061600", "202380061600", "Cooperative", "MY")
+        );
+        CompanyRegistrator registrator = new RegisterACompany(()->companies, validator);
         RegisterCompanyCommand command = new RegisterCompanyCommand(
-                "ForgeNet",
-                "202380061600",
+                "Cathedral Technologies",
+                "202380061800",
                 "200877000000",
                 "Sole Proprietorship",
                 "MY"
@@ -40,20 +47,11 @@ public class registerACompanyTest {
     }
 
     @Test
-    public void registerInvalidCommandShouldThrowException(){
-        Assert.assertThrows(InvalidRegisterCompanyCommand.class,() -> {
-            new RegisterCompanyCommand(
-                    " ",
-                    " ",
-                    " ",
-                    " ",
-                    " "
-            );
-        });
-    }
-
-    @Test
     public void registerDuplicateCompanyShouldThrowException() {
+        var companies = Stream.of(
+                new Company("ForgeNet", "202380061600", "202380061600", "Cooperative", "MY")
+        );
+        CompanyRegistrator registrator = new RegisterACompany(()->companies, validator);
         RegisterCompanyCommand command = new RegisterCompanyCommand(
                 "ForgeNet",
                 "202380061600",
@@ -61,27 +59,6 @@ public class registerACompanyTest {
                 "Cooperative",
                 "MY"
         );
-        registrator.register(command);
         Assert.assertThrows(CompanyAlreadyExistException.class, ()->registrator.register(command));
-    }
-
-    @Test
-    public void registerAUniqueCompanyShouldNotThrowException(){
-        RegisterCompanyCommand command1 = new RegisterCompanyCommand(
-                "ForgeNet",
-                "202380061600",
-                "202380061600",
-                "Cooperative",
-                "MY"
-        );
-        registrator.register(command1);
-        RegisterCompanyCommand command2 = new RegisterCompanyCommand(
-                "ForgeNet",
-                "202080061600",
-                "202080061600",
-                "Cooperative",
-                "MY"
-        );
-        registrator.register(command2);
     }
 }

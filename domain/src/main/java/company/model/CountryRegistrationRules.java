@@ -19,7 +19,6 @@ public record CountryRegistrationRules(
             );
         }
     }
-
     public void validateTaxNumber(String taxNumber) {
         if (taxNumber==null || taxNumber.length()!=taxNumberLength || !taxNumber.matches(taxNumberPattern)){
             throw new InvalidCountryRegistrationRulesException(

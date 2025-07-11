@@ -2,7 +2,7 @@ package administrator.model;
 
 import administrator.exception.InvalidRegisterAdministratorCommand;
 
-public record RegisterAdministratorCommand(String email, String password, String firstName, String lastName){
+public record RegisterAdministratorCommand(String email, String password, String firstName, String lastName, String role){
     public RegisterAdministratorCommand {
         if (email.isBlank()) {
             throw new InvalidRegisterAdministratorCommand("Email cannot be blank");
@@ -15,6 +15,9 @@ public record RegisterAdministratorCommand(String email, String password, String
         }
         if (lastName.isBlank()) {
             throw new InvalidRegisterAdministratorCommand("Last name cannot be blank");
+        }
+        if (role.isBlank()) {
+            throw new InvalidRegisterAdministratorCommand("Role cannot be blank");
         }
     }
 }

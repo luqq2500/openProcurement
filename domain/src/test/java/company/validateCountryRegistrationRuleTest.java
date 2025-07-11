@@ -3,19 +3,26 @@ package company;
 import company.api.CompanyRegistrationValidator;
 import company.application.ValidateRegistrationCountryRules;
 import company.exception.InvalidCountryRegistrationRulesException;
+import company.model.CountryRegistrationRules;
 import company.model.RegisterCompanyCommand;
-import company.spi.CountryRegistrationRulesRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class validateCountryRegistrationRuleTest {
     private CompanyRegistrationValidator validator;
 
     @Before
     public void setUp() {
-        CountryRegistrationRulesRepository rulesRepository = new InMemoryCountryRegistrationRulesRepository();
-        this.validator = new ValidateRegistrationCountryRules(rulesRepository);
+        var rules = Stream.of(
+                new CountryRegistrationRules("US", 9, "\\d{9}", 9, "\\d{9}",
+                        List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative")),
+                new CountryRegistrationRules("MY", 12, "\\d{12}", 12 , "\\d{12}",
+                        List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative"))
+        );
+        this.validator = new ValidateRegistrationCountryRules(()->rules);
     }
 
     @Test

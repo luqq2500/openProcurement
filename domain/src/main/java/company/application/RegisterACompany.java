@@ -13,32 +13,30 @@ public class RegisterACompany implements CompanyRegistrator {
         this.repository = repository;
         this.countryRegistrationRuleValidator = countryRegistrationRuleValidator;
     }
-
     @Override
     public Company register(RegisterCompanyCommand command) {
         validateRegistrationNumber(command);
         validateTaxNumber(command);
         countryRegistrationRuleValidator.validate(command);
-        Company company = new Company(
+        return new Company(
                 command.name(),
                 command.registrationNumber(),
                 command.taxNumber(),
                 command.businessStructure(),
                 command.taxNumber()
         );
-        this.repository.add(company);
-        return company;
     }
 
-    private void validateTaxNumber(RegisterCompanyCommand command) {
-        if (repository.findByTaxNumber(command.taxNumber()).isPresent()) {
-            throw new CompanyAlreadyExistException("Company " + command.taxNumber() + "is already exists");
+    private void validateRegistrationNumber(RegisterCompanyCommand command) {
+        if (repository.companies().anyMatch(company -> company.getRegistrationNumber().equals(command.registrationNumber()))) {
+            throw new CompanyAlreadyExistException("Company with registration number " + command.registrationNumber() + " already exists");
         }
 
     }
-    private void validateRegistrationNumber(RegisterCompanyCommand command) {
-        if (repository.findByRegistrationNumber(command.registrationNumber()).isPresent()) {
-            throw new CompanyAlreadyExistException("Company " + command.registrationNumber() + "is already exists");
+
+    private void validateTaxNumber(RegisterCompanyCommand command) {
+        if (repository.companies().anyMatch(company -> company.getTaxNumber().equals(command.taxNumber()))) {
+            throw new CompanyAlreadyExistException("Company with tax number " + command.taxNumber() + " already exists");
         }
     }
 }
