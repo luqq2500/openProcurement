@@ -2,9 +2,9 @@ package company.spi;
 
 import company.model.Company;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @FunctionalInterface
 public interface CompanyRepository {
-    Stream<Company> companies();
+    List<Company> companies();
 }

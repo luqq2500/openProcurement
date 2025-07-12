@@ -2,9 +2,9 @@ package company.spi;
 
 import company.model.CountryRegistrationRules;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @FunctionalInterface
 public interface CountryRegistrationRulesRepository {
-    Stream<CountryRegistrationRules> countryRegistrationRules();
+    List<CountryRegistrationRules> countryRegistrationRules();
 }

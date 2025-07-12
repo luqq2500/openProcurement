@@ -11,10 +11,10 @@ public record RegisterAdministratorCommand(String email, String password, String
             throw new InvalidRegisterAdministratorCommand("Password cannot be blank");
         }
         if (firstName.isBlank()) {
-            throw new InvalidRegisterAdministratorCommand("First name cannot be blank");
+            throw new InvalidRegisterAdministratorCommand("First companyName cannot be blank");
         }
         if (lastName.isBlank()) {
-            throw new InvalidRegisterAdministratorCommand("Last name cannot be blank");
+            throw new InvalidRegisterAdministratorCommand("Last companyName cannot be blank");
         }
         if (role.isBlank()) {
             throw new InvalidRegisterAdministratorCommand("Role cannot be blank");

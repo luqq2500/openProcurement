@@ -8,16 +8,16 @@ import java.util.UUID;
 
 public class Company {
     private final UUID id;
-    private String name;
+    private String companyName;
     private String registrationNumber;
     private String businessStructure;
     private String taxNumber;
     private String countryCode;
     private List<User> users = new ArrayList<>();
 
-    public Company(String name, String registrationNumber, String taxNumber, String businessStructure, String countryCode) {
+    public Company(String companyName, String registrationNumber, String taxNumber, String businessStructure, String countryCode) {
         this.id = UUID.randomUUID();
-        this.name = name;
+        this.companyName = companyName;
         this.businessStructure = businessStructure;
         this.registrationNumber = registrationNumber;
         this.taxNumber = taxNumber;
@@ -27,11 +27,11 @@ public class Company {
     public UUID getId() {
         return id;
     }
-    public String getName() {
-        return name;
+    public String getCompanyName() {
+        return companyName;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
     public String getRegistrationNumber() {
         return registrationNumber;
