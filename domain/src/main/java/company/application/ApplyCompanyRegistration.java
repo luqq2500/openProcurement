@@ -8,7 +8,6 @@ import company.model.CompanyRegistrationApplication;
 import company.spi.CompanyRegistrationApplicationRepository;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 public class ApplyCompanyRegistration implements CompanyRegistrationApplier {

@@ -28,7 +28,6 @@ public record CountryRegistrationRules(
             );
         }
     }
-
     public void validateBusinessStructure(String businessStructure) {
         if (!businessStructures.contains(businessStructure.trim())){
             throw new InvalidCountryRegistrationRulesException(

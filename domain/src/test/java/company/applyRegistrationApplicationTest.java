@@ -4,10 +4,13 @@ import company.api.CompanyRegistrationApplicationValidator;
 import company.api.CompanyRegistrationApplier;
 import company.application.ApplyCompanyRegistration;
 import company.application.ValidateRegistrationCountryRules;
+import company.exception.CompanyRegistrationApplicationAlreadyExist;
 import company.model.ApplyCompanyRegistrationCommand;
 import company.model.CompanyRegistrationApplication;
 import company.model.CountryRegistrationRules;
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 
 import java.time.LocalDateTime;
@@ -41,5 +44,17 @@ public class applyRegistrationApplicationTest {
         );
         CompanyRegistrationApplication application = applier.apply(command);
         Assert.assertNotNull(application);
+    }
+
+    @Test
+    public void applyDuplicateRegistrationApplicationShouldThrowException(){
+        ApplyCompanyRegistrationCommand command = new ApplyCompanyRegistrationCommand(
+                "Cathedral",
+                "202380071700",
+                "202380071700",
+                "Cooperative",
+                "MY"
+        );
+        Assert.assertThrows(CompanyRegistrationApplicationAlreadyExist.class, ()-> applier.apply(command));
     }
 }
