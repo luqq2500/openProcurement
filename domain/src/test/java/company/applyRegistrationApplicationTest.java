@@ -5,6 +5,7 @@ import company.api.CompanyRegistrationApplier;
 import company.application.ApplyCompanyRegistration;
 import company.application.ValidateRegistrationCountryRules;
 import company.exception.CompanyRegistrationApplicationAlreadyExist;
+import company.exception.InvalidCompanyRegistrationApplicationCommand;
 import company.model.ApplyCompanyRegistrationCommand;
 import company.model.CompanyRegistrationApplication;
 import company.model.CountryRegistrationRules;
@@ -56,5 +57,44 @@ public class applyRegistrationApplicationTest {
                 "MY"
         );
         Assert.assertThrows(CompanyRegistrationApplicationAlreadyExist.class, ()-> applier.apply(command));
+    }
+
+    @Test
+    public void applyInvalidCompanyRegistrationApplicationCommandShouldThrowException() {
+        Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
+                "",
+                "202380061600",
+                "202380061600",
+                "Cooperative",
+                "MY"
+        ));
+        Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
+                "ForgeNet",
+                "",
+                "202380061600",
+                "Cooperative",
+                "MY"
+        ));
+        Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
+                "ForgeNet",
+                "202380061600",
+                "",
+                "Cooperative",
+                "MY"
+        ));
+        Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
+                "ForgeNet",
+                "202380061600",
+                "202380061600",
+                "",
+                "MY"
+        ));
+        Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
+                "ForgeNet",
+                "202380061600",
+                "202380061600",
+                "Cooperative",
+                ""
+        ));
     }
 }
