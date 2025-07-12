@@ -6,10 +6,10 @@ import company.application.command.ApplyCompanyRegistrationCommand;
 import company.model.CountryRegistrationRules;
 import company.spi.CountryRegistrationRulesRepository;
 
-public class ValidateRegistrationCountryRules implements CompanyRegistrationApplicationValidator {
+public class ValidateRegistrationApplicationCountryRules implements CompanyRegistrationApplicationValidator {
     private final CountryRegistrationRulesRepository rulesRepository;
 
-    public ValidateRegistrationCountryRules(CountryRegistrationRulesRepository rulesRepository) {
+    public ValidateRegistrationApplicationCountryRules(CountryRegistrationRulesRepository rulesRepository) {
         this.rulesRepository = rulesRepository;
     }
 

@@ -2,8 +2,8 @@ package company;
 
 import company.api.CompanyRegistrationApplicationValidator;
 import company.api.CompanyRegistrationApplier;
-import company.application.ApplyCompanyRegistration;
-import company.application.ValidateRegistrationCountryRules;
+import company.application.ApplyCompanyRegistrationApplication;
+import company.application.ValidateRegistrationApplicationCountryRules;
 import company.exception.CompanyRegistrationApplicationAlreadyExist;
 import company.exception.InvalidCompanyRegistrationApplicationCommand;
 import company.application.command.ApplyCompanyRegistrationCommand;
@@ -30,8 +30,8 @@ public class applyRegistrationApplicationTest {
                 new CountryRegistrationRules("MY", 12, "\\d{12}", 12 , "\\d{12}",
                         List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative"))
         );
-        CompanyRegistrationApplicationValidator countryRuleValidator = new ValidateRegistrationCountryRules(()->countryRegistrationRules);
-        this.applier = new ApplyCompanyRegistration(()->applications, countryRuleValidator);
+        CompanyRegistrationApplicationValidator countryRuleValidator = new ValidateRegistrationApplicationCountryRules(()->countryRegistrationRules);
+        this.applier = new ApplyCompanyRegistrationApplication(()->applications, countryRuleValidator);
     }
 
     @Test

@@ -13,8 +13,8 @@ public class Company {
     private String countryCode;
     private List<User> users = new ArrayList<>();
 
-    public Company(String companyName, String registrationNumber, String taxNumber, String businessStructure, String countryCode) {
-        this.companyId = UUID.randomUUID().toString();
+    public Company(String companyId, String companyName, String registrationNumber, String taxNumber, String businessStructure, String countryCode) {
+        this.companyId = companyId;
         this.companyName = companyName;
         this.businessStructure = businessStructure;
         this.registrationNumber = registrationNumber;

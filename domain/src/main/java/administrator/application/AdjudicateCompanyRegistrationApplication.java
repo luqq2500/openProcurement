@@ -1,24 +1,28 @@
 package administrator.application;
 
+import administrator.api.AdministratorRoleResponsibilityValidator;
 import administrator.api.CompanyRegistrationApplicationAdjudicator;
-import administrator.exception.InvalidAdministratorRole;
 import administrator.model.Administrator;
+import company.api.CompanyRegistrator;
 import company.exception.CompanyRegistrationApplicationAdjudicationException;
 import company.model.CompanyRegistrationApplication;
 import company.spi.CompanyRegistrationApplicationRepository;
 
 
-public class AdministratorAdjudicateCompanyRegistrationApplication implements CompanyRegistrationApplicationAdjudicator {
-    private static final String ADMINISTRATOR_ROLE = "Adjudicator";
+public class AdjudicateCompanyRegistrationApplication implements CompanyRegistrationApplicationAdjudicator {
     private final CompanyRegistrationApplicationRepository repository;
+    private final AdministratorRoleResponsibilityValidator validator;
+    private final CompanyRegistrator companyRegistrator;
 
-    public AdministratorAdjudicateCompanyRegistrationApplication(CompanyRegistrationApplicationRepository repository) {
+    public AdjudicateCompanyRegistrationApplication(CompanyRegistrationApplicationRepository repository, AdministratorRoleResponsibilityValidator validator, CompanyRegistrator companyRegistrator) {
         this.repository = repository;
+        this.validator = validator;
+        this.companyRegistrator = companyRegistrator;
     }
 
     @Override
     public CompanyRegistrationApplication process(CompanyRegistrationApplication application, Administrator administrator) {
-        validateAdministratorRole(administrator);
+        validator.validate(administrator, "processCompanyRegistrationApplication");
         if (!"Pending".equals(application.status())) {
             throw new CompanyRegistrationApplicationAdjudicationException(
                     "Processing of application '" + application.applicationId() + "' cannot begin: current status is '" + application.status() +
@@ -29,19 +33,20 @@ public class AdministratorAdjudicateCompanyRegistrationApplication implements Co
 
     @Override
     public CompanyRegistrationApplication approve(CompanyRegistrationApplication application, Administrator administrator) {
-        validateAdministratorRole(administrator);
+        validator.validate(administrator, "approveCompanyRegistrationApplication");
         if (!"Processing".equals(application.status())){
             throw new CompanyRegistrationApplicationAdjudicationException(
                     "Cannot adjudicate company registration application '" + application.applicationId() +
                             "' because its current status is '" + application.status() + "'. Only applications with 'Processing' status can be adjudicated. Please ensure the application is in the correct stage before proceeding."
             );
         }
+        companyRegistrator.register(application.companyName(), application.registrationNumber(), application.taxNumber(), application.businessStructure(), application.countryCode());
         return application.updateStatus("Approved", administrator.getAdministratorId());
     }
 
     @Override
     public CompanyRegistrationApplication reject(CompanyRegistrationApplication application, Administrator administrator) {
-        validateAdministratorRole(administrator);
+        validator.validate(administrator, "rejectCompanyRegistrationApplication");
         if (!"Processing".equals(application.status())){
             throw new CompanyRegistrationApplicationAdjudicationException(
                     "Rejection of application '" + application.applicationId() + "' is not allowed: current status is '" + application.status() +
@@ -49,11 +54,5 @@ public class AdministratorAdjudicateCompanyRegistrationApplication implements Co
             );
         }
         return application.updateStatus("Rejected", administrator.getAdministratorId());
-    }
-
-    private static void validateAdministratorRole(Administrator administrator) {
-        if (!administrator.getRole().equals(ADMINISTRATOR_ROLE)) {
-            throw new InvalidAdministratorRole("Only " + ADMINISTRATOR_ROLE + " roles are allowed to adjudicate company registration applications.");
-        }
     }
 }

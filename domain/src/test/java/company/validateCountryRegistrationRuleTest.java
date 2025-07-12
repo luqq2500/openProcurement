@@ -1,7 +1,7 @@
 package company;
 
 import company.api.CompanyRegistrationApplicationValidator;
-import company.application.ValidateRegistrationCountryRules;
+import company.application.ValidateRegistrationApplicationCountryRules;
 import company.exception.InvalidCountryRegistrationRulesException;
 import company.application.command.ApplyCompanyRegistrationCommand;
 import company.model.CountryRegistrationRules;
@@ -20,7 +20,7 @@ public class validateCountryRegistrationRuleTest {
                 new CountryRegistrationRules("MY", 12, "\\d{12}", 12 , "\\d{12}",
                         List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative"))
         );
-        this.validator = new ValidateRegistrationCountryRules(()->rules);
+        this.validator = new ValidateRegistrationApplicationCountryRules(()->rules);
     }
 
     @Test
