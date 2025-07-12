@@ -1,4 +1,4 @@
-package company.model;
+package company.application.command;
 
 import company.exception.InvalidCompanyRegistrationApplicationCommand;
 

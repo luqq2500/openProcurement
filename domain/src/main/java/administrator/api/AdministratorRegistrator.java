@@ -1,6 +1,6 @@
 package administrator.api;
 
-import administrator.model.RegisterAdministratorCommand;
+import administrator.application.command.RegisterAdministratorCommand;
 import administrator.model.Administrator;
 
 @FunctionalInterface

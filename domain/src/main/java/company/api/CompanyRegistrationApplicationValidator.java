@@ -1,7 +1,7 @@
 package company.api;
 
 import company.exception.InvalidCountryRegistrationRulesException;
-import company.model.ApplyCompanyRegistrationCommand;
+import company.application.command.ApplyCompanyRegistrationCommand;
 
 @FunctionalInterface
 public interface CompanyRegistrationApplicationValidator {

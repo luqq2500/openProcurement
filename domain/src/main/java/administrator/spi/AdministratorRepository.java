@@ -2,9 +2,9 @@ package administrator.spi;
 
 import administrator.model.Administrator;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @FunctionalInterface
 public interface AdministratorRepository {
-    Stream<Administrator> administrators();
+    List<Administrator> administrators();
 }

@@ -1,6 +1,6 @@
 package company.api;
 
-import company.model.ApplyCompanyRegistrationCommand;
+import company.application.command.ApplyCompanyRegistrationCommand;
 import company.model.CompanyRegistrationApplication;
 
 public interface CompanyRegistrationApplier {

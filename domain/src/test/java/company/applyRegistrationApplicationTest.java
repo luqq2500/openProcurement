@@ -6,7 +6,7 @@ import company.application.ApplyCompanyRegistration;
 import company.application.ValidateRegistrationCountryRules;
 import company.exception.CompanyRegistrationApplicationAlreadyExist;
 import company.exception.InvalidCompanyRegistrationApplicationCommand;
-import company.model.ApplyCompanyRegistrationCommand;
+import company.application.command.ApplyCompanyRegistrationCommand;
 import company.model.CompanyRegistrationApplication;
 import company.model.CountryRegistrationRules;
 import org.junit.Assert;
@@ -45,6 +45,7 @@ public class applyRegistrationApplicationTest {
         );
         CompanyRegistrationApplication application = applier.apply(command);
         Assert.assertNotNull(application);
+        System.out.println(application);
     }
 
     @Test

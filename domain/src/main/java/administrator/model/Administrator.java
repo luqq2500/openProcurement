@@ -3,7 +3,7 @@ package administrator.model;
 import java.util.UUID;
 
 public class Administrator {
-    private final UUID id;
+    private final String administratorId;
     private String email;
     private String password;
     private String firstName;
@@ -11,7 +11,7 @@ public class Administrator {
     private String role;
 
     public Administrator(String email, String password, String firstName, String lastName, String role) {
-        this.id = UUID.randomUUID();
+        this.administratorId = UUID.randomUUID().toString();
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -19,8 +19,8 @@ public class Administrator {
         this.role = role;
     }
 
-    public UUID getId() {
-        return id;
+    public String getAdministratorId() {
+        return administratorId;
     }
 
     public String getEmail() {

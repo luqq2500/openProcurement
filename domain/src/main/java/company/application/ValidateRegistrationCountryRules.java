@@ -2,7 +2,7 @@ package company.application;
 
 import company.api.CompanyRegistrationApplicationValidator;
 import company.exception.InvalidCountryRegistrationRulesException;
-import company.model.ApplyCompanyRegistrationCommand;
+import company.application.command.ApplyCompanyRegistrationCommand;
 import company.model.CountryRegistrationRules;
 import company.spi.CountryRegistrationRulesRepository;
 

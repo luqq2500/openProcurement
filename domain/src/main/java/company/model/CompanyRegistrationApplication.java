@@ -11,16 +11,11 @@ public record CompanyRegistrationApplication(
         String countryCode,
         LocalDateTime applicationTime,
         String status,
-        String approvalFromAdministratorId,
+        String approvedBy,
         LocalDateTime approvalTime
 ) {
-    public CompanyRegistrationApplication withStatus(String newStatus, LocalDateTime newApprovalTime) {
+    public CompanyRegistrationApplication updateStatus(String newStatus, String adjudicatorId) {
         return new CompanyRegistrationApplication(applicationId, companyName, registrationNumber, taxNumber,
-                businessStructure, countryCode, applicationTime, newStatus, approvalFromAdministratorId, newApprovalTime);
-    }
-
-    public CompanyRegistrationApplication withAdministratorId(String adminId) {
-        return new CompanyRegistrationApplication(applicationId, companyName, registrationNumber, taxNumber,
-                businessStructure, countryCode, applicationTime, status, adminId, approvalTime);
+                businessStructure, countryCode, applicationTime, newStatus, adjudicatorId, LocalDateTime.now());
     }
 }

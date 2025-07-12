@@ -1,13 +1,11 @@
 package company.model;
 
-import user.User;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 public class Company {
-    private final UUID id;
+    private final String companyId;
     private String companyName;
     private String registrationNumber;
     private String businessStructure;
@@ -16,7 +14,7 @@ public class Company {
     private List<User> users = new ArrayList<>();
 
     public Company(String companyName, String registrationNumber, String taxNumber, String businessStructure, String countryCode) {
-        this.id = UUID.randomUUID();
+        this.companyId = UUID.randomUUID().toString();
         this.companyName = companyName;
         this.businessStructure = businessStructure;
         this.registrationNumber = registrationNumber;
@@ -24,8 +22,8 @@ public class Company {
         this.countryCode = countryCode;
     }
 
-    public UUID getId() {
-        return id;
+    public String getCompanyId() {
+        return companyId;
     }
     public String getCompanyName() {
         return companyName;

@@ -1,8 +1,8 @@
-package administrator.model;
+package administrator.application.command;
 
 import administrator.exception.InvalidRegisterAdministratorCommand;
 
-public record RegisterAdministratorCommand(String email, String password, String firstName, String lastName, String role){
+public record RegisterAdministratorCommand (String email, String password, String firstName, String lastName, String role){
     public RegisterAdministratorCommand {
         if (email.isBlank()) {
             throw new InvalidRegisterAdministratorCommand("Email cannot be blank");

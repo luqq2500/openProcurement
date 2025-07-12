@@ -3,7 +3,7 @@ package company.application;
 import company.api.CompanyRegistrationApplicationValidator;
 import company.api.CompanyRegistrationApplier;
 import company.exception.CompanyRegistrationApplicationAlreadyExist;
-import company.model.ApplyCompanyRegistrationCommand;
+import company.application.command.ApplyCompanyRegistrationCommand;
 import company.model.CompanyRegistrationApplication;
 import company.spi.CompanyRegistrationApplicationRepository;
 
@@ -31,7 +31,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
                 command.businessStructure(),
                 command.countryCode(),
                 LocalDateTime.now(),
-                "PENDING",
+                "Pending",
                 null,
                 null
         );

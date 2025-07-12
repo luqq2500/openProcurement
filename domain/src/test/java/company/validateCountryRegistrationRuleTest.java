@@ -3,7 +3,7 @@ package company;
 import company.api.CompanyRegistrationApplicationValidator;
 import company.application.ValidateRegistrationCountryRules;
 import company.exception.InvalidCountryRegistrationRulesException;
-import company.model.ApplyCompanyRegistrationCommand;
+import company.application.command.ApplyCompanyRegistrationCommand;
 import company.model.CountryRegistrationRules;
 import org.junit.Assert;
 import org.junit.Before;

@@ -1,9 +1,9 @@
-package user;
+package company.model;
 
 import java.util.UUID;
 
 public class User{
-    private final UUID id;
+    private final String userId;
     private String firstName;
     private String lastName;
     private String email;
@@ -12,7 +12,7 @@ public class User{
     private String role;
 
     public User(String firstName, String lastName, String email, String phone, String department, String role){
-        this.id = UUID.randomUUID();
+        this.userId = UUID.randomUUID().toString();
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -57,7 +57,7 @@ public class User{
     public void setRole(String role) {
         this.role = role;
     }
-    public UUID getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 }
