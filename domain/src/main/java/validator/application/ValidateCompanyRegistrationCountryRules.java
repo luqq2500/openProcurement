@@ -22,7 +22,7 @@ public class ValidateCompanyRegistrationCountryRules implements CompanyRegistrat
     }
 
     private CompanyRegistrationCountryRule getCountryRegistrationRules(ApplyCompanyRegistrationCommand command) {
-        return rulesRepository.countryRegistrationRules().stream().filter(companyRegistrationCountryRule -> companyRegistrationCountryRule.countryCode().equals(command.address().country()))
+        return rulesRepository.countryRegistrationRules().stream().filter(companyRegistrationCountryRule -> companyRegistrationCountryRule.countryName().equals(command.address().country()))
                 .findFirst().orElseThrow(() -> new InvalidCountryRegistrationRulesException("Country code not found."));
     }
 }

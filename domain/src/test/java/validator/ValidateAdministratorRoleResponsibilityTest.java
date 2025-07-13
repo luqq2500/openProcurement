@@ -29,6 +29,7 @@ public class ValidateAdministratorRoleResponsibilityTest {
         );
         Administrator administrator = new Administrator("haha", "haha", "haha", "haha", "Adjudicator");
         AdministratorRoleResponsibilityValidator validator = new ValidateAdministratorRoleResponsibility(()->roleRules);
-        Assert.assertThrows(NotAuthorizedAdministratorRoleResponsibility.class, ()->{validator.validate(administrator, "authorizeApplication");});
+        NotAuthorizedAdministratorRoleResponsibility exception = Assert.assertThrows(NotAuthorizedAdministratorRoleResponsibility.class, ()->{validator.validate(administrator, "authorizeApplication");});
+        System.out.println(exception.getMessage());
     }
 }

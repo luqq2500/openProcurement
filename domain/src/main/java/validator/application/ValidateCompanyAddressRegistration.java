@@ -1,6 +1,7 @@
 package validator.application;
 
 import address.exception.InvalidAddressException;
+import address.exception.InvalidAddressRuleException;
 import address.model.AddressRule;
 import address.spi.AddressCountryRuleRepository;
 import company.application.command.ApplyCompanyRegistrationCommand;
@@ -24,6 +25,6 @@ public class ValidateCompanyAddressRegistration implements CompanyRegistrationAp
     private AddressRule getAddressRule(ApplyCompanyRegistrationCommand command) {
         return repository.addressCountryRules().stream()
                 .filter(addressRule -> addressRule.country().equals(command.address().country()))
-                .findFirst().orElseThrow(() -> new InvalidAddressException("No address country found."));
+                .findFirst().orElseThrow(() -> new InvalidAddressRuleException("Address rule from " + command.address().country() + " not found."));
     }
 }

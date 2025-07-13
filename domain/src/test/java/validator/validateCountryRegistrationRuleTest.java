@@ -18,7 +18,7 @@ public class validateCountryRegistrationRuleTest {
     @Before
     public void setUp() {
         var rules = List.of(
-                new CompanyRegistrationCountryRule("MY", 12, "\\d{12}", 12 , "\\d{12}",
+                new CompanyRegistrationCountryRule("Malaysia", 12, "\\d{12}", 12 , "\\d{12}",
                         List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative"))
         );
         this.validator = new ValidateCompanyRegistrationCountryRules(()->rules);

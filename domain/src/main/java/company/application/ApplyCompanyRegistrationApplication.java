@@ -8,20 +8,23 @@ import company.model.CompanyRegistrationApplication;
 import company.spi.CompanyRegistrationApplicationRepository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 public class ApplyCompanyRegistrationApplication implements CompanyRegistrationApplier {
     private final CompanyRegistrationApplicationRepository repository;
-    private final CompanyRegistrationApplicationValidator validator;
+    private final List<CompanyRegistrationApplicationValidator> validators;
 
-    public ApplyCompanyRegistrationApplication(CompanyRegistrationApplicationRepository repository, CompanyRegistrationApplicationValidator validator) {
+    public ApplyCompanyRegistrationApplication(CompanyRegistrationApplicationRepository repository, List<CompanyRegistrationApplicationValidator> validators) {
         this.repository = repository;
-        this.validator = validator;
+        this.validators = validators;
     }
     @Override
     public CompanyRegistrationApplication apply(ApplyCompanyRegistrationCommand command) {
         validateRegistrationApplicationIsUnique(command);
-        validator.validate(command);
+        for (CompanyRegistrationApplicationValidator validator : validators) {
+            validator.validate(command);
+        }
         return new CompanyRegistrationApplication(
                 UUID.randomUUID().toString(),
                 command.companyName(),
@@ -37,10 +40,10 @@ public class ApplyCompanyRegistrationApplication implements CompanyRegistrationA
     }
     private void validateRegistrationApplicationIsUnique(ApplyCompanyRegistrationCommand command) {
         if (repository.registrations().stream().anyMatch(application -> application.registrationNumber().equals(command.registrationNumber()))){
-            throw new CompanyRegistrationApplicationAlreadyExist("Company with registration number " + command.registrationNumber() + " already applied for registration.");
+            throw new CompanyRegistrationApplicationAlreadyExist("Company with registration number " + command.registrationNumber() + " has already applied for registration.");
         }
         if (repository.registrations().stream().anyMatch(application -> application.taxNumber().equals(command.taxNumber()))){
-            throw new CompanyRegistrationApplicationAlreadyExist("Company with tax number " + command.taxNumber() + " already applied for registration.");
+            throw new CompanyRegistrationApplicationAlreadyExist("Company with tax number " + command.taxNumber() + " has already applied for registration.");
         }
     }
 }

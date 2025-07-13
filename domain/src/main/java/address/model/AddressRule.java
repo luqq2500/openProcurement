@@ -2,9 +2,10 @@ package address.model;
 
 import address.exception.InvalidAddressRuleException;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
-
 
 public record AddressRule(String country, Set<State> states) {
     public AddressRule {
@@ -18,7 +19,7 @@ public record AddressRule(String country, Set<State> states) {
         states().stream()
                 .filter(state -> state.stateName().equals(stateName))
                 .findFirst()
-                .orElseThrow(() -> new InvalidAddressRuleException("State " + stateName + " does not belong to country " + country));
+                .orElseThrow(() -> new InvalidAddressRuleException("State " + stateName + " is not registered with country " + country + "."));
     }
 
     public void validateCity(String stateName, String cityName){
@@ -29,7 +30,7 @@ public record AddressRule(String country, Set<State> states) {
         state.cities().stream()
                 .filter(city -> city.cityName().equals(cityName))
                 .findFirst()
-                .orElseThrow(() -> new InvalidAddressRuleException("City " + cityName + " does not belong to state " + stateName + " ."));
+                .orElseThrow(() -> new InvalidAddressRuleException("City " + cityName + " is not registered with state " + stateName + "."));
     }
 
     public void validatePostalCode(String stateName, String cityName, String postalCode){
@@ -38,7 +39,7 @@ public record AddressRule(String country, Set<State> states) {
         }
         City city = getCity(stateName, cityName);
         if (city.postalCodes().stream().noneMatch(pc -> pc.postalCode().equals(postalCode))) {
-            throw new InvalidAddressRuleException("Postal code " + postalCode + " does not belong to city " + cityName + " .");
+            throw new InvalidAddressRuleException("Postal code " + postalCode + " is not registered with city " + cityName + ".");
         }
     }
 
@@ -46,7 +47,7 @@ public record AddressRule(String country, Set<State> states) {
         return states.stream()
                 .filter(s -> s.stateName().equals(stateName))
                 .findFirst()
-                .orElseThrow(()-> new InvalidAddressRuleException("State " + stateName + " does not belong to country " + country));
+                .orElseThrow(()-> new InvalidAddressRuleException("State " + stateName + " is not registered with country " + country + "."));
     }
 
     private City getCity(String stateName, String cityName) {
@@ -55,6 +56,6 @@ public record AddressRule(String country, Set<State> states) {
                 .flatMap(s -> s.cities().stream())
                 .filter(c -> c.cityName().equals(cityName))
                 .findFirst()
-                .orElseThrow(() -> new InvalidAddressRuleException("City " + cityName + " does not belong to state " + stateName));
+                .orElseThrow(() -> new InvalidAddressRuleException("City " + cityName + " is not registered with state " + stateName + "."));
     }
 }
