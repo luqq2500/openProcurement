@@ -1,8 +1,8 @@
-package administrator;
+package validator;
 
-import administrator.api.AdministratorRoleResponsibilityValidator;
-import administrator.application.ValidateAdministratorRoleResponsibility;
-import administrator.exception.NotAuthorizedAdministratorRoleResponsibility;
+import validator.api.AdministratorRoleResponsibilityValidator;
+import validator.application.ValidateAdministratorRoleResponsibility;
+import validator.exception.NotAuthorizedAdministratorRoleResponsibility;
 import administrator.model.Administrator;
 import administrator.model.AdministratorRoleResponsibilities;
 import org.junit.Assert;

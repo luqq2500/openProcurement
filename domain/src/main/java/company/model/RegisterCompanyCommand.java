@@ -1,5 +1,6 @@
 package company.model;
 
+import address.model.AddressCommand;
 import company.exception.InvalidRegisterCompanyCommand;
 
 public class RegisterCompanyCommand {
@@ -7,18 +8,17 @@ public class RegisterCompanyCommand {
     private final String registrationNumber;
     private final String taxNumber;
     private final String businessStructure;
-    private final String countryCode;
+    private final AddressCommand address;
     public RegisterCompanyCommand(CompanyRegistrationApplication application) {
         validateRegistrationApplication(application.companyName(), "Company name cannot be blank");
         validateRegistrationApplication(application.registrationNumber(), "Registration number cannot be blank");
         validateRegistrationApplication(application.taxNumber(), "Tax number cannot be blank");
         validateRegistrationApplication(application.businessStructure(), "Business structure cannot be blank");
-        validateRegistrationApplication(application.countryCode(), "Country code cannot be blank");
         this.companyName=application.companyName();
         this.registrationNumber=application.registrationNumber();
         this.taxNumber=application.taxNumber();
         this.businessStructure=application.businessStructure();
-        this.countryCode=application.countryCode();
+        this.address =application.address();
     }
 
     private static void validateRegistrationApplication(String application, String Company_name_cannot_be_blank) {
@@ -43,7 +43,8 @@ public class RegisterCompanyCommand {
         return businessStructure;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+
+    public AddressCommand getAddress() {
+        return address;
     }
 }

@@ -1,10 +1,11 @@
-package company;
+package validator;
 
-import company.api.CompanyRegistrationApplicationValidator;
-import company.application.ValidateRegistrationApplicationCountryRules;
-import company.exception.InvalidCountryRegistrationRulesException;
+import address.model.AddressCommand;
+import validator.api.CompanyRegistrationApplicationValidator;
+import validator.application.ValidateCompanyRegistrationCountryRules;
+import validator.exception.InvalidCountryRegistrationRulesException;
 import company.application.command.ApplyCompanyRegistrationCommand;
-import company.model.CountryRegistrationRules;
+import company.model.CompanyRegistrationCountryRule;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,10 +18,10 @@ public class validateCountryRegistrationRuleTest {
     @Before
     public void setUp() {
         var rules = List.of(
-                new CountryRegistrationRules("MY", 12, "\\d{12}", 12 , "\\d{12}",
+                new CompanyRegistrationCountryRule("MY", 12, "\\d{12}", 12 , "\\d{12}",
                         List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative"))
         );
-        this.validator = new ValidateRegistrationApplicationCountryRules(()->rules);
+        this.validator = new ValidateCompanyRegistrationCountryRules(()->rules);
     }
 
     @Test
@@ -30,7 +31,15 @@ public class validateCountryRegistrationRuleTest {
                 "202380061600",
                 "202380061600",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         );
         validator.validate(command);
     }
@@ -42,7 +51,15 @@ public class validateCountryRegistrationRuleTest {
                 "2023800616",
                 "202380061600",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         );
         Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> validator.validate(command));
     }
@@ -54,7 +71,15 @@ public class validateCountryRegistrationRuleTest {
                 "202380061@xx",
                 "202380061600",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         );
         Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> validator.validate(command));
     }
@@ -66,7 +91,15 @@ public class validateCountryRegistrationRuleTest {
                 "202380061600",
                 "2023800",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         );
         Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> validator.validate(command));
     }
@@ -78,7 +111,15 @@ public class validateCountryRegistrationRuleTest {
                 "202380061600",
                 "202380061xxx",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         );
         Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> validator.validate(command));
     }
@@ -90,7 +131,15 @@ public class validateCountryRegistrationRuleTest {
                 "202380061600",
                 "202380061600",
                 "Gmbh",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         );
         Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> validator.validate(command));
     }
@@ -102,7 +151,15 @@ public class validateCountryRegistrationRuleTest {
                 "202380061600",
                 "202380061600",
                 "Cooperative",
-                "Selangor"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Selangor"
+                )
         );
         Assert.assertThrows(InvalidCountryRegistrationRulesException.class, () -> validator.validate(command));
     }

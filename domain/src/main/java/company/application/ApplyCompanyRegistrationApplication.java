@@ -1,6 +1,6 @@
 package company.application;
 
-import company.api.CompanyRegistrationApplicationValidator;
+import validator.api.CompanyRegistrationApplicationValidator;
 import company.api.CompanyRegistrationApplier;
 import company.exception.CompanyRegistrationApplicationAlreadyExist;
 import company.application.command.ApplyCompanyRegistrationCommand;
@@ -18,7 +18,6 @@ public class ApplyCompanyRegistrationApplication implements CompanyRegistrationA
         this.repository = repository;
         this.validator = validator;
     }
-
     @Override
     public CompanyRegistrationApplication apply(ApplyCompanyRegistrationCommand command) {
         validateRegistrationApplicationIsUnique(command);
@@ -29,14 +28,13 @@ public class ApplyCompanyRegistrationApplication implements CompanyRegistrationA
                 command.registrationNumber(),
                 command.taxNumber(),
                 command.businessStructure(),
-                command.countryCode(),
+                command.address(),
                 LocalDateTime.now(),
                 "Pending",
                 null,
                 null
         );
     }
-
     private void validateRegistrationApplicationIsUnique(ApplyCompanyRegistrationCommand command) {
         if (repository.registrations().stream().anyMatch(application -> application.registrationNumber().equals(command.registrationNumber()))){
             throw new CompanyRegistrationApplicationAlreadyExist("Company with registration number " + command.registrationNumber() + " already applied for registration.");

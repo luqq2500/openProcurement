@@ -1,19 +1,18 @@
 package company;
 
-import company.api.CompanyRegistrationApplicationValidator;
+import address.model.AddressCommand;
+import validator.api.CompanyRegistrationApplicationValidator;
 import company.api.CompanyRegistrationApplier;
 import company.application.ApplyCompanyRegistrationApplication;
-import company.application.ValidateRegistrationApplicationCountryRules;
+import validator.application.ValidateCompanyRegistrationCountryRules;
 import company.exception.CompanyRegistrationApplicationAlreadyExist;
 import company.exception.InvalidCompanyRegistrationApplicationCommand;
 import company.application.command.ApplyCompanyRegistrationCommand;
 import company.model.CompanyRegistrationApplication;
-import company.model.CountryRegistrationRules;
+import company.model.CompanyRegistrationCountryRule;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -22,18 +21,25 @@ public class applyRegistrationApplicationTest {
     private CompanyRegistrationApplier applier;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         var applications = List.of(
-                new CompanyRegistrationApplication(UUID.randomUUID().toString(), "Cathedral", "202380071700", "202380071700", "Cooperative", "MY", LocalDateTime.now(), "Pending", null, null)
+                new CompanyRegistrationApplication(UUID.randomUUID().toString(), "Cathedral", "202380071700", "202380071700", "Cooperative", new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                ), LocalDateTime.now(), "Pending", null, null)
         );
         var countryRegistrationRules = List.of(
-                new CountryRegistrationRules("MY", 12, "\\d{12}", 12 , "\\d{12}",
+                new CompanyRegistrationCountryRule("MY", 12, "\\d{12}", 12 , "\\d{12}",
                         List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative"))
         );
-        CompanyRegistrationApplicationValidator countryRuleValidator = new ValidateRegistrationApplicationCountryRules(()->countryRegistrationRules);
+        CompanyRegistrationApplicationValidator countryRuleValidator = new ValidateCompanyRegistrationCountryRules(()->countryRegistrationRules);
         this.applier = new ApplyCompanyRegistrationApplication(()->applications, countryRuleValidator);
     }
-
     @Test
     public void applyRegistrationApplicationShouldReturn(){
         ApplyCompanyRegistrationCommand command = new ApplyCompanyRegistrationCommand(
@@ -41,13 +47,20 @@ public class applyRegistrationApplicationTest {
                 "202380061600",
                 "202380061600",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         );
         CompanyRegistrationApplication application = applier.apply(command);
         Assert.assertNotNull(application);
         System.out.println(application);
     }
-
     @Test
     public void applyDuplicateRegistrationApplicationShouldThrowException(){
         ApplyCompanyRegistrationCommand command = new ApplyCompanyRegistrationCommand(
@@ -55,11 +68,18 @@ public class applyRegistrationApplicationTest {
                 "202380071700",
                 "202380071700",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         );
         Assert.assertThrows(CompanyRegistrationApplicationAlreadyExist.class, ()-> applier.apply(command));
     }
-
     @Test
     public void applyInvalidCompanyRegistrationApplicationCommandShouldThrowException() {
         Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
@@ -67,35 +87,75 @@ public class applyRegistrationApplicationTest {
                 "202380061600",
                 "202380061600",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         ));
         Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
                 "ForgeNet",
                 "",
                 "202380061600",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         ));
         Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
                 "ForgeNet",
                 "202380061600",
                 "",
                 "Cooperative",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         ));
         Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
                 "ForgeNet",
                 "202380061600",
                 "202380061600",
                 "",
-                "MY"
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         ));
         Assert.assertThrows(InvalidCompanyRegistrationApplicationCommand.class, ()-> new ApplyCompanyRegistrationCommand(
                 "ForgeNet",
                 "202380061600",
                 "202380061600",
                 "Cooperative",
-                ""
+                new AddressCommand(
+                        "1, Jalan Dahlia 8/2, Taman Dahlia",
+                        "Bandar Baru Salak Tinggi",
+                        null,
+                        "Petaling Jaya",
+                        "Selangor",
+                        "46100",
+                        "Malaysia"
+                )
         ));
     }
 }

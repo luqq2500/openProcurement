@@ -1,5 +1,6 @@
 package company.application.command;
 
+import address.model.AddressCommand;
 import company.exception.InvalidCompanyRegistrationApplicationCommand;
 
 public record ApplyCompanyRegistrationCommand (
@@ -7,7 +8,7 @@ public record ApplyCompanyRegistrationCommand (
         String registrationNumber,
         String taxNumber,
         String businessStructure,
-        String countryCode
+        AddressCommand address
 ){
     public ApplyCompanyRegistrationCommand {
         if (companyName.isBlank()){
@@ -21,9 +22,6 @@ public record ApplyCompanyRegistrationCommand (
         }
         if (businessStructure.isBlank()){
             throw new InvalidCompanyRegistrationApplicationCommand("Business structure cannot be blank");
-        }
-        if (countryCode.isBlank()){
-            throw new InvalidCompanyRegistrationApplicationCommand("Country code cannot be blank");
         }
     }
 }

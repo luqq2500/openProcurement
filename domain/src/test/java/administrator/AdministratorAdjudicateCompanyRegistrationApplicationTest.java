@@ -1,15 +1,16 @@
 package administrator;
 
-import administrator.api.AdministratorRoleResponsibilityValidator;
+import address.model.AddressCommand;
+import validator.api.AdministratorRoleResponsibilityValidator;
 import administrator.api.CompanyRegistrationApplicationAdjudicator;
 import administrator.application.AdjudicateCompanyRegistrationApplication;
-import administrator.application.ValidateAdministratorRoleResponsibility;
-import administrator.exception.NotAuthorizedAdministratorRoleResponsibility;
+import validator.application.ValidateAdministratorRoleResponsibility;
+import validator.exception.NotAuthorizedAdministratorRoleResponsibility;
 import administrator.model.Administrator;
 import administrator.model.AdministratorRoleResponsibilities;
 import company.api.CompanyRegistrator;
 import company.application.RegisterCompany;
-import company.exception.CompanyRegistrationApplicationAdjudicationException;
+import administrator.exception.InvalidAdjudicationCompanyRegistrationException;
 import company.model.Company;
 import company.model.CompanyRegistrationApplication;
 import org.junit.Assert;
@@ -29,11 +30,20 @@ public class AdministratorAdjudicateCompanyRegistrationApplicationTest {
 
     @Before
     public void setUp() {
+        AddressCommand addressCommand = new AddressCommand(
+                "1, Jalan Dahlia 8/2, Taman Dahlia",
+                "Bandar Baru Salak Tinggi",
+                null,
+                "Petaling Jaya",
+                "Selangor",
+                "46100",
+                "Malaysia"
+        );
         applications = List.of(
-                new CompanyRegistrationApplication("223hshvXc", "Cathedral", "202380061600", "202380061600", "Cooperative", "MY", LocalDateTime.now(), "Pending", null, null),
-                new CompanyRegistrationApplication("2772bbbdhc", "ForgeNet", "202380061677", "202380061677", "Cooperative", "MY", LocalDateTime.now(), "Processing", "gsg1929mm", LocalDateTime.now()),
-                new CompanyRegistrationApplication("hpwsb99aiq", "Continuum", "202380061699", "202380061699", "Cooperative", "MY", LocalDateTime.now(), "Approved", "gsg1929mm", LocalDateTime.now()),
-                new CompanyRegistrationApplication("727mspbdg99", "Sleep Token", "202380061655", "202380061655", "Cooperative", "MY", LocalDateTime.now(), "Rejected", "gsg1929mm", LocalDateTime.now())
+                new CompanyRegistrationApplication("223hshvXc", "Cathedral", "202380061600", "202380061600", "Cooperative", addressCommand, LocalDateTime.now(), "Pending", null, null),
+                new CompanyRegistrationApplication("2772bbbdhc", "ForgeNet", "202380061677", "202380061677", "Cooperative", addressCommand, LocalDateTime.now(), "Processing", "gsg1929mm", LocalDateTime.now()),
+                new CompanyRegistrationApplication("hpwsb99aiq", "Continuum", "202380061699", "202380061699", "Cooperative", addressCommand, LocalDateTime.now(), "Approved", "gsg1929mm", LocalDateTime.now()),
+                new CompanyRegistrationApplication("727mspbdg99", "Sleep Token", "202380061655", "202380061655", "Cooperative", addressCommand, LocalDateTime.now(), "Rejected", "gsg1929mm", LocalDateTime.now())
         );
         List<Administrator> administrators = List.of(
                 new Administrator("hakimluqq25@gmail.com", "haha", "luq", "hakim", "Adjudicator"),
@@ -49,6 +59,7 @@ public class AdministratorAdjudicateCompanyRegistrationApplicationTest {
         authorizedAdministrator = administrators.stream().filter(administrator -> administrator.getRole().equals("Adjudicator")).findFirst().orElse(null);
         notAuthorizedAdministrator = administrators.stream().filter(administrator -> !administrator.getRole().equals("Adjudicator")).findFirst().orElse(null);
     }
+
     @Test
     public void validAdministratorProcessApplicationWillReturnProcessingApplication() {
         CompanyRegistrationApplication pendingApplication = applications.stream()
@@ -75,9 +86,9 @@ public class AdministratorAdjudicateCompanyRegistrationApplicationTest {
                 .filter(application -> application.status().equals("Rejected"))
                 .findFirst()
                 .orElse(null);
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.process(processingApplication, authorizedAdministrator);});
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.process(approvedApplication, authorizedAdministrator);});
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.process(rejectedApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.process(processingApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.process(approvedApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.process(rejectedApplication, authorizedAdministrator);});
     }
 
     @Test
@@ -105,9 +116,9 @@ public class AdministratorAdjudicateCompanyRegistrationApplicationTest {
                 .filter(application -> application.status().equals("Rejected"))
                 .findFirst()
                 .orElse(null);
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.approve(pendingApplication, authorizedAdministrator);});
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.approve(approvedApplication, authorizedAdministrator);});
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.approve(rejectedApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.approve(pendingApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.approve(approvedApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.approve(rejectedApplication, authorizedAdministrator);});
     }
 
     @Test
@@ -135,9 +146,9 @@ public class AdministratorAdjudicateCompanyRegistrationApplicationTest {
                 .filter(application -> application.status().equals("Rejected"))
                 .findFirst()
                 .orElse(null);
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.reject(pendingApplication, authorizedAdministrator);});
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.reject(approvedApplication, authorizedAdministrator);});
-        Assert.assertThrows(CompanyRegistrationApplicationAdjudicationException.class,() -> {adjudicator.reject(rejectedApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.reject(pendingApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.reject(approvedApplication, authorizedAdministrator);});
+        Assert.assertThrows(InvalidAdjudicationCompanyRegistrationException.class,() -> {adjudicator.reject(rejectedApplication, authorizedAdministrator);});
     }
 
     @Test

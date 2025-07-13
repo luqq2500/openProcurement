@@ -1,9 +1,9 @@
 package company.model;
-import company.exception.InvalidCountryRegistrationRulesException;
+import validator.exception.InvalidCountryRegistrationRulesException;
 
 import java.util.List;
 
-public record CountryRegistrationRules(
+public record CompanyRegistrationCountryRule(
         String countryCode,
         int registrationNumberLength,
         String registrationNumberPattern,

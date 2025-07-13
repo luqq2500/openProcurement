@@ -1,5 +1,6 @@
 package company;
 
+import address.model.AddressCommand;
 import company.api.CompanyRegistrator;
 import company.application.RegisterCompany;
 import company.model.Company;
@@ -17,8 +18,17 @@ public class registerCompanyTest {
     public void testRegisterCompany() {
         List<Company> companies = new ArrayList<>();
         CompanyRegistrator registrator = new RegisterCompany(()->companies);
+        AddressCommand addressCommand = new AddressCommand(
+                "1, Jalan Dahlia 8/2, Taman Dahlia",
+                "Bandar Baru Salak Tinggi",
+                null,
+                "Petaling Jaya",
+                "Selangor",
+                "46100",
+                "Malaysia"
+        );
         RegisterCompanyCommand command = new RegisterCompanyCommand(new CompanyRegistrationApplication(
-                "ndedneww", "ForgeNet", "202380061600", "202380061600", "Cooperative", "MY", LocalDateTime.now(), "Approved", "eejeud993xx", LocalDateTime.now()
+                "ndedneww", "ForgeNet", "202380061600", "202380061600", "Cooperative", addressCommand, LocalDateTime.now(), "Approved", "eejeud993xx", LocalDateTime.now()
         ));
         Company company = registrator.register(command);
         Assert.assertNotNull(company);

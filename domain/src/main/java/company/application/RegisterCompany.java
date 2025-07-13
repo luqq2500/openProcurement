@@ -16,6 +16,6 @@ public class RegisterCompany implements CompanyRegistrator {
 
     @Override
     public Company register(RegisterCompanyCommand command) {
-        return new Company(UUID.randomUUID().toString(), command.getCompanyName(), command.getRegistrationNumber(), command.getTaxNumber(), command.getBusinessStructure(), command.getCountryCode());
+        return new Company(UUID.randomUUID().toString(), command.getCompanyName(), command.getRegistrationNumber(), command.getTaxNumber(), command.getBusinessStructure(), command.getAddress());
     }
 }

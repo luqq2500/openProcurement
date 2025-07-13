@@ -1,7 +1,7 @@
-package administrator.application;
+package validator.application;
 
-import administrator.api.AdministratorRoleResponsibilityValidator;
-import administrator.exception.NotAuthorizedAdministratorRoleResponsibility;
+import validator.api.AdministratorRoleResponsibilityValidator;
+import validator.exception.NotAuthorizedAdministratorRoleResponsibility;
 import administrator.model.Administrator;
 import administrator.spi.AdministratorRoleResponsibilityRepository;
 

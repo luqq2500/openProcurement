@@ -1,4 +1,4 @@
-package administrator.api;
+package validator.api;
 
 import administrator.model.Administrator;
 

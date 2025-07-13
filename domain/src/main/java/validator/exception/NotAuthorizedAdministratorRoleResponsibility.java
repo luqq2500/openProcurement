@@ -1,4 +1,4 @@
-package administrator.exception;
+package validator.exception;
 
 public class NotAuthorizedAdministratorRoleResponsibility extends RuntimeException {
     public NotAuthorizedAdministratorRoleResponsibility(String message) {

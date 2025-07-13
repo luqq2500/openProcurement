@@ -1,5 +1,7 @@
 package company.model;
 
+import address.model.AddressCommand;
+
 import java.time.LocalDateTime;
 
 public record CompanyRegistrationApplication(
@@ -8,7 +10,7 @@ public record CompanyRegistrationApplication(
         String registrationNumber,
         String taxNumber,
         String businessStructure,
-        String countryCode,
+        AddressCommand address,
         LocalDateTime applicationTime,
         String status,
         String approvedBy,
@@ -16,6 +18,6 @@ public record CompanyRegistrationApplication(
 ) {
     public CompanyRegistrationApplication updateStatus(String newStatus, String adjudicatorId) {
         return new CompanyRegistrationApplication(applicationId, companyName, registrationNumber, taxNumber,
-                businessStructure, countryCode, applicationTime, newStatus, adjudicatorId, LocalDateTime.now());
+                businessStructure, address, applicationTime, newStatus, adjudicatorId, LocalDateTime.now());
     }
 }
