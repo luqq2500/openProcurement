@@ -6,6 +6,7 @@ import administrator.model.Administrator;
 import company.api.CompanyRegistrator;
 import company.exception.CompanyRegistrationApplicationAdjudicationException;
 import company.model.CompanyRegistrationApplication;
+import company.model.RegisterCompanyCommand;
 import company.spi.CompanyRegistrationApplicationRepository;
 
 
@@ -40,7 +41,7 @@ public class AdjudicateCompanyRegistrationApplication implements CompanyRegistra
                             "' because its current status is '" + application.status() + "'. Only applications with 'Processing' status can be adjudicated. Please ensure the application is in the correct stage before proceeding."
             );
         }
-        companyRegistrator.register(application.companyName(), application.registrationNumber(), application.taxNumber(), application.businessStructure(), application.countryCode());
+        companyRegistrator.register(new RegisterCompanyCommand(application));
         return application.updateStatus("Approved", administrator.getAdministratorId());
     }
 

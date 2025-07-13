@@ -2,6 +2,7 @@ package company.application;
 
 import company.api.CompanyRegistrator;
 import company.model.Company;
+import company.model.RegisterCompanyCommand;
 import company.spi.CompanyRepository;
 
 import java.util.UUID;
@@ -14,7 +15,7 @@ public class RegisterCompany implements CompanyRegistrator {
     }
 
     @Override
-    public Company register(String companyName, String registrationNumber, String taxNumber, String businessStructure, String countryCode) {
-        return new Company(UUID.randomUUID().toString(), companyName, registrationNumber, taxNumber, businessStructure, countryCode);
+    public Company register(RegisterCompanyCommand command) {
+        return new Company(UUID.randomUUID().toString(), command.getCompanyName(), command.getRegistrationNumber(), command.getTaxNumber(), command.getBusinessStructure(), command.getCountryCode());
     }
 }
