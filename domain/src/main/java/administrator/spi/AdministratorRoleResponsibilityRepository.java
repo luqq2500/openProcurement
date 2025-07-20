@@ -1,6 +1,6 @@
 package administrator.spi;
 
-import administrator.model.AdministratorRoleResponsibilities;
+import administrator.AdministratorRoleResponsibilities;
 
 import java.util.List;
 

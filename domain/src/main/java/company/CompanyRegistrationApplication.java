@@ -1,6 +1,6 @@
-package company.model;
+package company;
 
-import address.model.AddressCommand;
+import address.AddressCommand;
 
 import java.time.LocalDateTime;
 

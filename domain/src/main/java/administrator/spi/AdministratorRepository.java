@@ -1,6 +1,6 @@
 package administrator.spi;
 
-import administrator.model.Administrator;
+import administrator.Administrator;
 
 import java.util.List;
 

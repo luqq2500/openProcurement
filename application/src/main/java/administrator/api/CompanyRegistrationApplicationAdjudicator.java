@@ -1,7 +1,7 @@
 package administrator.api;
 
-import administrator.model.Administrator;
-import company.model.CompanyRegistrationApplication;
+import administrator.Administrator;
+import company.CompanyRegistrationApplication;
 
 public interface CompanyRegistrationApplicationAdjudicator {
     public CompanyRegistrationApplication process(CompanyRegistrationApplication application, Administrator administrator);

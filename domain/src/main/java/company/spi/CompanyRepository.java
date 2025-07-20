@@ -1,6 +1,6 @@
 package company.spi;
 
-import company.model.Company;
+import company.Company;
 
 import java.util.List;
 

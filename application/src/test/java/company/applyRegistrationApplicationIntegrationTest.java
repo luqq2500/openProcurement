@@ -1,17 +1,13 @@
 package company;
 
+import address.*;
+import address.api.AddressValidator;
+import address.api.CompanyCountryRegistrationRuleValidator;
 import address.exception.InvalidAddressRuleException;
-import address.model.*;
 import company.command.ApplyCompanyRegistrationCommand;
-import company.application.ApplyCompanyRegistrationApplication;
-import validator.api.CompanyRegistrationApplicationValidator;
 import company.api.CompanyRegistrationApplier;
-import validator.application.ValidateCompanyAddressRegistration;
-import validator.application.ValidateCompanyRegistrationCountryRules;
 import company.exception.CompanyRegistrationApplicationAlreadyExist;
 import company.exception.InvalidCompanyRegistrationApplicationCommand;
-import company.model.CompanyRegistrationApplication;
-import company.model.CompanyRegistrationCountryRule;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,10 +41,9 @@ public class applyRegistrationApplicationIntegrationTest {
         Set<State> states = Set.of(new State("Selangor", cities));
         AddressRule countryRules = new AddressRule("Malaysia", states);
         var addressRule = List.of(countryRules);
-        CompanyRegistrationApplicationValidator countryRuleValidator = new ValidateCompanyRegistrationCountryRules(()->countryRegistrationRules);
-        CompanyRegistrationApplicationValidator addressRuleValidator = new ValidateCompanyAddressRegistration(()->addressRule);
-        List<CompanyRegistrationApplicationValidator> validators = List.of(addressRuleValidator, countryRuleValidator);
-        this.applier = new ApplyCompanyRegistrationApplication(()->applications, validators);
+        CompanyCountryRegistrationRuleValidator countryRuleValidator = new ValidateCompanyCountryRegistrationRule(()->countryRegistrationRules);
+        AddressValidator addressRuleValidator = new ValidateCompanyAddressRegistration(()->addressRule);
+        this.applier = new ApplyCompanyRegistrationApplication(()->applications, addressRuleValidator, countryRuleValidator);
     }
     @Test
     public void applyRegistrationApplicationShouldReturn(){
@@ -82,7 +77,7 @@ public class applyRegistrationApplicationIntegrationTest {
                         "1, Jalan Dahlia 8/2, Taman Dahlia",
                         "Bandar Baru Salak Tinggi",
                         null,
-                        "Petaling Jaya",
+                        "Sepang",
                         "Selangor",
                         "43900",
                         "Malaysia"
@@ -103,7 +98,7 @@ public class applyRegistrationApplicationIntegrationTest {
                         "1, Jalan Dahlia 8/2, Taman Dahlia",
                         "Bandar Baru Salak Tinggi",
                         null,
-                        "Petaling Jaya",
+                        "Sepang",
                         "Selangor",
                         "43900",
                         "Malaysia"
@@ -144,7 +139,7 @@ public class applyRegistrationApplicationIntegrationTest {
                         "1, Jalan Dahlia 8/2, Taman Dahlia",
                         "Bandar Baru Salak Tinggi",
                         null,
-                        "Petaling Jaya",
+                        "Sepang",
                         "Selangor",
                         "43900",
                         "Malaysia"

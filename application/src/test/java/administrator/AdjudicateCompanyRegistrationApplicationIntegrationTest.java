@@ -1,21 +1,17 @@
 package administrator;
 
-import address.model.AddressCommand;
+import address.AddressCommand;
 import administrator.api.CompanyRegistrationApplicationAdjudicator;
-import administrator.application.AdjudicateCompanyRegistrationApplication;
 import administrator.exception.InvalidAdjudicationCompanyRegistrationException;
 import administrator.exception.InvalidAdministratorRoleRuleException;
-import administrator.model.Administrator;
-import administrator.model.AdministratorRoleResponsibilities;
 import company.api.CompanyRegistrator;
-import company.application.RegisterCompany;
-import company.model.Company;
-import company.model.CompanyRegistrationApplication;
+import company.RegisterCompany;
+import company.Company;
+import company.CompanyRegistrationApplication;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import validator.api.AdministratorRoleResponsibilityValidator;
-import validator.application.ValidateAdministratorRoleResponsibility;
+import administrator.api.AdministratorRoleResponsibilityValidator;
 import administrator.exception.NotAuthorizedAdministratorRoleResponsibility;
 
 import java.time.LocalDateTime;

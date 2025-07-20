@@ -1,15 +1,15 @@
-package validator.application;
+package address;
 
+import address.api.CompanyCountryRegistrationRuleValidator;
 import company.command.ApplyCompanyRegistrationCommand;
-import validator.api.CompanyRegistrationApplicationValidator;
 import company.exception.InvalidCountryRegistrationRulesException;
-import company.model.CompanyRegistrationCountryRule;
+import company.CompanyRegistrationCountryRule;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 
-public class ValidateCompanyRegistrationCountryRules implements CompanyRegistrationApplicationValidator {
+public class ValidateCompanyCountryRegistrationRule implements CompanyCountryRegistrationRuleValidator {
     private final CompanyCountryRegistrationRuleRepository rulesRepository;
 
-    public ValidateCompanyRegistrationCountryRules(CompanyCountryRegistrationRuleRepository rulesRepository) {
+    public ValidateCompanyCountryRegistrationRule(CompanyCountryRegistrationRuleRepository rulesRepository) {
         this.rulesRepository = rulesRepository;
     }
 

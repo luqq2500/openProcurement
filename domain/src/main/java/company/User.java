@@ -1,4 +1,4 @@
-package company.model;
+package company;
 
 import java.util.UUID;
 

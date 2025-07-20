@@ -1,12 +1,9 @@
-package validator;
+package address;
 
-import company.command.ApplyCompanyRegistrationCommand;
+import address.api.AddressValidator;
 import address.exception.InvalidAddressRuleException;
-import address.model.*;
 import org.junit.Assert;
 import org.junit.Test;
-import validator.api.CompanyRegistrationApplicationValidator;
-import validator.application.ValidateCompanyAddressRegistration;
 
 import java.util.*;
 
@@ -25,15 +22,8 @@ public class validateAddressCommandTest {
                 "43900",
                 "Malaysia"
         );
-        ApplyCompanyRegistrationCommand applicationCommand = new ApplyCompanyRegistrationCommand(
-                "ForgeNet",
-                "202380061600",
-                "202380061677",
-                "Cooperative",
-                addressCommand
-        );
-        CompanyRegistrationApplicationValidator validator = new ValidateCompanyAddressRegistration(()->countryRule);
-        validator.validate(applicationCommand);
+        AddressValidator validator = new ValidateCompanyAddressRegistration(()->countryRule);
+        validator.validate(addressCommand);
     }
 
     @Test
@@ -50,15 +40,8 @@ public class validateAddressCommandTest {
                 "53100",
                 "Malaysia"
         );
-        ApplyCompanyRegistrationCommand applicationCommand = new ApplyCompanyRegistrationCommand(
-                "ForgeNet",
-                "202380061600",
-                "202380061677",
-                "Cooperative",
-                addressCommand
-        );
-        CompanyRegistrationApplicationValidator validator = new ValidateCompanyAddressRegistration(()->countryRule);
-        Assert.assertThrows(InvalidAddressRuleException.class, ()->validator.validate(applicationCommand));
+        AddressValidator validator = new ValidateCompanyAddressRegistration(()->countryRule);
+        Assert.assertThrows(InvalidAddressRuleException.class, ()->validator.validate(addressCommand));
     }
 
 }

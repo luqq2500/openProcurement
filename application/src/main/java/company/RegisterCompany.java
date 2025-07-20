@@ -1,9 +1,7 @@
-package company.application;
+package company;
 
 
 import company.api.CompanyRegistrator;
-import company.model.Company;
-import company.model.CompanyRegistrationApplication;
 import company.spi.CompanyRepository;
 
 import java.util.UUID;

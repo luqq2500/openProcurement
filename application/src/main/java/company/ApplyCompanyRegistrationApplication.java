@@ -1,30 +1,30 @@
-package company.application;
+package company;
 
+import address.api.AddressValidator;
+import address.api.CompanyCountryRegistrationRuleValidator;
 import company.command.ApplyCompanyRegistrationCommand;
-import validator.api.CompanyRegistrationApplicationValidator;
 import company.api.CompanyRegistrationApplier;
 import company.exception.CompanyRegistrationApplicationAlreadyExist;
-import company.model.CompanyRegistrationApplication;
 import company.spi.CompanyRegistrationApplicationRepository;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.UUID;
 
 public class ApplyCompanyRegistrationApplication implements CompanyRegistrationApplier {
     private final CompanyRegistrationApplicationRepository repository;
-    private final List<CompanyRegistrationApplicationValidator> validators;
+    private final AddressValidator addressValidator;
+    private final CompanyCountryRegistrationRuleValidator countryRuleValidator;
 
-    public ApplyCompanyRegistrationApplication(CompanyRegistrationApplicationRepository repository, List<CompanyRegistrationApplicationValidator> validators) {
+    public ApplyCompanyRegistrationApplication(CompanyRegistrationApplicationRepository repository, AddressValidator addressValidator, CompanyCountryRegistrationRuleValidator countryRuleValidator) {
         this.repository = repository;
-        this.validators = validators;
+        this.addressValidator = addressValidator;
+        this.countryRuleValidator = countryRuleValidator;
     }
     @Override
     public CompanyRegistrationApplication apply(ApplyCompanyRegistrationCommand command) {
+        addressValidator.validate(command.address());
+        countryRuleValidator.validate(command);
         validateRegistrationApplicationIsUnique(command);
-        for (CompanyRegistrationApplicationValidator validator : validators) {
-            validator.validate(command);
-        }
         return new CompanyRegistrationApplication(
                 UUID.randomUUID().toString(),
                 command.companyName(),

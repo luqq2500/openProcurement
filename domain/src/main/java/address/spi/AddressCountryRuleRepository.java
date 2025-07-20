@@ -1,6 +1,6 @@
 package address.spi;
 
-import address.model.AddressRule;
+import address.AddressRule;
 
 import java.util.List;
 

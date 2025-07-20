@@ -1,4 +1,4 @@
-package administrator.model;
+package administrator;
 
 import administrator.exception.InvalidAdministratorRoleRuleException;
 import administrator.exception.NotAuthorizedAdministratorRoleResponsibility;

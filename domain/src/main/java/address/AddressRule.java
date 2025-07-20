@@ -1,4 +1,4 @@
-package address.model;
+package address;
 
 
 import address.exception.InvalidAddressRuleException;

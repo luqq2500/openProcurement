@@ -1,11 +1,10 @@
-package administrator.application;
+package administrator;
 
 import company.api.CompanyRegistrator;
-import validator.api.AdministratorRoleResponsibilityValidator;
+import administrator.api.AdministratorRoleResponsibilityValidator;
 import administrator.api.CompanyRegistrationApplicationAdjudicator;
-import administrator.model.Administrator;
 import administrator.exception.InvalidAdjudicationCompanyRegistrationException;
-import company.model.CompanyRegistrationApplication;
+import company.CompanyRegistrationApplication;
 import company.spi.CompanyRegistrationApplicationRepository;
 
 

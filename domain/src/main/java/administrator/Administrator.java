@@ -1,4 +1,4 @@
-package administrator.model;
+package administrator;
 
 import java.util.UUID;
 

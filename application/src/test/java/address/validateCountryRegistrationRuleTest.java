@@ -1,11 +1,9 @@
-package validator;
+package address;
 
-import address.model.AddressCommand;
+import address.api.CompanyCountryRegistrationRuleValidator;
 import company.command.ApplyCompanyRegistrationCommand;
-import validator.api.CompanyRegistrationApplicationValidator;
-import validator.application.ValidateCompanyRegistrationCountryRules;
 import company.exception.InvalidCountryRegistrationRulesException;
-import company.model.CompanyRegistrationCountryRule;
+import company.CompanyRegistrationCountryRule;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +11,7 @@ import org.junit.Test;
 import java.util.List;
 
 public class validateCountryRegistrationRuleTest {
-    private CompanyRegistrationApplicationValidator validator;
+    private CompanyCountryRegistrationRuleValidator validator;
 
     @Before
     public void setUp() {
@@ -21,7 +19,7 @@ public class validateCountryRegistrationRuleTest {
                 new CompanyRegistrationCountryRule("Malaysia", 12, "\\d{12}", 12 , "\\d{12}",
                         List.of("Sole Proprietorship", "Partnership", "Limited Liability Company (LLC)", "Corporation", "Cooperative"))
         );
-        this.validator = new ValidateCompanyRegistrationCountryRules(()->rules);
+        this.validator = new ValidateCompanyCountryRegistrationRule(()->rules);
     }
 
     @Test

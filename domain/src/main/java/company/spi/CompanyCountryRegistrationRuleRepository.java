@@ -1,6 +1,6 @@
 package company.spi;
 
-import company.model.CompanyRegistrationCountryRule;
+import company.CompanyRegistrationCountryRule;
 
 import java.util.List;
 

@@ -2,8 +2,6 @@ package administrator;
 import administrator.api.AdministratorRegistrator;
 import administrator.command.RegisterAdministratorCommand;
 import administrator.exception.AdministratorAlreadyExistException;
-import administrator.model.Administrator;
-import administrator.application.RegisterAdministrator;
 import org.junit.Assert;
 import org.junit.Test;
 

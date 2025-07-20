@@ -1,6 +1,6 @@
 package company.command;
 
-import address.model.AddressCommand;
+import address.AddressCommand;
 import company.exception.InvalidCompanyRegistrationApplicationCommand;
 
 public record ApplyCompanyRegistrationCommand (

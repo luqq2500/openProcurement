@@ -1,9 +1,7 @@
-package validator.application;
+package administrator;
 
 import administrator.exception.InvalidAdministratorRoleRuleException;
-import administrator.model.AdministratorRoleResponsibilities;
-import validator.api.AdministratorRoleResponsibilityValidator;
-import administrator.model.Administrator;
+import administrator.api.AdministratorRoleResponsibilityValidator;
 import administrator.spi.AdministratorRoleResponsibilityRepository;
 
 public class ValidateAdministratorRoleResponsibility implements AdministratorRoleResponsibilityValidator {

@@ -1,9 +1,8 @@
-package administrator.application;
+package administrator;
 
 import administrator.api.AdministratorRegistrator;
 import administrator.command.RegisterAdministratorCommand;
 import administrator.exception.AdministratorAlreadyExistException;
-import administrator.model.Administrator;
 import administrator.spi.AdministratorRepository;
 
 public class RegisterAdministrator implements AdministratorRegistrator {

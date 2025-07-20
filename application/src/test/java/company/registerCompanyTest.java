@@ -1,10 +1,7 @@
 package company;
 
-import address.model.AddressCommand;
+import address.AddressCommand;
 import company.api.CompanyRegistrator;
-import company.model.Company;
-import company.model.CompanyRegistrationApplication;
-import company.application.RegisterCompany;
 import org.junit.Assert;
 import org.junit.Test;
 
