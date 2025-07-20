@@ -1,6 +1,7 @@
 package company;
 
-import company.exception.InvalidCountryRegistrationRulesException;
+
+import address.exception.InvalidCountryRegistrationRulesException;
 
 import java.util.List;
 

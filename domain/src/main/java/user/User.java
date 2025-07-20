@@ -1,4 +1,4 @@
-package company;
+package user;
 
 import java.util.UUID;
 

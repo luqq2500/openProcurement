@@ -1,8 +1,8 @@
 package address;
 
 import address.api.CompanyCountryRegistrationRuleValidator;
+import address.exception.InvalidCountryRegistrationRulesException;
 import company.command.ApplyCompanyRegistrationCommand;
-import company.exception.InvalidCountryRegistrationRulesException;
 import company.CompanyRegistrationCountryRule;
 import org.junit.Assert;
 import org.junit.Before;

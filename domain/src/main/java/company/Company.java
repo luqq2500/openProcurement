@@ -1,6 +1,7 @@
 package company;
 
 import address.AddressCommand;
+import user.User;
 
 import java.util.ArrayList;
 import java.util.List;

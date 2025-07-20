@@ -1,10 +1,10 @@
 package address;
 
 import address.api.CompanyCountryRegistrationRuleValidator;
+import address.spi.CompanyCountryRegistrationRuleRepository;
 import company.command.ApplyCompanyRegistrationCommand;
-import company.exception.InvalidCountryRegistrationRulesException;
+import address.exception.InvalidCountryRegistrationRulesException;
 import company.CompanyRegistrationCountryRule;
-import company.spi.CompanyCountryRegistrationRuleRepository;
 
 public class ValidateCompanyCountryRegistrationRule implements CompanyCountryRegistrationRuleValidator {
     private final CompanyCountryRegistrationRuleRepository rulesRepository;

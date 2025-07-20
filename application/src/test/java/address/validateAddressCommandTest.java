@@ -1,13 +1,12 @@
 package address;
-
 import address.api.AddressValidator;
 import address.exception.InvalidAddressRuleException;
 import org.junit.Assert;
 import org.junit.Test;
-
 import java.util.*;
 
 public class validateAddressCommandTest {
+
     @Test
     public void validAddressShouldNotThrowException() {
         Set<PostalCode> postalCodes = Set.of(new PostalCode("43900"));

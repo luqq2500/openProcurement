@@ -1,4 +1,4 @@
-package company.spi;
+package address.spi;
 
 import company.CompanyRegistrationCountryRule;
 
