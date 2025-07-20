@@ -10,8 +10,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>domain</module>
-        <module>application</module>
-        <module>application</module>
+        <module>usecase</module>
     </modules>
 
     <properties>
