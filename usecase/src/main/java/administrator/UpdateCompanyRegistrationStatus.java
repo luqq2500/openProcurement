@@ -18,7 +18,7 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
     @Override
     public void update(UpdateCompanyRegistrationStatusCommand command) {
         Administrator administrator = findAdministrator(command);
-        administrator.validateAssignedRole(serviceRole);
+        administrator.getRole().validateAssignedRole(serviceRole);
         CompanyRegistration registration = getCompanyRegistration(command);
         CompanyRegistration updatedRegistration = registration.updateStatus(command.administratorId(), command.status(), command.notes());
     }

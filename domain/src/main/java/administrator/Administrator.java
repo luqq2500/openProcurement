@@ -19,12 +19,6 @@ public class Administrator {
         this.role = role;
     }
 
-    public void validateAssignedRole(AdministratorRoles role) {
-        if (!this.role.equals(role)) {
-            throw new RuntimeException("Invalid administrator role");
-        }
-    }
-
     public void updateRole(AdministratorRoles role) {
         if (role.equals(this.role)) {
             throw new RuntimeException("Invalid role update: Administrator role is already set as " + role);
