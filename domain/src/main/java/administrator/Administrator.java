@@ -4,39 +4,47 @@ import java.util.UUID;
 
 public class Administrator {
     private final String administratorId;
-    private String email;
-    private String password;
     private String firstName;
     private String lastName;
-    private String role;
+    private String email;
+    private String password;
+    private AdministratorRoles role;
 
-    public Administrator(String email, String password, String firstName, String lastName, String role) {
+    public Administrator(String firstName, String lastName, String email, String password, AdministratorRoles role) {
         this.administratorId = UUID.randomUUID().toString();
-        this.email = email;
-        this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+        this.password = password;
         this.role = role;
+    }
+
+    public void validateAssignedRole(AdministratorRoles role) {
+        if (!this.role.equals(role)) {
+            throw new RuntimeException("Invalid administrator role");
+        }
+    }
+
+    public void updateRole(AdministratorRoles role) {
+        if (role.equals(this.role)) {
+            throw new RuntimeException("Invalid role update: Administrator role is already set as " + role);
+        }
+        this.role = role;
+    }
+
+    public void updateEmail(String email) {
+        if (email.equals(this.email)) {
+            throw new RuntimeException("Invalid email update: Administrator email is already set as " + email);
+        }
+        this.email = email;
     }
 
     public String getAdministratorId() {
         return administratorId;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public AdministratorRoles getRole() {
+        return role;
     }
 
     public String getFirstName() {
@@ -51,15 +59,11 @@ public class Administrator {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getEmail() {
+        return email;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public String  getPassword() {
+        return password;
     }
 }
