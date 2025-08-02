@@ -1,0 +1,6 @@
+1. applicant apply for company registration.
+2. get notified every time status is updated.
+3. after registration is approved, company will get link to set up company account.
+4. company account setup require company address and add number of users as user account.
+5. user account has responsibility access keys: issue, apply, bid, confirm, etc.
+6. user can login, and view/issue/apply procurements.

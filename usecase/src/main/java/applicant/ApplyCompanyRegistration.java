@@ -1,21 +1,35 @@
-package company;
+package applicant;
 
-import company.api.CompanyRegistrationApplier;
-import company.dto.ApplyCompanyRegistrationCommand;
+import applicant.api.CompanyRegistrationApplier;
+import applicant.dto.ApplyCompanyRegistrationCommand;
+import company.CompanyCountryRegistrationRule;
+import company.CompanyRegistration;
+import company.CompanyRegistrationRequest;
+import company.CompanyRegistrationStatus;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
+import company.spi.CompanyRegistrationRequestRepository;
+import email.EmailService;
+
+import java.time.LocalDateTime;
 
 public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     private final CompanyRegistrationRepository repository;
     private final CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository;
+    private final CompanyRegistrationRequestRepository requestRepository;
+    private final EmailService emailService;
 
-    public ApplyCompanyRegistration(CompanyRegistrationRepository repository, CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository) {
+    public ApplyCompanyRegistration(CompanyRegistrationRepository repository, CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository, CompanyRegistrationRequestRepository requestRepository, EmailService emailService) {
         this.repository = repository;
         this.countryRegistrationRuleRepository = countryRegistrationRuleRepository;
+        this.requestRepository = requestRepository;
+        this.emailService = emailService;
     }
 
     @Override
     public void apply(ApplyCompanyRegistrationCommand command){
+        CompanyRegistrationRequest request = getCompanyRegistrationRequest(command);
+        request.checkRequestExpiry(LocalDateTime.now());
         validateRegistrationNumber(command);
         validateTaxNumber(command);
         validateCountryRegistrationRule(command);
@@ -25,8 +39,25 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
                 command.taxNumber(),
                 command.structure(),
                 command.countryCode(),
-                CompanyRegistrationStatus.PENDING
+                request.getApplicant(),
+                CompanyRegistrationStatus.PENDING);
+        repository.add(registration);
+        String subject = "OpenProcurement Registration Submitted";
+        String message = String.format(
+                "Dear %s %s,\n\nYour company registration for %s is now pending review.\nRegistration ID: %s\n\nThank you,\nProcurement Team",
+                request.getApplicant().firstName(),
+                request.getApplicant().lastName(),
+                command.companyName(),
+                 registration.getRegistrationId()
         );
+        emailService.email(request.getApplicant().email(), subject, message);
+    }
+
+    private CompanyRegistrationRequest getCompanyRegistrationRequest(ApplyCompanyRegistrationCommand command) {
+        return requestRepository.requests().stream()
+                .filter(r -> r.getRequestId().equals(command.registrationRequestId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("No company registration request found."));
     }
 
     private void validateCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {

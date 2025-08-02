@@ -1,6 +1,7 @@
-package company.dto;
+package applicant.dto;
 
 import address.CountryCode;
+import applicant.Applicant;
 import company.CompanyStructure;
 
 import java.util.Objects;
@@ -10,7 +11,8 @@ public record ApplyCompanyRegistrationCommand(
         String registrationNumber,
         String taxNumber,
         CompanyStructure structure,
-        CountryCode countryCode
+        CountryCode countryCode,
+        String registrationRequestId
 ) {
     public ApplyCompanyRegistrationCommand {
         Objects.requireNonNull(companyName);
@@ -18,5 +20,6 @@ public record ApplyCompanyRegistrationCommand(
         Objects.requireNonNull(taxNumber);
         Objects.requireNonNull(structure);
         Objects.requireNonNull(countryCode);
+        Objects.requireNonNull(registrationRequestId);
     }
 }

@@ -1,6 +1,7 @@
 package company;
 
 import address.CountryCode;
+import applicant.Applicant;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -12,20 +13,22 @@ public class CompanyRegistration {
     private final String taxNumber;
     private final CompanyStructure structure;
     private final CountryCode countryCode;
+    private final Applicant applicant;
     private final CompanyRegistrationStatus status;
     private final LocalDateTime registrationDate;
     private String administratorId;
     private String administratorNote;
 
-    public CompanyRegistration(String companyName, String registrationNumber, String taxNumber, CompanyStructure structure, CountryCode countryCode, CompanyRegistrationStatus status) {
+    public CompanyRegistration(String companyName, String registrationNumber, String taxNumber, CompanyStructure structure, CountryCode countryCode, Applicant applicant, CompanyRegistrationStatus status) {
         this.registrationId = UUID.randomUUID().toString();
         this.companyName = companyName;
         this.registrationNumber = registrationNumber;
         this.taxNumber = taxNumber;
         this.structure = structure;
         this.countryCode = countryCode;
-        this.registrationDate = LocalDateTime.now();
+        this.applicant = applicant;
         this.status = status;
+        this.registrationDate = LocalDateTime.now();
         this.administratorId = null;
         this.administratorNote = null;
     }
@@ -34,7 +37,7 @@ public class CompanyRegistration {
         if (!this.status.canUpdateTo(newStatus)){
             throw new RuntimeException("Invalid update status transaction");
         }
-        CompanyRegistration newRegistration = new CompanyRegistration(companyName, registrationNumber, taxNumber, structure, countryCode, newStatus);
+        CompanyRegistration newRegistration = new CompanyRegistration(companyName, registrationNumber, taxNumber, structure, countryCode, applicant, newStatus);
         newRegistration.setAdministratorId(administratorId);
         newRegistration.setAdministratorNote(administratorNote);
         return newRegistration;
