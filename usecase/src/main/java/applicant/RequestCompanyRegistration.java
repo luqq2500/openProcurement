@@ -4,15 +4,15 @@ import applicant.api.CompanyRegistrationRequestor;
 import applicant.dto.RequestCompanyRegistrationCommand;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
-import email.EmailService;
+import notification.NotificationService;
 
 public class RequestCompanyRegistration implements CompanyRegistrationRequestor {
     private final CompanyRegistrationRequestRepository repository;
-    private final EmailService emailService;
+    private final NotificationService notificationService;
 
-    public RequestCompanyRegistration(CompanyRegistrationRequestRepository repository, EmailService emailService) {
+    public RequestCompanyRegistration(CompanyRegistrationRequestRepository repository, NotificationService notificationService) {
         this.repository = repository;
-        this.emailService = emailService;
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
                 applicant.firstName(), applicant.lastName(),
                 applicationLink, request.getExpiryOn()
         );
-        emailService.email(command.email(),subject,message );
+        notificationService.notify(command.email(),subject,message );
     }
     private String generateApplicationLink(String requestId) {
         return "https://openprocurement.com/register/request/company?requestId=" + requestId;

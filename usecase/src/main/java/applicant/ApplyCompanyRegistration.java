@@ -9,7 +9,8 @@ import company.CompanyRegistrationStatus;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRegistrationRequestRepository;
-import email.EmailService;
+import notification.NotificationService;
+import notification.NotificationServiceCommand;
 
 import java.time.LocalDateTime;
 
@@ -17,13 +18,13 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     private final CompanyRegistrationRepository repository;
     private final CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository;
     private final CompanyRegistrationRequestRepository requestRepository;
-    private final EmailService emailService;
+    private final NotificationService notificationService;
 
-    public ApplyCompanyRegistration(CompanyRegistrationRepository repository, CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository, CompanyRegistrationRequestRepository requestRepository, EmailService emailService) {
+    public ApplyCompanyRegistration(CompanyRegistrationRepository repository, CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository, CompanyRegistrationRequestRepository requestRepository, NotificationService notificationService) {
         this.repository = repository;
         this.countryRegistrationRuleRepository = countryRegistrationRuleRepository;
         this.requestRepository = requestRepository;
-        this.emailService = emailService;
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -42,6 +43,11 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
                 request.getApplicant(),
                 CompanyRegistrationStatus.PENDING);
         repository.add(registration);
+        NotificationServiceCommand notificationCommand = generateNotificationCommand(command, request, registration);
+        notificationService.notify(notificationCommand);
+    }
+
+    private static NotificationServiceCommand generateNotificationCommand(ApplyCompanyRegistrationCommand command, CompanyRegistrationRequest request, CompanyRegistration registration) {
         String subject = "OpenProcurement Registration Submitted";
         String message = String.format(
                 "Dear %s %s,\n\nYour company registration for %s is now pending review.\nRegistration ID: %s\n\nThank you,\nProcurement Team",
@@ -50,7 +56,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
                 command.companyName(),
                  registration.getRegistrationId()
         );
-        emailService.email(request.getApplicant().email(), subject, message);
+        return new NotificationServiceCommand(request.getApplicant().email(), subject, message);
     }
 
     private CompanyRegistrationRequest getCompanyRegistrationRequest(ApplyCompanyRegistrationCommand command) {
