@@ -16,4 +16,16 @@ public enum CompanyRegistrationStatus {
             default -> false;
         };
     }
+    public boolean isPending() {
+        return this == PENDING;
+    }
+    public boolean isProcessing() {
+        return this == PROCESSING;
+    }
+    public boolean isApproved() {
+        return this == APPROVED;
+    }
+    public boolean isRejected() {
+        return this == REJECTED;
+    }
 }

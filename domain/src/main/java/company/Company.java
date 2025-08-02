@@ -1,25 +1,31 @@
 package company;
 
+import address.CountryCode;
 import user.User;
 
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
 import java.util.Set;
 
 public class Company {
     private String companyName;
-    private String registrationNumber;
-    private String taxNumber;
+    private final String registrationNumber;
+    private final String taxNumber;
     private CompanyStructure structure;
-    private Locale.IsoCountryCode countryCode;
+    private CountryCode countryCode;
     private Set<User> users;
 
-    public Company(String companyName, String registrationNumber, String taxNumber, CompanyStructure structure) {
+    public Company(String companyName, String registrationNumber, String taxNumber, CompanyStructure structure, CountryCode countryCode) {
         this.companyName = companyName;
         this.registrationNumber = registrationNumber;
         this.taxNumber = taxNumber;
         this.structure = structure;
-        this.countryCode = null;
+        this.countryCode = countryCode;
+    }
+
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public String getTaxNumber() {
+        return taxNumber;
     }
 }

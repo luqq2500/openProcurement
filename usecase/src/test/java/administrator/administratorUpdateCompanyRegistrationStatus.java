@@ -3,9 +3,12 @@ package administrator;
 import address.CountryCode;
 import administrator.api.CompanyRegistrationStatusUpdater;
 import administrator.dto.UpdateCompanyRegistrationStatusCommand;
+import company.Company;
 import company.CompanyRegistration;
 import company.CompanyRegistrationStatus;
 import company.CompanyStructure;
+import company.spi.CompanyRegistrationRepository;
+import company.spi.CompanyRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,18 +18,19 @@ import java.util.List;
 public class administratorUpdateCompanyRegistrationStatus {
     private List<CompanyRegistration> registrations;
     private List<Administrator> administrators;
+    private CompanyRegistrationRepository companyRegistrationRepository;
     CompanyRegistrationStatusUpdater statusUpdater;
 
     @Before
     public void setUp() throws Exception {
         registrations = List.of(
-                new CompanyRegistration("Terraform", "202380061600", "202580091900",
+                new CompanyRegistration("Terraform", "000000111111", "000000111111",
                         CompanyStructure.PUBLIC_LIMITED_COMPANY, CountryCode.MY, CompanyRegistrationStatus.PENDING),
-                new CompanyRegistration("PetaByte", "220389997777", "777766664444",
+                new CompanyRegistration("PetaByte", "000000222222", "000000222222",
                         CompanyStructure.SOLE, CountryCode.MY, CompanyRegistrationStatus.PROCESSING),
-                new CompanyRegistration("PetaByte", "220389997766", "777766664400",
+                new CompanyRegistration("PetaByte", "000000333333", "000000333333",
                         CompanyStructure.SOLE, CountryCode.MY, CompanyRegistrationStatus.APPROVED),
-                new CompanyRegistration("PetaByte", "220380007777", "777766660044",
+                new CompanyRegistration("PetaByte", "000000444444", "000000444444",
                         CompanyStructure.SOLE, CountryCode.MY, CompanyRegistrationStatus.REJECTED)
         );
         administrators = List.of(
@@ -35,7 +39,14 @@ public class administratorUpdateCompanyRegistrationStatus {
                 new Administrator("Walter", "White", "ww@gmail.com",
                         "234s", AdministratorRoles.SYSTEM_ADMINISTRATOR)
         );
-        statusUpdater = new UpdateCompanyRegistrationStatus(()->registrations, ()->administrators);
+        List<Company> companies = List.of(
+                new Company("Terra", "202399996666", "202399994444", CompanyStructure.PUBLIC_LIMITED_COMPANY, CountryCode.MY)
+        );
+        CompanyRepository companyRepository = new InMemoryCompanyRepository();
+        companyRegistrationRepository = new InMemoryCompanyRegistrationRepository();
+        companyRepository.addListOf(companies);
+        companyRegistrationRepository.addListOf(registrations);
+        statusUpdater = new UpdateCompanyRegistrationStatus(companyRegistrationRepository, ()->administrators, companyRepository);
     }
 
     @Test
@@ -94,6 +105,8 @@ public class administratorUpdateCompanyRegistrationStatus {
                 null
         );
         statusUpdater.update(command);
+        Assert.assertEquals(companyRegistrationRepository.registrations().getLast().getRegistrationNumber(), command.companyRegistrationNumber());
+        Assert.assertTrue(companyRegistrationRepository.registrations().getLast().getStatus().isProcessing());
     }
 
     @Test
@@ -105,6 +118,8 @@ public class administratorUpdateCompanyRegistrationStatus {
                 "All documents are eligible for approval."
         );
         statusUpdater.update(command);
+        Assert.assertEquals(companyRegistrationRepository.registrations().getLast().getRegistrationNumber(), command.companyRegistrationNumber());
+        Assert.assertTrue(companyRegistrationRepository.registrations().getLast().getStatus().isApproved());
     }
 
     @Test
@@ -113,9 +128,11 @@ public class administratorUpdateCompanyRegistrationStatus {
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(1).getRegistrationNumber(),
                 CompanyRegistrationStatus.REJECTED,
-                "All documents are eligible for approval."
+                "Reject due to incomplete docs."
         );
         statusUpdater.update(command);
+        Assert.assertEquals(companyRegistrationRepository.registrations().getLast().getRegistrationNumber(), command.companyRegistrationNumber());
+        Assert.assertTrue(companyRegistrationRepository.registrations().getLast().getStatus().isRejected());
     }
 
     @Test

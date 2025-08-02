@@ -1,8 +1,10 @@
 package company;
 
 import address.CountryCode;
+import administrator.InMemoryCompanyRegistrationRepository;
 import company.api.CompanyRegistrationApplier;
 import company.dto.ApplyCompanyRegistrationCommand;
+import company.spi.CompanyRegistrationRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,6 +14,7 @@ import java.util.List;
 public class companyRegistrationTest {
     private List<CompanyRegistration> registrations;
     private List<CompanyCountryRegistrationRule> rules;
+    private CompanyRegistrationApplier applier;
     @Before
     public void setUp() throws Exception {
         registrations = List.of(
@@ -26,13 +29,11 @@ public class companyRegistrationTest {
         );
         rules = List.of(
                 new CompanyCountryRegistrationRule(
-                        CountryCode.MY,
-                        12,
-                        "\\d{12}",
-                        12,
-                        "\\d{12}",
-                        List.of(CompanyStructure.SOLE, CompanyStructure.PRIVATE_LIMITED_COMPANY))
+                        CountryCode.MY, 12, "\\d{12}", 12, "\\d{12}", List.of(CompanyStructure.SOLE, CompanyStructure.PRIVATE_LIMITED_COMPANY))
         );
+        CompanyRegistrationRepository repository = new InMemoryCompanyRegistrationRepository();
+        repository.addListOf(registrations);
+        applier = new ApplyCompanyRegistration(repository, ()->rules);
     }
 
     @Test
@@ -44,7 +45,6 @@ public class companyRegistrationTest {
                 CompanyStructure.PRIVATE_LIMITED_COMPANY,
                 CountryCode.MY
         );
-        CompanyRegistrationApplier applier = new ApplyCompanyRegistration(()->registrations, ()->rules);
         RuntimeException error = Assert.assertThrows(RuntimeException.class, () -> {applier.apply(command);});
         System.out.println(error.getMessage());
     }
@@ -58,7 +58,6 @@ public class companyRegistrationTest {
                 CompanyStructure.PRIVATE_LIMITED_COMPANY,
                 CountryCode.MY
         );
-        CompanyRegistrationApplier applier = new ApplyCompanyRegistration(()->List.of(registrations.get(2)), ()->rules);
         RuntimeException error = Assert.assertThrows(RuntimeException.class, () -> {applier.apply(command);});
         System.out.println(error.getMessage());
     }
@@ -72,7 +71,6 @@ public class companyRegistrationTest {
                 CompanyStructure.PRIVATE_LIMITED_COMPANY,
                 CountryCode.MY
         );
-        CompanyRegistrationApplier applier = new ApplyCompanyRegistration(()->registrations, ()->rules);
         applier.apply(command);
     }
 }
