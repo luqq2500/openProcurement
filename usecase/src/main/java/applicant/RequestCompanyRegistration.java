@@ -5,7 +5,7 @@ import applicant.dto.RequestCompanyRegistrationCommand;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
 import notification.NotificationService;
-import notification.NotificationServiceCommand;
+import notification.NotificationCommand;
 
 public class RequestCompanyRegistration implements CompanyRegistrationRequestor {
     private final CompanyRegistrationRequestRepository repository;
@@ -22,17 +22,17 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
         Applicant applicant = new Applicant(command.firstName(), command.lastName(), command.email(), command.phoneNumber());
         CompanyRegistrationRequest request = new CompanyRegistrationRequest(applicant);
         repository.add(request);
-        NotificationServiceCommand notificationServiceCommand = generateNotificationServiceCommand(request, applicant);
-        notificationService.notify(notificationServiceCommand);
+        NotificationCommand notificationCommand = generateNotificationCommand(request, applicant);
+        notificationService.notify(notificationCommand);
     }
 
-    private NotificationServiceCommand generateNotificationServiceCommand(CompanyRegistrationRequest request, Applicant applicant) {
+    private NotificationCommand generateNotificationCommand(CompanyRegistrationRequest request, Applicant applicant) {
         String subject = "Complete Your Company Registration";
         String message = String.format(
                 "Dear %s %s,\n\nPlease complete your company registration by filling out the form: %s\nThis link expires on %s.\n\nThank you,\nProcurement Team",
                 applicant.firstName(), applicant.lastName(), request.getExpiryDate()
         );
-        return new NotificationServiceCommand(
+        return new NotificationCommand(
                 request.getApplicant().email(), subject, message
         );
     }

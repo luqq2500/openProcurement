@@ -10,7 +10,7 @@ import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRegistrationRequestRepository;
 import notification.NotificationService;
-import notification.NotificationServiceCommand;
+import notification.NotificationCommand;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -47,7 +47,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
                 request.getApplicant(),
                 CompanyRegistrationStatus.PENDING);
         repository.add(registration);
-        NotificationServiceCommand notificationCommand = generateNotificationCommand(command, request, registration);
+        NotificationCommand notificationCommand = generateNotificationCommand(command, request, registration);
         notificationService.notify(notificationCommand);
     }
 
@@ -81,7 +81,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
         }
     }
 
-    private static NotificationServiceCommand generateNotificationCommand(ApplyCompanyRegistrationCommand command, CompanyRegistrationRequest request, CompanyRegistration registration) {
+    private static NotificationCommand generateNotificationCommand(ApplyCompanyRegistrationCommand command, CompanyRegistrationRequest request, CompanyRegistration registration) {
         String subject = "OpenProcurement Registration Submitted";
         String message = String.format(
                 "Dear %s %s,\n\nYour company registration for %s is now pending review.\nRegistration ID: %s\n\nThank you,\nProcurement Team",
@@ -90,6 +90,6 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
                 command.companyName(),
                 registration.getRegistrationId()
         );
-        return new NotificationServiceCommand(request.getApplicant().email(), subject, message);
+        return new NotificationCommand(request.getApplicant().email(), subject, message);
     }
 }

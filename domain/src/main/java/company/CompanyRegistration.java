@@ -42,9 +42,9 @@ public class CompanyRegistration {
         newRegistration.setAdministratorNote(administratorNote);
         return newRegistration;
     }
-
     private void setAdministratorId(String administratorId) {this.administratorId = administratorId;}
     public void setAdministratorNote(String administratorNote) {this.administratorNote = administratorNote;}
+    public Applicant getApplicant() {return applicant;}
     public String getCompanyName() {return companyName;}
     public String getRegistrationNumber() {return registrationNumber;}
     public String getTaxNumber() {return taxNumber;}

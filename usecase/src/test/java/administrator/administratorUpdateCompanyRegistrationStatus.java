@@ -7,6 +7,8 @@ import applicant.Applicant;
 import company.*;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
+import notification.MockNotificationService;
+import notification.NotificationService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -44,9 +46,10 @@ public class administratorUpdateCompanyRegistrationStatus {
         );
         companyRepository = new MockCompanyRepository();
         companyRegistrationRepository = new MockCompanyRegistrationRepository();
+        NotificationService notificationService = new MockNotificationService();
         companies.forEach(companyRepository::add);
         registrations.forEach(companyRegistrationRepository::add);
-        statusUpdater = new UpdateCompanyRegistrationStatus(companyRegistrationRepository, ()->administrators, companyRepository);
+        statusUpdater = new UpdateCompanyRegistrationStatus(companyRegistrationRepository, ()->administrators, companyRepository, notificationService);
     }
 
     @Test

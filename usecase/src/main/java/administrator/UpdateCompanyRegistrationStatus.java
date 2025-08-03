@@ -6,17 +6,21 @@ import company.Company;
 import company.CompanyRegistration;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
+import notification.NotificationService;
+import notification.NotificationCommand;
 
 public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatusUpdater {
     private final AdministratorRoles serviceRole = AdministratorRoles.PROCUREMENT_ADMINISTRATOR;
     private final CompanyRegistrationRepository companyRegistrationRepository;
     private final AdministratorRepository administratorRepository;
     private final CompanyRepository companyRepository;
+    private final NotificationService notificationService;
 
-    public UpdateCompanyRegistrationStatus(CompanyRegistrationRepository companyRegistrationRepository, AdministratorRepository administratorRepository, CompanyRepository companyRepository) {
+    public UpdateCompanyRegistrationStatus(CompanyRegistrationRepository companyRegistrationRepository, AdministratorRepository administratorRepository, CompanyRepository companyRepository, NotificationService notificationService) {
         this.companyRegistrationRepository = companyRegistrationRepository;
         this.administratorRepository = administratorRepository;
         this.companyRepository = companyRepository;
+        this.notificationService = notificationService;
     }
 
     @Override
@@ -26,7 +30,20 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
         CompanyRegistration registration = getCompanyRegistration(command);
         CompanyRegistration updatedRegistration = registration.updateStatus(command.administratorId(), command.status(), command.notes());
         companyRegistrationRepository.add(updatedRegistration);
+        NotificationCommand notificationCommand = generateNotificationCommand(command, updatedRegistration);
+        notificationService.notify(notificationCommand);
         registerApprovedRegistration(updatedRegistration);
+    }
+
+    private static NotificationCommand generateNotificationCommand(UpdateCompanyRegistrationStatusCommand command, CompanyRegistration updatedRegistration) {
+        String subject = String.format("%s Registration Status: %s", updatedRegistration.getCompanyName(), updatedRegistration.getStatus());
+        String message = String.format(
+                "Dear Applicant,\n\nThe registration status for %s has been updated to %s.\nAdministrator Notes: %s\n\nPlease contact support if you have any questions.",
+                updatedRegistration.getCompanyName(),
+                updatedRegistration.getStatus(),
+                command.notes() != null ? command.notes() : "No additional notes provided"
+        );
+        return new NotificationCommand(updatedRegistration.getApplicant().email(), subject, message);
     }
 
     private void registerApprovedRegistration(CompanyRegistration updatedRegistration) {
@@ -40,14 +57,12 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
             companyRepository.add(company);
         }
     }
-
     private CompanyRegistration getCompanyRegistration(UpdateCompanyRegistrationStatusCommand command) {
         return companyRegistrationRepository.registrations().stream()
                 .filter(r -> r.getRegistrationNumber().equals(command.companyRegistrationNumber()))
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Business registration " + command.companyRegistrationNumber() + " not found"));
     }
-
     private Administrator findAdministrator(UpdateCompanyRegistrationStatusCommand command) {
         return administratorRepository.administrators().stream()
                 .filter(a -> a.getAdministratorId().equals(command.administratorId()))
