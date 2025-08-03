@@ -5,6 +5,7 @@ import applicant.dto.RequestCompanyRegistrationCommand;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
 import notification.NotificationService;
+import notification.NotificationServiceCommand;
 
 public class RequestCompanyRegistration implements CompanyRegistrationRequestor {
     private final CompanyRegistrationRequestRepository repository;
@@ -21,6 +22,11 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
         Applicant applicant = new Applicant(command.firstName(), command.lastName(), command.email(), command.phoneNumber());
         CompanyRegistrationRequest request = new CompanyRegistrationRequest(applicant);
         repository.add(request);
+        NotificationServiceCommand notificationServiceCommand = generateNotificationServiceCommand(request, applicant);
+        notificationService.notify(notificationServiceCommand);
+    }
+
+    private NotificationServiceCommand generateNotificationServiceCommand(CompanyRegistrationRequest request, Applicant applicant) {
         String subject = "Complete Your Company Registration";
         String applicationLink = generateApplicationLink(request.getRequestId());
         String message = String.format(
@@ -28,8 +34,11 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
                 applicant.firstName(), applicant.lastName(),
                 applicationLink, request.getExpiryOn()
         );
-        notificationService.notify(command.email(),subject,message );
+        return new NotificationServiceCommand(
+                request.getApplicant().email(), subject, message
+        );
     }
+
     private String generateApplicationLink(String requestId) {
         return "https://openprocurement.com/register/request/company?requestId=" + requestId;
     }
