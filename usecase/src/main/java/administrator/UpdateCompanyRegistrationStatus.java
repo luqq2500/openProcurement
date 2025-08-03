@@ -34,8 +34,7 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
         CompanyRegistration registration = getCompanyRegistration(command);
         CompanyRegistration updatedRegistration = registration.updateStatus(command.administratorId(), command.status(), command.notes());
         companyRegistrationRepository.add(updatedRegistration);
-        NotificationCommand notificationCommand = generateNotificationCommand(command, updatedRegistration);
-        notificationService.notify(notificationCommand);
+        notifyApplicantStatusUpdate(command, updatedRegistration);
         registerApprovedRegistration(updatedRegistration);
     }
 
@@ -56,6 +55,7 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
             companyRepository.add(company);
         }
     }
+
     private CompanyRegistration getCompanyRegistration(UpdateCompanyRegistrationStatusCommand command) {
         return companyRegistrationRepository.registrations().stream()
                 .filter(r -> r.getRegistrationNumber().equals(command.companyRegistrationNumber()))
@@ -63,7 +63,7 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
                 .orElseThrow(() -> new CompanyRegistrationNotFound("Business registration " + command.companyRegistrationNumber() + " not found"));
     }
 
-    private static NotificationCommand generateNotificationCommand(UpdateCompanyRegistrationStatusCommand command, CompanyRegistration updatedRegistration) {
+    public void notifyApplicantStatusUpdate(UpdateCompanyRegistrationStatusCommand command, CompanyRegistration updatedRegistration) {
         String subject = String.format("%s Registration Status: %s", updatedRegistration.getCompanyName(), updatedRegistration.getStatus());
         String message = String.format(
                 "Dear Applicant,\n\nThe registration status for %s has been updated to %s.\nAdministrator Notes: %s\n\nPlease contact support if you have any questions.",
@@ -71,6 +71,7 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
                 updatedRegistration.getStatus(),
                 command.notes() != null ? command.notes() : "No additional notes provided"
         );
-        return new NotificationCommand(updatedRegistration.getApplicant().email(), subject, message);
+        NotificationCommand notificationCommand = new NotificationCommand(updatedRegistration.getApplicant().email(), subject, message);
+        notificationService.notify(notificationCommand);
     }
 }

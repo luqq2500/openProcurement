@@ -36,10 +36,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     public void apply(ApplyCompanyRegistrationCommand command){
         CompanyRegistrationRequest request = getRegistrationRequest(command);
         request.checkRequestExpiry(LocalDateTime.now());
-        CompanyCountryRegistrationRule rule = getCountryRegistrationRule(command);
-        rule.validateRegistrationNumber(command.registrationNumber());
-        rule.validateTaxNumber(command.taxNumber());
-        rule.validateCompanyStructure(command.structure());
+        validateCountryRegistrationRule(command);
         checkRegistrationNumberIsApplicableForRegistration(command);
         checkTaxNumberIsApplicableForRegistration(command);
         CompanyRegistration registration = new CompanyRegistration(
@@ -63,11 +60,15 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
         return optionalRequest.get();
     }
 
-    public CompanyCountryRegistrationRule getCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {
+    public void validateCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {
         Optional<CompanyCountryRegistrationRule> optionalRule = countryRegistrationRuleRepository.findByCountryCode(command.countryCode());
         if (optionalRule.isEmpty()){
             throw new CompanyCountryRegistrationRuleNotFound("Company registration for country " + command.countryCode() + " is not available.");
-        } return optionalRule.get();
+        }
+        CompanyCountryRegistrationRule rule = optionalRule.get();
+        rule.validateRegistrationNumber(command.registrationNumber());
+        rule.validateTaxNumber(command.taxNumber());
+        rule.validateCompanyStructure(command.structure());
     }
 
     private void checkRegistrationNumberIsApplicableForRegistration(ApplyCompanyRegistrationCommand command) {

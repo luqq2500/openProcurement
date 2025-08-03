@@ -21,7 +21,6 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
 
     @Override
     public void request(RequestCompanyRegistrationCommand command) {
-        command.validateEmailFormat();
         Applicant applicant = new Applicant(command.firstName(), command.lastName(), command.email(), command.phoneNumber());
         CompanyRegistrationRequest request = new CompanyRegistrationRequest(applicant, expiryDuration);
         repository.add(request);
