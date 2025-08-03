@@ -24,7 +24,6 @@ public class Company {
     public String getRegistrationNumber() {
         return registrationNumber;
     }
-
     public String getTaxNumber() {
         return taxNumber;
     }

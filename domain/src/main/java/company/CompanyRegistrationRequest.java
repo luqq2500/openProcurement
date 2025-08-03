@@ -1,6 +1,7 @@
 package company;
 
 import applicant.Applicant;
+import company.exception.CompanyRegistrationRequestExpired;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -19,7 +20,7 @@ public class CompanyRegistrationRequest {
     }
     public void checkRequestExpiry(LocalDateTime currentDate) {
         if (currentDate.isAfter(expiryDate)) {
-            throw new RuntimeException("Request has already expired on " + expiryDate);
+            throw new CompanyRegistrationRequestExpired("Request has already expired on " + expiryDate);
         }
     }
     public String getRequestId() {

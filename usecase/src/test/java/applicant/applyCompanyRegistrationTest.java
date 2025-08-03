@@ -5,6 +5,10 @@ import company.MockCompanyRegistrationRepository;
 import applicant.api.CompanyRegistrationApplier;
 import applicant.dto.ApplyCompanyRegistrationCommand;
 import company.*;
+import company.exception.CompanyRegistrationNumberNotApplicableForRegistration;
+import company.exception.CompanyRegistrationRequestExpired;
+import company.exception.CompanyRegistrationRequestNotFound;
+import company.exception.CompanyTaxNumberNotApplicableForRegistration;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRegistrationRequestRepository;
@@ -63,7 +67,7 @@ public class applyCompanyRegistrationTest {
                 CountryCode.MY,
                 "not_exist_request_id"
         );
-        RuntimeException exception = Assert.assertThrows(RuntimeException.class, () -> applier.apply(command));
+        RuntimeException exception = Assert.assertThrows(CompanyRegistrationRequestNotFound.class, () -> applier.apply(command));
         System.out.println(exception.getMessage());
     }
 
@@ -90,7 +94,7 @@ public class applyCompanyRegistrationTest {
                 CountryCode.MY,
                 requests.getFirst().getRequestId()
         );
-        RuntimeException exception = Assert.assertThrows(RuntimeException.class, () -> applier.apply(command));
+        RuntimeException exception = Assert.assertThrows(CompanyRegistrationNumberNotApplicableForRegistration.class, () -> applier.apply(command));
         System.out.println(exception.getMessage());
     }
 
@@ -104,7 +108,7 @@ public class applyCompanyRegistrationTest {
                 CountryCode.MY,
                 requests.getFirst().getRequestId()
         );
-        RuntimeException exception = Assert.assertThrows(RuntimeException.class, () -> applier.apply(command));
+        RuntimeException exception = Assert.assertThrows(CompanyTaxNumberNotApplicableForRegistration.class, () -> applier.apply(command));
         System.out.println(exception.getMessage());
     }
 
@@ -118,7 +122,7 @@ public class applyCompanyRegistrationTest {
                 CountryCode.MY,
                 requests.get(1).getRequestId()
         );
-        RuntimeException exception = Assert.assertThrows(RuntimeException.class, () -> applier.apply(command));
+        RuntimeException exception = Assert.assertThrows(CompanyRegistrationRequestExpired.class, () -> applier.apply(command));
         System.out.println(exception.getMessage());
     }
 }

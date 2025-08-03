@@ -1,5 +1,7 @@
 package administrator;
 
+import administrator.exception.AdministratorRoleUnchangedException;
+
 import java.util.UUID;
 
 public class Administrator {
@@ -21,17 +23,11 @@ public class Administrator {
 
     public void updateRole(AdministratorRoles role) {
         if (role.equals(this.role)) {
-            throw new RuntimeException("Invalid role update: Administrator role is already set as " + role);
+            throw new AdministratorRoleUnchangedException("Invalid role update: Administrator role is already set as " + role);
         }
         this.role = role;
     }
 
-    public void updateEmail(String email) {
-        if (email.equals(this.email)) {
-            throw new RuntimeException("Invalid email update: Administrator email is already set as " + email);
-        }
-        this.email = email;
-    }
 
     public String getAdministratorId() {
         return administratorId;

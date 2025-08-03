@@ -2,6 +2,7 @@ package company;
 
 import address.CountryCode;
 import applicant.Applicant;
+import company.exception.InvalidCompanyRegistrationStatus;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -35,7 +36,7 @@ public class CompanyRegistration {
 
     public CompanyRegistration updateStatus(String administratorId, CompanyRegistrationStatus newStatus, String administratorNote) {
         if (!this.status.canUpdateTo(newStatus)){
-            throw new RuntimeException("Invalid update status transaction");
+            throw new InvalidCompanyRegistrationStatus("Invalid update status transaction");
         }
         CompanyRegistration newRegistration = new CompanyRegistration(companyName, registrationNumber, taxNumber, structure, countryCode, applicant, newStatus);
         newRegistration.setAdministratorId(administratorId);

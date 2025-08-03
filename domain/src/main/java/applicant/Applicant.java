@@ -1,9 +1,11 @@
 package applicant;
 
+import java.util.Objects;
+
 public record Applicant(String firstName, String lastName, String email, String phoneNumber) {
-    public void validateEmailEqualsTo(String email) {
-        if (!this.email.matches(email)) {
-            throw new RuntimeException("Invalid email");
-        }
+    public Applicant{
+        Objects.requireNonNull(firstName);
+        Objects.requireNonNull(email);
+        Objects.requireNonNull(phoneNumber);
     }
 }

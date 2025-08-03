@@ -1,5 +1,7 @@
 package administrator;
 
+import administrator.exception.AdministratorRoleInvalidException;
+import administrator.exception.AdministratorRoleUnchangedException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,28 +19,14 @@ public class administratorDomainTest {
         );
     }
     @Test
-    public void updateInvalidRoleTest() {
-        RuntimeException error = Assert.assertThrows(RuntimeException.class, () -> {
+    public void updateInvalidRole_shouldThrowException() {
+        RuntimeException error = Assert.assertThrows(AdministratorRoleUnchangedException.class, () -> {
             administrator.updateRole(AdministratorRoles.PROCUREMENT_ADMINISTRATOR);
         });
         System.out.println(error.getMessage());
     }
-
     @Test
-    public void updateValidRoleTest() {
+    public void updateValidRole_shouldNotThrowException() {
         administrator.updateRole(AdministratorRoles.SYSTEM_ADMINISTRATOR);
-    }
-
-    @Test
-    public void updateInvalidEmailTest() {
-        RuntimeException error = Assert.assertThrows(RuntimeException.class, () -> {
-            administrator.updateEmail("hakimluqq25@gmail.com");
-        });
-        System.out.println(error.getMessage());
-    }
-
-    @Test
-    public void updateValidEmailTest() {
-        administrator.updateEmail("hakimluqq58@gmail.com");
     }
 }

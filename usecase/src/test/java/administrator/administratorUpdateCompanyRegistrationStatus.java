@@ -3,9 +3,13 @@ package administrator;
 import address.CountryCode;
 import administrator.api.CompanyRegistrationStatusUpdater;
 import administrator.dto.UpdateCompanyRegistrationStatusCommand;
+import administrator.exception.AdministratorNotFoundException;
+import administrator.exception.AdministratorRoleInvalidException;
 import administrator.spi.AdministratorRepository;
 import applicant.Applicant;
 import company.*;
+import company.exception.CompanyRegistrationNotFound;
+import company.exception.InvalidCompanyRegistrationStatus;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
 import notification.MockNotificationService;
@@ -24,7 +28,7 @@ public class administratorUpdateCompanyRegistrationStatus {
     private CompanyRegistrationStatusUpdater statusUpdater;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp(){
         Applicant applicant = new Applicant("Luqman", "Hakim", "hakimluqq25@gmail.com", "0114305988");
         registrations = List.of(
                 new CompanyRegistration("Terraform", "000000111111", "000000111111",
@@ -74,7 +78,7 @@ public class administratorUpdateCompanyRegistrationStatus {
                 CompanyRegistrationStatus.PROCESSING,
                 null
         );
-        RuntimeException error = Assert.assertThrows(RuntimeException.class, () -> statusUpdater.update(command));
+        RuntimeException error = Assert.assertThrows(AdministratorRoleInvalidException.class, () -> statusUpdater.update(command));
         System.out.println(error.getMessage());
     }
 
@@ -86,7 +90,7 @@ public class administratorUpdateCompanyRegistrationStatus {
                 CompanyRegistrationStatus.PROCESSING,
                 null
         );
-        RuntimeException error = Assert.assertThrows(RuntimeException.class, () -> statusUpdater.update(command));
+        RuntimeException error = Assert.assertThrows(AdministratorNotFoundException.class, () -> statusUpdater.update(command));
         System.out.println(error.getMessage());
     }
 
@@ -98,7 +102,7 @@ public class administratorUpdateCompanyRegistrationStatus {
                 CompanyRegistrationStatus.PROCESSING,
                 null
         );
-        RuntimeException error = Assert.assertThrows(RuntimeException.class, () -> statusUpdater.update(command));
+        RuntimeException error = Assert.assertThrows(CompanyRegistrationNotFound.class, () -> statusUpdater.update(command));
         System.out.println(error.getMessage());
     }
 
@@ -255,14 +259,14 @@ public class administratorUpdateCompanyRegistrationStatus {
                 CompanyRegistrationStatus.REJECTED,
                 "All documents are eligible for approval."
         );
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(pendingToApprove);});
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(pendingToReject);});
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(processingToProcessing);});
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(approveToProcessing);});
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(approveToApprove);});
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(approveToReject);});
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(rejectToProcessing);});
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(rejectToApprove);});
-        Assert.assertThrows(RuntimeException.class, ()-> {statusUpdater.update(rejectToReject);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(pendingToApprove);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(pendingToReject);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(processingToProcessing);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(approveToProcessing);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(approveToApprove);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(approveToReject);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(rejectToProcessing);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(rejectToApprove);});
+        Assert.assertThrows(InvalidCompanyRegistrationStatus.class, ()-> {statusUpdater.update(rejectToReject);});
     }
 }

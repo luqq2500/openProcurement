@@ -6,6 +6,10 @@ import company.CompanyCountryRegistrationRule;
 import company.CompanyRegistration;
 import company.CompanyRegistrationRequest;
 import company.CompanyRegistrationStatus;
+import company.exception.CompanyCountryRegistrationRuleNotFound;
+import company.exception.CompanyRegistrationNumberNotApplicableForRegistration;
+import company.exception.CompanyRegistrationRequestNotFound;
+import company.exception.CompanyTaxNumberNotApplicableForRegistration;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRegistrationRequestRepository;
@@ -54,7 +58,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     private CompanyRegistrationRequest getRegistrationRequest(ApplyCompanyRegistrationCommand command) {
         Optional<CompanyRegistrationRequest> optionalRequest = requestRepository.findById(command.registrationRequestId());
         if (optionalRequest.isEmpty()){
-            throw new RuntimeException("No request found for id " + command.registrationRequestId());
+            throw new CompanyRegistrationRequestNotFound("No request found for id " + command.registrationRequestId());
         }
         return optionalRequest.get();
     }
@@ -62,7 +66,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     public CompanyCountryRegistrationRule getCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {
         Optional<CompanyCountryRegistrationRule> optionalRule = countryRegistrationRuleRepository.findByCountryCode(command.countryCode());
         if (optionalRule.isEmpty()){
-            throw new RuntimeException("Company registration for country " + command.countryCode() + " is not available.");
+            throw new CompanyCountryRegistrationRuleNotFound("Company registration for country " + command.countryCode() + " is not available.");
         } return optionalRule.get();
     }
 
@@ -70,7 +74,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
         if (repository.registrations().stream()
                 .anyMatch(registration->registration.getRegistrationNumber().equals(command.registrationNumber())
                         && !registration.getStatus().isRejected())) {
-            throw new RuntimeException("Company with registration number " + command.registrationNumber() + " has already applied.");
+            throw new CompanyRegistrationNumberNotApplicableForRegistration("Company with registration number " + command.registrationNumber() + " has already applied.");
         }
     }
 
@@ -78,7 +82,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
         if (repository.registrations().stream()
                 .anyMatch(registration->registration.getTaxNumber().equals(command.taxNumber())
                         && !registration.getStatus().isRejected())){
-            throw new RuntimeException("Company with tax number " + command.taxNumber() + " has already applied.");
+            throw new CompanyTaxNumberNotApplicableForRegistration("Company with tax number " + command.taxNumber() + " has already applied.");
         }
     }
 

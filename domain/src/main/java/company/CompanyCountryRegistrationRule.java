@@ -1,6 +1,9 @@
 package company;
 
 import address.CountryCode;
+import company.exception.InvalidCompanyRegistrationNumber;
+import company.exception.InvalidCompanyStructure;
+import company.exception.InvalidCompanyTaxNumber;
 
 import java.util.List;
 
@@ -13,7 +16,7 @@ public record CompanyCountryRegistrationRule (
         List<CompanyStructure> companyStructures){
     public void validateRegistrationNumber(String registrationNumber) {
         if (registrationNumber==null || registrationNumber.length()!=registrationNumberLength || !registrationNumber.matches(registrationNumberPattern)){
-            throw new RuntimeException(
+            throw new InvalidCompanyRegistrationNumber(
                     "Registration number for country " + countryCode +
                             " must be " + registrationNumberLength + " characters long, " +
                             "and match pattern " + registrationNumberPattern
@@ -22,7 +25,7 @@ public record CompanyCountryRegistrationRule (
     }
     public void validateTaxNumber(String taxNumber) {
         if (taxNumber==null || taxNumber.length()!=taxNumberLength || !taxNumber.matches(taxNumberPattern)){
-            throw new RuntimeException(
+            throw new InvalidCompanyTaxNumber(
                     "Tax number for country " + countryCode +
                             " must be " + taxNumberLength + " characters long, " +
                             "and match pattern " + taxNumberPattern
@@ -31,7 +34,7 @@ public record CompanyCountryRegistrationRule (
     }
     public void validateCompanyStructure(CompanyStructure structure) {
         if (!companyStructures.contains(structure)){
-            throw new RuntimeException(
+            throw new InvalidCompanyStructure(
                     structure + " is unregistered business structure in country " + countryCode + ". ");
         }
     }

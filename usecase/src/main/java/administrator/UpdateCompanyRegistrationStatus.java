@@ -1,9 +1,11 @@
 package administrator;
 import administrator.api.CompanyRegistrationStatusUpdater;
 import administrator.dto.UpdateCompanyRegistrationStatusCommand;
+import administrator.exception.AdministratorNotFoundException;
 import administrator.spi.AdministratorRepository;
 import company.Company;
 import company.CompanyRegistration;
+import company.exception.CompanyRegistrationNotFound;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
 import notification.NotificationService;
@@ -40,7 +42,7 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
     private Administrator findAdministrator(UpdateCompanyRegistrationStatusCommand command) {
         Optional<Administrator> optionalAdministrator = administratorRepository.findById(command.administratorId());
         if (optionalAdministrator.isEmpty()) {
-            throw new RuntimeException("Administrator does not exist.");
+            throw new AdministratorNotFoundException("Administrator does not exist.");
         }return optionalAdministrator.get();
     }
 
@@ -58,7 +60,7 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
         return companyRegistrationRepository.registrations().stream()
                 .filter(r -> r.getRegistrationNumber().equals(command.companyRegistrationNumber()))
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("Business registration " + command.companyRegistrationNumber() + " not found"));
+                .orElseThrow(() -> new CompanyRegistrationNotFound("Business registration " + command.companyRegistrationNumber() + " not found"));
     }
 
     private static NotificationCommand generateNotificationCommand(UpdateCompanyRegistrationStatusCommand command, CompanyRegistration updatedRegistration) {
