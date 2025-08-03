@@ -4,10 +4,7 @@ import address.CountryCode;
 import administrator.api.CompanyRegistrationStatusUpdater;
 import administrator.dto.UpdateCompanyRegistrationStatusCommand;
 import applicant.Applicant;
-import company.Company;
-import company.CompanyRegistration;
-import company.CompanyRegistrationStatus;
-import company.CompanyStructure;
+import company.*;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
 import org.junit.Assert;
@@ -45,10 +42,10 @@ public class administratorUpdateCompanyRegistrationStatus {
         List<Company> companies = List.of(
                 new Company("Terra", "202399996666", "202399994444", CompanyStructure.PUBLIC_LIMITED_COMPANY, CountryCode.MY)
         );
-        companyRepository = new InMemoryCompanyRepository();
-        companyRegistrationRepository = new InMemoryCompanyRegistrationRepository();
-        companyRepository.addListOf(companies);
-        companyRegistrationRepository.addListOf(registrations);
+        companyRepository = new MockCompanyRepository();
+        companyRegistrationRepository = new MockCompanyRegistrationRepository();
+        companies.forEach(companyRepository::add);
+        registrations.forEach(companyRegistrationRepository::add);
         statusUpdater = new UpdateCompanyRegistrationStatus(companyRegistrationRepository, ()->administrators, companyRepository);
     }
 

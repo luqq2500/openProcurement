@@ -13,6 +13,7 @@ import notification.NotificationService;
 import notification.NotificationServiceCommand;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     private final CompanyRegistrationRepository repository;
@@ -29,11 +30,14 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
 
     @Override
     public void apply(ApplyCompanyRegistrationCommand command){
-        CompanyRegistrationRequest request = getCompanyRegistrationRequest(command);
+        CompanyRegistrationRequest request = getRegistrationRequest(command);
         request.checkRequestExpiry(LocalDateTime.now());
         validateRegistrationNumber(command);
         validateTaxNumber(command);
-        validateCountryRegistrationRule(command);
+        CompanyCountryRegistrationRule rule = getCountryRegistrationRule(command);
+        rule.validateRegistrationNumber(command.registrationNumber());
+        rule.validateTaxNumber(command.taxNumber());
+        rule.validateCompanyStructure(command.structure());
         CompanyRegistration registration = new CompanyRegistration(
                 command.companyName(),
                 command.registrationNumber(),
@@ -47,6 +51,36 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
         notificationService.notify(notificationCommand);
     }
 
+    private CompanyRegistrationRequest getRegistrationRequest(ApplyCompanyRegistrationCommand command) {
+        Optional<CompanyRegistrationRequest> optionalRequest = requestRepository.findById(command.registrationRequestId());
+        if (optionalRequest.isEmpty()){
+            throw new RuntimeException("No request found for id " + command.registrationRequestId());
+        }
+        return optionalRequest.get();
+    }
+
+    public CompanyCountryRegistrationRule getCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {
+        Optional<CompanyCountryRegistrationRule> ruleOptional = countryRegistrationRuleRepository.findByCountryCode(command.countryCode());
+        if (ruleOptional.isEmpty()){
+            throw new RuntimeException("Company registration for country " + command.countryCode() + " is not available.");
+        }
+        return ruleOptional.get();
+    }
+
+    private void validateRegistrationNumber(ApplyCompanyRegistrationCommand command) {
+        Optional<CompanyRegistration> registration = repository.findByCompanyRegistrationNumber(command.registrationNumber());
+        if (registration.isPresent() && !registration.get().getStatus().isRejected()){
+            throw new RuntimeException("Company with registration number " + command.registrationNumber() + " has already applied.");
+        }
+    }
+
+    private void validateTaxNumber(ApplyCompanyRegistrationCommand command) {
+        Optional<CompanyRegistration> registration = repository.findByTaxNumber(command.taxNumber());
+        if (registration.isPresent() && !registration.get().getStatus().isRejected()){
+            throw new RuntimeException("Company with tax number " + command.taxNumber() + " has already applied.");
+        }
+    }
+
     private static NotificationServiceCommand generateNotificationCommand(ApplyCompanyRegistrationCommand command, CompanyRegistrationRequest request, CompanyRegistration registration) {
         String subject = "OpenProcurement Registration Submitted";
         String message = String.format(
@@ -54,45 +88,8 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
                 request.getApplicant().firstName(),
                 request.getApplicant().lastName(),
                 command.companyName(),
-                 registration.getRegistrationId()
+                registration.getRegistrationId()
         );
         return new NotificationServiceCommand(request.getApplicant().email(), subject, message);
-    }
-
-    private CompanyRegistrationRequest getCompanyRegistrationRequest(ApplyCompanyRegistrationCommand command) {
-        return requestRepository.requests().stream()
-                .filter(r -> r.getRequestId().equals(command.registrationRequestId()))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("No company registration request found."));
-    }
-
-    private void validateCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {
-        CompanyCountryRegistrationRule rule = getCountryRegistrationRule(command);
-        rule.validateRegistrationNumber(command.registrationNumber());
-        rule.validateTaxNumber(command.taxNumber());
-        rule.validateCompanyStructure(command.structure());
-    }
-
-    private CompanyCountryRegistrationRule getCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {
-        return countryRegistrationRuleRepository.rules().stream()
-                .filter(r -> r.countryCode().equals(command.countryCode()))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Country code " + command.countryCode() + " is not registered."));
-    }
-
-    private void validateRegistrationNumber(ApplyCompanyRegistrationCommand command) {
-        if (repository.registrations().stream()
-                .filter(registration -> !registration.getStatus().equals(CompanyRegistrationStatus.REJECTED))
-                .anyMatch(registration -> registration.getRegistrationNumber().equals(command.registrationNumber()))) {
-            throw new RuntimeException("Company registration number " + command.registrationNumber() + " already applied for registration.");
-        }
-    }
-
-    private void validateTaxNumber(ApplyCompanyRegistrationCommand command) {
-        if (repository.registrations().stream()
-                .filter(registration -> !registration.getStatus().equals(CompanyRegistrationStatus.REJECTED))
-                .anyMatch(registration -> registration.getTaxNumber().equals(command.taxNumber()))) {
-            throw new RuntimeException("Tax number " + command.taxNumber() + " already applied for registration.");
-        }
     }
 }

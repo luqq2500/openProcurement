@@ -28,18 +28,12 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
 
     private NotificationServiceCommand generateNotificationServiceCommand(CompanyRegistrationRequest request, Applicant applicant) {
         String subject = "Complete Your Company Registration";
-        String applicationLink = generateApplicationLink(request.getRequestId());
         String message = String.format(
                 "Dear %s %s,\n\nPlease complete your company registration by filling out the form: %s\nThis link expires on %s.\n\nThank you,\nProcurement Team",
-                applicant.firstName(), applicant.lastName(),
-                applicationLink, request.getExpiryOn()
+                applicant.firstName(), applicant.lastName(), request.getExpiryDate()
         );
         return new NotificationServiceCommand(
                 request.getApplicant().email(), subject, message
         );
-    }
-
-    private String generateApplicationLink(String requestId) {
-        return "https://openprocurement.com/register/request/company?requestId=" + requestId;
     }
 }

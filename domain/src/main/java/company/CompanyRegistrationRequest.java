@@ -17,13 +17,11 @@ public class CompanyRegistrationRequest {
         this.requestDate = LocalDateTime.now();
         this.expiryDate = LocalDateTime.now().plusDays(3);
     }
-
     public void checkRequestExpiry(LocalDateTime currentDate) {
         if (currentDate.isAfter(expiryDate)) {
             throw new RuntimeException("Request has already expired on " + expiryDate);
         }
     }
-
     public String getRequestId() {
         return requestId;
     }
@@ -33,7 +31,7 @@ public class CompanyRegistrationRequest {
     public LocalDateTime getRequestDate() {
         return requestDate;
     }
-    public LocalDateTime getExpiryOn() {
+    public LocalDateTime getExpiryDate() {
         return expiryDate;
     }
 }
