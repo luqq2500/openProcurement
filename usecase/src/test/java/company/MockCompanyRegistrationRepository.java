@@ -16,18 +16,4 @@ public class MockCompanyRegistrationRepository implements CompanyRegistrationRep
     public void add(CompanyRegistration registration) {
         registrations.add(registration);
     }
-
-    @Override
-    public Optional<CompanyRegistration> findByCompanyRegistrationNumber(String registrationNumber) {
-        return registrations.stream()
-                .filter(registration -> registration.getRegistrationNumber().equals(registrationNumber))
-                .findFirst();
-    }
-
-    @Override
-    public Optional<CompanyRegistration> findByTaxNumber(String taxNumber) {
-        return registrations.stream()
-                .filter(registration -> registration.getTaxNumber().equals(taxNumber))
-                .findFirst();
-    }
 }

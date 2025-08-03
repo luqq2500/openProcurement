@@ -3,6 +3,7 @@ package administrator;
 import address.CountryCode;
 import administrator.api.CompanyRegistrationStatusUpdater;
 import administrator.dto.UpdateCompanyRegistrationStatusCommand;
+import administrator.spi.AdministratorRepository;
 import applicant.Applicant;
 import company.*;
 import company.spi.CompanyRegistrationRepository;
@@ -20,7 +21,7 @@ public class administratorUpdateCompanyRegistrationStatus {
     private List<Administrator> administrators;
     private CompanyRegistrationRepository companyRegistrationRepository;
     private CompanyRepository companyRepository;
-    CompanyRegistrationStatusUpdater statusUpdater;
+    private CompanyRegistrationStatusUpdater statusUpdater;
 
     @Before
     public void setUp() throws Exception {
@@ -46,10 +47,12 @@ public class administratorUpdateCompanyRegistrationStatus {
         );
         companyRepository = new MockCompanyRepository();
         companyRegistrationRepository = new MockCompanyRegistrationRepository();
+        AdministratorRepository administratorRepository = new MockAdministratorRepository();
         NotificationService notificationService = new MockNotificationService();
         companies.forEach(companyRepository::add);
         registrations.forEach(companyRegistrationRepository::add);
-        statusUpdater = new UpdateCompanyRegistrationStatus(companyRegistrationRepository, ()->administrators, companyRepository, notificationService);
+        administrators.forEach(administratorRepository::add);
+        statusUpdater = new UpdateCompanyRegistrationStatus(companyRegistrationRepository, administratorRepository, companyRepository, notificationService);
     }
 
     @Test

@@ -9,6 +9,8 @@ import company.spi.CompanyRepository;
 import notification.NotificationService;
 import notification.NotificationCommand;
 
+import java.util.Optional;
+
 public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatusUpdater {
     private final AdministratorRoles serviceRole = AdministratorRoles.PROCUREMENT_ADMINISTRATOR;
     private final CompanyRegistrationRepository companyRegistrationRepository;
@@ -35,21 +37,16 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
         registerApprovedRegistration(updatedRegistration);
     }
 
-    private static NotificationCommand generateNotificationCommand(UpdateCompanyRegistrationStatusCommand command, CompanyRegistration updatedRegistration) {
-        String subject = String.format("%s Registration Status: %s", updatedRegistration.getCompanyName(), updatedRegistration.getStatus());
-        String message = String.format(
-                "Dear Applicant,\n\nThe registration status for %s has been updated to %s.\nAdministrator Notes: %s\n\nPlease contact support if you have any questions.",
-                updatedRegistration.getCompanyName(),
-                updatedRegistration.getStatus(),
-                command.notes() != null ? command.notes() : "No additional notes provided"
-        );
-        return new NotificationCommand(updatedRegistration.getApplicant().email(), subject, message);
+    private Administrator findAdministrator(UpdateCompanyRegistrationStatusCommand command) {
+        Optional<Administrator> optionalAdministrator = administratorRepository.findById(command.administratorId());
+        if (optionalAdministrator.isEmpty()) {
+            throw new RuntimeException("Administrator does not exist.");
+        }return optionalAdministrator.get();
     }
 
     private void registerApprovedRegistration(CompanyRegistration updatedRegistration) {
         if (updatedRegistration.getStatus().isApproved()) {
-            Company company = new Company(
-                    updatedRegistration.getCompanyName(),
+            Company company = new Company(updatedRegistration.getCompanyName(),
                     updatedRegistration.getRegistrationNumber(),
                     updatedRegistration.getTaxNumber(),
                     updatedRegistration.getStructure(),
@@ -63,10 +60,15 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
                 .findFirst()
                 .orElseThrow(() -> new RuntimeException("Business registration " + command.companyRegistrationNumber() + " not found"));
     }
-    private Administrator findAdministrator(UpdateCompanyRegistrationStatusCommand command) {
-        return administratorRepository.administrators().stream()
-                .filter(a -> a.getAdministratorId().equals(command.administratorId()))
-                .findFirst()
-                .orElseThrow(() -> new RuntimeException("Administrator not found"));
+
+    private static NotificationCommand generateNotificationCommand(UpdateCompanyRegistrationStatusCommand command, CompanyRegistration updatedRegistration) {
+        String subject = String.format("%s Registration Status: %s", updatedRegistration.getCompanyName(), updatedRegistration.getStatus());
+        String message = String.format(
+                "Dear Applicant,\n\nThe registration status for %s has been updated to %s.\nAdministrator Notes: %s\n\nPlease contact support if you have any questions.",
+                updatedRegistration.getCompanyName(),
+                updatedRegistration.getStatus(),
+                command.notes() != null ? command.notes() : "No additional notes provided"
+        );
+        return new NotificationCommand(updatedRegistration.getApplicant().email(), subject, message);
     }
 }

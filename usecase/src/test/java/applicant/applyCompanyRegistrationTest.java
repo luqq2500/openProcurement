@@ -26,7 +26,8 @@ public class applyCompanyRegistrationTest {
     public void setUp() {
         Applicant mockApplicant = new Applicant("Luqman", "Hakim", "hakimluqq25@gmail.com", "0114305988");
         requests = List.of(
-                new CompanyRegistrationRequest(mockApplicant)
+                new CompanyRegistrationRequest(mockApplicant, LocalDateTime.now().plusDays(3)),
+                new CompanyRegistrationRequest(mockApplicant, LocalDateTime.now().minusDays(1))
         );
         registrations = List.of(
                 new CompanyRegistration("Terraform", "000000000001", "000000000001",
@@ -102,6 +103,20 @@ public class applyCompanyRegistrationTest {
                 CompanyStructure.PRIVATE_LIMITED_COMPANY,
                 CountryCode.MY,
                 requests.getFirst().getRequestId()
+        );
+        RuntimeException exception = Assert.assertThrows(RuntimeException.class, () -> applier.apply(command));
+        System.out.println(exception.getMessage());
+    }
+
+    @Test
+    public void expiredRequest_shouldThrowException() {
+        ApplyCompanyRegistrationCommand command = new ApplyCompanyRegistrationCommand(
+                "Terrabyte",
+                "202380061600",
+                "200202028888",
+                CompanyStructure.PRIVATE_LIMITED_COMPANY,
+                CountryCode.MY,
+                requests.get(1).getRequestId()
         );
         RuntimeException exception = Assert.assertThrows(RuntimeException.class, () -> applier.apply(command));
         System.out.println(exception.getMessage());

@@ -9,13 +9,13 @@ public class CompanyRegistrationRequest {
     private final String requestId;
     private final Applicant applicant;
     private final LocalDateTime requestDate;
-    private final LocalDateTime expiryDate;
+    private LocalDateTime expiryDate;
 
-    public CompanyRegistrationRequest(Applicant applicant) {
+    public CompanyRegistrationRequest(Applicant applicant, LocalDateTime expiryTime) {
         this.requestId = UUID.randomUUID().toString();
         this.applicant = applicant;
         this.requestDate = LocalDateTime.now();
-        this.expiryDate = LocalDateTime.now().plusDays(3);
+        this.expiryDate = expiryTime;
     }
     public void checkRequestExpiry(LocalDateTime currentDate) {
         if (currentDate.isAfter(expiryDate)) {

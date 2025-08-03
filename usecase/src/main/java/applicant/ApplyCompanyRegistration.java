@@ -32,12 +32,12 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     public void apply(ApplyCompanyRegistrationCommand command){
         CompanyRegistrationRequest request = getRegistrationRequest(command);
         request.checkRequestExpiry(LocalDateTime.now());
-        validateRegistrationNumber(command);
-        validateTaxNumber(command);
         CompanyCountryRegistrationRule rule = getCountryRegistrationRule(command);
         rule.validateRegistrationNumber(command.registrationNumber());
         rule.validateTaxNumber(command.taxNumber());
         rule.validateCompanyStructure(command.structure());
+        checkRegistrationNumberIsApplicableForRegistration(command);
+        checkTaxNumberIsApplicableForRegistration(command);
         CompanyRegistration registration = new CompanyRegistration(
                 command.companyName(),
                 command.registrationNumber(),
@@ -60,23 +60,24 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     }
 
     public CompanyCountryRegistrationRule getCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {
-        Optional<CompanyCountryRegistrationRule> ruleOptional = countryRegistrationRuleRepository.findByCountryCode(command.countryCode());
-        if (ruleOptional.isEmpty()){
+        Optional<CompanyCountryRegistrationRule> optionalRule = countryRegistrationRuleRepository.findByCountryCode(command.countryCode());
+        if (optionalRule.isEmpty()){
             throw new RuntimeException("Company registration for country " + command.countryCode() + " is not available.");
-        }
-        return ruleOptional.get();
+        } return optionalRule.get();
     }
 
-    private void validateRegistrationNumber(ApplyCompanyRegistrationCommand command) {
-        Optional<CompanyRegistration> registration = repository.findByCompanyRegistrationNumber(command.registrationNumber());
-        if (registration.isPresent() && !registration.get().getStatus().isRejected()){
+    private void checkRegistrationNumberIsApplicableForRegistration(ApplyCompanyRegistrationCommand command) {
+        if (repository.registrations().stream()
+                .anyMatch(registration->registration.getRegistrationNumber().equals(command.registrationNumber())
+                        && !registration.getStatus().isRejected())) {
             throw new RuntimeException("Company with registration number " + command.registrationNumber() + " has already applied.");
         }
     }
 
-    private void validateTaxNumber(ApplyCompanyRegistrationCommand command) {
-        Optional<CompanyRegistration> registration = repository.findByTaxNumber(command.taxNumber());
-        if (registration.isPresent() && !registration.get().getStatus().isRejected()){
+    private void checkTaxNumberIsApplicableForRegistration(ApplyCompanyRegistrationCommand command) {
+        if (repository.registrations().stream()
+                .anyMatch(registration->registration.getTaxNumber().equals(command.taxNumber())
+                        && !registration.getStatus().isRejected())){
             throw new RuntimeException("Company with tax number " + command.taxNumber() + " has already applied.");
         }
     }

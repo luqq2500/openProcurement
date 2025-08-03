@@ -2,8 +2,9 @@ package administrator.spi;
 
 import administrator.Administrator;
 
-import java.util.List;
+import java.util.Optional;
 
 public interface AdministratorRepository {
-    List<Administrator> administrators();
+    Optional<Administrator> findById(String administratorId);
+    void add(Administrator administrator);
 }

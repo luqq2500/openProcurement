@@ -11,17 +11,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class requestCompanyRegistrationTest {
-    private List<CompanyRegistrationRequest> requests;
     private CompanyRegistrationRequestor requestor;
     @Before
     public void setUp() {
         Applicant mockApplicant = new Applicant("Luqman", "Hakim", "hakim@gmail.com", "60104305988");
-        requests = List.of(
-                new CompanyRegistrationRequest(mockApplicant),
-                new CompanyRegistrationRequest(mockApplicant)
+        List<CompanyRegistrationRequest> requests = List.of(
+                new CompanyRegistrationRequest(mockApplicant, LocalDateTime.now().plusDays(3))
         );
         CompanyRegistrationRequestRepository requestRepository = new MockCompanyRegistrationRequestRepository();
         NotificationService notificationService = new MockNotificationService();
