@@ -1,24 +1,22 @@
 package administrator;
 
-import address.CountryCode;
+import address.Address;
+import address.Country;
 import administrator.api.CompanyRegistrationStatusUpdater;
-import administrator.dto.UpdateCompanyRegistrationStatusCommand;
 import administrator.exception.AdministratorNotFoundException;
 import administrator.exception.AdministratorRoleInvalidException;
 import administrator.spi.AdministratorRepository;
-import applicant.Applicant;
 import company.*;
 import company.exception.CompanyRegistrationNotFound;
 import company.exception.InvalidCompanyRegistrationStatus;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
-import notification.MockNotificationService;
-import notification.NotificationService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.UUID;
 
 public class administratorUpdateCompanyRegistrationStatus {
     private List<CompanyRegistration> registrations;
@@ -29,16 +27,17 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Before
     public void setUp(){
-        Applicant applicant = new Applicant("Luqman", "Hakim", "hakimluqq25@gmail.com", "0114305988");
+        String mockEmail = "hakimluqq25@gmail.com";
+        Address mockAddress = new Address("1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA);
         registrations = List.of(
-                new CompanyRegistration("Terraform", "000000111111", "000000111111",
-                        CompanyStructure.PUBLIC_LIMITED_COMPANY, CountryCode.MY, applicant, CompanyRegistrationStatus.PENDING),
-                new CompanyRegistration("PetaByte", "000000222222", "000000222222",
-                        CompanyStructure.SOLE, CountryCode.MY, applicant, CompanyRegistrationStatus.PROCESSING),
-                new CompanyRegistration("PetaByte", "000000333333", "000000333333",
-                        CompanyStructure.SOLE, CountryCode.MY, applicant, CompanyRegistrationStatus.APPROVED),
-                new CompanyRegistration("PetaByte", "000000444444", "000000444444",
-                        CompanyStructure.SOLE, CountryCode.MY, applicant, CompanyRegistrationStatus.REJECTED)
+                new CompanyRegistration(mockEmail, "PetaByte", mockAddress,"000000111111", "000000111111",
+                        CompanyStructure.PUBLIC_LIMITED_COMPANY, CompanyRegistrationStatus.PENDING),
+                new CompanyRegistration(mockEmail, "TerraForm",mockAddress,"000000222222", "000000222222",
+                        CompanyStructure.SOLE, CompanyRegistrationStatus.PROCESSING),
+                new CompanyRegistration(mockEmail, "Citadel", mockAddress,"000000333333", "000000333333",
+                        CompanyStructure.SOLE, CompanyRegistrationStatus.APPROVED),
+                new CompanyRegistration(mockEmail, "PetaByte", mockAddress,"000000444444", "000000444444",
+                        CompanyStructure.SOLE, CompanyRegistrationStatus.REJECTED)
         );
         administrators = List.of(
                 new Administrator("Luqman", "Hakim", "hakimluqq25@gmail.com",
@@ -47,16 +46,15 @@ public class administratorUpdateCompanyRegistrationStatus {
                         "234s", AdministratorRoles.SYSTEM_ADMINISTRATOR)
         );
         List<Company> companies = List.of(
-                new Company("Terra", "202399996666", "202399994444", CompanyStructure.PUBLIC_LIMITED_COMPANY, CountryCode.MY)
+                new Company("Terra", "202399996666", "202399994444", CompanyStructure.PUBLIC_LIMITED_COMPANY, mockAddress)
         );
         companyRepository = new MockCompanyRepository();
         companyRegistrationRepository = new MockCompanyRegistrationRepository();
         AdministratorRepository administratorRepository = new MockAdministratorRepository();
-        NotificationService notificationService = new MockNotificationService();
         companies.forEach(companyRepository::add);
         registrations.forEach(companyRegistrationRepository::add);
         administrators.forEach(administratorRepository::add);
-        statusUpdater = new UpdateCompanyRegistrationStatus(companyRegistrationRepository, administratorRepository, companyRepository, notificationService);
+        statusUpdater = new UpdateCompanyRegistrationStatus(companyRegistrationRepository, administratorRepository, companyRepository);
     }
 
     @Test
@@ -85,7 +83,7 @@ public class administratorUpdateCompanyRegistrationStatus {
     @Test
     public void unregisteredAdministrator_shouldThrowException() throws Exception {
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
-                "822ss", // random administrator id
+                UUID.randomUUID(), // random administrator id
                 registrations.getFirst().getRegistrationNumber(),
                 CompanyRegistrationStatus.PROCESSING,
                 null

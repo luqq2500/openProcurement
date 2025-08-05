@@ -1,11 +1,12 @@
 package company;
 
 import company.spi.CompanyRegistrationRepository;
+import ddd.Stub;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
+@Stub
 public class MockCompanyRegistrationRepository implements CompanyRegistrationRepository {
     List<CompanyRegistration> registrations = new ArrayList<>();
     @Override

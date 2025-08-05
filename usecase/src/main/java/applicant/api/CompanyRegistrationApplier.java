@@ -1,6 +1,7 @@
 package applicant.api;
-import applicant.dto.ApplyCompanyRegistrationCommand;
+import applicant.dto.ApplyCompanyRegistrationRequest;
+import applicant.dto.ApplyCompanyRegistrationResponse;
 
 public interface CompanyRegistrationApplier {
-    void apply(ApplyCompanyRegistrationCommand command);
+    ApplyCompanyRegistrationResponse apply(ApplyCompanyRegistrationRequest command);
 }

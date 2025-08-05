@@ -1,5 +1,6 @@
 package administrator.api;
-import administrator.dto.UpdateCompanyRegistrationStatusCommand;
+
+import administrator.UpdateCompanyRegistrationStatusCommand;
 
 public interface CompanyRegistrationStatusUpdater {
     void update(UpdateCompanyRegistrationStatusCommand command);

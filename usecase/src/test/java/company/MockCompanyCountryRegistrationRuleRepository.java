@@ -1,12 +1,14 @@
 package company;
 
-import address.CountryCode;
+import address.Country;
 import company.spi.CompanyCountryRegistrationRuleRepository;
+import ddd.Stub;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Stub
 public class MockCompanyCountryRegistrationRuleRepository implements CompanyCountryRegistrationRuleRepository {
     List<CompanyCountryRegistrationRule> rules = new ArrayList<>();
     @Override
@@ -20,9 +22,9 @@ public class MockCompanyCountryRegistrationRuleRepository implements CompanyCoun
     }
 
     @Override
-    public Optional<CompanyCountryRegistrationRule> findByCountryCode(CountryCode countryCode) {
+    public Optional<CompanyCountryRegistrationRule> findByCountryCode(Country country) {
         return rules.stream()
-                .filter(rule -> rule.countryCode().equals(countryCode))
+                .filter(rule -> rule.country().equals(country))
                 .findFirst();
     }
 }
