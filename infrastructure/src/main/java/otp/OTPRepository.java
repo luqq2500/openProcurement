@@ -1,7 +1,8 @@
 package otp;
 
-import java.util.List;
+import java.util.UUID;
 
 public interface OTPRepository {
-    List<OTP> passwords();
+    void add(OTP otp);
+    OTP get(UUID id);
 }

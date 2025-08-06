@@ -14,6 +14,7 @@ public class OTP {
         this.expiration = expiration;
     }
     public void validatePassword(String password) {
+        validateExpiry();
         if (!this.password.equals(password)) {
             throw new InvalidOTP("One time password is incorrect.");
         }
@@ -24,6 +25,6 @@ public class OTP {
             throw new InvalidOTP("Expired one time password.");
         }
     }
-
     public UUID getId() {return id;}
+    public String getPassword() {return password;}
 }

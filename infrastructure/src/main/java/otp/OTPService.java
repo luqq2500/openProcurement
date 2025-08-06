@@ -7,6 +7,6 @@ import java.util.UUID;
 
 @Component
 public interface OTPService {
-    String generate(int range, LocalDateTime expiration);
-    String validate(UUID id, String password);
+    OTP generate();
+    void validate(UUID id, String password);
 }
