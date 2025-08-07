@@ -1,5 +1,6 @@
-package otp;
+package token;
 
+import java.util.Optional;
 import java.util.UUID;
 
 public interface OTPRepository {
