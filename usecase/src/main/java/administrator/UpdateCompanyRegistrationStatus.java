@@ -1,16 +1,13 @@
 package administrator;
 
 import administrator.api.CompanyRegistrationStatusUpdater;
-import administrator.exception.AdministratorNotFoundException;
 import administrator.spi.AdministratorRepository;
 import company.Company;
 import company.CompanyRegistration;
-import company.exception.CompanyRegistrationNotFound;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
 import ddd.DomainService;
 
-import java.util.Optional;
 
 @DomainService
 public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatusUpdater {
@@ -24,24 +21,15 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
         this.administratorRepository = administratorRepository;
         this.companyRepository = companyRepository;
     }
-
     @Override
     public void update(UpdateCompanyRegistrationStatusCommand command) {
-        Administrator administrator = findAdministrator(command);
+        Administrator administrator = administratorRepository.getById(command.administratorId());
         administrator.getRole().validateAssignedRole(serviceRole);
-        CompanyRegistration registration = getCompanyRegistration(command);
+        CompanyRegistration registration = companyRegistrationRepository.getById(command.companyRegistrationId());
         CompanyRegistration updatedRegistration = registration.updateStatus(command.administratorId(), command.status(), command.notes());
         companyRegistrationRepository.add(updatedRegistration);
         registerApprovedRegistration(updatedRegistration);
     }
-
-    private Administrator findAdministrator(UpdateCompanyRegistrationStatusCommand command) {
-        Optional<Administrator> optionalAdministrator = administratorRepository.findById(command.administratorId());
-        if (optionalAdministrator.isEmpty()) {
-            throw new AdministratorNotFoundException("Administrator does not exist.");
-        }return optionalAdministrator.get();
-    }
-
     private void registerApprovedRegistration(CompanyRegistration updatedRegistration) {
         if (updatedRegistration.getStatus().isApproved()) {
             Company company = new Company(updatedRegistration.getCompanyName(),
@@ -51,12 +39,5 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
                     updatedRegistration.getAddress());
             companyRepository.add(company);
         }
-    }
-
-    private CompanyRegistration getCompanyRegistration(UpdateCompanyRegistrationStatusCommand command) {
-        return companyRegistrationRepository.registrations().stream()
-                .filter(r -> r.getRegistrationNumber().equals(command.companyRegistrationNumber()))
-                .findFirst()
-                .orElseThrow(() -> new CompanyRegistrationNotFound("Business registration " + command.companyRegistrationNumber() + " not found"));
     }
 }

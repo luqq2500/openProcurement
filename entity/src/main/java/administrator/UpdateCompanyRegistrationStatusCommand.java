@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public record UpdateCompanyRegistrationStatusCommand(
         UUID administratorId,
-        String companyRegistrationNumber,
+        UUID companyRegistrationId,
         CompanyRegistrationStatus status,
-        String notes) {
-}
+        String notes
+){}

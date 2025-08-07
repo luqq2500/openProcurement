@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class CompanyRegistration {
-    private final UUID registrationId;
+    private final UUID id;
     private final String email;
     private final String companyName;
     private final Address address;
@@ -21,7 +21,7 @@ public class CompanyRegistration {
     private String administratorNote;
 
     public CompanyRegistration(String email, String companyName, Address address, String registrationNumber, String taxNumber, CompanyStructure structure, CompanyRegistrationStatus status) {
-        this.registrationId = UUID.randomUUID();
+        this.id = UUID.randomUUID();
         this.email = email;
         this.companyName = companyName;
         this.address = address;
@@ -53,5 +53,5 @@ public class CompanyRegistration {
     public CompanyStructure getStructure() {return structure;}
     public Country getCountry() {return address.country();}
     public CompanyRegistrationStatus getStatus() {return status;}
-    public UUID getRegistrationId() {return registrationId;}
+    public UUID getId() {return id;}
 }

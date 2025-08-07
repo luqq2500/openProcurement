@@ -6,6 +6,6 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface AdministratorRepository {
-    Optional<Administrator> findById(UUID id);
+    Administrator getById(UUID id);
     void add(Administrator administrator);
 }

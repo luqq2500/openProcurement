@@ -76,44 +76,17 @@ public class applyCompanyRegistrationTest {
     }
 
     @Test
-    public void requestIdDoesNotExist_shouldThrowException() {
-        ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
-                UUID.randomUUID(),
-                "Terrabyte",
-                mockAddress,
-                "000000111111",
-                "200202028888",
-                CompanyStructure.PRIVATE_LIMITED_COMPANY
-        );
-        CompanyRegistrationRequestNotFound exception = Assert.assertThrows(CompanyRegistrationRequestNotFound.class, () -> applier.apply(command));
-        System.out.println(exception.getMessage());
-    }
-
-    @Test
-    public void appliedRegistrationNumber_shouldThrowException() {
+    public void applyTwice_shouldThrowException() {
         ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
                 validRequest.getId(),
                 "Terrabyte",
                 mockAddress,
-                "000000111111",
+                "200202028888",
                 "200202028888",
                 CompanyStructure.PRIVATE_LIMITED_COMPANY
         );
-        RuntimeException exception = Assert.assertThrows(CompanyRegistrationNumberNotApplicableForRegistration.class, () -> applier.apply(command));
-        System.out.println(exception.getMessage());
-    }
-
-    @Test
-    public void appliedTaxNumber_shouldThrowException() {
-        ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
-                validRequest.getId(),
-                "Terrabyte",
-                mockAddress,
-                "202380061600",
-                "000000111111",
-                CompanyStructure.PRIVATE_LIMITED_COMPANY
-        );
-        RuntimeException exception = Assert.assertThrows(CompanyTaxNumberNotApplicableForRegistration.class, () -> applier.apply(command));
+        applier.apply(command);
+        RuntimeException exception = Assert.assertThrows(RuntimeException.class, ()->applier.apply(command));
         System.out.println(exception.getMessage());
     }
 

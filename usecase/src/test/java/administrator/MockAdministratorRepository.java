@@ -1,5 +1,6 @@
 package administrator;
 
+import administrator.exception.AdministratorNotFoundException;
 import administrator.spi.AdministratorRepository;
 import ddd.Stub;
 
@@ -12,8 +13,11 @@ import java.util.UUID;
 public class MockAdministratorRepository implements AdministratorRepository {
     List<Administrator> administrators = new ArrayList<>();
     @Override
-    public Optional<Administrator> findById(UUID administratorId) {
-        return administrators.stream().filter(admin -> admin.getAdministratorId().equals(administratorId)).findFirst();
+    public Administrator getById(UUID administratorId) {
+        return administrators.stream()
+                .filter(admin -> admin.getAdministratorId()
+                        .equals(administratorId)).findFirst()
+                .orElseThrow( () -> new AdministratorNotFoundException("Administrator not found."));
     }
     @Override
     public void add(Administrator administrator) {

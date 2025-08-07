@@ -8,6 +8,7 @@ import administrator.exception.AdministratorRoleInvalidException;
 import administrator.spi.AdministratorRepository;
 import company.*;
 import company.exception.CompanyRegistrationNotFound;
+import company.exception.CompanyRegistrationRequestNotFound;
 import company.exception.InvalidCompanyRegistrationStatus;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
@@ -61,7 +62,7 @@ public class administratorUpdateCompanyRegistrationStatus {
     public void validAdministratorRole_shouldNotThrowException() {
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
                 administrators.getFirst().getAdministratorId(),
-                registrations.getFirst().getRegistrationNumber(),
+                registrations.getFirst().getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 null
         );
@@ -72,7 +73,7 @@ public class administratorUpdateCompanyRegistrationStatus {
     public void invalidAdministratorRole_shouldThrowException() {
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
                 administrators.get(1).getAdministratorId(),
-                registrations.getFirst().getRegistrationNumber(),
+                registrations.getFirst().getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 null
         );
@@ -84,7 +85,7 @@ public class administratorUpdateCompanyRegistrationStatus {
     public void unregisteredAdministrator_shouldThrowException() throws Exception {
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
                 UUID.randomUUID(), // random administrator id
-                registrations.getFirst().getRegistrationNumber(),
+                registrations.getFirst().getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 null
         );
@@ -93,14 +94,14 @@ public class administratorUpdateCompanyRegistrationStatus {
     }
 
     @Test
-    public void unregisteredCompanyRegistrationNumber_shouldThrowException() {
+    public void unregisteredCompanyRegistration_shouldThrowException() {
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
                 administrators.getFirst().getAdministratorId(),
-                "20209920", // random registration number
+                UUID.randomUUID(),
                 CompanyRegistrationStatus.PROCESSING,
                 null
         );
-        RuntimeException error = Assert.assertThrows(CompanyRegistrationNotFound.class, () -> statusUpdater.update(command));
+        RuntimeException error = Assert.assertThrows(CompanyRegistrationRequestNotFound.class, () -> statusUpdater.update(command));
         System.out.println(error.getMessage());
     }
 
@@ -108,32 +109,19 @@ public class administratorUpdateCompanyRegistrationStatus {
     public void pendingToProcessing_shouldNotThrowException() throws Exception {
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.getFirst().getRegistrationNumber(),
+                registrations.getFirst().getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 null
         );
         statusUpdater.update(command);
-        Assert.assertEquals(companyRegistrationRepository.registrations().getLast().getRegistrationNumber(), command.companyRegistrationNumber());
         Assert.assertTrue(companyRegistrationRepository.registrations().getLast().getStatus().isProcessing());
-    }
-
-    @Test
-    public void processingToApproved_registrationNumberBeforeAndAfterShouldEqual() {
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
-                administrators.getFirst().getAdministratorId(),
-                registrations.get(1).getRegistrationNumber(),
-                CompanyRegistrationStatus.APPROVED,
-                "All documents are eligible for approval."
-        );
-        statusUpdater.update(command);
-        Assert.assertEquals(companyRegistrationRepository.registrations().getLast().getRegistrationNumber(), command.companyRegistrationNumber());
     }
 
     @Test
     public void processingToApproved_updatedRegistrationStatusShouldApproved(){
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(1).getRegistrationNumber(),
+                registrations.get(1).getId(),
                 CompanyRegistrationStatus.APPROVED,
                 "All documents are eligible for approval."
         );
@@ -142,58 +130,21 @@ public class administratorUpdateCompanyRegistrationStatus {
     }
 
     @Test
-    public void processingToApproved_registeredCompanyInRepositoryRegistrationNumberShouldEqual(){
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
-                administrators.getFirst().getAdministratorId(),
-                registrations.get(1).getRegistrationNumber(),
-                CompanyRegistrationStatus.APPROVED,
-                "All documents are eligible for approval."
-        );
-        statusUpdater.update(command);
-        Assert.assertEquals(companyRegistrationRepository.registrations().getLast().getRegistrationNumber(), companyRepository.companies().getLast().getRegistrationNumber());
-    }
-
-    @Test
-    public void processingToApproved_numberOfCompaniesInRepositoryShouldPlusOne(){
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
-                administrators.getFirst().getAdministratorId(),
-                registrations.get(1).getRegistrationNumber(),
-                CompanyRegistrationStatus.APPROVED,
-                "All documents are eligible for approval."
-        );
-        int previousCompanyRepositoryCompaniesSize = companyRepository.companies().size();
-        statusUpdater.update(command);
-        Assert.assertEquals(companyRepository.companies().size(), previousCompanyRepositoryCompaniesSize + 1);
-    }
-
-    @Test
     public void processingToReject_shouldNotThrowException() {
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(1).getRegistrationNumber(),
+                registrations.get(1).getId(),
                 CompanyRegistrationStatus.REJECTED,
                 "Reject due to incomplete docs."
         );
         statusUpdater.update(command);
-    }
-
-    @Test
-    public void processingToRejected_registrationNumberBeforeAndAfterShouldEqual() {
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
-                administrators.getFirst().getAdministratorId(),
-                registrations.get(1).getRegistrationNumber(),
-                CompanyRegistrationStatus.REJECTED,
-                "Reject due to incomplete docs."
-        );
-        statusUpdater.update(command);
-        Assert.assertEquals(companyRegistrationRepository.registrations().getLast().getRegistrationNumber(), command.companyRegistrationNumber());
     }
 
     @Test
     public void processingToRejected_updatedStatusShouldBeRejected(){
         UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(1).getRegistrationNumber(),
+                registrations.get(1).getId(),
                 CompanyRegistrationStatus.REJECTED,
                 "Reject due to incomplete docs."
         );
@@ -205,55 +156,55 @@ public class administratorUpdateCompanyRegistrationStatus {
     public void invalidStatusUpdate_shouldThrowException() throws Exception {
         UpdateCompanyRegistrationStatusCommand pendingToApprove = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.getFirst().getRegistrationNumber(),
+                registrations.getFirst().getId(),
                 CompanyRegistrationStatus.APPROVED,
                 "All documents are eligible for approval."
         );
         UpdateCompanyRegistrationStatusCommand pendingToReject = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.getFirst().getRegistrationNumber(),
+                registrations.getFirst().getId(),
                 CompanyRegistrationStatus.REJECTED,
                 "All documents are eligible for approval."
         );
         UpdateCompanyRegistrationStatusCommand processingToProcessing = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(1).getRegistrationNumber(),
+                registrations.get(1).getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 "All documents are eligible for approval."
         );
         UpdateCompanyRegistrationStatusCommand approveToProcessing = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(2).getRegistrationNumber(),
+                registrations.get(2).getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 "All documents are eligible for approval."
         );
         UpdateCompanyRegistrationStatusCommand approveToApprove = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(2).getRegistrationNumber(),
+                registrations.get(2).getId(),
                 CompanyRegistrationStatus.APPROVED,
                 "All documents are eligible for approval."
         );
         UpdateCompanyRegistrationStatusCommand approveToReject = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(2).getRegistrationNumber(),
+                registrations.get(2).getId(),
                 CompanyRegistrationStatus.REJECTED,
                 "All documents are eligible for approval."
         );
         UpdateCompanyRegistrationStatusCommand rejectToProcessing = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(3).getRegistrationNumber(),
+                registrations.get(3).getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 "All documents are eligible for approval."
         );
         UpdateCompanyRegistrationStatusCommand rejectToApprove = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(3).getRegistrationNumber(),
+                registrations.get(3).getId(),
                 CompanyRegistrationStatus.APPROVED,
                 "All documents are eligible for approval."
         );
         UpdateCompanyRegistrationStatusCommand rejectToReject = new UpdateCompanyRegistrationStatusCommand(// random administrator id
                 administrators.getFirst().getAdministratorId(),
-                registrations.get(3).getRegistrationNumber(),
+                registrations.get(3).getId(),
                 CompanyRegistrationStatus.REJECTED,
                 "All documents are eligible for approval."
         );
