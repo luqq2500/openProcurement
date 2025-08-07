@@ -7,56 +7,51 @@ import applicant.exception.CompanyRegistrationNumberNotApplicableForRegistration
 import applicant.exception.CompanyTaxNumberNotApplicableForRegistration;
 import company.CompanyCountryRegistrationRule;
 import company.CompanyRegistration;
+import company.CompanyRegistrationRequest;
 import company.CompanyRegistrationStatus;
-import company.exception.CompanyCountryRegistrationRuleNotFound;
+import company.exception.InvalidCompanyRegistrationApplication;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
+import company.spi.CompanyRegistrationRequestRepository;
 import ddd.DomainService;
 
 import java.util.Optional;
 
 @DomainService
 public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
+    private final CompanyRegistrationRequestRepository requestRepository;
     private final CompanyRegistrationRepository repository;
     private final CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository;
 
-    public ApplyCompanyRegistration(CompanyRegistrationRepository repository, CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository) {
+    public ApplyCompanyRegistration(CompanyRegistrationRequestRepository requestRepository, CompanyRegistrationRepository repository, CompanyCountryRegistrationRuleRepository countryRegistrationRuleRepository) {
+        this.requestRepository = requestRepository;
         this.repository = repository;
         this.countryRegistrationRuleRepository = countryRegistrationRuleRepository;
     }
 
     @Override
     public ApplyCompanyRegistrationResponse apply(ApplyCompanyRegistrationRequest command){
+        validateRegistrationRequest(command);
         validateCountryRegistrationRule(command);
         checkRegistrationNumberIsApplicableForRegistration(command);
         checkTaxNumberIsApplicableForRegistration(command);
-        CompanyRegistration registration = new CompanyRegistration(
-                command.email(),
-                command.companyName(),
-                command.address(),
-                command.registrationNumber(),
-                command.taxNumber(),
-                command.structure(),
-                CompanyRegistrationStatus.PENDING);
+        CompanyRegistration registration = new CompanyRegistration(command.email(), command.companyName(), command.address(), command.registrationNumber(), command.taxNumber(), command.structure(), CompanyRegistrationStatus.PENDING);
         repository.add(registration);
-        return new ApplyCompanyRegistrationResponse(
-                command.email(),
-                command.companyName(),
-                command.address(),
-                command.registrationNumber(),
-                command.taxNumber(),
-                command.structure());
+        return new ApplyCompanyRegistrationResponse(command.email(), command.companyName(), command.address(), command.registrationNumber(), command.taxNumber(), command.structure());
+    }
+
+    private void validateRegistrationRequest(ApplyCompanyRegistrationRequest command) {
+        CompanyRegistrationRequest request = requestRepository.get(command.requestId());
+        request.checkValidity();
     }
 
     public void validateCountryRegistrationRule(ApplyCompanyRegistrationRequest command) {
-        Optional<CompanyCountryRegistrationRule> optionalRule = countryRegistrationRuleRepository.findByCountryCode(command.address().country());
-        if (optionalRule.isEmpty()){
-            throw new CompanyCountryRegistrationRuleNotFound("Company registration for country " + command.address().country() + " is not available.");
+        Optional<CompanyCountryRegistrationRule> rule = countryRegistrationRuleRepository.findByCountryCode(command.address().country());
+        if (rule.isPresent()) {
+            rule.get().validateRegistrationNumber(command.registrationNumber());
+            rule.get().validateTaxNumber(command.taxNumber());
+            rule.get().validateCompanyStructure(command.structure());
         }
-        CompanyCountryRegistrationRule rule = optionalRule.get();
-        rule.validateRegistrationNumber(command.registrationNumber());
-        rule.validateTaxNumber(command.taxNumber());
-        rule.validateCompanyStructure(command.structure());
     }
 
     private void checkRegistrationNumberIsApplicableForRegistration(ApplyCompanyRegistrationRequest command) {

@@ -3,7 +3,6 @@ package company;
 import company.exception.CompanyRegistrationRequestExpired;
 
 import java.time.LocalDateTime;
-import java.time.temporal.TemporalField;
 import java.util.UUID;
 
 public class CompanyRegistrationRequest {
@@ -22,11 +21,8 @@ public class CompanyRegistrationRequest {
         this.requestDate = requestDate;
         this.expiryDate = expiryDate;
     }
-    public boolean isEnabled(){
-        return enabled;
-    }
-    private void checkExpiry(LocalDateTime currentDate) {
-        if (currentDate.isAfter(expiryDate)) {
+    public void checkValidity(){
+        if (LocalDateTime.now().isAfter(expiryDate)) {
             this.enabled = false;
             throw new CompanyRegistrationRequestExpired("Request has already expired on " + expiryDate);
         }
@@ -35,8 +31,6 @@ public class CompanyRegistrationRequest {
     public LocalDateTime getRequestDate() {
         return requestDate;
     }
-    public LocalDateTime getExpiryTime() {
-        return expiryDate;
-    }
+    public LocalDateTime getExpiryTime() {return expiryDate;}
     public String getEmail() {return email;}
 }

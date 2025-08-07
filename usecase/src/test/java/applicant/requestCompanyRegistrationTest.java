@@ -7,22 +7,38 @@ import company.MockCompanyRegistrationRequestRepository;
 import company.spi.CompanyRegistrationRequestRepository;
 import email.EmailService;
 import email.MockEmailService;
+import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import token.MockOTPRepository;
-import token.MockOTPService;
-import token.OTPRepository;
-import token.OTPService;
+import otp.MockOTPRepository;
+import otp.MockOTPService;
+import otp.OTPRepository;
+import otp.OTPService;
 
 public class requestCompanyRegistrationTest {
-
-    @Test
-    public void test() {
+    private OTPRepository mockOTPRepository;
+    private CompanyRegistrationRequestor requestor;
+    @Before
+    public void setUp(){
         CompanyRegistrationRequestRepository repository = new MockCompanyRegistrationRequestRepository();
-        OTPRepository mockOTPRepository = new MockOTPRepository();
+        mockOTPRepository = new MockOTPRepository();
         EmailService emailService = new MockEmailService();
         OTPService OTPService = new MockOTPService(mockOTPRepository);
-        CompanyRegistrationRequestor requestor = new RequestCompanyRegistration(repository, emailService, OTPService);
+        requestor = new RequestCompanyRegistration(repository, emailService, OTPService);
+    }
+
+    @Test
+    public void requestOnce_shouldNotThrowException(){
         RequestCompanyRegistrationRequest request = new RequestCompanyRegistrationRequest("hakimluqq25@gmail.com");
         requestor.request(request);
+    }
+
+    @Test
+    public void requestTwice_previousOTPShouldNotValid(){
+        RequestCompanyRegistrationRequest request = new RequestCompanyRegistrationRequest("hakimluqq25@gmail.com");
+        requestor.request(request);
+        requestor.request(request);
+        Assert.assertTrue(mockOTPRepository.passwords().getLast().isEnabled());
+        Assert.assertFalse(mockOTPRepository.passwords().getFirst().isEnabled());
     }
 }

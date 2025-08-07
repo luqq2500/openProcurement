@@ -1,9 +1,6 @@
 package otp;
 
 import org.springframework.stereotype.Service;
-import token.OTP;
-import token.OTPRepository;
-import token.OTPService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;

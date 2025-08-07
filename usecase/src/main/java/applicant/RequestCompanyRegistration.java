@@ -5,10 +5,11 @@ import applicant.dto.RequestCompanyRegistrationRequest;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
 import email.EmailService;
-import token.OTP;
-import token.OTPService;
+import otp.OTP;
+import otp.OTPService;
 
 import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
 
 public class RequestCompanyRegistration implements CompanyRegistrationRequestor {
@@ -26,7 +27,7 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
     public void request(RequestCompanyRegistrationRequest req) {
         CompanyRegistrationRequest request = new CompanyRegistrationRequest(req.email());
         repository.add(request);
-        OTP otp = OTPService.generate();
+        OTP otp = OTPService.requestFor(req.email());
         emailService.send(
                 req.email(),
                 "OTP Email Verification",
@@ -36,6 +37,6 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
                         Email verification expires in %s""",
                         request.getRequestDate(),
                         otp.getPassword(),
-                        otp.getExpiration().format(DateTimeFormatter.ISO_TIME)));
+                        otp.getExpiration().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM))));
     }
 }

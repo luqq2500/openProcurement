@@ -1,8 +1,9 @@
 package controller.applicant;
 
 import applicant.api.CompanyRegistrationApplier;
+import email.EmailService;
 import org.springframework.web.bind.annotation.*;
-import token.OTPService;
+import otp.OTPService;
 
 @RestController
 public class ApplyCompanyRegistrationController {

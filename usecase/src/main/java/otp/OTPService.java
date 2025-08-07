@@ -1,8 +1,8 @@
-package token;
+package otp;
 
 import java.util.UUID;
 
 public interface OTPService {
-    OTP generate();
+    OTP requestFor(String from);
     void verify(UUID id, String password);
 }

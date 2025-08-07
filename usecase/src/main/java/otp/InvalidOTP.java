@@ -1,4 +1,4 @@
-package token;
+package otp;
 
 public class InvalidOTP extends RuntimeException {
     public InvalidOTP(String message) {

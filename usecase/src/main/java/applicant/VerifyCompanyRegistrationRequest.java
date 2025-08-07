@@ -4,7 +4,7 @@ import applicant.api.CompanyRegistrationRequestVerifier;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
 import email.EmailService;
-import token.OTPService;
+import otp.OTPService;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,14 +21,15 @@ public class VerifyCompanyRegistrationRequest implements CompanyRegistrationRequ
     }
 
     @Override
-    public void verify(UUID requestId, UUID tokenId, String token) {
-        otpService.verify(tokenId, token);
+    public void verify(UUID requestId, UUID otpId, String otp) {
+        otpService.verify(otpId, otp);
         CompanyRegistrationRequest request = requestRepository.get(requestId);
-        request.enable(LocalDateTime.now(), LocalDateTime.now().plusMinutes(15));
+        request.enable(LocalDateTime.now(), LocalDateTime.now().plusDays(7));
         emailService.send(
                 request.getEmail(),
-                "Company Registration Link",
-                "link expires in " + request.getExpiryTime()
+                "Company Registration Request Verified",
+                String.format("Registration link: http://openprocurement.com/registration/%s Link expires in %s",
+                        request.getId(), request.getExpiryTime())
         );
     }
 }
