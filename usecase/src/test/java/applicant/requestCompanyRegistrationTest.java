@@ -3,6 +3,7 @@ package applicant;
 import applicant.api.CompanyRegistrationRequestor;
 
 import applicant.dto.RequestCompanyRegistrationRequest;
+import applicant.dto.RequestCompanyRegistrationResponse;
 import company.MockCompanyRegistrationRequestRepository;
 import company.spi.CompanyRegistrationRequestRepository;
 import email.EmailService;
@@ -28,17 +29,39 @@ public class requestCompanyRegistrationTest {
     }
 
     @Test
-    public void requestOnce_shouldNotThrowException(){
+    public void requestOnce_OTPShouldBeEnabled(){
         RequestCompanyRegistrationRequest request = new RequestCompanyRegistrationRequest("hakimluqq25@gmail.com");
-        requestor.request(request);
+        RequestCompanyRegistrationResponse response = requestor.request(request);
+        System.out.println(response);
+        Assert.assertTrue(mockOTPRepository.passwords().getFirst().isEnabled());
     }
 
     @Test
-    public void requestTwice_previousOTPShouldNotValid(){
+    public void twoSameRequestFrom_shouldNotThrowException(){
         RequestCompanyRegistrationRequest request = new RequestCompanyRegistrationRequest("hakimluqq25@gmail.com");
-        requestor.request(request);
-        requestor.request(request);
+        RequestCompanyRegistrationResponse response1 = requestor.request(request);
+        RequestCompanyRegistrationResponse response2 = requestor.request(request);
+        System.out.println(response1);
+        System.out.println(response2);
+    }
+
+    @Test
+    public void twoDifferentRequestFrom_shouldNotThrowException(){
+        RequestCompanyRegistrationRequest request1 = new RequestCompanyRegistrationRequest("hakimluqq25@gmail.com");
+        RequestCompanyRegistrationRequest request2 = new RequestCompanyRegistrationRequest("hakimluqq58@gmail.com");
+        RequestCompanyRegistrationResponse response1 = requestor.request(request1);
+        RequestCompanyRegistrationResponse response2 = requestor.request(request2);
+        System.out.println(response1);
+        System.out.println(response2);
+    }
+
+    @Test
+    public void twoDifferentRequestFrom_bothRequestsShouldBeEnabled(){
+        RequestCompanyRegistrationRequest request1 = new RequestCompanyRegistrationRequest("hakimluqq25@gmail.com");
+        RequestCompanyRegistrationRequest request2 = new RequestCompanyRegistrationRequest("hakimluqq58@gmail.com");
+        requestor.request(request1);
+        requestor.request(request2);
+        Assert.assertTrue(mockOTPRepository.passwords().getFirst().isEnabled());
         Assert.assertTrue(mockOTPRepository.passwords().getLast().isEnabled());
-        Assert.assertFalse(mockOTPRepository.passwords().getFirst().isEnabled());
     }
 }

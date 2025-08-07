@@ -1,7 +1,8 @@
 package applicant.api;
 
 import applicant.dto.RequestCompanyRegistrationRequest;
+import applicant.dto.RequestCompanyRegistrationResponse;
 
 public interface CompanyRegistrationRequestor {
-    void request(RequestCompanyRegistrationRequest request);
+    RequestCompanyRegistrationResponse request(RequestCompanyRegistrationRequest request);
 }

@@ -2,8 +2,10 @@ package applicant;
 
 import applicant.api.CompanyRegistrationRequestor;
 import applicant.dto.RequestCompanyRegistrationRequest;
+import applicant.dto.RequestCompanyRegistrationResponse;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
+import ddd.DomainService;
 import email.EmailService;
 import otp.OTP;
 import otp.OTPService;
@@ -11,7 +13,7 @@ import otp.OTPService;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
-
+@DomainService
 public class RequestCompanyRegistration implements CompanyRegistrationRequestor {
     private final CompanyRegistrationRequestRepository repository;
     private final EmailService emailService;
@@ -24,7 +26,7 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
     }
 
     @Override
-    public void request(RequestCompanyRegistrationRequest req) {
+    public RequestCompanyRegistrationResponse request(RequestCompanyRegistrationRequest req) {
         CompanyRegistrationRequest request = new CompanyRegistrationRequest(req.email());
         repository.add(request);
         OTP otp = OTPService.requestFor(req.email());
@@ -38,5 +40,6 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
                         request.getRequestDate(),
                         otp.getPassword(),
                         otp.getExpiration().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM))));
+        return new RequestCompanyRegistrationResponse(request.getId().toString(), otp.getId().toString(), otp.getPassword());
     }
 }

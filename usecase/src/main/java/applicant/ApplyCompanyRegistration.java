@@ -31,18 +31,21 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
 
     @Override
     public ApplyCompanyRegistrationResponse apply(ApplyCompanyRegistrationRequest command){
-        validateRegistrationRequest(command);
+        CompanyRegistrationRequest request = requestRepository.get(command.requestId());
+        request.checkValidity();
         validateCountryRegistrationRule(command);
         checkRegistrationNumberIsApplicableForRegistration(command);
         checkTaxNumberIsApplicableForRegistration(command);
-        CompanyRegistration registration = new CompanyRegistration(command.email(), command.companyName(), command.address(), command.registrationNumber(), command.taxNumber(), command.structure(), CompanyRegistrationStatus.PENDING);
+        CompanyRegistration registration = new CompanyRegistration(
+                request.getEmail(), command.companyName(), command.address(),
+                command.registrationNumber(), command.taxNumber(), command.structure(), CompanyRegistrationStatus.PENDING);
         repository.add(registration);
-        return new ApplyCompanyRegistrationResponse(command.email(), command.companyName(), command.address(), command.registrationNumber(), command.taxNumber(), command.structure());
-    }
-
-    private void validateRegistrationRequest(ApplyCompanyRegistrationRequest command) {
-        CompanyRegistrationRequest request = requestRepository.get(command.requestId());
-        request.checkValidity();
+        return new ApplyCompanyRegistrationResponse(
+                request.getEmail(), command.companyName(),
+                command.address().streetAddress1(), command.address().streetAddress2(),
+                command.address().city(),command.address().postalCode(),
+                command.address().state(), command.address().country().toString(),
+                command.registrationNumber(), command.taxNumber(), command.structure());
     }
 
     public void validateCountryRegistrationRule(ApplyCompanyRegistrationRequest command) {

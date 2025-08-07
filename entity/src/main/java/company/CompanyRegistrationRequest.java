@@ -27,6 +27,7 @@ public class CompanyRegistrationRequest {
             throw new CompanyRegistrationRequestExpired("Request has already expired on " + expiryDate);
         }
     }
+    public boolean isEnabled(){return this.enabled;}
     public UUID getId() {return id;}
     public LocalDateTime getRequestDate() {
         return requestDate;

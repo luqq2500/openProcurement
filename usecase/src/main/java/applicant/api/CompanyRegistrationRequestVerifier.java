@@ -1,7 +1,10 @@
 package applicant.api;
 
+import applicant.dto.VerifyCompanyRegistrationRequestResponse;
+import company.CompanyRegistrationRequest;
+
 import java.util.UUID;
 
 public interface CompanyRegistrationRequestVerifier {
-    void verify(UUID requestId, UUID tokenId, String token);
+    VerifyCompanyRegistrationRequestResponse verify(UUID requestId, UUID tokenId, String token);
 }

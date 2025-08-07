@@ -2,6 +2,7 @@ package applicant;
 
 import address.Address;
 import address.Country;
+import applicant.dto.ApplyCompanyRegistrationResponse;
 import applicant.exception.CompanyRegistrationNumberNotApplicableForRegistration;
 import applicant.exception.CompanyTaxNumberNotApplicableForRegistration;
 import company.MockCompanyRegistrationRepository;
@@ -9,6 +10,7 @@ import applicant.api.CompanyRegistrationApplier;
 import applicant.dto.ApplyCompanyRegistrationRequest;
 import company.*;
 import company.exception.CompanyRegistrationRequestExpired;
+import company.exception.CompanyRegistrationRequestNotFound;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRegistrationRequestRepository;
@@ -18,6 +20,7 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class applyCompanyRegistrationTest {
     private String mockEmail;
@@ -59,10 +62,37 @@ public class applyCompanyRegistrationTest {
     }
 
     @Test
+    public void validApply_shouldNotThrowException() {
+        ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
+                validRequest.getId(),
+                "Terrabyte",
+                mockAddress,
+                "200202028888",
+                "200202028888",
+                CompanyStructure.PRIVATE_LIMITED_COMPANY
+        );
+        ApplyCompanyRegistrationResponse response = applier.apply(command);
+        System.out.println(response);
+    }
+
+    @Test
+    public void requestIdDoesNotExist_shouldThrowException() {
+        ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
+                UUID.randomUUID(),
+                "Terrabyte",
+                mockAddress,
+                "000000111111",
+                "200202028888",
+                CompanyStructure.PRIVATE_LIMITED_COMPANY
+        );
+        CompanyRegistrationRequestNotFound exception = Assert.assertThrows(CompanyRegistrationRequestNotFound.class, () -> applier.apply(command));
+        System.out.println(exception.getMessage());
+    }
+
+    @Test
     public void appliedRegistrationNumber_shouldThrowException() {
         ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
                 validRequest.getId(),
-                mockEmail,
                 "Terrabyte",
                 mockAddress,
                 "000000111111",
@@ -77,7 +107,6 @@ public class applyCompanyRegistrationTest {
     public void appliedTaxNumber_shouldThrowException() {
         ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
                 validRequest.getId(),
-                validRequest.getEmail(),
                 "Terrabyte",
                 mockAddress,
                 "202380061600",
@@ -89,10 +118,9 @@ public class applyCompanyRegistrationTest {
     }
 
     @Test
-    public void applyExpiredRequest_shouldThrowException(){
+    public void expiredRequest_shouldThrowException(){
         ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
                 expiredRequest.getId(),
-                expiredRequest.getEmail(),
                 "Terrabyte",
                 mockAddress,
                 "202380061600",

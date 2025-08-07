@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class mockOTPServiceTest {
     private OTPService otpService;
@@ -19,7 +20,7 @@ public class mockOTPServiceTest {
     }
 
     @Test
-    public void requestForOTP_shouldReturnOTP() {
+    public void requestOTP_shouldReturnOTP() {
         OTP otp = otpService.requestFor(mockRequestFrom);
         Assert.assertNotNull(otp);
         Assert.assertEquals(otpRepository.passwords().getFirst().getId(), otp.getId());
@@ -34,7 +35,7 @@ public class mockOTPServiceTest {
     }
 
     @Test
-    public void falseOTP_shouldThrowException(){
+    public void wrongOTP_shouldThrowException(){
         OTP otp = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(10));
         otpRepository.add(otp);
         InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> otpService.verify(otp.getId(), "112233"));
@@ -42,11 +43,19 @@ public class mockOTPServiceTest {
     }
 
     @Test
-    public void requestTwice_previousOTPShouldBeDisabled(){
+    public void requestOTPTwice_previousOTPShouldBeDisabled(){
         otpService.requestFor(mockRequestFrom);
         otpService.requestFor(mockRequestFrom);
         Assert.assertEquals(otpRepository.passwords().getFirst().getRequestFrom(), otpRepository.passwords().getLast().getRequestFrom());
         Assert.assertTrue(otpRepository.passwords().getLast().isEnabled());
         Assert.assertFalse(otpRepository.passwords().getFirst().isEnabled());
+    }
+
+    @Test
+    public void wrongOTPId_shouldThrowException(){
+        OTP otp = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(10));
+        otpRepository.add(otp);
+        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> otpService.verify(UUID.randomUUID(), otp.getPassword()));
+        System.out.println(exception.getMessage());
     }
 }
