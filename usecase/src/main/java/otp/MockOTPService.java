@@ -1,12 +1,13 @@
 package otp;
 
-import company.CompanyRegistrationRequest;
+import ddd.DomainService;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
+@DomainService
 public class MockOTPService implements OTPService {
     private final OTPRepository repository;
     private final LocalDateTime mockExpiryTime = LocalDateTime.now().plusMinutes(15);

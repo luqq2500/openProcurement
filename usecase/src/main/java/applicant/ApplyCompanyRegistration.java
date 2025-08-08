@@ -1,7 +1,7 @@
 package applicant;
 
 import applicant.api.CompanyRegistrationApplier;
-import applicant.dto.ApplyCompanyRegistrationRequest;
+import applicant.dto.ApplyCompanyRegistrationCommand;
 import applicant.exception.CompanyRegistrationNumberNotApplicableForRegistration;
 import applicant.exception.CompanyTaxNumberNotApplicableForRegistration;
 import company.CompanyCountryRegistrationRule;
@@ -28,7 +28,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     }
 
     @Override
-    public CompanyRegistration apply(ApplyCompanyRegistrationRequest command){
+    public CompanyRegistration apply(ApplyCompanyRegistrationCommand command){
         CompanyRegistrationRequest request = requestRepository.get(command.requestId());
         request.checkValidity();
         validateCountryRegistrationRule(command);
@@ -41,7 +41,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
         return registration;
     }
 
-    public void validateCountryRegistrationRule(ApplyCompanyRegistrationRequest command) {
+    public void validateCountryRegistrationRule(ApplyCompanyRegistrationCommand command) {
         Optional<CompanyCountryRegistrationRule> rule = countryRegistrationRuleRepository.findByCountryCode(command.address().country());
         if (rule.isPresent()) {
             rule.get().validateRegistrationNumber(command.registrationNumber());
@@ -50,7 +50,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
         }
     }
 
-    private void checkRegistrationNumberIsApplicableForRegistration(ApplyCompanyRegistrationRequest command) {
+    private void checkRegistrationNumberIsApplicableForRegistration(ApplyCompanyRegistrationCommand command) {
         if (repository.registrations().stream()
                 .anyMatch(registration->registration.getRegistrationNumber().equals(command.registrationNumber())
                         && !registration.getStatus().isRejected())) {
@@ -58,7 +58,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
         }
     }
 
-    private void checkTaxNumberIsApplicableForRegistration(ApplyCompanyRegistrationRequest command) {
+    private void checkTaxNumberIsApplicableForRegistration(ApplyCompanyRegistrationCommand command) {
         if (repository.registrations().stream()
                 .anyMatch(registration->registration.getTaxNumber().equals(command.taxNumber())
                         && !registration.getStatus().isRejected())){

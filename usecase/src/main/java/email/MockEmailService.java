@@ -1,5 +1,8 @@
 package email;
 
+import ddd.DomainService;
+
+@DomainService
 public class MockEmailService implements EmailService {
     @Override
     public void send(String destination, String subject, String body) {

@@ -4,7 +4,7 @@ import address.Address;
 import address.Country;
 import company.MockCompanyRegistrationRepository;
 import applicant.api.CompanyRegistrationApplier;
-import applicant.dto.ApplyCompanyRegistrationRequest;
+import applicant.dto.ApplyCompanyRegistrationCommand;
 import company.*;
 import company.exception.CompanyRegistrationRequestExpired;
 import company.spi.CompanyCountryRegistrationRuleRepository;
@@ -25,7 +25,7 @@ public class applyCompanyRegistrationTest {
     private CompanyRegistrationApplier applier;
     @Before
     public void setUp() {
-        mockAddress = new Address("1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA);
+        mockAddress = new Address("1", "1", null,"Sepang", "43900", "Selangor", Country.MALAYSIA);
         validRequest = new CompanyRegistrationRequest("hakimluqq25@gmail.com");
         expiredRequest = new CompanyRegistrationRequest("hakimluqq19@gmail.com");
         validRequest.enable(LocalDateTime.now(), LocalDateTime.now().plusDays(1));
@@ -58,7 +58,7 @@ public class applyCompanyRegistrationTest {
 
     @Test
     public void validApply_shouldNotThrowException() {
-        ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
+        ApplyCompanyRegistrationCommand command = new ApplyCompanyRegistrationCommand(
                 validRequest.getId(),
                 "Terrabyte",
                 mockAddress,
@@ -71,7 +71,7 @@ public class applyCompanyRegistrationTest {
 
     @Test
     public void applyTwice_shouldThrowException() {
-        ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
+        ApplyCompanyRegistrationCommand command = new ApplyCompanyRegistrationCommand(
                 validRequest.getId(),
                 "Terrabyte",
                 mockAddress,
@@ -86,7 +86,7 @@ public class applyCompanyRegistrationTest {
 
     @Test
     public void expiredRequest_shouldThrowException(){
-        ApplyCompanyRegistrationRequest command = new ApplyCompanyRegistrationRequest(
+        ApplyCompanyRegistrationCommand command = new ApplyCompanyRegistrationCommand(
                 expiredRequest.getId(),
                 "Terrabyte",
                 mockAddress,

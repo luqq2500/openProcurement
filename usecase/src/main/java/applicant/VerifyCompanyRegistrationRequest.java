@@ -26,12 +26,13 @@ public class VerifyCompanyRegistrationRequest implements CompanyRegistrationRequ
     public CompanyRegistrationRequest verify(UUID requestId, UUID otpId, String otp) {
         otpService.verify(otpId, otp);
         CompanyRegistrationRequest request = requestRepository.get(requestId);
-        request.enable(LocalDateTime.now(), LocalDateTime.now().plusDays(7));
+        String registrationLink = String.format("openprocurement.com/registrations/requests/%s",requestId);
+        request.enable(registrationLink, LocalDateTime.now().plusDays(7));
         emailService.send(
                 request.getEmail(),
                 "Company Registration Request Verified",
-                String.format("Registration link: openprocurement.com/registration/%s Link expires in %s",
-                        request.getId(), request.getExpiryTime())
+                String.format("Registration link: %s Link expires in %s",
+                        request.getRegistrationLink(), request.getExpiryTime())
         );
         return request;
     }

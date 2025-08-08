@@ -28,7 +28,7 @@ public class administratorUpdateCompanyRegistrationStatus {
     @Before
     public void setUp(){
         String mockEmail = "hakimluqq25@gmail.com";
-        Address mockAddress = new Address("1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA);
+        Address mockAddress = new Address("1", "1", "1","Sepang", "43900", "Selangor", Country.MALAYSIA);
         registrations = List.of(
                 new CompanyRegistration(mockEmail, "PetaByte", mockAddress,"000000111111", "000000111111",
                         CompanyStructure.PUBLIC_LIMITED_COMPANY, CompanyRegistrationStatus.PENDING),

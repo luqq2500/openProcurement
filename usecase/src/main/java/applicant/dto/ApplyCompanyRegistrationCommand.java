@@ -5,7 +5,7 @@ import company.CompanyStructure;
 
 import java.util.UUID;
 
-public record ApplyCompanyRegistrationRequest(
+public record ApplyCompanyRegistrationCommand(
         UUID requestId,
         String companyName,
         Address address,

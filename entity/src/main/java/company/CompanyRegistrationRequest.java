@@ -11,14 +11,16 @@ public class CompanyRegistrationRequest {
     private LocalDateTime requestDate;
     private LocalDateTime expiryDate;
     private boolean enabled = false;
+    private String registrationLink;
 
     public CompanyRegistrationRequest(String email) {
         this.id = UUID.randomUUID();
         this.email = email;
     }
-    public void enable(LocalDateTime requestDate, LocalDateTime expiryDate) {
+    public void enable(String registrationLink, LocalDateTime expiryDate) {
         this.enabled = true;
-        this.requestDate = requestDate;
+        this.registrationLink = registrationLink;
+        this.requestDate = LocalDateTime.now();
         this.expiryDate = expiryDate;
     }
     public void checkValidity(){
@@ -34,4 +36,8 @@ public class CompanyRegistrationRequest {
     }
     public LocalDateTime getExpiryTime() {return expiryDate;}
     public String getEmail() {return email;}
+
+    public String getRegistrationLink() {
+        return registrationLink;
+    }
 }
