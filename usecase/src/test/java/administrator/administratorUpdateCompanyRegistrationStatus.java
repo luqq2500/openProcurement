@@ -7,7 +7,6 @@ import administrator.exception.AdministratorNotFoundException;
 import administrator.exception.AdministratorRoleInvalidException;
 import administrator.spi.AdministratorRepository;
 import company.*;
-import company.exception.CompanyRegistrationNotFound;
 import company.exception.CompanyRegistrationRequestNotFound;
 import company.exception.InvalidCompanyRegistrationStatus;
 import company.spi.CompanyRegistrationRepository;

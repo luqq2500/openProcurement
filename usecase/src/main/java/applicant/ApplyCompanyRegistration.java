@@ -2,14 +2,12 @@ package applicant;
 
 import applicant.api.CompanyRegistrationApplier;
 import applicant.dto.ApplyCompanyRegistrationRequest;
-import applicant.dto.ApplyCompanyRegistrationResponse;
 import applicant.exception.CompanyRegistrationNumberNotApplicableForRegistration;
 import applicant.exception.CompanyTaxNumberNotApplicableForRegistration;
 import company.CompanyCountryRegistrationRule;
 import company.CompanyRegistration;
 import company.CompanyRegistrationRequest;
 import company.CompanyRegistrationStatus;
-import company.exception.InvalidCompanyRegistrationApplication;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRegistrationRequestRepository;
@@ -30,7 +28,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
     }
 
     @Override
-    public ApplyCompanyRegistrationResponse apply(ApplyCompanyRegistrationRequest command){
+    public CompanyRegistration apply(ApplyCompanyRegistrationRequest command){
         CompanyRegistrationRequest request = requestRepository.get(command.requestId());
         request.checkValidity();
         validateCountryRegistrationRule(command);
@@ -40,12 +38,7 @@ public class ApplyCompanyRegistration implements CompanyRegistrationApplier {
                 request.getEmail(), command.companyName(), command.address(),
                 command.registrationNumber(), command.taxNumber(), command.structure(), CompanyRegistrationStatus.PENDING);
         repository.add(registration);
-        return new ApplyCompanyRegistrationResponse(
-                request.getEmail(), command.companyName(),
-                command.address().streetAddress1(), command.address().streetAddress2(),
-                command.address().city(),command.address().postalCode(),
-                command.address().state(), command.address().country().toString(),
-                command.registrationNumber(), command.taxNumber(), command.structure());
+        return registration;
     }
 
     public void validateCountryRegistrationRule(ApplyCompanyRegistrationRequest command) {

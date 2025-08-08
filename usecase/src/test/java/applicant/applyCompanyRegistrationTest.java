@@ -2,15 +2,11 @@ package applicant;
 
 import address.Address;
 import address.Country;
-import applicant.dto.ApplyCompanyRegistrationResponse;
-import applicant.exception.CompanyRegistrationNumberNotApplicableForRegistration;
-import applicant.exception.CompanyTaxNumberNotApplicableForRegistration;
 import company.MockCompanyRegistrationRepository;
 import applicant.api.CompanyRegistrationApplier;
 import applicant.dto.ApplyCompanyRegistrationRequest;
 import company.*;
 import company.exception.CompanyRegistrationRequestExpired;
-import company.exception.CompanyRegistrationRequestNotFound;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRegistrationRequestRepository;
@@ -20,7 +16,6 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 public class applyCompanyRegistrationTest {
     private String mockEmail;
@@ -71,8 +66,7 @@ public class applyCompanyRegistrationTest {
                 "200202028888",
                 CompanyStructure.PRIVATE_LIMITED_COMPANY
         );
-        ApplyCompanyRegistrationResponse response = applier.apply(command);
-        System.out.println(response);
+        applier.apply(command);
     }
 
     @Test

@@ -1,8 +1,7 @@
 package applicant.api;
 
-import applicant.dto.RequestCompanyRegistrationRequest;
-import applicant.dto.RequestCompanyRegistrationResponse;
+import otp.OTP;
 
 public interface CompanyRegistrationRequestor {
-    RequestCompanyRegistrationResponse request(RequestCompanyRegistrationRequest request);
+    OTP request(String email);
 }

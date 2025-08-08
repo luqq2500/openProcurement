@@ -1,7 +1,6 @@
 package configuration;
 
 import applicant.dto.ApplyCompanyRegistrationRequest;
-import applicant.dto.ApplyCompanyRegistrationResponse;
 import ddd.DomainService;
 import ddd.Stub;
 import org.springframework.context.annotation.ComponentScan;

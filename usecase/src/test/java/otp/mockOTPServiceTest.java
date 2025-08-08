@@ -1,6 +1,5 @@
 package otp;
 
-import applicant.dto.RequestCompanyRegistrationRequest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

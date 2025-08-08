@@ -1,8 +1,6 @@
 package applicant;
 
 import applicant.api.CompanyRegistrationRequestor;
-import applicant.dto.RequestCompanyRegistrationRequest;
-import applicant.dto.RequestCompanyRegistrationResponse;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
 import ddd.DomainService;
@@ -26,12 +24,12 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
     }
 
     @Override
-    public RequestCompanyRegistrationResponse request(RequestCompanyRegistrationRequest req) {
-        CompanyRegistrationRequest request = new CompanyRegistrationRequest(req.email());
+    public OTP request(String email) {
+        CompanyRegistrationRequest request = new CompanyRegistrationRequest(email);
         repository.add(request);
-        OTP otp = OTPService.requestFor(req.email());
+        OTP otp = OTPService.requestFor(email);
         emailService.send(
-                req.email(),
+                email,
                 "OTP Email Verification",
                 String.format("""
                         Your request for registration has been requested on %s. \
@@ -40,6 +38,6 @@ public class RequestCompanyRegistration implements CompanyRegistrationRequestor 
                         request.getRequestDate(),
                         otp.getPassword(),
                         otp.getExpiration().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM))));
-        return new RequestCompanyRegistrationResponse(request.getId().toString(), otp.getId().toString(), otp.getPassword());
+        return otp;
     }
 }
