@@ -2,11 +2,13 @@ package applicant;
 
 import applicant.api.CompanyRegistrationRequestVerifier;
 import company.CompanyRegistrationRequest;
-import company.MockCompanyRegistrationRequestRepository;
+import mock.MockCompanyRegistrationRequestRepository;
 import company.exception.CompanyRegistrationRequestNotFound;
 import company.spi.CompanyRegistrationRequestRepository;
 import email.EmailService;
-import email.MockEmailService;
+import mock.MockEmailService;
+import mock.MockOTPRepository;
+import mock.MockOTPService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,7 +40,7 @@ public class verifyCompanyRegistrationRequestTest {
         OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
         mockRequestRepository.add(mockRequest);
         mockOTPRepository.add(mockOTP);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         verifier.verify(mockRequest.getId(), mockOTP.getId(), mockOTP.getPassword());
     }
 
@@ -49,7 +51,7 @@ public class verifyCompanyRegistrationRequestTest {
         mockOTP.disable();
         mockRequestRepository.add(mockRequest);
         mockOTPRepository.add(mockOTP);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(mockRequest.getId(), mockOTP.getId(), mockOTP.getPassword()));
         System.out.println(exception.getMessage());
     }
@@ -60,7 +62,7 @@ public class verifyCompanyRegistrationRequestTest {
         OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
         mockRequestRepository.add(mockRequest);
         mockOTPRepository.add(mockOTP);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(mockRequest.getId(), mockOTP.getId(), "882899"));
         System.out.println(exception.getMessage());
     }
@@ -71,7 +73,7 @@ public class verifyCompanyRegistrationRequestTest {
         OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
         mockRequestRepository.add(mockRequest);
         mockOTPRepository.add(mockOTP);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(mockRequest.getId(), UUID.randomUUID(), mockOTP.getPassword()));
         System.out.println(exception.getMessage());
     }
@@ -82,7 +84,7 @@ public class verifyCompanyRegistrationRequestTest {
         OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(-15));
         mockRequestRepository.add(mockRequest);
         mockOTPRepository.add(mockOTP);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(mockRequest.getId(), mockOTP.getId(), mockOTP.getPassword()));
         System.out.println(exception.getMessage());
     }
@@ -93,7 +95,7 @@ public class verifyCompanyRegistrationRequestTest {
         mockRequestRepository.add(mockRequest);
         OTP otp1 = mockOTPService.requestFor(mockRequestFrom);
         OTP otp2 = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         verifier.verify(mockRequest.getId(), otp2.getId(), otp2.getPassword());
     }
 
@@ -103,7 +105,7 @@ public class verifyCompanyRegistrationRequestTest {
         mockRequestRepository.add(mockRequest);
         OTP otp1 = mockOTPService.requestFor(mockRequestFrom);
         OTP otp2 = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(mockRequest.getId(), otp1.getId(), otp1.getPassword()));
         System.out.println(exception.getMessage());
     }
@@ -113,7 +115,7 @@ public class verifyCompanyRegistrationRequestTest {
         CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
         mockRequestRepository.add(mockRequest);
         OTP otp = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         verifier.verify(mockRequest.getId(), otp.getId(), otp.getPassword());
         InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(mockRequest.getId(), otp.getId(), otp.getPassword()));
         System.out.println(exception.getMessage());
@@ -124,7 +126,7 @@ public class verifyCompanyRegistrationRequestTest {
         CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
         mockRequestRepository.add(mockRequest);
         OTP otp = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         verifier.verify(mockRequest.getId(), otp.getId(), otp.getPassword());
         Assert.assertFalse(otp.isEnabled());
     }
@@ -134,7 +136,7 @@ public class verifyCompanyRegistrationRequestTest {
         CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
         mockRequestRepository.add(mockRequest);
         OTP otp = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockOTPService, mockEmailService);
+        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
         CompanyRegistrationRequestNotFound exception = Assert.assertThrows(CompanyRegistrationRequestNotFound.class, () -> verifier.verify(UUID.randomUUID(), otp.getId(), otp.getPassword()));
         System.out.println(exception.getMessage());
     }

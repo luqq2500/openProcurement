@@ -1,0 +1,791 @@
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 358
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "53513068-6838-4754-bd48-43235b63c518",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1", "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202380061600",
+  "taxNumber": "202380061600",
+  "structure": "SOLE"
+}
+
+<> 2025-08-09T232018.200.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "5cd0e7c4-b22f-49d6-84a3-0cc36f86217c",
+  "password": "058376"
+}
+
+<> 2025-08-09T231905.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T231842.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T231605.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T231445.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T231359.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T231336.404.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 384
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "123c777b-1aa7-4569-adc2-44523a9e4f10",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T231044.404.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 384
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "123c777b-1aa7-4569-adc2-44523a9e4f10",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T230636.404.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 384
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "123c777b-1aa7-4569-adc2-44523a9e4f10",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T230615.404.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 384
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "123c777b-1aa7-4569-adc2-44523a9e4f10",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T230210.404.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "2b7089e0-7e44-4093-ae1b-42ade40cd780",
+  "password": "074718"
+}
+
+<> 2025-08-09T230131.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T230121.200.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "cc74cabb-4b77-4557-8178-b0f384e38ba2",
+  "password": "086412"
+}
+
+<> 2025-08-09T230026.500.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "cc74cabb-4b77-4557-8178-b0f384e38ba2",
+  "password": "086412"
+}
+
+<> 2025-08-09T230018.200.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "968adcd9-01e7-491b-98a9-026d8fa60e38",
+  "password": "039232"
+}
+
+<> 2025-08-09T225954.500.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T225952.200.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "968adcd9-01e7-491b-98a9-026d8fa60e38",
+  "password": "039232"
+}
+
+<> 2025-08-09T225943.500.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "968adcd9-01e7-491b-98a9-026d8fa60e38",
+  "password": "039232"
+}
+
+<> 2025-08-09T225941.500.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 384
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "9ce31a22-1729-4bf2-92fb-9445c4e3ce5a",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T225932.404.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 384
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "9ce31a22-1729-4bf2-92fb-9445c4e3ce5a",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T225756.404.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "968adcd9-01e7-491b-98a9-026d8fa60e38",
+  "password": "039232"
+}
+
+<> 2025-08-09T225742.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T225721.200.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 384
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "8f55d164-8a3c-4246-a871-dce9935653fe",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T225655.404.json
+
+###
+
+GET http://localhost:8080/company-registration/apply
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 384
+
+{
+  "requestId": "8f55d164-8a3c-4246-a871-dce9935653fe",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T225558.404.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 384
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "8f55d164-8a3c-4246-a871-dce9935653fe",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "LIMITED_LIABILITY_PARTNERSHIP"
+}
+
+<> 2025-08-09T225524.404.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 359
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "8f55d164-8a3c-4246-a871-dce9935653fe",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1" , "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "SOLE"
+}
+
+<> 2025-08-09T225448.404.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 335
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "8f55d164-8a3c-4246-a871-dce9935653fe",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202082734600",
+  "taxNumber": "202082734600",
+  "structure": "SOLE"
+}
+
+<> 2025-08-09T225420.404.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 77
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "otpId": "f1dae13f-1caa-4c8b-aeb8-7ce9d27a2264",
+  "password": "082163"
+}
+
+<> 2025-08-09T224919.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T224852.200.json
+
+###
+
+POST http://localhost:8080/company-registration/token
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+"0c32edd7-cd11-48b0-a173-a0aee9a6fe28"
+
+<> 2025-08-09T221950.404.json
+
+###
+
+POST http://localhost:8080/company-registration/token
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+"0c32edd7-cd11-48b0-a173-a0aee9a6fe28"
+
+<> 2025-08-09T221915.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T221907.200.json
+
+###
+
+POST http://localhost:8080/company-registration/token
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+"85873abe-385f-4d77-ac42-862cb7184527"
+
+<> 2025-08-09T221607.404.json
+
+###
+
+GET http://localhost:8080/company-registration/token
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 38
+
+"85873abe-385f-4d77-ac42-862cb7184527"
+
+<> 2025-08-09T221534.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T221519.200.json
+
+###
+
+GET http://localhost:8080/company-registration/token
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 38
+
+"93ef8202-b123-4508-a846-d042a4ae33f9"
+
+<> 2025-08-09T221445.404.json
+
+###
+
+GET http://localhost:8080/company-registration/token
+Content-Type: application/json
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 38
+
+"93ef8202-b123-4508-a846-d042a4ae33f9"
+
+<> 2025-08-09T221438.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T221425.200.json
+
+###
+
+POST http://localhost:8080/company-registration/token
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-08-09T221421.404.json
+
+###
+
+GET http://localhost:8080/company-registration/token
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+<> 2025-08-09T221155.404.json
+
+###
+
+POST http://localhost:8080/company-registration/token
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+content-length: 0
+
+<> 2025-08-09T221101.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T220511.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T220427.500.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T215326.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T215204.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T215120.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T214409.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T213353.404.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 38
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "email": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-09T213013.404.json
+
+###
+

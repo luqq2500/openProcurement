@@ -2,14 +2,16 @@ package applicant;
 
 import address.Address;
 import address.Country;
-import company.MockCompanyRegistrationRepository;
-import applicant.api.CompanyRegistrationApplier;
 import applicant.dto.ApplyCompanyRegistrationCommand;
+import mock.MockCompanyCountryRegistrationRuleRepository;
+import mock.MockCompanyRegistrationRepository;
+import applicant.api.CompanyRegistrationApplier;
 import company.*;
 import company.exception.CompanyRegistrationRequestExpired;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRegistrationRequestRepository;
+import mock.MockCompanyRegistrationRequestRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,10 +28,8 @@ public class applyCompanyRegistrationTest {
     @Before
     public void setUp() {
         mockAddress = new Address("1", "1", null,"Sepang", "43900", "Selangor", Country.MALAYSIA);
-        validRequest = new CompanyRegistrationRequest("hakimluqq25@gmail.com");
-        expiredRequest = new CompanyRegistrationRequest("hakimluqq19@gmail.com");
-        validRequest.enable(LocalDateTime.now(), LocalDateTime.now().plusDays(1));
-        expiredRequest.enable(LocalDateTime.now(), LocalDateTime.now().plusDays(-1));
+        validRequest = new CompanyRegistrationRequest("hakimluqq25@gmail.com", LocalDateTime.now().plusDays(7));
+        expiredRequest = new CompanyRegistrationRequest("hakimluqq19@gmail.com", LocalDateTime.now().plusDays(-1));
         List<CompanyRegistrationRequest> requests = List.of(
                 validRequest, expiredRequest
         );

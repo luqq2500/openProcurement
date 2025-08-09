@@ -5,5 +5,5 @@ import company.CompanyRegistrationRequest;
 import java.util.UUID;
 
 public interface CompanyRegistrationRequestVerifier {
-    CompanyRegistrationRequest verify(UUID requestId, UUID tokenId, String token);
+    CompanyRegistrationRequest verify(UUID tokenId, String token);
 }
