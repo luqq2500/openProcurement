@@ -1,7 +1,7 @@
 package controller.companyRegistration;
 
 import applicant.api.CompanyRegistrationApplier;
-import event.EventVerificationVerifier;
+import applicant.api.CompanyRegistrationRequestVerifier;
 import event.EventVerificationInitiator;
 import applicant.dto.ApplyCompanyRegistrationCommand;
 import applicant.dto.ApplyCompanyRegistrationResponse;
@@ -21,10 +21,10 @@ import java.util.UUID;
 @RequestMapping("/company-registration")
 public class CompanyRegistrationController {
     private final EventVerificationInitiator requestor;
-    private final EventVerificationVerifier verifier;
+    private final CompanyRegistrationRequestVerifier verifier;
     private final CompanyRegistrationApplier applier;
 
-    public CompanyRegistrationController(EventVerificationInitiator requestor, EventVerificationVerifier verifier, CompanyRegistrationApplier applier) {
+    public CompanyRegistrationController(EventVerificationInitiator requestor, CompanyRegistrationRequestVerifier verifier, CompanyRegistrationApplier applier) {
         this.requestor = requestor;
         this.verifier = verifier;
         this.applier = applier;

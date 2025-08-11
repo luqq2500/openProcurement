@@ -1,6 +1,6 @@
 package applicant;
 
-import event.EventVerificationVerifier;
+import applicant.api.CompanyRegistrationRequestVerifier;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
 import ddd.DomainService;
@@ -13,7 +13,7 @@ import token.TokenService;
 import java.time.LocalDateTime;
 
 @DomainService
-public class VerifyCompanyRegistrationRequest implements EventVerificationVerifier {
+public class VerifyCompanyRegistrationRequest implements CompanyRegistrationRequestVerifier {
     private final CompanyRegistrationRequestRepository requestRepository;
     private final TokenService<?> tokenService;
     private final NotificationService notificationService;

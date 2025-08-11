@@ -1,6 +1,6 @@
 package applicant;
 
-import event.EventVerificationVerifier;
+import applicant.api.CompanyRegistrationRequestVerifier;
 import event.VerifyEventVerificationRequest;
 import mock.*;
 import company.spi.CompanyRegistrationRequestRepository;
@@ -21,7 +21,7 @@ public class verifyCompanyRegistrationRequestTest {
     private TokenRepository<CustomOTP> mockTokenRepository;
     private TokenService<CustomOTP> mockTokenService;
     private String mockRequestFrom;
-    private EventVerificationVerifier verifier;
+    private CompanyRegistrationRequestVerifier verifier;
 
     @Before
     public void setUp() throws Exception {
