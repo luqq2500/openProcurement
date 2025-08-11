@@ -1,27 +1,30 @@
 package controller.companyRegistration;
 
 import applicant.api.CompanyRegistrationApplier;
-import applicant.api.CompanyRegistrationRequestVerifier;
-import applicant.api.CompanyRegistrationRequestor;
+import event.EventVerificationVerifier;
+import event.EventVerificationInitiator;
 import applicant.dto.ApplyCompanyRegistrationCommand;
+import applicant.dto.ApplyCompanyRegistrationResponse;
+import applicant.dto.RequestCompanyRegistrationResponse;
+import applicant.dto.VerifyCompanyRegistrationRequestResponse;
 import company.CompanyRegistration;
 import company.CompanyRegistrationRequest;
 import controller.companyRegistration.dto.*;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import otp.OTP;
+import token.TokenRequested;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/company-registration")
 public class CompanyRegistrationController {
-    private final CompanyRegistrationRequestor requestor;
-    private final CompanyRegistrationRequestVerifier verifier;
+    private final EventVerificationInitiator requestor;
+    private final EventVerificationVerifier verifier;
     private final CompanyRegistrationApplier applier;
 
-    public CompanyRegistrationController(CompanyRegistrationRequestor requestor, CompanyRegistrationRequestVerifier verifier, CompanyRegistrationApplier applier) {
+    public CompanyRegistrationController(EventVerificationInitiator requestor, EventVerificationVerifier verifier, CompanyRegistrationApplier applier) {
         this.requestor = requestor;
         this.verifier = verifier;
         this.applier = applier;
@@ -29,8 +32,8 @@ public class CompanyRegistrationController {
 
     @PostMapping
     public ResponseEntity<RequestCompanyRegistrationResponse> request(@RequestBody @Valid RequestCompanyRegistrationRequest request){
-        OTP otp = requestor.request(request.email());
-        RequestCompanyRegistrationResponse response = new RequestCompanyRegistrationResponse(otp.getId().toString(), otp.getPassword());
+        TokenRequested token = requestor.initiate(request.email());
+        RequestCompanyRegistrationResponse response = new RequestCompanyRegistrationResponse(token.tokenId().toString(), otp.getPassword());
         return ResponseEntity.ok(response);
     }
 

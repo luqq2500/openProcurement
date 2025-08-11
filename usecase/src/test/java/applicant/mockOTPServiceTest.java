@@ -1,11 +1,8 @@
 package applicant;
 
-import mock.MockOTPRepository;
-import mock.MockOTPService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import otp.*;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -23,7 +20,7 @@ public class mockOTPServiceTest {
 
     @Test
     public void requestOTP_shouldReturnOTP() {
-        OTP otp = otpService.requestFor(mockRequestFrom);
+        OTP otp = otpService.requestFor(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
         Assert.assertNotNull(otp);
         Assert.assertEquals(otpRepository.passwords().getFirst().getId(), otp.getId());
     }
@@ -46,8 +43,8 @@ public class mockOTPServiceTest {
 
     @Test
     public void requestOTPTwice_previousOTPShouldBeDisabled(){
-        otpService.requestFor(mockRequestFrom);
-        otpService.requestFor(mockRequestFrom);
+        otpService.requestFor(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
+        otpService.requestFor(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
         Assert.assertEquals(otpRepository.passwords().getFirst().getRequestFrom(), otpRepository.passwords().getLast().getRequestFrom());
         Assert.assertTrue(otpRepository.passwords().getLast().isEnabled());
         Assert.assertFalse(otpRepository.passwords().getFirst().isEnabled());

@@ -24,9 +24,17 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
     @Override
     public void update(UpdateCompanyRegistrationStatusCommand command) {
         Administrator administrator = administratorRepository.getById(command.administratorId());
-        administrator.getRole().validateAssignedRole(serviceRole);
+        administrator.validateRole(serviceRole);
         CompanyRegistration registration = companyRegistrationRepository.getById(command.companyRegistrationId());
-        CompanyRegistration updatedRegistration = registration.updateStatus(command.administratorId(), command.status(), command.notes());
+        CompanyRegistration updatedRegistration = switch (command.status()){
+            case PROCESSING -> registration.elevateStatusToProcessing(administrator);
+            case APPROVED -> registration.elevateStatusToApproved(administrator);
+            case REJECTED -> registration.elevateStatusToRejected(administrator);
+            default -> throw new IllegalStateException("Unexpected value: " + command.status());
+        };
+        if (command.notes() != null) {
+            updatedRegistration.addNoteForStatusChange(command.notes());
+        }
         companyRegistrationRepository.add(updatedRegistration);
         registerApprovedRegistration(updatedRegistration);
     }

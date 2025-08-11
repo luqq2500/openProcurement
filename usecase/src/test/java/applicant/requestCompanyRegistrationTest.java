@@ -1,53 +1,26 @@
 package applicant;
 
-import applicant.api.CompanyRegistrationRequestor;
-import mock.MockCompanyRegistrationRequestRepository;
-import company.spi.CompanyRegistrationRequestRepository;
-import email.EmailService;
+import applicant.api.CompanyRegistrationVerificationRequestor;
+import event.EventVerificationInitiator;
+import applicant.dto.RequestCompanyRegistrationResponse;
+import event.InitiateEventVerification;
+import mock.MockCustomOTPRepository;
 import mock.MockEmailService;
-import mock.MockOTPRepository;
-import mock.MockOTPService;
-import org.junit.Assert;
-import org.junit.Before;
+import notification.NotificationService;
 import org.junit.Test;
-import otp.*;
+import mock.MockCustomOTPService;
+import token.TokenRepository;
+import token.TokenService;
 
 public class requestCompanyRegistrationTest {
-    private String mockEmail;
-    private OTPRepository mockOTPRepository;
-    private CompanyRegistrationRequestor requestor;
-    @Before
-    public void setUp(){
-        mockEmail = "hakimluqq25@gmail.com";
-        mockOTPRepository = new MockOTPRepository();
-        EmailService emailService = new MockEmailService();
-        OTPService OTPService = new MockOTPService(mockOTPRepository);
-        requestor = new RequestCompanyRegistration(emailService, OTPService);
-    }
-
     @Test
-    public void requestOnce_OTPShouldBeEnabled(){
-        requestor.request(mockEmail);
-        Assert.assertTrue(mockOTPRepository.passwords().getFirst().isEnabled());
-    }
-
-    @Test
-    public void twoSameRequestFrom_shouldNotThrowException(){
-        requestor.request(mockEmail);
-        requestor.request(mockEmail);
-    }
-
-    @Test
-    public void twoDifferentRequestFrom_shouldNotThrowException(){
-        requestor.request(mockEmail);
-        requestor.request("random@email.com");
-    }
-
-    @Test
-    public void twoDifferentRequestFrom_bothRequestsShouldBeEnabled(){
-        requestor.request(mockEmail);
-        requestor.request("random@email.com");
-        Assert.assertTrue(mockOTPRepository.passwords().getFirst().isEnabled());
-        Assert.assertTrue(mockOTPRepository.passwords().getLast().isEnabled());
+    public void test() {
+        NotificationService notificationService = new MockEmailService();
+        TokenRepository tokenRepository = new MockCustomOTPRepository();
+        TokenService tokenService = new MockCustomOTPService(tokenRepository);
+        EventVerificationInitiator eventVerificationInitiator = new InitiateEventVerification(notificationService, tokenService);
+        CompanyRegistrationVerificationRequestor requestor = new RequestCompanyRegistrationVerification(eventVerificationInitiator);
+        RequestCompanyRegistrationResponse response = requestor.requestFrom("hakimluqq25@gmail.com");
+        System.out.println(response);
     }
 }

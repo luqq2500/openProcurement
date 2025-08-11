@@ -1,143 +1,122 @@
 package applicant;
 
-import applicant.api.CompanyRegistrationRequestVerifier;
-import company.CompanyRegistrationRequest;
-import mock.MockCompanyRegistrationRequestRepository;
-import company.exception.CompanyRegistrationRequestNotFound;
+import event.EventVerificationVerifier;
+import event.VerifyEventVerificationRequest;
+import mock.*;
 import company.spi.CompanyRegistrationRequestRepository;
-import email.EmailService;
-import mock.MockEmailService;
-import mock.MockOTPRepository;
-import mock.MockOTPService;
+import notification.NotificationService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import otp.*;
+import token.CustomOTP;
+import token.TokenRepository;
+import token.TokenService;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class verifyCompanyRegistrationRequestTest {
     private CompanyRegistrationRequestRepository mockRequestRepository;
-    private EmailService mockEmailService;
-    private OTPRepository mockOTPRepository;
-    private OTPService mockOTPService;
+    private NotificationService mockEmailService;
+    private TokenRepository<CustomOTP> mockTokenRepository;
+    private TokenService<CustomOTP> mockTokenService;
     private String mockRequestFrom;
-    private CompanyRegistrationRequestVerifier verifier;
+    private EventVerificationVerifier verifier;
 
     @Before
     public void setUp() throws Exception {
         mockRequestFrom = "hakimluqq25@gmail.com";
         mockRequestRepository = new MockCompanyRegistrationRequestRepository();
-        mockOTPRepository = new MockOTPRepository();
-        mockOTPService = new MockOTPService(mockOTPRepository);
+        mockTokenRepository = new MockCustomOTPRepository();
+        mockTokenService = new MockCustomOTPService(mockTokenRepository);
         mockEmailService = new MockEmailService();
     }
 
     @Test
-    public void correctOTP_shouldNotThrowException() throws Exception {
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
-        mockRequestRepository.add(mockRequest);
-        mockOTPRepository.add(mockOTP);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        verifier.verify(mockRequest.getId(), mockOTP.getId(), mockOTP.getPassword());
+    public void correctToken_shouldNotThrowException() throws Exception {
+        CustomOTP otp = new CustomOTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
+        mockTokenRepository.add(otp);
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(otp.getId(), otp.getToken());
+        verifier.verify(verification);
     }
 
     @Test
-    public void disabledOTP_shouldThrowException() {
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
-        mockOTP.disable();
-        mockRequestRepository.add(mockRequest);
-        mockOTPRepository.add(mockOTP);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(mockRequest.getId(), mockOTP.getId(), mockOTP.getPassword()));
+    public void disabledToken_shouldThrowException() {
+        CustomOTP mockToken = new CustomOTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
+        mockToken.disable();
+        mockTokenRepository.add(mockToken);
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(mockToken.getId(), mockToken.getToken());
+        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(verification));
         System.out.println(exception.getMessage());
     }
 
     @Test
-    public void wrongPassword_shouldThrowException() {
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
-        mockRequestRepository.add(mockRequest);
-        mockOTPRepository.add(mockOTP);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(mockRequest.getId(), mockOTP.getId(), "882899"));
+    public void wrongToken_shouldThrowException() {
+        CustomOTP mockOTP = new CustomOTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
+        mockTokenRepository.add(mockOTP);
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(mockOTP.getId(), "wrongtoken");
+        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(verification));
         System.out.println(exception.getMessage());
     }
 
     @Test
-    public void otpIdDoesNotExist_shouldThrowException() {
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
-        mockRequestRepository.add(mockRequest);
-        mockOTPRepository.add(mockOTP);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(mockRequest.getId(), UUID.randomUUID(), mockOTP.getPassword()));
+    public void tokenIdDoesNotExist_shouldThrowException() {
+        CustomOTP mockOTP = new CustomOTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(15));
+        mockTokenRepository.add(mockOTP);
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(UUID.randomUUID(), mockOTP.getToken());
+        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, ()-> verifier.verify(verification));
         System.out.println(exception.getMessage());
     }
 
     @Test
-    public void expiredOTP_shouldThrowException() throws Exception {
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        OTP mockOTP = new OTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(-15));
-        mockRequestRepository.add(mockRequest);
-        mockOTPRepository.add(mockOTP);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(mockRequest.getId(), mockOTP.getId(), mockOTP.getPassword()));
+    public void expiredToken_shouldThrowException() throws Exception {
+        CustomOTP mockOTP = new CustomOTP(mockRequestFrom, "001122", LocalDateTime.now().plusMinutes(-15));
+        mockTokenRepository.add(mockOTP);
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(mockOTP.getId(), mockOTP.getToken());
+        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(verification));
         System.out.println(exception.getMessage());
     }
 
     @Test
-    public void twoSameRequests_butVerifyOnlyEnabledOTP_shouldNotThrowException(){
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        mockRequestRepository.add(mockRequest);
-        OTP otp1 = mockOTPService.requestFor(mockRequestFrom);
-        OTP otp2 = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        verifier.verify(mockRequest.getId(), otp2.getId(), otp2.getPassword());
+    public void twoSameRequests_butVerifyOnlyEnabledToken_shouldNotThrowException(){
+        CustomOTP otp1 = mockTokenService.request(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
+        CustomOTP otp2 = mockTokenService.request(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(otp2.getId(), otp2.getToken());
+        verifier.verify(verification);
     }
 
     @Test
-    public void twoSameRequests_butVerifyOnlyDisabledOTP_shouldThrowException(){
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        mockRequestRepository.add(mockRequest);
-        OTP otp1 = mockOTPService.requestFor(mockRequestFrom);
-        OTP otp2 = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(mockRequest.getId(), otp1.getId(), otp1.getPassword()));
+    public void twoSameRequests_butVerifyOnlyDisabledToken_shouldThrowException(){
+        CustomOTP otp1 = mockTokenService.request(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
+        CustomOTP otp2 = mockTokenService.request(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(otp1.getId(), otp1.getToken());
+        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(verification));
         System.out.println(exception.getMessage());
     }
 
     @Test
-    public void verifySameOTPTwice_secondVerifyShouldThrowException(){
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        mockRequestRepository.add(mockRequest);
-        OTP otp = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        verifier.verify(mockRequest.getId(), otp.getId(), otp.getPassword());
-        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(mockRequest.getId(), otp.getId(), otp.getPassword()));
+    public void verifySameTokenTwice_secondVerifyShouldThrowException(){
+        CustomOTP otp = mockTokenService.request(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(otp.getId(), otp.getToken());
+        verifier.verify(verification);
+        InvalidOTP exception = Assert.assertThrows(InvalidOTP.class, () -> verifier.verify(verification));
         System.out.println(exception.getMessage());
     }
 
     @Test
-    public void verifiedOTP_shouldBeDisabled(){
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        mockRequestRepository.add(mockRequest);
-        OTP otp = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        verifier.verify(mockRequest.getId(), otp.getId(), otp.getPassword());
+    public void verifiedToken_shouldBeDisabled(){
+        CustomOTP otp = mockTokenService.request(mockRequestFrom, LocalDateTime.now().plusMinutes(15));
+        verifier = new VerifyCompanyRegistrationRequest(mockRequestRepository, mockTokenService, mockEmailService);
+        VerifyEventVerificationRequest verification = new VerifyEventVerificationRequest(otp.getId(), otp.getToken());
+        verifier.verify(verification);
         Assert.assertFalse(otp.isEnabled());
-    }
-
-    @Test
-    public void registrationRequestDoesNotExist_shouldThrowException() {
-        CompanyRegistrationRequest mockRequest = new CompanyRegistrationRequest(mockRequestFrom);
-        mockRequestRepository.add(mockRequest);
-        OTP otp = mockOTPService.requestFor(mockRequestFrom);
-        verifier = new VerifyRequestCompanyRegistration(mockRequestRepository, mockOTPService, mockEmailService);
-        CompanyRegistrationRequestNotFound exception = Assert.assertThrows(CompanyRegistrationRequestNotFound.class, () -> verifier.verify(UUID.randomUUID(), otp.getId(), otp.getPassword()));
-        System.out.println(exception.getMessage());
     }
 }

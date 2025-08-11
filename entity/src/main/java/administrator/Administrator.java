@@ -1,6 +1,9 @@
 package administrator;
 
 import administrator.exception.AdministratorRoleUnchangedException;
+import company.CompanyRegistration;
+import company.CompanyRegistrationStatus;
+import company.exception.InvalidCompanyRegistrationStatus;
 
 import java.util.UUID;
 
@@ -28,31 +31,28 @@ public class Administrator {
         this.role = role;
     }
 
+    public void validateRole(AdministratorRoles role) {
+        this.role.validateAssignedRole(role);
+    }
 
     public UUID getAdministratorId() {
         return administratorId;
     }
 
-    public AdministratorRoles getRole() {
-        return role;
+    public void changeAdministratorName(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
     public String getFirstName() {
         return firstName;
     }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
     public String getLastName() {
         return lastName;
     }
-
     public String getEmail() {
         return email;
     }
-
     public String  getPassword() {
         return password;
     }

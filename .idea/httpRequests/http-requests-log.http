@@ -6,6 +6,66 @@ Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 
 {
+  "requestId": "53513068-6838-4754-bd48-43235b63c512",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1", "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202380061600",
+  "taxNumber": "202380061600",
+  "structure": "SOLE"
+}
+
+<> 2025-08-09T232313.500.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 348
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "53513068-6838-4754-bd48-vv",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1", "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202380061600",
+  "taxNumber": "202380061600",
+  "structure": "SOLE"
+}
+
+<> 2025-08-09T232302.400.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 358
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "53513068-6838-4754-bd48-43235b63c518",
+  "companyName": "TerraForm Sdn Bhd",
+  "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1", "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
+  "registrationNumber": "202380061600",
+  "taxNumber": "202380061600",
+  "structure": "SOLE"
+}
+
+<> 2025-08-09T232237.500.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 358
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
   "requestId": "53513068-6838-4754-bd48-43235b63c518",
   "companyName": "TerraForm Sdn Bhd",
   "address": {"streetAddress1": "1", "streetAddress2": "1", "streetAddress3": "1", "city": "Sepang", "postalCode": "43900", "state": "Selangor", "country": "MALAYSIA"},
@@ -741,51 +801,6 @@ Accept: */*
 }
 
 <> 2025-08-09T215120.404.json
-
-###
-
-POST http://localhost:8080/company-registration
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "email": "hakimluqq25@gmail.com"
-}
-
-<> 2025-08-09T214409.404.json
-
-###
-
-POST http://localhost:8080/company-registration
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "email": "hakimluqq25@gmail.com"
-}
-
-<> 2025-08-09T213353.404.json
-
-###
-
-POST http://localhost:8080/company-registration
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "email": "hakimluqq25@gmail.com"
-}
-
-<> 2025-08-09T213013.404.json
 
 ###
 

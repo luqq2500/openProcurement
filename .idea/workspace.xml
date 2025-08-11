@@ -5,51 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/configuration/DomainConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/CompanyRegistrationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/ApplyCompanyRegistrationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/RequestCompanyRegistrationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/RequestCompanyRegistrationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/VerifyCompanyRegistrationRequestRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/VerifyCompanyRegistrationRequestResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/entity/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/src/main/java/company/CompanyRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/entity/src/main/java/company/CompanyRegistrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/src/main/java/openprocurement/infra/InfraApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra/src/test/java/openprocurement/infra/InfraApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/main/java/company/CompanyRegistrationRequested.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/main/java/ddd/DomainEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/main/java/token/CustomOTP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/main/java/token/InvalidOTP.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/main/java/token/Token.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/main/java/token/TokenRequested.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/main/java/token/TokenVerificationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/test/java/company/companyRegistrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/entity/src/test/java/token/otpTokenTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infrastructure/src/test/java/token/tokenServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/RequestCompanyRegistrationVerification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationVerificationRequestor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/dto/RequestCompanyRegistrationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/event/EventVerificationInitiator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/event/EventVerificationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/event/EventVerificationVerifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/event/InitiateEventVerification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/event/VerifyEventVerificationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCustomOTPRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCustomOTPService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/notification/CustomEmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/notification/CustomSMSService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/notification/InvalidNotificationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/notification/NotificationMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/notification/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/notification/NotificationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/token/CustomOTPRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/token/OTPService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/token/TokenRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/token/TokenService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/initiateVerificationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usecase/src/test/java/notification/notificationServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T213013.404.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T213353.404.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T214409.404.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/src/main/java/administrator/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/entity/src/main/java/administrator/Administrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/src/main/java/company/CompanyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/entity/src/main/java/company/CompanyRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/src/main/java/company/CompanyRegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/entity/src/main/java/company/CompanyRegistrationStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/src/main/java/email/Email.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/src/main/java/email/EmailRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/src/main/java/otp/InvalidOTP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/src/main/java/otp/OTP.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/entity/src/main/java/otp/OTPRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/CompanyRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/CompanyRegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/ApplyCompanyRegistrationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/dto/ApplyCompanyRegistrationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/RequestCompanyRegistrationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/VerifyCompanyRegistrationRequestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/dto/VerifyCompanyRegistrationRequestResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usecase/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/RequestCompanyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/RequestCompanyRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/VerifyCompanyRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/VerifyRequestCompanyRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationRequestVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationRequestVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationRequestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationRequestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/ddd/DomainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/ddd/DomainService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/ddd/Stub.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/ddd/Stub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/email/MockEmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockEmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/otp/MockOTPService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockOTPService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/otp/OTPService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/otp/OTPService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/administrator/MockAdministratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockAdministratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/administrator/administratorUpdateCompanyRegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/administrator/administratorUpdateCompanyRegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/applyCompanyRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/applyCompanyRegistrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/administrator/UpdateCompanyRegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/administrator/UpdateCompanyRegistrationStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/RequestCompanyRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/VerifyRequestCompanyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/VerifyCompanyRegistrationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationRequestVerifier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationRequestor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/email/EmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockEmailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockOTPRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockOTPService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/otp/OTPService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/mockOTPServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/mockOTPServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/requestCompanyRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/requestCompanyRegistrationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/verifyCompanyRegistrationRequestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/verifyCompanyRegistrationRequestTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/company/MockCompanyCountryRegistrationRuleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCompanyCountryRegistrationRuleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/company/MockCompanyRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCompanyRegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/company/MockCompanyRegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCompanyRegistrationRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/company/MockCompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCompanyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/otp/MockOTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/mock/MockOTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/otp/mockOTPServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/mockOTPServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,8 +78,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
+        <option value="package-info" />
+        <option value="Enum" />
+        <option value="Interface" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -95,6 +117,35 @@
     "HTTP Request.generated-requests | #3.executor": "Run",
     "HTTP Request.generated-requests | #4.executor": "Run",
     "HTTP Request.generated-requests | #5.executor": "Run",
+    "JUnit.administratorUpdateCompanyRegistrationStatus.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.pendingToInvalidStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.processingToInvalidStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateApprovedStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updatePendingToValidStatus_shouldNotThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateProcessingToValidStatus_shouldNotThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateRejectedStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.approvedToInvalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.executor": "Run",
+    "JUnit.companyRegistrationTest.invalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.processingToInvalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.test.executor": "Run",
+    "JUnit.initiateVerificationTest.executor": "Run",
+    "JUnit.mockOTPServiceTest.executor": "Run",
+    "JUnit.notificationFactoryTest.SMSType_shouldReturnSMSService.executor": "Run",
+    "JUnit.notificationFactoryTest.emailType_shouldReturnEmailService.executor": "Run",
+    "JUnit.notificationFactoryTest.executor": "Run",
+    "JUnit.notificationFactoryTest.notificationFactoryShouldReturnNotificationImplementation.executor": "Run",
+    "JUnit.notificationServiceTest.test.executor": "Run",
+    "JUnit.notificationStrategyTest.emailType_shouldReturnEmailService.executor": "Run",
+    "JUnit.otpTokenTest.wrongOtp.executor": "Run",
+    "JUnit.requestCompanyRegistrationTest.executor": "Run",
+    "JUnit.requestCompanyRegistrationTest.test.executor": "Run",
+    "JUnit.tokenServiceTest.test.executor": "Run",
+    "JUnit.tokenTest.expiredOtp.executor": "Run",
+    "JUnit.tokenTest.test.executor": "Run",
+    "JUnit.tokenTest.tokenExpired.executor": "Run",
+    "JUnit.verifyCompanyRegistrationRequestTest.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -114,10 +165,15 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="controller.companyRegistration.dto" />
-      <recent name="controller.dto" />
+      <recent name="token" />
+      <recent name="ddd" />
+      <recent name="event" />
+      <recent name="applicant" />
+      <recent name="applicant.api" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+      <recent name="notification" />
       <recent name="applicant" />
     </key>
   </component>
@@ -128,21 +184,83 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.InfrastructureApplication">
-    <configuration name="generated-requests | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#1" runType="Run single request">
-      <method v="2" />
+  <component name="RunManager" selected="JUnit.verifyCompanyRegistrationRequestTest">
+    <configuration name="administratorUpdateCompanyRegistrationStatus" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="usecase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="administrator.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="administrator" />
+      <option name="MAIN_CLASS_NAME" value="administrator.administratorUpdateCompanyRegistrationStatus" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="generated-requests | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#2" index="2" runType="Run single request">
-      <method v="2" />
+    <configuration name="initiateVerificationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="usecase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="event.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="applicant" />
+      <option name="MAIN_CLASS_NAME" value="applicant.initiateVerificationTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="generated-requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#3" index="3" runType="Run single request">
-      <method v="2" />
+    <configuration name="notificationServiceTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="usecase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="notification.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="notification" />
+      <option name="MAIN_CLASS_NAME" value="notification.notificationServiceTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="generated-requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#4" index="4" runType="Run single request">
-      <method v="2" />
+    <configuration name="requestCompanyRegistrationTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="usecase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="event.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="applicant" />
+      <option name="MAIN_CLASS_NAME" value="applicant.requestCompanyRegistrationTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
-    <configuration name="generated-requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#5" index="5" runType="Run single request">
-      <method v="2" />
+    <configuration name="verifyCompanyRegistrationRequestTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="usecase" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="applicant.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="applicant" />
+      <option name="MAIN_CLASS_NAME" value="applicant.verifyCompanyRegistrationRequestTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="InfrastructureApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -154,11 +272,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="HTTP Request.generated-requests | #1" />
-        <item itemvalue="HTTP Request.generated-requests | #4" />
-        <item itemvalue="HTTP Request.generated-requests | #2" />
-        <item itemvalue="HTTP Request.generated-requests | #3" />
-        <item itemvalue="HTTP Request.generated-requests | #5" />
+        <item itemvalue="JUnit.verifyCompanyRegistrationRequestTest" />
+        <item itemvalue="JUnit.initiateVerificationTest" />
+        <item itemvalue="JUnit.notificationServiceTest.test" />
+        <item itemvalue="JUnit.requestCompanyRegistrationTest.test" />
+        <item itemvalue="JUnit.administratorUpdateCompanyRegistrationStatus" />
       </list>
     </recent_temporary>
   </component>
@@ -179,7 +297,9 @@
       <updated>1754654846615</updated>
       <workItem from="1754654851558" duration="4602000" />
       <workItem from="1754663982563" duration="294000" />
-      <workItem from="1754694079531" duration="17359000" />
+      <workItem from="1754694079531" duration="17720000" />
+      <workItem from="1754753836598" duration="3235000" />
+      <workItem from="1754781044216" duration="27380000" />
     </task>
     <servers />
   </component>

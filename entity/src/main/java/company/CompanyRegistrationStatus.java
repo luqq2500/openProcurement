@@ -1,20 +1,26 @@
 package company;
 
+import company.exception.InvalidCompanyRegistrationStatus;
+
 public enum CompanyRegistrationStatus {
     PENDING,
     PROCESSING,
     APPROVED,
     REJECTED;
 
-    public boolean canUpdateTo(CompanyRegistrationStatus newStatus) {
-        if (newStatus == null) {
-            return false;
+    public void checkChangeStatusTo(CompanyRegistrationStatus newStatus) {
+        if (this.equals(newStatus)) {
+            throw new InvalidCompanyRegistrationStatus("Company registration status is already " + newStatus);
         }
-        return switch (this) {
-            case PENDING -> newStatus == PROCESSING;
-            case PROCESSING -> newStatus == APPROVED || newStatus == REJECTED;
-            default -> false;
-        };
+        if (this.equals(PENDING) && newStatus != PROCESSING) {
+            throw new InvalidCompanyRegistrationStatus("Company registration status can only be updated to " + PROCESSING);
+        }
+        if (this.equals(PROCESSING) && newStatus != APPROVED && newStatus != REJECTED) {
+            throw new InvalidCompanyRegistrationStatus("Processing status can only be updated to " + APPROVED + " or " + REJECTED);
+        }
+        if (this.equals(APPROVED) || this.equals(REJECTED)) {
+            throw new InvalidCompanyRegistrationStatus(APPROVED + " and " + REJECTED + " status cannot be updated.");
+        }
     }
     public boolean isPending() {
         return this == PENDING;
