@@ -1,11 +1,11 @@
 package applicant;
 
-import event.EventVerificationInitiator;
-import event.InitiateEventVerification;
-import event.EventVerificationRequest;
-import mock.MockCustomOTPRepository;
-import mock.MockCustomOTPService;
-import mock.MockEmailService;
+import verification.InitiateVerification;
+import verification.VerificationInitiator;
+import verification.InitiateVerificationRequest;
+import token.otp.MockCustomOTPRepository;
+import token.otp.MockCustomOTPService;
+import notification.email.MockEmailService;
 import notification.NotificationService;
 import org.junit.Assert;
 import org.junit.Before;
@@ -15,16 +15,16 @@ import token.TokenRepository;
 import token.TokenService;
 
 public class initiateVerificationTest {
-    private EventVerificationRequest mockRequest;
+    private InitiateVerificationRequest mockRequest;
     private TokenRepository<CustomOTP> mockOTPRepository;
-    private EventVerificationInitiator requestor;
+    private VerificationInitiator requestor;
     @Before
     public void setUp(){
-        mockRequest = new EventVerificationRequest("hakimluqq25@gmail.com");
+        mockRequest = new InitiateVerificationRequest("hakimluqq25@gmail.com");
         NotificationService notificationService = new MockEmailService();
         mockOTPRepository = new MockCustomOTPRepository();
         TokenService<CustomOTP> tokenService = new MockCustomOTPService(mockOTPRepository);
-        requestor = new InitiateEventVerification(notificationService, tokenService);
+        requestor = new InitiateVerification(notificationService, tokenService);
     }
 
     @Test
@@ -42,13 +42,13 @@ public class initiateVerificationTest {
     @Test
     public void twoDifferentRequestFrom_shouldNotThrowException(){
         requestor.initiate(mockRequest);
-        requestor.initiate(new EventVerificationRequest("random"));
+        requestor.initiate(new InitiateVerificationRequest("random"));
     }
 
     @Test
     public void twoDifferentRequestFrom_bothRequestsShouldBeEnabled(){
         requestor.initiate(mockRequest);
-        requestor.initiate(new EventVerificationRequest("random"));
+        requestor.initiate(new InitiateVerificationRequest("random"));
         Assert.assertTrue(mockOTPRepository.tokens().getFirst().isEnabled());
         Assert.assertTrue(mockOTPRepository.tokens().getLast().isEnabled());
     }

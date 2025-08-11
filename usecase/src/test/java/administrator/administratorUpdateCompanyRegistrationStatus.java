@@ -11,9 +11,9 @@ import company.exception.CompanyRegistrationRequestNotFound;
 import company.exception.InvalidCompanyRegistrationStatus;
 import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
-import mock.MockAdministratorRepository;
-import mock.MockCompanyRegistrationRepository;
-import mock.MockCompanyRepository;
+import company.MockAdministratorRepository;
+import company.MockCompanyRegistrationRepository;
+import company.MockCompanyRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -62,7 +62,7 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void validAdministratorRole_shouldNotThrowException() {
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
+        UpdateCompanyRegistrationStatusRequest command = new UpdateCompanyRegistrationStatusRequest(
                 administrators.getFirst().getAdministratorId(),
                 registrations.getFirst().getId(),
                 CompanyRegistrationStatus.PROCESSING,
@@ -73,7 +73,7 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void invalidAdministratorRole_shouldThrowException() {
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
+        UpdateCompanyRegistrationStatusRequest command = new UpdateCompanyRegistrationStatusRequest(
                 administrators.get(1).getAdministratorId(),
                 registrations.getFirst().getId(),
                 CompanyRegistrationStatus.PROCESSING,
@@ -85,7 +85,7 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void unregisteredAdministrator_shouldThrowException() throws Exception {
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
+        UpdateCompanyRegistrationStatusRequest command = new UpdateCompanyRegistrationStatusRequest(
                 UUID.randomUUID(), // random administrator id
                 registrations.getFirst().getId(),
                 CompanyRegistrationStatus.PROCESSING,
@@ -97,7 +97,7 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void unregisteredCompanyRegistration_shouldThrowException() {
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(
+        UpdateCompanyRegistrationStatusRequest command = new UpdateCompanyRegistrationStatusRequest(
                 administrators.getFirst().getAdministratorId(),
                 UUID.randomUUID(),
                 CompanyRegistrationStatus.PROCESSING,
@@ -109,7 +109,7 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void pendingToProcessing_shouldNotThrowException() throws Exception {
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest command = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.getFirst().getId(),
                 CompanyRegistrationStatus.PROCESSING,
@@ -121,7 +121,7 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void processingToApproved_updatedRegistrationStatusShouldApproved(){
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest command = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(1).getId(),
                 CompanyRegistrationStatus.APPROVED,
@@ -133,7 +133,7 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void processingToReject_shouldNotThrowException() {
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest command = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(1).getId(),
                 CompanyRegistrationStatus.REJECTED,
@@ -144,7 +144,7 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void processingToRejected_updatedStatusShouldBeRejected(){
-        UpdateCompanyRegistrationStatusCommand command = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest command = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(1).getId(),
                 CompanyRegistrationStatus.REJECTED,
@@ -156,55 +156,55 @@ public class administratorUpdateCompanyRegistrationStatus {
 
     @Test
     public void invalidStatusUpdate_shouldThrowException() throws Exception {
-        UpdateCompanyRegistrationStatusCommand pendingToApprove = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest pendingToApprove = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.getFirst().getId(),
                 CompanyRegistrationStatus.APPROVED,
                 "All documents are eligible for approval."
         );
-        UpdateCompanyRegistrationStatusCommand pendingToReject = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest pendingToReject = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.getFirst().getId(),
                 CompanyRegistrationStatus.REJECTED,
                 "All documents are eligible for approval."
         );
-        UpdateCompanyRegistrationStatusCommand processingToProcessing = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest processingToProcessing = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(1).getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 "All documents are eligible for approval."
         );
-        UpdateCompanyRegistrationStatusCommand approveToProcessing = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest approveToProcessing = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(2).getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 "All documents are eligible for approval."
         );
-        UpdateCompanyRegistrationStatusCommand approveToApprove = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest approveToApprove = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(2).getId(),
                 CompanyRegistrationStatus.APPROVED,
                 "All documents are eligible for approval."
         );
-        UpdateCompanyRegistrationStatusCommand approveToReject = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest approveToReject = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(2).getId(),
                 CompanyRegistrationStatus.REJECTED,
                 "All documents are eligible for approval."
         );
-        UpdateCompanyRegistrationStatusCommand rejectToProcessing = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest rejectToProcessing = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(3).getId(),
                 CompanyRegistrationStatus.PROCESSING,
                 "All documents are eligible for approval."
         );
-        UpdateCompanyRegistrationStatusCommand rejectToApprove = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest rejectToApprove = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(3).getId(),
                 CompanyRegistrationStatus.APPROVED,
                 "All documents are eligible for approval."
         );
-        UpdateCompanyRegistrationStatusCommand rejectToReject = new UpdateCompanyRegistrationStatusCommand(// random administrator id
+        UpdateCompanyRegistrationStatusRequest rejectToReject = new UpdateCompanyRegistrationStatusRequest(// random administrator id
                 administrators.getFirst().getAdministratorId(),
                 registrations.get(3).getId(),
                 CompanyRegistrationStatus.REJECTED,

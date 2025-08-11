@@ -1,14 +1,18 @@
 package applicant;
 
 import applicant.api.CompanyRegistrationRequestVerifier;
-import event.VerifyEventVerificationRequest;
-import mock.*;
+import company.MockCompanyRegistrationRequestRepository;
+import notification.email.MockEmailService;
+import token.otp.MockCustomOTPRepository;
+import token.otp.MockCustomOTPService;
+import verification.VerifyEventVerificationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
 import notification.NotificationService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import token.CustomOTP;
+import token.InvalidOTP;
 import token.TokenRepository;
 import token.TokenService;
 

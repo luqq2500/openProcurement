@@ -1,4 +1,4 @@
-package mock;
+package notification.email;
 
 import ddd.DomainService;
 import notification.NotificationMessage;

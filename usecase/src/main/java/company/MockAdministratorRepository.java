@@ -1,4 +1,4 @@
-package mock;
+package company;
 
 import administrator.Administrator;
 import administrator.exception.AdministratorNotFoundException;

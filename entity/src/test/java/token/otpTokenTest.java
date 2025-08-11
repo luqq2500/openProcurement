@@ -2,8 +2,6 @@ package token;
 
 import org.junit.Assert;
 import org.junit.Test;
-import otp.InvalidOTP;
-
 import java.time.LocalDateTime;
 
 public class otpTokenTest {

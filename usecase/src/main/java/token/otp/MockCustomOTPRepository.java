@@ -1,7 +1,7 @@
-package mock;
+package token.otp;
 
+import ddd.Stub;
 import token.CustomOTP;
-import token.CustomOTPRepository;
 import token.InvalidOTP;
 
 import java.util.ArrayList;
@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+@Stub
 public class MockCustomOTPRepository implements CustomOTPRepository {
     List<CustomOTP> otps = new ArrayList<>();
     @Override

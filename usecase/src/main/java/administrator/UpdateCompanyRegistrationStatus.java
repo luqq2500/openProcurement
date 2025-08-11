@@ -8,6 +8,8 @@ import company.spi.CompanyRegistrationRepository;
 import company.spi.CompanyRepository;
 import ddd.DomainService;
 
+import java.time.Instant;
+
 
 @DomainService
 public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatusUpdater {
@@ -22,21 +24,22 @@ public class UpdateCompanyRegistrationStatus implements CompanyRegistrationStatu
         this.companyRepository = companyRepository;
     }
     @Override
-    public void update(UpdateCompanyRegistrationStatusCommand command) {
-        Administrator administrator = administratorRepository.getById(command.administratorId());
+    public UpdateCompanyRegistrationStatusResponse update(UpdateCompanyRegistrationStatusRequest request) {
+        Administrator administrator = administratorRepository.getById(request.administratorId());
         administrator.validateRole(serviceRole);
-        CompanyRegistration registration = companyRegistrationRepository.getById(command.companyRegistrationId());
-        CompanyRegistration updatedRegistration = switch (command.status()){
+        CompanyRegistration registration = companyRegistrationRepository.getById(request.companyRegistrationId());
+        CompanyRegistration updatedRegistration = switch (request.status()){
             case PROCESSING -> registration.elevateStatusToProcessing(administrator);
             case APPROVED -> registration.elevateStatusToApproved(administrator);
             case REJECTED -> registration.elevateStatusToRejected(administrator);
-            default -> throw new IllegalStateException("Unexpected value: " + command.status());
+            default -> throw new IllegalStateException("Unexpected value: " + request.status());
         };
-        if (command.notes() != null) {
-            updatedRegistration.addNoteForStatusChange(command.notes());
+        if (request.notes() != null) {
+            updatedRegistration.addNoteForStatusChange(request.notes());
         }
         companyRegistrationRepository.add(updatedRegistration);
         registerApprovedRegistration(updatedRegistration);
+        return new UpdateCompanyRegistrationStatusResponse(updatedRegistration.getCompanyName(), updatedRegistration.getStatus(), Instant.now());
     }
     private void registerApprovedRegistration(CompanyRegistration updatedRegistration) {
         if (updatedRegistration.getStatus().isApproved()) {

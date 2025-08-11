@@ -1,6 +1,6 @@
 package notification;
 
-import mock.MockEmailService;
+import notification.email.MockEmailService;
 import org.junit.Test;
 
 public class notificationServiceTest {

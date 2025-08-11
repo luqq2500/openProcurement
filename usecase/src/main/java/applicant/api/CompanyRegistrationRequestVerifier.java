@@ -1,7 +1,7 @@
 package applicant.api;
 
 import company.CompanyRegistrationRequest;
-import event.VerifyEventVerificationRequest;
+import verification.VerifyEventVerificationRequest;
 
 public interface CompanyRegistrationRequestVerifier {
     CompanyRegistrationRequest verify(VerifyEventVerificationRequest verification);

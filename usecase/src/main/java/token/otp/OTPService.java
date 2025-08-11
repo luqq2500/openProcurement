@@ -1,4 +1,7 @@
-package token;
+package token.otp;
+
+import token.CustomOTP;
+import token.TokenService;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

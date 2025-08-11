@@ -1,8 +1,8 @@
-package mock;
+package token.otp;
 
+import ddd.DomainService;
 import token.CustomOTP;
 import token.InvalidOTP;
-import token.OTPService;
 import token.TokenRepository;
 
 import java.time.LocalDateTime;
@@ -10,6 +10,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 
+@DomainService
 public class MockCustomOTPService implements OTPService {
     private final TokenRepository<CustomOTP> repository;
 

@@ -1,9 +1,9 @@
 package token;
 
-import mock.MockCustomOTPRepository;
+import token.otp.MockCustomOTPRepository;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import mock.MockCustomOTPService;
+import token.otp.MockCustomOTPService;
 
 import java.time.LocalDateTime;
 

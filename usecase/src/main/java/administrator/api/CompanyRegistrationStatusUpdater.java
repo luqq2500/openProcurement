@@ -1,7 +1,8 @@
 package administrator.api;
 
-import administrator.UpdateCompanyRegistrationStatusCommand;
+import administrator.UpdateCompanyRegistrationStatusRequest;
+import administrator.UpdateCompanyRegistrationStatusResponse;
 
 public interface CompanyRegistrationStatusUpdater {
-    void update(UpdateCompanyRegistrationStatusCommand command);
+    UpdateCompanyRegistrationStatusResponse update(UpdateCompanyRegistrationStatusRequest command);
 }

@@ -1,6 +1,5 @@
-package mock;
+package company;
 
-import company.CompanyRegistrationRequest;
 import company.exception.CompanyRegistrationRequestNotFound;
 import company.spi.CompanyRegistrationRequestRepository;
 import ddd.Stub;

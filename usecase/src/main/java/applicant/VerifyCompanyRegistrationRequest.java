@@ -4,7 +4,7 @@ import applicant.api.CompanyRegistrationRequestVerifier;
 import company.CompanyRegistrationRequest;
 import company.spi.CompanyRegistrationRequestRepository;
 import ddd.DomainService;
-import event.VerifyEventVerificationRequest;
+import verification.VerifyEventVerificationRequest;
 import notification.NotificationMessage;
 import notification.NotificationService;
 import token.Token;

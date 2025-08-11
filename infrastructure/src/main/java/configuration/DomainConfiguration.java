@@ -10,7 +10,14 @@ import org.springframework.context.annotation.FilterType;
 
 @Configuration
 @ComponentScan(
-        basePackages = {"applicant", "mock", "controller"},
+        basePackages = {
+                "applicant",
+                "company",
+                "administrator",
+                "notification",
+                "token",
+                "verification",
+                "controller"},
         includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {DomainService.class, Stub.class})})
 public class DomainConfiguration {
 }

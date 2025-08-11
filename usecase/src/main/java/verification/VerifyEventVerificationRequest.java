@@ -1,4 +1,4 @@
-package event;
+package verification;
 
 import java.util.UUID;
 

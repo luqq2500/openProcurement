@@ -1,7 +1,6 @@
-package mock;
+package company;
 
 import address.Country;
-import company.CompanyCountryRegistrationRule;
 import company.spi.CompanyCountryRegistrationRuleRepository;
 import ddd.Stub;
 

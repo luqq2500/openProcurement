@@ -4,7 +4,7 @@ import company.CompanyRegistrationStatus;
 
 import java.util.UUID;
 
-public record UpdateCompanyRegistrationStatusCommand(
+public record UpdateCompanyRegistrationStatusRequest(
         UUID administratorId,
         UUID companyRegistrationId,
         CompanyRegistrationStatus status,

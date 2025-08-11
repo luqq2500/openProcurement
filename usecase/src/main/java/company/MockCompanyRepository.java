@@ -1,6 +1,5 @@
-package mock;
+package company;
 
-import company.Company;
 import company.spi.CompanyRepository;
 import ddd.Stub;
 

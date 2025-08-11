@@ -1,3 +1,110 @@
+POST http://localhost:8080/registrations
+Content-Type: application/json
+Content-Length: 180
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "administratorId": "7de84fa6-b556-4341-845e-948ec6dccb0f",
+  "companyRegistrationId": "7de84fa6-b556-4341-845e-948ec6dccb0f",
+  "status": "PENDING",
+  "notes": "test failed."
+}
+
+<> 2025-08-11T232703.500.json
+
+###
+
+POST http://localhost:8080/company-registration/apply
+Content-Type: application/json
+Content-Length: 382
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "requestId": "7de84fa6-b556-4341-845e-948ec6dccb0f",
+  "companyName": "TerraForm",
+  "address": {
+    "streetAddress1": "1",
+    "streetAddress2": "1",
+    "streetAddress3": "1",
+    "city": "Sepang",
+    "postalCode": "43900",
+    "state": "Selangor",
+    "country": "MALAYSIA"
+  },
+  "registrationNumber": "202380061600",
+  "taxNumber": "202380061600",
+  "structure": "SOLE"
+}
+
+<> 2025-08-11T230803.200.json
+
+###
+
+POST http://localhost:8080/company-registration/verify
+Content-Type: application/json
+Content-Length: 76
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "tokenId": "c0df0f41-4a0c-4bd2-a259-c0098315b4b7",
+  "token": "090249"
+}
+
+<> 2025-08-11T230624.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 37
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "from": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-11T230559.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 37
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "from": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-11T230457.200.json
+
+###
+
+POST http://localhost:8080/company-registration
+Content-Type: application/json
+Content-Length: 37
+User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
+Accept-Encoding: br, deflate, gzip, x-gzip
+Accept: */*
+
+{
+  "from": "hakimluqq25@gmail.com"
+}
+
+<> 2025-08-11T230402.200.json
+
+###
+
 POST http://localhost:8080/company-registration/apply
 Content-Type: application/json
 Content-Length: 358
@@ -716,91 +823,6 @@ Accept-Encoding: br, deflate, gzip, x-gzip
 Accept: */*
 
 <> 2025-08-09T221155.404.json
-
-###
-
-POST http://localhost:8080/company-registration/token
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-content-length: 0
-
-<> 2025-08-09T221101.404.json
-
-###
-
-POST http://localhost:8080/company-registration
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "email": "hakimluqq25@gmail.com"
-}
-
-<> 2025-08-09T220511.200.json
-
-###
-
-POST http://localhost:8080/company-registration
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "email": "hakimluqq25@gmail.com"
-}
-
-<> 2025-08-09T220427.500.json
-
-###
-
-POST http://localhost:8080/company-registration
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "email": "hakimluqq25@gmail.com"
-}
-
-<> 2025-08-09T215326.200.json
-
-###
-
-POST http://localhost:8080/company-registration
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "email": "hakimluqq25@gmail.com"
-}
-
-<> 2025-08-09T215204.404.json
-
-###
-
-POST http://localhost:8080/company-registration
-Content-Type: application/json
-Content-Length: 38
-User-Agent: IntelliJ HTTP Client/IntelliJ IDEA 2025.1
-Accept-Encoding: br, deflate, gzip, x-gzip
-Accept: */*
-
-{
-  "email": "hakimluqq25@gmail.com"
-}
-
-<> 2025-08-09T215120.404.json
 
 ###
 

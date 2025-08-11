@@ -1,4 +1,7 @@
-package token;
+package token.otp;
+
+import token.CustomOTP;
+import token.TokenRepository;
 
 import java.util.List;
 import java.util.Optional;
