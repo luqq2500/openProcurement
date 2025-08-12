@@ -16,8 +16,8 @@ public enum CompanyRegistrationApplicationStatus {
         if (this.equals(PROCESSING) && !newStatus.equals(APPROVED) && !newStatus.equals(REJECTED)) {
             throw new InvalidCompanyRegistrationApplicationStatus(this.toString() + " can only updated to " + APPROVED.toString() + " and " + REJECTED.toString());
         }
-        if (newStatus.equals(APPROVED) || newStatus.equals(REJECTED)) {
-            throw new InvalidCompanyRegistrationApplicationStatus(newStatus.toString() + " status cannot be updated.");
+        if (this.equals(APPROVED) || this.equals(REJECTED)) {
+            throw new InvalidCompanyRegistrationApplicationStatus("Status cannot be updated.");
         }
     }
 }
