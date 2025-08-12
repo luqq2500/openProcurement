@@ -5,52 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/UpdateCompanyRegistrationStatusController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/administrator/UpdateCompanyRegistrationStatusResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/verification/InitiateVerificationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/usecase/src/main/java/verification/VerificationInitiator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/usecase/src/test/java/notification/DevelopmentEmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T215120.404.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T215204.404.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T215326.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T220427.500.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T220511.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/src/main/java/administrator/UpdateCompanyRegistrationStatusCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/entity/src/main/java/administrator/UpdateCompanyRegistrationStatusRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/src/main/java/token/TokenRequested.java" beforeDir="false" afterPath="$PROJECT_DIR$/entity/src/main/java/token/InitiateVerificationResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/java/configuration/DomainConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/java/configuration/DomainConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/CompanyRegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/CompanyRegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/RequestCompanyRegistrationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/main/java/controller/companyRegistration/dto/VerifyCompanyRegistrationRequestRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/infrastructure/src/test/java/token/tokenServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/src/test/java/token/tokenServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/administrator/UpdateCompanyRegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/administrator/UpdateCompanyRegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/administrator/api/CompanyRegistrationStatusUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/administrator/api/CompanyRegistrationStatusUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/RequestCompanyRegistrationVerification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/VerifyCompanyRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/VerifyCompanyRegistrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationRequestVerifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationRequestVerifier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/applicant/api/CompanyRegistrationVerificationRequestor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/event/EventVerificationInitiator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/event/EventVerificationRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/event/InitiateEventVerification.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/verification/InitiateVerification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/event/VerifyEventVerificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/verification/VerifyEventVerificationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockAdministratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/company/MockAdministratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCompanyCountryRegistrationRuleRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/company/MockCompanyCountryRegistrationRuleRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCompanyRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/company/MockCompanyRegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCompanyRegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/company/MockCompanyRegistrationRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/company/MockCompanyRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCustomOTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/token/otp/MockCustomOTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockCustomOTPService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/token/otp/MockCustomOTPService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/mock/MockEmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/notification/email/MockEmailService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/token/CustomOTPRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/token/otp/CustomOTPRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/main/java/token/OTPService.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/main/java/token/otp/OTPService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/administrator/administratorUpdateCompanyRegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/administrator/administratorUpdateCompanyRegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/applyCompanyRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/applyCompanyRegistrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/initiateVerificationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/initiateVerificationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/mockOTPServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/requestCompanyRegistrationTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/applicant/verifyCompanyRegistrationRequestTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/applicant/verifyCompanyRegistrationRequestTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usecase/src/test/java/notification/notificationServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/usecase/src/test/java/notification/notificationServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,62 +47,62 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "HTTP Request.generated-requests | #1.executor": "Run",
-    "HTTP Request.generated-requests | #2.executor": "Run",
-    "HTTP Request.generated-requests | #3.executor": "Run",
-    "HTTP Request.generated-requests | #4.executor": "Run",
-    "HTTP Request.generated-requests | #5.executor": "Run",
-    "HTTP Request.generated-requests | #6.executor": "Run",
-    "HTTP Request.generated-requests | #8.executor": "Run",
-    "HTTP Request.generated-requests | #9.executor": "Run",
-    "JUnit.administratorUpdateCompanyRegistrationStatus.executor": "Run",
-    "JUnit.companyRegistrationStatusTest.executor": "Run",
-    "JUnit.companyRegistrationStatusTest.pendingToInvalidStatus_shouldThrowException.executor": "Run",
-    "JUnit.companyRegistrationStatusTest.processingToInvalidStatus_shouldThrowException.executor": "Run",
-    "JUnit.companyRegistrationStatusTest.updateApprovedStatus_shouldThrowException.executor": "Run",
-    "JUnit.companyRegistrationStatusTest.updatePendingToValidStatus_shouldNotThrowException.executor": "Run",
-    "JUnit.companyRegistrationStatusTest.updateProcessingToValidStatus_shouldNotThrowException.executor": "Run",
-    "JUnit.companyRegistrationStatusTest.updateRejectedStatus_shouldThrowException.executor": "Run",
-    "JUnit.companyRegistrationTest.approvedToInvalidStatusUpdate_shouldThrowException.executor": "Run",
-    "JUnit.companyRegistrationTest.executor": "Run",
-    "JUnit.companyRegistrationTest.invalidStatusUpdate_shouldThrowException.executor": "Run",
-    "JUnit.companyRegistrationTest.processingToInvalidStatusUpdate_shouldThrowException.executor": "Run",
-    "JUnit.companyRegistrationTest.test.executor": "Run",
-    "JUnit.initiateVerificationTest.executor": "Run",
-    "JUnit.mockOTPServiceTest.executor": "Run",
-    "JUnit.notificationFactoryTest.SMSType_shouldReturnSMSService.executor": "Run",
-    "JUnit.notificationFactoryTest.emailType_shouldReturnEmailService.executor": "Run",
-    "JUnit.notificationFactoryTest.executor": "Run",
-    "JUnit.notificationFactoryTest.notificationFactoryShouldReturnNotificationImplementation.executor": "Run",
-    "JUnit.notificationServiceTest.test.executor": "Run",
-    "JUnit.notificationStrategyTest.emailType_shouldReturnEmailService.executor": "Run",
-    "JUnit.otpTokenTest.wrongOtp.executor": "Run",
-    "JUnit.requestCompanyRegistrationTest.executor": "Run",
-    "JUnit.requestCompanyRegistrationTest.test.executor": "Run",
-    "JUnit.tokenServiceTest.test.executor": "Run",
-    "JUnit.tokenTest.expiredOtp.executor": "Run",
-    "JUnit.tokenTest.test.executor": "Run",
-    "JUnit.tokenTest.tokenExpired.executor": "Run",
-    "JUnit.verifyCompanyRegistrationRequestTest.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Spring Boot.InfrastructureApplication.executor": "Run",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #5.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #6.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #8.executor&quot;: &quot;Run&quot;,
+    &quot;HTTP Request.generated-requests | #9.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.administratorUpdateCompanyRegistrationStatus.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationStatusTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationStatusTest.pendingToInvalidStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationStatusTest.processingToInvalidStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationStatusTest.updateApprovedStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationStatusTest.updatePendingToValidStatus_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationStatusTest.updateProcessingToValidStatus_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationStatusTest.updateRejectedStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationTest.approvedToInvalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationTest.invalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationTest.processingToInvalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.companyRegistrationTest.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.initiateVerificationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.mockOTPServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.notificationFactoryTest.SMSType_shouldReturnSMSService.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.notificationFactoryTest.emailType_shouldReturnEmailService.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.notificationFactoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.notificationFactoryTest.notificationFactoryShouldReturnNotificationImplementation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.notificationServiceTest.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.notificationStrategyTest.emailType_shouldReturnEmailService.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.otpTokenTest.wrongOtp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.requestCompanyRegistrationTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.requestCompanyRegistrationTest.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.tokenServiceTest.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.tokenTest.expiredOtp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.tokenTest.test.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.tokenTest.tokenExpired.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.verifyCompanyRegistrationRequestTest.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Spring Boot.InfrastructureApplication.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="administrator" />
@@ -223,7 +178,8 @@
       <workItem from="1754694079531" duration="17720000" />
       <workItem from="1754753836598" duration="3235000" />
       <workItem from="1754781044216" duration="27654000" />
-      <workItem from="1754922888620" duration="3081000" />
+      <workItem from="1754922888620" duration="3222000" />
+      <workItem from="1754965758590" duration="2980000" />
     </task>
     <servers />
   </component>
