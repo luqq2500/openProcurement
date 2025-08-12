@@ -5,6 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/administrator/Administrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/administrator/AdministratorRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/administrator/InvalidAdministratorRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/administrator/event/AdministratorRoleChecked.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/administrator/event/CompanyRegistrationApplicationApproved.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/administrator/event/CompanyRegistrationApplicationProcessed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/Company.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/CompanyRegistrationApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/CompanyRegistrationApplicationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/InvalidCompanyRegistrationApplicationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/Structure.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/address/Address.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/address/Country.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/event/CompanyRegistrationApplied.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/event/CompanyRegistrationRequestVerificationRequested.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/event/CompanyRegistrationRequestVerificationVerified.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/company/event/DomainEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/user/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identityaccessmanagement/src/main/java/user/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,10 +36,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Enum" />
-        <option value="Interface" />
-        <option value="Class" />
         <option value="Record" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -106,10 +126,10 @@
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="administrator" />
-      <recent name="notification" />
-      <recent name="token" />
-      <recent name="ddd" />
+      <recent name="company" />
       <recent name="event" />
+      <recent name="user" />
+      <recent name="company.address" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="applicant" />
@@ -179,7 +199,7 @@
       <workItem from="1754753836598" duration="3235000" />
       <workItem from="1754781044216" duration="27654000" />
       <workItem from="1754922888620" duration="3222000" />
-      <workItem from="1754965758590" duration="2980000" />
+      <workItem from="1754965758590" duration="8278000" />
     </task>
     <servers />
   </component>
