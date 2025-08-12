@@ -12,7 +12,7 @@
         <module>entity</module>
         <module>usecase</module>
         <module>infrastructure</module>
-        <module>identity-access-management</module>
+        <module>IdentityAccessManagement</module>
     </modules>
     <properties>
         <maven.compiler.source>24</maven.compiler.source>
