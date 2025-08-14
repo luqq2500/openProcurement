@@ -1,0 +1,71 @@
+package company;
+
+import company.address.Address;
+import user.User;
+
+import java.util.List;
+import java.util.UUID;
+
+public class CompanyAccount {
+    private final UUID id;
+    private final String name;
+    private final Address address;
+    private final String brn;
+    private final Structure structure;
+    private final String taxNumber;
+    private List<User> users;
+    private boolean isActive;
+
+    public CompanyAccount(String name, Address address, String brn, String taxNumber, Structure structure) {
+        this.id = UUID.randomUUID();
+        this.name = name;
+        this.address = address;
+        this.brn = brn;
+        this.taxNumber = taxNumber;
+        this.structure = structure;
+        this.isActive = true;
+    }
+    public void addNewUser(User user){
+        users.add(user);
+    }
+    public void removeUser(User user){
+        users.remove(user);
+    }
+    public List<User> getUsers() {
+        return users;
+    }
+    public void terminateAccount(){
+        isActive = false;
+    }
+    public UUID getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public String getBrn() {
+        return brn;
+    }
+
+    public String getTaxNumber() {
+        return taxNumber;
+    }
+
+    public Structure getStructure() {
+        return structure;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+}
