@@ -1,10 +1,10 @@
 package company.spi;
 
-import company.CompanyAccount;
+import company.Company;
 
 import java.util.Optional;
 
 public interface CompanyRepository {
-    Optional<CompanyAccount> findByBrn(String brn);
-    void save(CompanyAccount companyAccount);
+    Optional<Company> findByBrn(String brn);
+    void save(Company company);
 }

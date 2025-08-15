@@ -1,4 +1,4 @@
-package ddd;
+package domainEvent;
 
 import java.util.List;
 

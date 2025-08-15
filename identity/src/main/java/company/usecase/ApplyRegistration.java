@@ -1,6 +1,6 @@
 package company.usecase;
 
-import company.CompanyAccount;
+import company.Company;
 import company.RegistrationApplication;
 import company.RegistrationRequest;
 import company.address.Address;
@@ -16,13 +16,11 @@ public class ApplyRegistration implements RegistrationApplier {
     private final RegistrationApplicationRepository applicationRepository;
     private final RegistrationRequestRepository requestRepository;
     private final CompanyRepository companyRepository;
-
     public ApplyRegistration(RegistrationApplicationRepository applicationRepository, RegistrationRequestRepository requestRepository, CompanyRepository companyRepository) {
         this.applicationRepository = applicationRepository;
         this.requestRepository = requestRepository;
         this.companyRepository = companyRepository;
     }
-
     @Override
     public void apply(ApplyRegistrationRequest request) {
         RegistrationRequest registrationRequest = requestRepository.getById(request.registrationRequestId());
@@ -33,7 +31,7 @@ public class ApplyRegistration implements RegistrationApplier {
         if (getApplication.isPresent() && getApplication.get().isUnderReview()) {
             throw new InvalidRegistrationApplication("Registration application is under review.");
         }
-        Optional<CompanyAccount> company = companyRepository.findByBrn(request.brn());
+        Optional<Company> company = companyRepository.findByBrn(request.brn());
         if (company.isPresent() && company.get().isActive()) {
             throw new InvalidRegistrationApplication("Business has been registered.");
         }
@@ -42,7 +40,12 @@ public class ApplyRegistration implements RegistrationApplier {
                 new Address(request.street1(), request.street2(), request.street3(), request.city(), request.zip(), request.state(), request.country()),
                 request.brn(),
                 request.structure(),
-                request.taxNumber());
+                request.taxNumber(),
+                request.firstName(),
+                request.lastName(),
+                request.username() == null ? registrationRequest.getEmail() : request.username(),
+                request.password()
+        );
         applicationRepository.save(application);
     }
 }

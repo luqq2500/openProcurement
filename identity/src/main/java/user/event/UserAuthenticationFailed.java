@@ -1,6 +1,6 @@
 package user.event;
 
-import ddd.DomainEvent;
+import domainEvent.DomainEvent;
 
 import java.time.Instant;
 

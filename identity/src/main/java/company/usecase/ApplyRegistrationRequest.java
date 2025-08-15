@@ -17,6 +17,10 @@ public record ApplyRegistrationRequest(
         Country country,
         String brn,
         Structure structure,
-        String taxNumber
+        String taxNumber,
+        String firstName,
+        String lastName,
+        String username,
+        String password
 ) {
 }

@@ -6,7 +6,7 @@ import user.User;
 import java.util.List;
 import java.util.UUID;
 
-public class CompanyAccount {
+public class Company {
     private final UUID id;
     private final String name;
     private final Address address;
@@ -16,7 +16,7 @@ public class CompanyAccount {
     private List<User> users;
     private boolean isActive;
 
-    public CompanyAccount(String name, Address address, String brn, String taxNumber, Structure structure) {
+    public Company(String name, Address address, String brn, String taxNumber, Structure structure) {
         this.id = UUID.randomUUID();
         this.name = name;
         this.address = address;

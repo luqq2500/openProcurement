@@ -1,6 +1,6 @@
 package user.event.publisher;
 
-import ddd.DomainEventHandler;
+import domainEvent.DomainEventHandler;
 import user.event.UserAuthenticationFailed;
 
 public class UserAuthenticationFailedHandler implements DomainEventHandler<UserAuthenticationFailed> {

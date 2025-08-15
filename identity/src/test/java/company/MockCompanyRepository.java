@@ -7,16 +7,16 @@ import java.util.List;
 import java.util.Optional;
 
 public class MockCompanyRepository implements CompanyRepository {
-    List<CompanyAccount> companies = new ArrayList<>();
+    List<Company> companies = new ArrayList<>();
     @Override
-    public Optional<CompanyAccount> findByBrn(String brn) {
+    public Optional<Company> findByBrn(String brn) {
         return companies.stream()
-                .filter(companyAccount -> companyAccount.getBrn().equals(brn))
+                .filter(company -> company.getBrn().equals(brn))
                 .findFirst();
     }
 
     @Override
-    public void save(CompanyAccount companyAccount) {
-        companies.add(companyAccount);
+    public void save(Company company) {
+        companies.add(company);
     }
 }

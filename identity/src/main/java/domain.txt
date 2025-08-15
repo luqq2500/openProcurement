@@ -1,11 +1,6 @@
-Identity Access Management
+Identity
 
-1. Administration
-    1.1 Administer companyAccount registration application - Update status,
-    1.2
-2. Authentication
-    2.1 User apply for companyAccount registration
-    2.2 User authentication
-    2.2 Administrator authentication
-3. Authorization
-4. Auditing
+1. Company company
+    1.1 Create company company
+        1.1.1 Applicant request for company registration
+        1.1.2

@@ -12,7 +12,16 @@ public class RegistrationApplication {
     private final Structure structure;
     private final String taxNumber;
     private RegistrationApplicationStatus status;
-    public RegistrationApplication(String companyName, Address address, String brn, Structure structure, String taxNumber) {
+    private final String firstName;
+    private final String lastName;
+    private final String username;
+    private final String password;
+
+    public RegistrationApplication(String companyName, Address address, String brn, Structure structure, String taxNumber, String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
         this.id = UUID.randomUUID();
         this.companyName = companyName;
         this.address = address;
@@ -31,5 +40,9 @@ public class RegistrationApplication {
 
     public String getBrn() {
         return brn;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

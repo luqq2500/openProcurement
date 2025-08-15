@@ -5,78 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/administration/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/AuthenticationToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/AuthenticationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/api/IAuthenticationServiceFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/api/UserAuthenticationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/api/UserAuthenticator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/credential/AuthenticationCredential.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/credential/CredentialType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/email/EmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/oneTimePassword/OTPService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/main/java/authentication/usecase/AuthenticateUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/test/java/authentication/MockAuthenticationServiceFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/test/java/authentication/mockPasswordAuthService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/test/java/authentication/mockUserAuthenticationServiceFactoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth/src/test/java/authentication/userAuthenticateTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/CountryRegistrationRule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/RegistrationApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/RegistrationApplicationStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/api/RegistrationApplier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/event/CompanyRegistrationApplied.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/exception/CountryRegistrationRuleException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/exception/InvalidRegistrationApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/exception/InvalidRegistrationApplicationStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/exception/InvalidRegistrationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/spi/CompanyRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/spi/CountryRegistrationRuleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/spi/RegistrationApplicationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/spi/RegistrationRequestRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/usecase/ApplyRegistration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/usecase/ApplyRegistrationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/ddd/DomainEvent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/ddd/DomainEventHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/ddd/DomainEventPublisher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/user/InvalidUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/user/event/UserAuthenticationFailed.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/user/event/UserAuthenticationPassed.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/user/event/publisher/UserAuthenticationFailedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/user/event/publisher/UserAuthenticationPassedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/user/spi/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/company/MockCompanyRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/company/MockRegistrationApplicationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/company/MockRegistrationRequestRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/company/applyRegistrationApplicationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/company/registrationApplicationStatusTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/company/accountAdministrator/AccountAdministrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/integrationEvent/IntegrationEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/integrationEvent/IntegrationEventHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/integrationEvent/IntegrationEventPublisher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/identity/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/administrator/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/Administrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/administrator/AdministratorRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/AdministratorRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/administrator/InvalidAdministratorRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/InvalidAdministratorRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/administrator/event/AdministratorRoleChecked.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/event/AdministratorRoleChecked.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/administrator/event/CompanyRegistrationApplicationApproved.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/event/CompanyRegistrationApplicationApproved.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/administrator/event/CompanyRegistrationApplicationProcessed.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/event/CompanyRegistrationApplicationProcessed.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/administrator/event/CompanyRegistrationApplicationRejected.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/event/CompanyRegistrationApplicationRejected.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/CompanyAccount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/CompanyRegistrationApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/CompanyRegistrationApplicationStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/InvalidCompanyRegistrationApplicationStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/Structure.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/Structure.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/address/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/address/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/address/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/address/Country.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/event/CompanyRegistrationApplied.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/event/CompanyRegistrationRequestVerificationRequested.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/event/CompanyRegistrationRequestVerificationRequested.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/event/CompanyRegistrationRequestVerificationVerified.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/event/CompanyRegistrationRequestVerificationVerified.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/company/event/DomainEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/domain/DomainEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/user/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/main/java/user/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/user/UserRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IdentityAccessManagement/src/test/java/company/registrationApplicationStatusTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entity/src/main/java/company/CompanyRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/RegistrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/CompanyAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/Company.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/RegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/RegistrationApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/event/CompanyRegistrationApplied.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/event/CompanyRegistrationApplied.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/event/CompanyRegistrationRequestVerificationRequested.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/event/CompanyRegistrationRequestVerificationVerified.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/spi/CompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/spi/CompanyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/usecase/ApplyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/usecase/ApplyRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/usecase/ApplyRegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/company/usecase/ApplyRegistrationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/ddd/DomainEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domainEvent/DomainEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/ddd/DomainEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domainEvent/DomainEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/ddd/DomainEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domainEvent/DomainEventPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain.txt" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/event/UserAuthenticationFailed.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/user/event/UserAuthenticationFailed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/event/UserAuthenticationPassed.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/user/event/UserAuthenticationPassed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/event/publisher/UserAuthenticationFailedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/user/event/publisher/UserAuthenticationFailedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/event/publisher/UserAuthenticationPassedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/user/event/publisher/UserAuthenticationPassedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/test/java/company/MockCompanyRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/company/MockCompanyRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/test/java/company/applyRegistrationApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/company/applyRegistrationApplicationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +40,8 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="Record" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -130,12 +81,14 @@
     "HTTP Request.generated-requests | #9.executor": "Run",
     "JUnit.administratorUpdateCompanyRegistrationStatus.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.companyAlreadyRegistered_shouldThrowException.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.companyRegisteredAndActive_shouldThrowException.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.duplicateBrnAndCompanyAccountIsInactive_shouldNotThrowException.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.duplicateBrnAndNotUnderReview_shouldNotThrowException.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.expiredRegistrationRequest_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.test.executor": "Run",
     "JUnit.companyRegistrationStatusTest.executor": "Run",
     "JUnit.companyRegistrationStatusTest.pendingToInvalidStatus_shouldThrowException.executor": "Run",
@@ -207,8 +160,8 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.applyRegistrationApplicationTest.duplicateBrnAndCompanyAccountIsInactive_shouldNotThrowException">
-    <configuration name="applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.applyRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail">
+    <configuration name="applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -218,7 +171,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="company" />
       <option name="MAIN_CLASS_NAME" value="company.applyRegistrationApplicationTest" />
-      <option name="METHOD_NAME" value="appliedBrnAndUnderReview_shouldThrowException" />
+      <option name="METHOD_NAME" value="appliedBrnApproved_shouldThrowException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -272,7 +225,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="applyRegistrationApplicationTest.duplicateBrnAndNotUnderReview_shouldNotThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="applyRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -282,7 +235,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="company" />
       <option name="MAIN_CLASS_NAME" value="company.applyRegistrationApplicationTest" />
-      <option name="METHOD_NAME" value="duplicateBrnAndNotUnderReview_shouldNotThrowException" />
+      <option name="METHOD_NAME" value="nullUsername_usernameShouldEqualEmail" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -298,11 +251,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.applyRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail" />
+        <item itemvalue="JUnit.applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException" />
         <item itemvalue="JUnit.applyRegistrationApplicationTest.duplicateBrnAndCompanyAccountIsInactive_shouldNotThrowException" />
         <item itemvalue="JUnit.applyRegistrationApplicationTest.companyRegisteredAndActive_shouldThrowException" />
         <item itemvalue="JUnit.applyRegistrationApplicationTest.companyAlreadyRegistered_shouldThrowException" />
-        <item itemvalue="JUnit.applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException" />
-        <item itemvalue="JUnit.applyRegistrationApplicationTest.duplicateBrnAndNotUnderReview_shouldNotThrowException" />
       </list>
     </recent_temporary>
   </component>
@@ -332,6 +285,8 @@
       <workItem from="1755080390697" duration="5844000" />
       <workItem from="1755139019073" duration="1833000" />
       <workItem from="1755145179821" duration="18650000" />
+      <workItem from="1755183644594" duration="47000" />
+      <workItem from="1755220724924" duration="4411000" />
     </task>
     <servers />
   </component>

@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 public class applyRegistrationApplicationTest {
     private RegistrationRequestRepository requestRepository;
@@ -33,7 +34,7 @@ public class applyRegistrationApplicationTest {
         RegistrationApplier applier = new ApplyRegistration(applicationRepository, requestRepository, companyRepository);
         applier.apply(new ApplyRegistrationRequest(registrationRequest.getId(), "Terraform",
                 "1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA,
-                "20223344", Structure.SOLE, "2223"));
+                "20223344", Structure.SOLE, "2223", "luqman", "hakim", null, "3535"));
     }
 
     @Test
@@ -42,25 +43,43 @@ public class applyRegistrationApplicationTest {
         requestRepository.save(registrationRequest);
         ApplyRegistrationRequest applyRegistrationRequest = new ApplyRegistrationRequest(registrationRequest.getId(), "Terraform",
                 "1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA,
-                "20223344", Structure.SOLE, "2223");
+                "20223344", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
         RegistrationApplier applier = new ApplyRegistration(applicationRepository, requestRepository, companyRepository);
         InvalidRegistrationApplication error = Assert.assertThrows(InvalidRegistrationApplication.class, ()-> applier.apply(applyRegistrationRequest));
         System.out.println(error.getMessage());
     }
 
     @Test
-    public void appliedBrnAndNotUnderReview_shouldNotThrowException() {
+    public void appliedBrnApproved_shouldThrowException() {
         RegistrationRequest registrationRequest = new RegistrationRequest("hakimluqq25", LocalDateTime.now().plusDays(7));
         RegistrationApplication registrationApplication = new RegistrationApplication(
                 "TerraForm", new Address("1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA),
-                "3883", Structure.SOLE, "2223");
+                "3883", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
+        registrationApplication.elevateStatusTo(RegistrationApplicationStatus.PROCESSING);
+        registrationApplication.elevateStatusTo(RegistrationApplicationStatus.APPROVED);
+        applicationRepository.save(registrationApplication);
+        requestRepository.save(registrationRequest);
+        ApplyRegistrationRequest applyRegistrationRequest = new ApplyRegistrationRequest(registrationRequest.getId(), "Terraform",
+                "1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA,
+                "20223344", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
+        RegistrationApplier applier = new ApplyRegistration(applicationRepository, requestRepository, companyRepository);
+
+        Assert.assertThrows(InvalidRegistrationApplication.class, ()-> applier.apply(applyRegistrationRequest));
+    }
+
+    @Test
+    public void appliedBrnRejected_shouldNotThrowException() {
+        RegistrationRequest registrationRequest = new RegistrationRequest("hakimluqq25", LocalDateTime.now().plusDays(7));
+        RegistrationApplication registrationApplication = new RegistrationApplication(
+                "TerraForm", new Address("1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA),
+                "3883", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
         registrationApplication.elevateStatusTo(RegistrationApplicationStatus.PROCESSING);
         registrationApplication.elevateStatusTo(RegistrationApplicationStatus.REJECTED);
         applicationRepository.save(registrationApplication);
         requestRepository.save(registrationRequest);
         ApplyRegistrationRequest applyRegistrationRequest = new ApplyRegistrationRequest(registrationRequest.getId(), "Terraform",
                 "1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA,
-                "20223344", Structure.SOLE, "2223");
+                "20223344", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
         RegistrationApplier applier = new ApplyRegistration(applicationRepository, requestRepository, companyRepository);
         applier.apply(applyRegistrationRequest);
     }
@@ -70,12 +89,12 @@ public class applyRegistrationApplicationTest {
         RegistrationRequest registrationRequest = new RegistrationRequest("hakimluqq25", LocalDateTime.now().plusDays(7));
         RegistrationApplication registrationApplication = new RegistrationApplication(
                 "TerraForm", new Address("1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA),
-                "3883", Structure.SOLE, "2223");
+                "3883", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
         applicationRepository.save(registrationApplication);
         requestRepository.save(registrationRequest);
         ApplyRegistrationRequest applyRegistrationRequest = new ApplyRegistrationRequest(registrationRequest.getId(), "Terraform",
                 "1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA,
-                "3883", Structure.SOLE, "2223");
+                "3883", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
         RegistrationApplier applier = new ApplyRegistration(applicationRepository, requestRepository, companyRepository);
         InvalidRegistrationApplication error = Assert.assertThrows(InvalidRegistrationApplication.class,
                 ()-> applier.apply(applyRegistrationRequest));
@@ -84,14 +103,14 @@ public class applyRegistrationApplicationTest {
 
     @Test
     public void duplicateBrnAndCompanyAccountIsActive_shouldThrowException() {
-        CompanyAccount companyAccount = new CompanyAccount("Terraform", new Address("1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA),
+        Company company = new Company("Terraform", new Address("1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA),
                 "3883", "2223", Structure.SOLE);
-        companyRepository.save(companyAccount);
+        companyRepository.save(company);
         RegistrationRequest registrationRequest = new RegistrationRequest("hakimluqq25", LocalDateTime.now().plusDays(7));
         requestRepository.save(registrationRequest);
         ApplyRegistrationRequest applyRegistrationRequest = new ApplyRegistrationRequest(registrationRequest.getId(), "Terraform",
                 "1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA,
-                "3883", Structure.SOLE, "2223");
+                "3883", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
         RegistrationApplier applier = new ApplyRegistration(applicationRepository, requestRepository, companyRepository);
         InvalidRegistrationApplication error = Assert.assertThrows(InvalidRegistrationApplication.class,
                 ()-> applier.apply(applyRegistrationRequest));
@@ -100,16 +119,30 @@ public class applyRegistrationApplicationTest {
 
     @Test
     public void duplicateBrnAndCompanyAccountIsInactive_shouldNotThrowException() {
-        CompanyAccount companyAccount = new CompanyAccount("Terraform", new Address("1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA),
+        Company company = new Company("Terraform", new Address("1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA),
                 "3883", "2223", Structure.SOLE);
-        companyAccount.terminateAccount();
-        companyRepository.save(companyAccount);
+        company.terminateAccount();
+        companyRepository.save(company);
         RegistrationRequest registrationRequest = new RegistrationRequest("hakimluqq25", LocalDateTime.now().plusDays(7));
         requestRepository.save(registrationRequest);
         ApplyRegistrationRequest applyRegistrationRequest = new ApplyRegistrationRequest(registrationRequest.getId(), "Terraform",
                 "1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA,
-                "3883", Structure.SOLE, "2223");
+                "3883", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
         RegistrationApplier applier = new ApplyRegistration(applicationRepository, requestRepository, companyRepository);
         applier.apply(applyRegistrationRequest);
+    }
+
+    @Test
+    public void nullUsername_usernameShouldEqualEmail(){
+        RegistrationRequest registrationRequest = new RegistrationRequest("hakimluqq25", LocalDateTime.now().plusDays(7));
+        requestRepository.save(registrationRequest);
+        ApplyRegistrationRequest applyRegistrationRequest = new ApplyRegistrationRequest(registrationRequest.getId(), "Terraform",
+                "1", "1", "1", "Sepang", "43900", "Selangor", Country.MALAYSIA,
+                "3883", Structure.SOLE, "2223", "luqman", "hakim", null, "3535");
+        RegistrationApplier applier = new ApplyRegistration(applicationRepository, requestRepository, companyRepository);
+        applier.apply(applyRegistrationRequest);
+
+        Optional<RegistrationApplication> applicationOptional =  applicationRepository.getByBrn(applyRegistrationRequest.brn());
+        applicationOptional.ifPresent(registrationApplication -> Assert.assertEquals(registrationApplication.getUsername(), registrationRequest.getEmail()));
     }
 }
