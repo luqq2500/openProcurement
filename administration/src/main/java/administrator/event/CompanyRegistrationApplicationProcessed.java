@@ -1,6 +1,6 @@
 package administrator.event;
 
-import domain.DomainEvent;
+import event.DomainEvent;
 
 import java.time.Instant;
 import java.util.UUID;

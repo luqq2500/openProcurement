@@ -1,41 +1,34 @@
 package company.usecase;
 
-import company.Company;
+import annotation.DomainService;
 import company.RegistrationApplication;
 import company.RegistrationRequest;
 import company.address.Address;
 import company.api.RegistrationApplier;
-import company.exception.InvalidRegistrationApplication;
-import company.spi.CompanyRepository;
+import company.events.integrationEvents.RegistrationSubmitted;
+import company.exception.InvalidRegistrationSubmission;
 import company.spi.RegistrationApplicationRepository;
 import company.spi.RegistrationRequestRepository;
+import port.IntegrationEventPublisher;
 
-import java.util.Optional;
-
+@DomainService
 public class ApplyRegistration implements RegistrationApplier {
     private final RegistrationApplicationRepository applicationRepository;
     private final RegistrationRequestRepository requestRepository;
-    private final CompanyRepository companyRepository;
-    public ApplyRegistration(RegistrationApplicationRepository applicationRepository, RegistrationRequestRepository requestRepository, CompanyRepository companyRepository) {
+    private final IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher;
+    public ApplyRegistration(RegistrationApplicationRepository applicationRepository, RegistrationRequestRepository requestRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
         this.applicationRepository = applicationRepository;
         this.requestRepository = requestRepository;
-        this.companyRepository = companyRepository;
+        this.integrationEventPublisher = integrationEventPublisher;
     }
     @Override
     public void apply(ApplyRegistrationRequest request) {
         RegistrationRequest registrationRequest = requestRepository.getById(request.registrationRequestId());
         if (!registrationRequest.isValid()){
-            throw new InvalidRegistrationApplication("Registration request has already expired.");
-        }
-        Optional<RegistrationApplication> getApplication = applicationRepository.getByBrn(request.brn());
-        if (getApplication.isPresent() && getApplication.get().isUnderReview()) {
-            throw new InvalidRegistrationApplication("Registration application is under review.");
-        }
-        Optional<Company> company = companyRepository.findByBrn(request.brn());
-        if (company.isPresent() && company.get().isActive()) {
-            throw new InvalidRegistrationApplication("Business has been registered.");
+            throw new InvalidRegistrationSubmission("Registration request has already expired.");
         }
         RegistrationApplication application = new RegistrationApplication(
+                registrationRequest.getEmail(),
                 request.companyName(),
                 new Address(request.street1(), request.street2(), request.street3(), request.city(), request.zip(), request.state(), request.country()),
                 request.brn(),
@@ -47,5 +40,6 @@ public class ApplyRegistration implements RegistrationApplier {
                 request.password()
         );
         applicationRepository.save(application);
+        integrationEventPublisher.publish(new RegistrationSubmitted(application));
     }
 }

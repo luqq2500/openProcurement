@@ -1,5 +1,8 @@
 package administrator;
 
+import company.RegistrationApplication;
+import company.RegistrationStatus;
+
 import java.util.UUID;
 
 public class Administrator {
@@ -20,4 +23,8 @@ public class Administrator {
     public void validateRole(AdministratorRole assignedRole) {
         this.role.checkAssignedRole(assignedRole);
     }
+    public UUID getAdministratorId() {
+        return administratorId;
+    }
+
 }

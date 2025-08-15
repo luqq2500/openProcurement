@@ -1,7 +1,7 @@
 package administrator.event;
 
 import administrator.AdministratorRole;
-import domain.DomainEvent;
+import event.DomainEvent;
 
 import java.time.Instant;
 import java.util.UUID;
