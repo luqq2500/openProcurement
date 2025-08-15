@@ -23,11 +23,9 @@ public class RegistrationApplication {
         this.status = newStatus;
         this.statusUpdateByAdministratorId = administrator.getAdministratorId();
     }
-
     public boolean isInProgress() {
         return this.status.equals(RegistrationStatus.IN_PROGRESS);
     }
-
     public void reject(){
         this.status.validateStatusUpdateTo(RegistrationStatus.REJECTED);
         this.status = RegistrationStatus.REJECTED;

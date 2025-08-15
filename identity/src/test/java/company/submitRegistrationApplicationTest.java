@@ -29,14 +29,12 @@ import static org.mockito.Mockito.*;
 public class submitRegistrationApplicationTest {
     private RegistrationRequestRepository requestRepository;
     private RegistrationApplicationRepository registrationApplicationRepository;
-    private CompanyRepository companyRepository;
     @Mock
     private IntegrationEventPublisher<RegistrationSubmitted> mockIntegrationEventPublisher;
     @Before
     public void setUp() throws Exception {
         registrationApplicationRepository = new MockRegistrationApplicationRepository();
         requestRepository = new MockRegistrationRequestRepository();
-        companyRepository = new MockCompanyRepository();
         doNothing().when(mockIntegrationEventPublisher).publish(any(RegistrationSubmitted.class));
     }
 

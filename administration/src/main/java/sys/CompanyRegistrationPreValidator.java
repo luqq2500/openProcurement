@@ -1,7 +1,7 @@
 package sys;
 
-import java.util.UUID;
+import company.RegistrationPreValidation;
 
 public interface CompanyRegistrationPreValidator {
-    void preValidate(UUID registrationId, String brn, String taxNumber);
+    void preValidate(RegistrationPreValidation registrationPreValidation);
 }
