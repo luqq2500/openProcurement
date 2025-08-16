@@ -1,6 +1,6 @@
 package company.spi;
 
-import company.RegistrationApplication;
+import company.registration.RegistrationApplication;
 
 import java.util.Optional;
 

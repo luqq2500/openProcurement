@@ -1,6 +1,7 @@
-package company;
+package company.registration;
 
 import administrator.Administrator;
+import company.RegistrationStatus;
 import company.exception.RegistrationApplicationException;
 
 import java.util.UUID;

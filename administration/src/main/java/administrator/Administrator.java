@@ -1,8 +1,5 @@
 package administrator;
 
-import company.RegistrationApplication;
-import company.RegistrationStatus;
-
 import java.util.UUID;
 
 public class Administrator {

@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/administration/src/main/java/company/RegistrationPreValidation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/sys/CompanyRegistrationPreValidator.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/sys/CompanyRegistrationPreValidator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/sys/PreValidateCompanyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/sys/PreValidateCompanyRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/test/java/company/submitRegistrationApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/company/submitRegistrationApplicationTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,9 +15,9 @@
       <list>
         <option value="package-info" />
         <option value="Record" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -125,9 +119,9 @@
 }</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="company.spi" />
       <recent name="company" />
       <recent name="company.exception" />
-      <recent name="company.spi" />
       <recent name="sys" />
       <recent name="integrationEvent.publisher" />
     </key>
@@ -284,7 +278,7 @@
       <workItem from="1755145179821" duration="18650000" />
       <workItem from="1755183644594" duration="47000" />
       <workItem from="1755220724924" duration="17800000" />
-      <workItem from="1755299690832" duration="823000" />
+      <workItem from="1755299690832" duration="1745000" />
     </task>
     <servers />
   </component>

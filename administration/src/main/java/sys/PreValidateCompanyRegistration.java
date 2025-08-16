@@ -1,7 +1,7 @@
 package sys;
 
-import company.RegistrationApplication;
-import company.RegistrationPreValidation;
+import company.registration.RegistrationApplication;
+import company.registration.RegistrationPreValidation;
 import company.spi.CompanyRepository;
 import company.spi.NotPassedPreValidationRegistrationRepository;
 import company.spi.RegistrationApplicationRepository;

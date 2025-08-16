@@ -1,6 +1,6 @@
 package sys;
 
-import company.RegistrationPreValidation;
+import company.registration.RegistrationPreValidation;
 
 public interface CompanyRegistrationPreValidator {
     void preValidate(RegistrationPreValidation registrationPreValidation);
