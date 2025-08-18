@@ -13,11 +13,13 @@ public class RegistrationPreValidation {
         this.companyName = companyName;
         this.brn = brn;
         this.taxNumber = taxNumber;
+        this.status = PreValidationRegistrationStatus.IN_PROGRESS;
     }
-    public void updateStatusTo(PreValidationRegistrationStatus newStatus) {
-        this.status = newStatus;
+    public void updateStatusTo(PreValidationRegistrationStatus status) {
+        if (this.status.canElevateStatusTo(status)) {
+            this.status = status;
+        }
     }
-
     public UUID getRegistrationId() {
         return registrationId;
     }

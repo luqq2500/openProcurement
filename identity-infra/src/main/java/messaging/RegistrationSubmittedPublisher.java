@@ -1,7 +1,7 @@
 package messaging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import company.events.integrationEvents.RegistrationSubmitted;
+import company.events.domain.RegistrationSubmitted;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;

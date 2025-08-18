@@ -4,7 +4,70 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="" />
+    <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/AccountStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/company/CompanyAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/employee/EmployeeAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/employee/EmployeeRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/employee/PersonnelDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/exception/InvalidAccountStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/guess/GuessAccount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/company/CompanyDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/AccountAdministratorDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/CompanyDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplicationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/api/RegistrationApplier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/api/RegistrationPreEvaluator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationApplicationSubmitted.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationApplicationSubmittedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/exception/InvalidRegistrationApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/spi/RegistrationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecase/ApplyRegistration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecase/dto/RegistrationApplierRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/event/InMemoryEventBus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration/src/main/java/company/registration/PreValidationRegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/company/registration/PreValidationRegistrationStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration/src/main/java/company/registration/RegistrationPreValidation.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/company/registration/RegistrationPreValidation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity-infra/src/main/java/messaging/RegistrationSubmittedPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity-infra/src/main/java/messaging/RegistrationSubmittedPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/Company.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/CountryRegistrationRule.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/RegistrationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/RegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplicationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/RegistrationStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/Structure.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/company/Structure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/accountAdministrator/AccountAdministrator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/address/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/address/Address.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/address/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/address/Country.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/api/RegistrationApplier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/events/integrationEvents/RegistrationSubmitted.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/exception/CountryRegistrationRuleException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/exception/InvalidRegistrationApplicationStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/exception/InvalidRegistrationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/exception/InvalidRegistrationSubmission.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/spi/CompanyRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/spi/CountryRegistrationRuleRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/spi/RegistrationApplicationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/spi/RegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/spi/RegistrationRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/spi/mock/MockCompanyRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/spi/mock/MockRegistrationApplicationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/spi/mock/MockRegistrationRequestRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/usecase/ApplyRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/company/usecase/ApplyRegistrationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain.txt" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/event/DomainEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/event/DomainEventHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/event/EventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/event/EventBus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/InvalidUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/UserRole.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/event/UserAuthenticationFailed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/event/UserAuthenticationPassed.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/event/publisher/UserAuthenticationFailedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/event/publisher/UserAuthenticationPassedHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/user/spi/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/test/java/company/submitRegistrationApplicationTest.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,10 +77,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Record" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,85 +108,86 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #10.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #5.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #6.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #8.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #9.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.administratorUpdateCompanyRegistrationStatus.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.companyAlreadyRegistered_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.companyRegisteredAndActive_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.duplicateBrnAndCompanyAccountIsInactive_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.duplicateBrnAndNotUnderReview_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.expiredRegistrationRequest_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.pendingToInvalidStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.processingToInvalidStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.updateApprovedStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.updatePendingToValidStatus_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.updateProcessingToValidStatus_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.updateRejectedStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.approvedToInvalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.invalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.processingToInvalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.initiateVerificationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.mockOTPServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationFactoryTest.SMSType_shouldReturnSMSService.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationFactoryTest.emailType_shouldReturnEmailService.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationFactoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationFactoryTest.notificationFactoryShouldReturnNotificationImplementation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationServiceTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationStrategyTest.emailType_shouldReturnEmailService.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.otpTokenTest.wrongOtp.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.registrationApplicationStatusTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.registrationApplicationStatusTest.pendingToProcessing_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.requestCompanyRegistrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.requestCompanyRegistrationTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tokenServiceTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tokenTest.expiredOtp.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tokenTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tokenTest.tokenExpired.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.verifyCompanyRegistrationRequestTest.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.IdentityInfraApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.InfrastructureApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/hakim/code/java/openProcurement/administration/src/main/java/company&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.generated-requests | #1.executor": "Run",
+    "HTTP Request.generated-requests | #10.executor": "Run",
+    "HTTP Request.generated-requests | #2.executor": "Run",
+    "HTTP Request.generated-requests | #3.executor": "Run",
+    "HTTP Request.generated-requests | #4.executor": "Run",
+    "HTTP Request.generated-requests | #5.executor": "Run",
+    "HTTP Request.generated-requests | #6.executor": "Run",
+    "HTTP Request.generated-requests | #8.executor": "Run",
+    "HTTP Request.generated-requests | #9.executor": "Run",
+    "JUnit.ApplyRegistrationTest.testApplyRegistration.executor": "Run",
+    "JUnit.administratorUpdateCompanyRegistrationStatus.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.companyAlreadyRegistered_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.companyRegisteredAndActive_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.duplicateBrnAndCompanyAccountIsInactive_shouldNotThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.duplicateBrnAndNotUnderReview_shouldNotThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.expiredRegistrationRequest_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.test.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.pendingToInvalidStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.processingToInvalidStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateApprovedStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updatePendingToValidStatus_shouldNotThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateProcessingToValidStatus_shouldNotThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateRejectedStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.approvedToInvalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.executor": "Run",
+    "JUnit.companyRegistrationTest.invalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.processingToInvalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.test.executor": "Run",
+    "JUnit.initiateVerificationTest.executor": "Run",
+    "JUnit.mockOTPServiceTest.executor": "Run",
+    "JUnit.notificationFactoryTest.SMSType_shouldReturnSMSService.executor": "Run",
+    "JUnit.notificationFactoryTest.emailType_shouldReturnEmailService.executor": "Run",
+    "JUnit.notificationFactoryTest.executor": "Run",
+    "JUnit.notificationFactoryTest.notificationFactoryShouldReturnNotificationImplementation.executor": "Run",
+    "JUnit.notificationServiceTest.test.executor": "Run",
+    "JUnit.notificationStrategyTest.emailType_shouldReturnEmailService.executor": "Run",
+    "JUnit.otpTokenTest.wrongOtp.executor": "Run",
+    "JUnit.registrationApplicationStatusTest.executor": "Run",
+    "JUnit.registrationApplicationStatusTest.pendingToProcessing_shouldNotThrowException.executor": "Run",
+    "JUnit.requestCompanyRegistrationTest.executor": "Run",
+    "JUnit.requestCompanyRegistrationTest.test.executor": "Run",
+    "JUnit.tokenServiceTest.test.executor": "Run",
+    "JUnit.tokenTest.expiredOtp.executor": "Run",
+    "JUnit.tokenTest.test.executor": "Run",
+    "JUnit.tokenTest.tokenExpired.executor": "Run",
+    "JUnit.verifyCompanyRegistrationRequestTest.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.IdentityInfraApplication.executor": "Run",
+    "Spring Boot.InfrastructureApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/hakim/code/java/openProcurement/administration/src/main/java/company",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="company.spi" />
-      <recent name="company" />
-      <recent name="company.exception" />
-      <recent name="sys" />
-      <recent name="integrationEvent.publisher" />
+      <recent name="domain.registration.exception" />
+      <recent name="domain.registration" />
+      <recent name="domain.registration.api" />
+      <recent name="model.registration.exception" />
+      <recent name="model.registration" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hakim\code\java\openProcurement\administration\src\main\java\company" />
@@ -149,15 +213,31 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="HTTP Request.generated-requests | #10">
+  <component name="RunManager" selected="JUnit.ApplyRegistrationTest.testApplyRegistration">
     <configuration name="generated-requests | #10" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#10" index="10" runType="Run single request">
       <method v="2" />
+    </configuration>
+    <configuration name="ApplyRegistrationTest.testApplyRegistration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="identity" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="domain.registration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="domain.registration" />
+      <option name="MAIN_CLASS_NAME" value="domain.registration.ApplyRegistrationTest" />
+      <option name="METHOD_NAME" value="testApplyRegistration" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
     </configuration>
     <configuration name="submitRegistrationApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="company.*" />
+          <option name="PATTERN" value="company.registration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -188,29 +268,13 @@
       <module name="identity" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="company.*" />
+          <option name="PATTERN" value="company.registration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="company" />
       <option name="MAIN_CLASS_NAME" value="company.submitRegistrationApplicationTest" />
       <option name="METHOD_NAME" value="expiredRegistrationRequest_shouldThrowException" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="submitRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="identity" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="company.spi.mock.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="company" />
-      <option name="MAIN_CLASS_NAME" value="company.submitRegistrationApplicationTest" />
-      <option name="METHOD_NAME" value="nullUsername_usernameShouldEqualEmail" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -242,11 +306,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ApplyRegistrationTest.testApplyRegistration" />
         <item itemvalue="JUnit.submitRegistrationApplicationTest.expiredRegistrationRequest_shouldThrowException" />
         <item itemvalue="JUnit.submitRegistrationApplicationTest" />
         <item itemvalue="JUnit.submitRegistrationApplicationTest.appliedBrnApproved_shouldThrowException" />
         <item itemvalue="HTTP Request.generated-requests | #10" />
-        <item itemvalue="JUnit.submitRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail" />
       </list>
     </recent_temporary>
   </component>
@@ -279,6 +343,8 @@
       <workItem from="1755183644594" duration="47000" />
       <workItem from="1755220724924" duration="17800000" />
       <workItem from="1755299690832" duration="1745000" />
+      <workItem from="1755305098462" duration="826000" />
+      <workItem from="1755325094842" duration="24846000" />
     </task>
     <servers />
   </component>
