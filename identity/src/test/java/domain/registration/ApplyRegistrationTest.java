@@ -45,6 +45,7 @@ public class ApplyRegistrationTest {
     @Test
     public void testApplyRegistration() throws Exception {
         when(registrationRequestRepository.getById(any(UUID.class))).thenReturn(validRequest);
+        when(eventBus.getInstance()).thenReturn(new InMemoryEventBus());
         applier.apply(
                 new RegistrationApplierRequest(
                         validRequest.getId(),
@@ -59,5 +60,25 @@ public class ApplyRegistrationTest {
                 )
         );
         verify(registrationRepository).add(any(RegistrationApplication.class));
+    }
+
+    @Test
+    public void expiredRequest_shouldThrowException() {
+        when(registrationRequestRepository.getById(any(UUID.class))).thenReturn(invalidRequest);
+        when(eventBus.getInstance()).thenReturn(new InMemoryEventBus());
+        applier.apply(
+                new RegistrationApplierRequest(
+                        validRequest.getId(),
+                        "texa",
+                        new Address("1", "1", "1", "Sepang",
+                                "43900", "Selangor", Country.MALAYSIA),
+                        "dummy",
+                        Structure.SOLE,
+                        "luqman",
+                        "hakim",
+                        null,
+                        "123"
+                )
+        );
     }
 }

@@ -15,7 +15,7 @@ public class RegistrationApplication {
         this.requestId = requestId;
         this.companyDetails = companyDetails;
         this.accountAdministratorDetails = accountAdministratorDetails;
-        this.status = RegistrationApplicationStatus.PENDING;
+        this.status = RegistrationApplicationStatus.IN_PROGRESS;
         this.updateVersion = 1;
     }
     public void updateStatus(RegistrationApplicationStatus newStatus) {

@@ -8,13 +8,13 @@ import domain.company.CompanyDetails;
 import java.util.List;
 import java.util.UUID;
 
-public class CompanyAccount {
+public class Company {
     private final UUID registrationId;
     private final UUID id;
     private CompanyDetails companyDetails;
     private List<EmployeeAccount> employeeAccounts;
     private AccountStatus accountStatus;
-    public CompanyAccount(UUID registrationId, CompanyDetails companyDetails) {
+    public Company(UUID registrationId, CompanyDetails companyDetails) {
         this.id = UUID.randomUUID();
         this.registrationId = registrationId;
         this.companyDetails = companyDetails;

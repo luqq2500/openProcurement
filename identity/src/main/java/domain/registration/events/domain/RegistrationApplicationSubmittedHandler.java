@@ -11,7 +11,7 @@ public class RegistrationApplicationSubmittedHandler implements DomainEventHandl
     }
     @Override
     public void handle(RegistrationApplicationSubmitted event) {
-        preEvaluator.evaluate(event);
+        preEvaluator.evaluate(event.getRegistrationId(), event.getCompanyName(), event.getBrn(), event.getUsername());
     }
     @Override
     public Class<RegistrationApplicationSubmitted> getEvent() {
