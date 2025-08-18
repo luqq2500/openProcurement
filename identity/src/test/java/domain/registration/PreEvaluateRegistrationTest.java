@@ -1,11 +1,9 @@
 package domain.registration;
 
-import domain.company.spi.CompanyRepository;
 import domain.employee.spi.EmployeeRepository;
 import domain.registration.api.RegistrationPreEvaluator;
 import domain.registration.spi.RegistrationRepository;
-import domain.registration.usecase.PreEvaluateRegistration;
-import event.DomainEvent;
+import domain.registration.usecases.PreEvaluateRegistration;
 import event.EventBus;
 import org.junit.Test;
 import org.mockito.Mock;

@@ -1,7 +1,5 @@
 package domain.registration.api;
 
-import domain.registration.events.domain.RegistrationApplicationSubmitted;
-
 import java.util.UUID;
 
 public interface RegistrationPreEvaluator {

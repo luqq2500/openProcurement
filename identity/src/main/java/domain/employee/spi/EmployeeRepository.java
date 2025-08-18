@@ -1,9 +1,9 @@
 package domain.employee.spi;
 
-import domain.account.employee.EmployeeAccount;
+import domain.employee.Employee;
 
 import java.util.Optional;
 
 public interface EmployeeRepository {
-    Optional<EmployeeAccount> findByUsername(String username);
+    Optional<Employee> findByUsername(String username);
 }

@@ -1,7 +1,5 @@
 package domain.account;
 
-import domain.account.exception.InvalidAccountStatus;
-
 public enum AccountStatus {
     ACTIVE, INACTIVE;
 

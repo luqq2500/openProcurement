@@ -4,14 +4,13 @@ import domain.address.Address;
 import domain.address.Country;
 import domain.company.Structure;
 import domain.registration.api.RegistrationApplier;
-import domain.registration.events.domain.RegistrationApplicationSubmitted;
+import domain.registration.exception.InvalidRegistrationApplication;
 import domain.registration.spi.RegistrationRepository;
 import domain.registration.spi.RegistrationRequestRepository;
-import domain.registration.usecase.ApplyRegistration;
-import domain.registration.usecase.dto.RegistrationApplierRequest;
-import event.DomainEvent;
+import domain.registration.usecases.ApplyRegistration;
 import event.EventBus;
 import event.InMemoryEventBus;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -25,27 +24,26 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class ApplyRegistrationTest {
-    private RegistrationApplicationRequest validRequest;
-    private RegistrationApplicationRequest invalidRequest;
+    private RegistrationRequest validRequest;
+    private RegistrationRequest invalidRequest;
     private RegistrationApplier applier;
     @Mock
-    RegistrationRepository registrationRepository;
+    private EventBus eventBus;
     @Mock
-    RegistrationRequestRepository registrationRequestRepository;
+    private RegistrationRepository registrationRepository;
     @Mock
-    EventBus eventBus;
+    private RegistrationRequestRepository registrationRequestRepository;
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        validRequest = new RegistrationApplicationRequest("hakimluqq25@gmail.com", LocalDateTime.now().plusDays(7));
-        invalidRequest = new RegistrationApplicationRequest("hakimluqq25@gmail.com", LocalDateTime.now().plusDays(-7));
+        validRequest = new RegistrationRequest(UUID.randomUUID(), "hakimluqq25@gmail.com", LocalDateTime.now().plusDays(7));
+        invalidRequest = new RegistrationRequest(UUID.randomUUID(), "hakimluqq25@gmail.com", LocalDateTime.now().plusDays(-7));
         applier = new ApplyRegistration(registrationRequestRepository,registrationRepository,eventBus);
     }
 
     @Test
     public void testApplyRegistration() throws Exception {
         when(registrationRequestRepository.getById(any(UUID.class))).thenReturn(validRequest);
-        when(eventBus.getInstance()).thenReturn(new InMemoryEventBus());
         applier.apply(
                 new RegistrationApplierRequest(
                         validRequest.getId(),
@@ -66,8 +64,7 @@ public class ApplyRegistrationTest {
     public void expiredRequest_shouldThrowException() {
         when(registrationRequestRepository.getById(any(UUID.class))).thenReturn(invalidRequest);
         when(eventBus.getInstance()).thenReturn(new InMemoryEventBus());
-        applier.apply(
-                new RegistrationApplierRequest(
+        Assert.assertThrows(InvalidRegistrationApplication.class, ()-> applier.apply(new RegistrationApplierRequest(
                         validRequest.getId(),
                         "texa",
                         new Address("1", "1", "1", "Sepang",
@@ -79,6 +76,6 @@ public class ApplyRegistrationTest {
                         null,
                         "123"
                 )
-        );
+        ));
     }
 }

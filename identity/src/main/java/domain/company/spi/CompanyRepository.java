@@ -1,6 +1,6 @@
 package domain.company.spi;
 
-import domain.account.company.Company;
+import domain.company.Company;
 
 import java.util.Optional;
 import java.util.UUID;

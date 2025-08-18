@@ -1,0 +1,29 @@
+package domain.registration.usecases;
+
+import domain.guess.Guess;
+import domain.guess.spi.GuessRepository;
+import domain.registration.RegistrationRequest;
+import domain.registration.events.RegistrationRequested;
+import domain.registration.api.RegistrationRequestor;
+import domain.registration.spi.RegistrationRequestRepository;
+import port.IntegrationEventHandler;
+
+import java.util.UUID;
+
+public class RequestRegistration implements RegistrationRequestor {
+    private final RegistrationRequestRepository requestRepository;
+    private final GuessRepository guessRepository;
+    private final IntegrationEventHandler<RegistrationRequested> integrationEventHandler;
+
+    public RequestRegistration(RegistrationRequestRepository requestRepository, GuessRepository guessRepository, IntegrationEventHandler<RegistrationRequested> integrationEventHandler) {
+        this.requestRepository = requestRepository;
+        this.guessRepository = guessRepository;
+        this.integrationEventHandler = integrationEventHandler;
+    }
+    @Override
+    public void request(UUID guessAccountId) {
+        Guess guess = guessRepository.get(guessAccountId);
+        requestRepository.add(new RegistrationRequest(guess.getId()));
+        integrationEventHandler.handle(new RegistrationRequested(guess.getEmail()));
+    }
+}

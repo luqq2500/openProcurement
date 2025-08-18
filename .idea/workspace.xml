@@ -5,18 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/company/spi/CompanyRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/employee/spi/EmployeeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationPreEvaluated.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecase/PreEvaluateRegistration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/PreEvaluateRegistrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/guess/spi/GuessAccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/api/RegistrationUpdater.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationUpdated.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationUpdatedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/integration/RegistrationPreEvaluationFailed.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/integration/RegistrationPreEvaluationPassedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/usecase/UpdateRegistration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/account/company/CompanyAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/company/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplicationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplicationStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/account/AccountStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/AccountStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/account/exception/InvalidAccountStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/account/InvalidAccountStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplicationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplicationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/api/RegistrationApplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/api/RegistrationApplier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/api/RegistrationPreEvaluator.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/api/RegistrationPreEvaluator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationApplicationSubmittedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationApplicationSubmittedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationApplicationSubmitted.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationSubmitted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationApplicationSubmittedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationSubmittedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/domain/RegistrationPreEvaluated.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/integration/RegistrationPreEvaluationPassed.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecase/ApplyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/usecase/ApplyRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecase/PreEvaluateRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/usecase/PreEvaluateRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecase/dto/RegistrationApplierRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/usecase/dto/RegistrationApplierRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/PreEvaluateRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/PreEvaluateRegistrationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +38,8 @@
         <option value="package-info" />
         <option value="Enum" />
         <option value="Record" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -135,11 +144,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="domain.guess.spi" />
+      <recent name="domain.registration.api" />
       <recent name="domain.registration.events.domain" />
       <recent name="domain.employee.spi" />
       <recent name="domain.company.spi" />
-      <recent name="domain.registration.usecase" />
-      <recent name="domain.registration.exception" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hakim\code\java\openProcurement\administration\src\main\java\company" />
@@ -165,7 +174,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PreEvaluateRegistrationTest.testPreEvaluateRegistration">
+  <component name="RunManager" selected="JUnit.ApplyRegistrationTest.expiredRequest_shouldThrowException">
     <configuration name="ApplyRegistrationTest.expiredRequest_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
@@ -271,8 +280,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.PreEvaluateRegistrationTest.testPreEvaluateRegistration" />
         <item itemvalue="JUnit.ApplyRegistrationTest.expiredRequest_shouldThrowException" />
+        <item itemvalue="JUnit.PreEvaluateRegistrationTest.testPreEvaluateRegistration" />
         <item itemvalue="JUnit.ApplyRegistrationTest.testApplyRegistration" />
         <item itemvalue="JUnit.submitRegistrationApplicationTest.expiredRegistrationRequest_shouldThrowException" />
         <item itemvalue="JUnit.submitRegistrationApplicationTest" />
@@ -309,7 +318,7 @@
       <workItem from="1755220724924" duration="17800000" />
       <workItem from="1755299690832" duration="1745000" />
       <workItem from="1755305098462" duration="826000" />
-      <workItem from="1755325094842" duration="29027000" />
+      <workItem from="1755325094842" duration="33252000" />
     </task>
     <servers />
   </component>
