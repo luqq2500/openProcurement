@@ -12,6 +12,20 @@ import domain.registration.spi.RegistrationRepository;
 import domain.registration.spi.RegistrationRequestRepository;
 import event.EventBus;
 
+import java.util.Optional;
+
+/// ApplyRegistration: Company registration application use case.
+///
+/// 1. Check submitted information is new or an update from previous rejected application.
+/// 2. Save application.
+/// 3. Publish registration submitted event
+///
+/// Params:
+/// @ requestId: reference to registration request
+/// @ companyDetails: name, address, brn, structure
+/// @ administratorAccountDetails: first name, last name, username, password
+///
+
 @DomainService
 public class ApplyRegistration implements RegistrationApplier {
     private final RegistrationRepository registrationRepository;
@@ -26,13 +40,22 @@ public class ApplyRegistration implements RegistrationApplier {
 
     @Override
     public void apply(RegistrationApplierRequest registration) {
-        RegistrationRequest request = registrationRequestRepository.getById(registration.requestId());
-        RegistrationApplication registrationApplication = new RegistrationApplication(
-                request.getId(),
-                new CompanyDetails(registration.companyName(), registration.address(), registration.brn(), registration.structure()),
-                new AccountAdministratorDetails(registration.firstName(), registration.lastName(), registration.username(), registration.password())
-        );
-        registrationRepository.add(registrationApplication);
-        eventBus.getInstance().publish(new RegistrationSubmitted(registrationApplication));
+        RegistrationApplication application;
+        CompanyDetails companyDetails = new CompanyDetails(registration.companyName(), registration.address(), registration.brn(), registration.structure());
+        AccountAdministratorDetails accountAdministratorDetails = new AccountAdministratorDetails(registration.firstName(), registration.lastName(), registration.username(), registration.password());
+
+        Optional<RegistrationApplication> previousRegistration = registrationRepository.findLatestByRequestId(registration.requestId());
+        if (previousRegistration.isPresent() && previousRegistration.get().isRejected()){
+            application = previousRegistration.get()
+                    .updateCompanyDetails(companyDetails)
+                    .updateAccountAdministratorDetails(accountAdministratorDetails)
+                    .updateAll();
+        } else {
+            RegistrationRequest request = registrationRequestRepository.getById(registration.requestId());
+            application = new RegistrationApplication(
+                    request.getId(), companyDetails, accountAdministratorDetails);
+        }
+        registrationRepository.add(application);
+        eventBus.publish(new RegistrationSubmitted(application));
     }
 }

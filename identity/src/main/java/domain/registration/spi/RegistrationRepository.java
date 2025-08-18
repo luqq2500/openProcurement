@@ -7,8 +7,10 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface RegistrationRepository {
+    Optional<RegistrationApplication> findLatestByRequestId(UUID requestId);
+    Optional<RegistrationApplication> findLatestByBrn(String registrationId);
     Optional<RegistrationApplication> findByBrn(String brn);
     Optional<RegistrationApplication> findByCompanyName(String name);
     void add(RegistrationApplication application);
-    RegistrationApplication get(UUID id);
+    RegistrationApplication getLatest(UUID id);
 }
