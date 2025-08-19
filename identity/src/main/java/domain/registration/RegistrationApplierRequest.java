@@ -13,7 +13,7 @@ public record RegistrationApplierRequest(
         Structure structure,
         String firstName,
         String lastName,
-        String username,
+        String email,
         String password
 ) {
 }

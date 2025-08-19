@@ -1,6 +1,8 @@
 package domain.registration.usecases;
 
 import annotation.DomainService;
+import domain.employee.Employee;
+import domain.employee.spi.EmployeeRepository;
 import domain.registration.AccountAdministratorDetails;
 import domain.registration.CompanyDetails;
 import domain.registration.RegistrationApplication;
@@ -8,17 +10,19 @@ import domain.registration.RegistrationApplierRequest;
 import domain.registration.api.RegistrationApplier;
 import domain.registration.events.RegistrationSubmitted;
 import domain.registration.RegistrationRequest;
+import domain.registration.exception.InvalidRegistrationApplication;
 import domain.registration.spi.RegistrationRepository;
 import domain.registration.spi.RegistrationRequestRepository;
-import event.EventBus;
+import port.IntegrationEventPublisher;
 
 import java.util.Optional;
 
 /// ApplyRegistration: Company registration application use case.
 ///
-/// 1. Check submitted information is new or an update from previous rejected application.
-/// 2. Save application.
-/// 3. Publish registration submitted event
+/// 1. Check submitted information violates uniqueness: brn, company name, and username.
+/// 2. Check submitted information is new or an update from previous rejected application.
+/// 3. Save application.
+/// 4. Publish registration submitted event
 ///
 /// Params:
 /// @ requestId: reference to registration request
@@ -30,32 +34,44 @@ import java.util.Optional;
 public class ApplyRegistration implements RegistrationApplier {
     private final RegistrationRepository registrationRepository;
     private final RegistrationRequestRepository registrationRequestRepository;
-    private final EventBus eventBus;
+    private final EmployeeRepository employeeRepository;
+    private final IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher;
 
-    public ApplyRegistration(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EventBus eventBus) {
+    public ApplyRegistration(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
         this.registrationRepository = registrationRepository;
         this.registrationRequestRepository = registrationRequestRepository;
-        this.eventBus = eventBus;
+        this.employeeRepository = employeeRepository;
+        this.integrationEventPublisher = integrationEventPublisher;
     }
 
     @Override
     public void apply(RegistrationApplierRequest registration) {
         RegistrationApplication application;
         CompanyDetails companyDetails = new CompanyDetails(registration.companyName(), registration.address(), registration.brn(), registration.structure());
-        AccountAdministratorDetails accountAdministratorDetails = new AccountAdministratorDetails(registration.firstName(), registration.lastName(), registration.username(), registration.password());
+        AccountAdministratorDetails accountAdministratorDetails = new AccountAdministratorDetails(registration.firstName(), registration.lastName(), registration.email(), registration.password());
 
-        Optional<RegistrationApplication> previousRegistration = registrationRepository.findLatestByRequestId(registration.requestId());
-        if (previousRegistration.isPresent() && previousRegistration.get().isRejected()){
-            application = previousRegistration.get()
-                    .updateCompanyDetails(companyDetails)
-                    .updateAccountAdministratorDetails(accountAdministratorDetails)
-                    .updateAll();
+        Optional<RegistrationApplication> findCompanyName = registrationRepository.findLatestByCompanyName(companyDetails.companyName());
+        Optional<RegistrationApplication> findBrn = registrationRepository.findLatestByBrn(registration.brn());
+        Optional<Employee> findEmail = employeeRepository.findByEmail(registration.email());
+        Optional<RegistrationApplication> findRequestId = registrationRepository.findLatestByRequestId(registration.requestId());
+
+        // check uniqueness: company name, brn, and username.
+        if (findCompanyName.isPresent() && findCompanyName.get().isApproved()){throw new InvalidRegistrationApplication("Company name is already in use.");}
+        if (findBrn.isPresent() && findBrn.get().isApproved()){throw new InvalidRegistrationApplication("Brn is already in use.");}
+        if (findEmail.isPresent() && findEmail.get().isActive()){throw new InvalidRegistrationApplication("Email is already in use.");}
+
+        // check invalid registration status: approved and under review.
+        if (findRequestId.isPresent() && findRequestId.get().isApproved()){throw new InvalidRegistrationApplication("Registration has been approved.");}
+        if (findRequestId.isPresent() && findRequestId.get().isUnderReview()){throw new InvalidRegistrationApplication("Registration is under review.");}
+
+        // check new or update rejected registration
+        if (findRequestId.isPresent() && findRequestId.get().isRejected()){
+            application = findRequestId.get().editDetails(companyDetails, accountAdministratorDetails);
         } else {
             RegistrationRequest request = registrationRequestRepository.getById(registration.requestId());
-            application = new RegistrationApplication(
-                    request.getId(), companyDetails, accountAdministratorDetails);
+            application = new RegistrationApplication(request.getId(), companyDetails, accountAdministratorDetails);
         }
         registrationRepository.add(application);
-        eventBus.publish(new RegistrationSubmitted(application));
+        integrationEventPublisher.publish(new RegistrationSubmitted(application));
     }
 }

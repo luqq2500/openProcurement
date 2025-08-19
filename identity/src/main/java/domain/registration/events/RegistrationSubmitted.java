@@ -1,42 +1,40 @@
 package domain.registration.events;
 
+import domain.registration.CompanyDetails;
 import domain.registration.RegistrationApplication;
 import event.DomainEvent;
+import event.IntegrationEvent;
 
 import java.time.Instant;
 import java.util.UUID;
 
-public class RegistrationSubmitted implements DomainEvent {
+public class RegistrationSubmitted implements IntegrationEvent {
+    private final UUID eventId;
     private final UUID registrationId;
-    private final String companyName;
-    private final String brn;
-    private final String username;
+    private final CompanyDetails companyDetails;
     private final Instant submittedOn;
     public RegistrationSubmitted(RegistrationApplication registration) {
+        this.eventId = UUID.randomUUID();
         this.registrationId = registration.getId();
-        this.companyName = registration.getCompanyDetails().companyName();
-        this.brn = registration.getCompanyDetails().brn();
-        this.username = registration.getAccountAdministratorDetails().username();
+        this.companyDetails = registration.getCompanyDetails();
         this.submittedOn = Instant.now();
+    }
+
+    @Override
+    public UUID getEventId() {
+        return eventId;
+    }
+
+    @Override
+    public String getEventName() {
+        return this.getClass().getSimpleName();
     }
     @Override
     public Instant getTimestamp() {
         return submittedOn;
     }
-
     public UUID getRegistrationId() {
         return registrationId;
     }
-
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public String getBrn() {
-        return brn;
-    }
-
-    public String getUsername() {
-        return username;
-    }
+    public CompanyDetails getCompanyDetails() {return companyDetails;}
 }
