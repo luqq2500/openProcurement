@@ -4,15 +4,16 @@ import domain.registration.exception.InvalidRegistrationApplicationStatus;
 
 public enum RegistrationApplicationStatus {
     UNDER_REVIEW, REJECTED, APPROVED;
-    public void checkStatusChangeTo(RegistrationApplicationStatus newStatus) {
+    public boolean checkStatusChangeTo(RegistrationApplicationStatus newStatus) {
         if (this.equals(newStatus)) {
-            throw new InvalidRegistrationApplicationStatus("Status is already " + this.name());
+            return false;
         }
         if (this.equals(UNDER_REVIEW) && !newStatus.equals(APPROVED) && !newStatus.equals(REJECTED)) {
-            throw new InvalidRegistrationApplicationStatus(this.name() + " status cannot be elevated to " + newStatus.name());
+            return false;
         }
-        if (this.equals(APPROVED)) {
-            throw new InvalidRegistrationApplicationStatus(this.name() + " status cannot be elevated to " + newStatus.name());
+        if (this.equals(REJECTED) && !newStatus.equals(UNDER_REVIEW)) {
+            return false;
         }
+        return !this.equals(APPROVED);
     }
 }

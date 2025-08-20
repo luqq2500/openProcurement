@@ -3,19 +3,17 @@ package domain.registration.usecases;
 import annotation.DomainService;
 import domain.employee.Employee;
 import domain.employee.spi.EmployeeRepository;
-import domain.registration.AccountAdministratorDetails;
-import domain.registration.CompanyDetails;
-import domain.registration.RegistrationApplication;
-import domain.registration.RegistrationApplierRequest;
+import domain.registration.*;
 import domain.registration.api.RegistrationApplier;
 import domain.registration.events.RegistrationSubmitted;
-import domain.registration.RegistrationRequest;
 import domain.registration.exception.InvalidRegistrationApplication;
 import domain.registration.spi.RegistrationRepository;
 import domain.registration.spi.RegistrationRequestRepository;
 import port.IntegrationEventPublisher;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 /// ApplyRegistration: Company registration application use case.
 ///
@@ -66,10 +64,13 @@ public class ApplyRegistration implements RegistrationApplier {
 
         // check new or update rejected registration
         if (findRequestId.isPresent() && findRequestId.get().isRejected()){
-            application = findRequestId.get().editDetails(companyDetails, accountAdministratorDetails);
+            application = findRequestId.get().changeDetails(companyDetails, accountAdministratorDetails);
         } else {
             RegistrationRequest request = registrationRequestRepository.getById(registration.requestId());
-            application = new RegistrationApplication(request.getId(), companyDetails, accountAdministratorDetails);
+            application = new RegistrationApplication(
+                    UUID.randomUUID(), companyDetails, accountAdministratorDetails,
+                    RegistrationApplicationStatus.UNDER_REVIEW, LocalDateTime.now(),
+                    request.getId(), null);
         }
         registrationRepository.add(application);
         integrationEventPublisher.publish(new RegistrationSubmitted(application));

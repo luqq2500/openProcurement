@@ -18,15 +18,19 @@ import org.junit.Before;
 import org.junit.Test;
 import port.IntegrationEventPublisher;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-public class ApplyRegistrationTest {
+public class ApplyRegistrationApplicationTest {
     private RegistrationApplier applier;
     private RegistrationRepository registrationRepository;
     private RegistrationRequestRepository registrationRequestRepository;
     private EmployeeRepository employeeRepository;
     private IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher;
+    private RegistrationApplication initialRegistrationApplication;
+    private UUID registrationId;
+    private UUID guessAccountId;
 
     @Before
     public void setUp() throws Exception {
@@ -35,26 +39,24 @@ public class ApplyRegistrationTest {
         employeeRepository = new InMemoryEmployeeRepository();
         integrationEventPublisher = new MockRegistrationSubmittedPublisher();
         applier = new ApplyRegistration(registrationRepository, registrationRequestRepository, employeeRepository, integrationEventPublisher);
+
+        registrationId = UUID.randomUUID();
+        guessAccountId = UUID.randomUUID();
+        initialRegistrationApplication = new RegistrationApplication(registrationId, guessAccountId,
+                new CompanyDetails("Terra", new Address("1", "1", "1",
+                        "1", "43900", "sel", Country.MALAYSIA), "2222", Structure.SOLE
+                ),
+                new AccountAdministratorDetails("1", "1", "username", "123"),
+                RegistrationApplicationStatus.UNDER_REVIEW, LocalDateTime.now(), 1);
     }
 
     @Test
     public void companyNameIsTaken_shouldThrowException(){
-        UUID requestId = UUID.randomUUID();
-        RegistrationApplication registration = new RegistrationApplication(
-                requestId,
-                new CompanyDetails(
-                        "terra",
-                        new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                        "2222",
-                        Structure.SOLE
-                ),
-                new AccountAdministratorDetails("d", "d", "d", "d")
-        );
-        registration.updateStatus(RegistrationApplicationStatus.APPROVED);
-        registrationRepository.add(registration);
+        RegistrationApplication approvedRegistration = initialRegistrationApplication.updateStatus(RegistrationApplicationStatus.APPROVED);
+        registrationRepository.add(approvedRegistration);
 
         RegistrationApplierRequest request = new RegistrationApplierRequest(
-                requestId,
+                registrationId,
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222",

@@ -5,27 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/InMemoryEmployeeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/InMemoryRegistrationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/InMemoryRegistrationRequestRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/MockRegistrationSubmittedPublisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/administrator/Administrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/administrator/AdministratorRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/domain/administrator/spi/AdministratorRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/RegistrationApplicationApplicationDomainTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/employee/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/employee/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/employee/PersonnelDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/employee/PersonnelDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/employee/spi/EmployeeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/employee/spi/EmployeeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/Registration.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplicationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplicationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplierRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplierRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/RegistrationPreEvaluationFailed.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/RegistrationPreEvaluationPassed.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/RegistrationPreEvaluationPassedHandler.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/RegistrationSubmitted.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/RegistrationSubmitted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/events/RegistrationSubmittedHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/spi/RegistrationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecases/ApplyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecases/ApplyRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecases/PreEvaluateRegistration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/PreEvaluateRegistrationTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationApplicationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/InMemoryRegistrationRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,10 +27,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
+        <option value="Record" />
+        <option value="Class" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="Class" />
-        <option value="Record" />
       </list>
     </option>
   </component>
@@ -88,6 +79,21 @@
     "JUnit.ApplyRegistrationTest.updateRejectedApplication_versionShouldIncremented.executor": "Run",
     "JUnit.ApplyRegistrationTest.usernameIsTaken_shouldThrowException.executor": "Run",
     "JUnit.PreEvaluateRegistrationTest.testPreEvaluateRegistration.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.approveToApproved_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.approveToRejected_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.approveToUnderReview_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailWhenStatusUnderPreview_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailsTwice_versionAfterShouldPlusTwo.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailsWhenRegistrationIsApproved_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailsWhenRegistrationIsRejected_versionAfterShouldPlusOne.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailsWhenStatusUnderPreview_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetails_versionShouldBePlusOne.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.rejectedToApprove_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.rejectedToRejected_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.underPreviewToUnderPreview_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.updateInvalidStatus_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.updateValidStatus_versionShouldEqual.executor": "Run",
     "JUnit.administratorUpdateCompanyRegistrationStatus.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException.executor": "Run",
@@ -151,11 +157,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="domain.administrator" />
       <recent name="domain.registration" />
       <recent name="domain.registration.events" />
       <recent name="domain.registration.events.request" />
       <recent name="domain.guess.spi" />
-      <recent name="domain.registration.api" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hakim\code\java\openProcurement\administration\src\main\java\company" />
@@ -181,8 +187,8 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ApplyRegistrationTest.updateRejectedApplication_versionShouldIncremented">
-    <configuration name="ApplyRegistrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="RegistrationApplicationApplicationDomainTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -191,13 +197,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="domain.registration" />
-      <option name="MAIN_CLASS_NAME" value="domain.registration.ApplyRegistrationTest" />
+      <option name="MAIN_CLASS_NAME" value="domain.registration.RegistrationApplicationApplicationDomainTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplyRegistrationTest.approveRegistration_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationApplicationApplicationDomainTest.approveToRejected_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -206,14 +212,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="domain.registration" />
-      <option name="MAIN_CLASS_NAME" value="domain.registration.ApplyRegistrationTest" />
-      <option name="METHOD_NAME" value="approveRegistration_shouldThrowException" />
+      <option name="MAIN_CLASS_NAME" value="domain.registration.RegistrationApplicationApplicationDomainTest" />
+      <option name="METHOD_NAME" value="approveToRejected_shouldThrowException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplyRegistrationTest.underReviewRegistration_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationApplicationApplicationDomainTest.changeDetailsTwice_versionAfterShouldPlusTwo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -222,14 +228,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="domain.registration" />
-      <option name="MAIN_CLASS_NAME" value="domain.registration.ApplyRegistrationTest" />
-      <option name="METHOD_NAME" value="underReviewRegistration_shouldThrowException" />
+      <option name="MAIN_CLASS_NAME" value="domain.registration.RegistrationApplicationApplicationDomainTest" />
+      <option name="METHOD_NAME" value="changeDetailsTwice_versionAfterShouldPlusTwo" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplyRegistrationTest.updateRejectedApplication_versionShouldIncremented" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationApplicationApplicationDomainTest.rejectedToRejected_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -238,14 +244,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="domain.registration" />
-      <option name="MAIN_CLASS_NAME" value="domain.registration.ApplyRegistrationTest" />
-      <option name="METHOD_NAME" value="updateRejectedApplication_versionShouldIncremented" />
+      <option name="MAIN_CLASS_NAME" value="domain.registration.RegistrationApplicationApplicationDomainTest" />
+      <option name="METHOD_NAME" value="rejectedToRejected_shouldThrowException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplyRegistrationTest.usernameIsTaken_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationApplicationApplicationDomainTest.updateValidStatus_versionShouldEqual" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -254,8 +260,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="domain.registration" />
-      <option name="MAIN_CLASS_NAME" value="domain.registration.ApplyRegistrationTest" />
-      <option name="METHOD_NAME" value="usernameIsTaken_shouldThrowException" />
+      <option name="MAIN_CLASS_NAME" value="domain.registration.RegistrationApplicationApplicationDomainTest" />
+      <option name="METHOD_NAME" value="updateValidStatus_versionShouldEqual" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -287,11 +293,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ApplyRegistrationTest.updateRejectedApplication_versionShouldIncremented" />
-        <item itemvalue="JUnit.ApplyRegistrationTest" />
-        <item itemvalue="JUnit.ApplyRegistrationTest.underReviewRegistration_shouldThrowException" />
-        <item itemvalue="JUnit.ApplyRegistrationTest.approveRegistration_shouldThrowException" />
-        <item itemvalue="JUnit.ApplyRegistrationTest.usernameIsTaken_shouldThrowException" />
+        <item itemvalue="JUnit.RegistrationApplicationApplicationDomainTest" />
+        <item itemvalue="JUnit.RegistrationApplicationApplicationDomainTest.changeDetailsTwice_versionAfterShouldPlusTwo" />
+        <item itemvalue="JUnit.RegistrationApplicationApplicationDomainTest.updateValidStatus_versionShouldEqual" />
+        <item itemvalue="JUnit.RegistrationApplicationApplicationDomainTest.rejectedToRejected_shouldThrowException" />
+        <item itemvalue="JUnit.RegistrationApplicationApplicationDomainTest.approveToRejected_shouldThrowException" />
       </list>
     </recent_temporary>
   </component>
@@ -327,7 +333,7 @@
       <workItem from="1755305098462" duration="826000" />
       <workItem from="1755325094842" duration="35655000" />
       <workItem from="1755512991203" duration="6076000" />
-      <workItem from="1755564102497" duration="15900000" />
+      <workItem from="1755564102497" duration="28260000" />
     </task>
     <servers />
   </component>
