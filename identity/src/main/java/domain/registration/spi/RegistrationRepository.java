@@ -11,4 +11,5 @@ public interface RegistrationRepository {
     Optional<RegistrationApplication> findLatestByBrn(String brn);
     Optional<RegistrationApplication> findLatestByCompanyName(String name);
     void add(RegistrationApplication application);
+    RegistrationApplication get(UUID registrationId);
 }

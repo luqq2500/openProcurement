@@ -50,4 +50,7 @@ public record RegistrationApplication(
     public String getCompanyName(){
         return companyDetails().companyName();
     }
+    public LocalDateTime getApplicationDate(){
+        return applicationDate;
+    }
 }

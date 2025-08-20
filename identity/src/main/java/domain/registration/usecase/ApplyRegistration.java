@@ -1,4 +1,4 @@
-package domain.registration.usecases;
+package domain.registration.usecase;
 
 import annotation.DomainService;
 import domain.employee.Employee;

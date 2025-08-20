@@ -1,4 +1,4 @@
-package domain.registration.usecases;
+package domain.registration.usecase;
 
 import domain.guess.Guess;
 import domain.guess.spi.GuessRepository;

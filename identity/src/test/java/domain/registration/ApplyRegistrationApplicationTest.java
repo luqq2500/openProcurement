@@ -14,7 +14,7 @@ import domain.registration.events.RegistrationSubmitted;
 import domain.registration.exception.InvalidRegistrationApplication;
 import domain.registration.spi.RegistrationRepository;
 import domain.registration.spi.RegistrationRequestRepository;
-import domain.registration.usecases.ApplyRegistration;
+import domain.registration.usecase.ApplyRegistration;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -164,7 +164,7 @@ public class ApplyRegistrationApplicationTest {
     }
 
     @Test
-    public void changeDetailsFromPreviouslyRejected_shouldNotThrowException(){
+    public void changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame(){
         RegistrationApplication rejectedApplication = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationApplicationStatus.REJECTED);
         registrationRepository.add(rejectedApplication);
         RegistrationApplierRequest request = new RegistrationApplierRequest(
@@ -176,6 +176,14 @@ public class ApplyRegistrationApplicationTest {
                 "hakimluqq25@gmail.com", "123"
         );
         applier.apply(request);
+
+        Assert.assertNotEquals(
+                registrationRepository.findLatestByRequestId(requestId).get().registrationId(),
+                registrationRepository.get(rejectedApplication.registrationId()).registrationId());
+        Assert.assertEquals(
+                registrationRepository.findLatestByRequestId(requestId).get().requestId(),
+                registrationRepository.get(rejectedApplication.registrationId()).requestId()
+        );
     }
 
     @Test

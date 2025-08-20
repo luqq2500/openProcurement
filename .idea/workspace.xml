@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/administrator/AdministratorRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/administrator/AdministratorRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecases/ApplyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecases/ApplyRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/RegistrationApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/spi/RegistrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecases/ApplyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecase/ApplyRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecases/RequestRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/domain/registration/usecase/RequestRegistration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationApplicationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/ApplyRegistrationApplicationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/RegistrationApplicationApplicationDomainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/RegistrationApplicationApplicationDomainTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/test/java/domain/registration/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/domain/registration/InMemoryRegistrationRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +64,7 @@
     "HTTP Request.generated-requests | #6.executor": "Run",
     "HTTP Request.generated-requests | #8.executor": "Run",
     "HTTP Request.generated-requests | #9.executor": "Run",
+    "JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame.executor": "Run",
     "JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_shouldNotThrowException.executor": "Run",
     "JUnit.ApplyRegistrationApplicationTest.companyNameIsTaken_shouldThrowException.executor": "Run",
     "JUnit.ApplyRegistrationApplicationTest.executor": "Run",
@@ -186,7 +189,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ApplyRegistrationApplicationTest.newRegistration_shouldNotThrowException">
+  <component name="RunManager" selected="JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame">
     <configuration name="ApplyRegistrationApplicationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
@@ -198,6 +201,22 @@
       <option name="PACKAGE_NAME" value="domain.registration" />
       <option name="MAIN_CLASS_NAME" value="domain.registration.ApplyRegistrationApplicationTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="identity" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="domain.registration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="domain.registration" />
+      <option name="MAIN_CLASS_NAME" value="domain.registration.ApplyRegistrationApplicationTest" />
+      <option name="METHOD_NAME" value="changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -250,21 +269,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegistrationApplicationApplicationDomainTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="identity" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="domain.registration.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="domain.registration" />
-      <option name="MAIN_CLASS_NAME" value="domain.registration.RegistrationApplicationApplicationDomainTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AdministrationInfraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="administration-infra" />
@@ -291,11 +295,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame" />
         <item itemvalue="JUnit.ApplyRegistrationApplicationTest.newRegistration_shouldNotThrowException" />
         <item itemvalue="JUnit.ApplyRegistrationApplicationTest" />
         <item itemvalue="JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_shouldNotThrowException" />
         <item itemvalue="JUnit.ApplyRegistrationApplicationTest.companyNameIsTaken_shouldThrowException" />
-        <item itemvalue="JUnit.RegistrationApplicationApplicationDomainTest" />
       </list>
     </recent_temporary>
   </component>
@@ -331,7 +335,7 @@
       <workItem from="1755305098462" duration="826000" />
       <workItem from="1755325094842" duration="35655000" />
       <workItem from="1755512991203" duration="6076000" />
-      <workItem from="1755564102497" duration="31903000" />
+      <workItem from="1755564102497" duration="32860000" />
     </task>
     <servers />
   </component>

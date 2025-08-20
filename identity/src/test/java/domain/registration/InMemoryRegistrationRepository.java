@@ -10,25 +10,29 @@ public class InMemoryRegistrationRepository implements RegistrationRepository {
     public Optional<RegistrationApplication> findLatestByRequestId(UUID requestId) {
         return registrations.stream()
                 .filter(registration -> registration.requestId().equals(requestId))
-                .sorted()
-                .findFirst();
+                .max(Comparator.comparing(RegistrationApplication::getApplicationDate));
     }
     @Override
     public Optional<RegistrationApplication> findLatestByBrn(String brn) {
         return registrations.stream()
                 .filter(registration -> registration.getBrn().equals(brn))
-                .sorted()
-                .findFirst();
+                .max(Comparator.comparing(RegistrationApplication::getApplicationDate));
     }
     @Override
     public Optional<RegistrationApplication> findLatestByCompanyName(String name) {
         return registrations.stream()
                 .filter(registration -> registration.getCompanyName().equals(name))
-                .sorted()
-                .findFirst();
+                .max(Comparator.comparing(RegistrationApplication::getApplicationDate));
     }
     @Override
     public void add(RegistrationApplication application) {
         registrations.add(application);
+    }
+
+    @Override
+    public RegistrationApplication get(UUID registrationId) {
+        return registrations.stream()
+                .filter(registration -> registration.registrationId().equals(registrationId))
+                .findFirst().orElse(null);
     }
 }
