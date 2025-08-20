@@ -44,31 +44,32 @@ public class ApplyRegistration implements RegistrationApplier {
 
     @Override
     public void apply(RegistrationApplierRequest registration) {
-        RegistrationApplication application;
-        CompanyDetails companyDetails = new CompanyDetails(registration.companyName(), registration.address(), registration.brn(), registration.structure());
-        AccountAdministratorDetails accountAdministratorDetails = new AccountAdministratorDetails(registration.firstName(), registration.lastName(), registration.email(), registration.password());
-
-        Optional<RegistrationApplication> findCompanyName = registrationRepository.findLatestByCompanyName(companyDetails.companyName());
+        Optional<RegistrationApplication> findCompanyName = registrationRepository.findLatestByCompanyName(registration.companyName());
         Optional<RegistrationApplication> findBrn = registrationRepository.findLatestByBrn(registration.brn());
         Optional<Employee> findEmail = employeeRepository.findByEmail(registration.email());
         Optional<RegistrationApplication> findRequestId = registrationRepository.findLatestByRequestId(registration.requestId());
 
-        // check uniqueness: company name, brn, and username.
-        if (findCompanyName.isPresent() && findCompanyName.get().isApproved()){throw new InvalidRegistrationApplication("Company name is already in use.");}
-        if (findBrn.isPresent() && findBrn.get().isApproved()){throw new InvalidRegistrationApplication("Brn is already in use.");}
-        if (findEmail.isPresent() && findEmail.get().isActive()){throw new InvalidRegistrationApplication("Email is already in use.");}
+        if (findCompanyName.isPresent() && !findCompanyName.get().isRejected()){
+            throw new InvalidRegistrationApplication("Company name is already in use.");}
+        if (findBrn.isPresent() && !findBrn.get().isRejected()){
+            throw new InvalidRegistrationApplication("Brn is already in use.");}
+        if (findEmail.isPresent() && findEmail.get().isActive()){
+            throw new InvalidRegistrationApplication("Email is already in use.");}
+        if (findRequestId.isPresent() && findRequestId.get().isApproved()){
+            throw new InvalidRegistrationApplication("Registration has been approved.");}
+        if (findRequestId.isPresent() && findRequestId.get().isUnderReview()){
+            throw new InvalidRegistrationApplication("Registration is under review.");}
 
-        // check invalid registration status: approved and under review.
-        if (findRequestId.isPresent() && findRequestId.get().isApproved()){throw new InvalidRegistrationApplication("Registration has been approved.");}
-        if (findRequestId.isPresent() && findRequestId.get().isUnderReview()){throw new InvalidRegistrationApplication("Registration is under review.");}
+        CompanyDetails companyDetails = new CompanyDetails(registration.companyName(), registration.address(), registration.brn(), registration.structure());
+        AccountAdministratorDetails accountAdministratorDetails = new AccountAdministratorDetails(registration.firstName(), registration.lastName(), registration.email(), registration.password());
+        RegistrationApplication application;
 
-        // check new or update rejected registration
         if (findRequestId.isPresent() && findRequestId.get().isRejected()){
             application = findRequestId.get().changeDetails(companyDetails, accountAdministratorDetails);
         } else {
             RegistrationRequest request = registrationRequestRepository.getById(registration.requestId());
-            application = new RegistrationApplication(
-                    UUID.randomUUID(), companyDetails, accountAdministratorDetails,
+            application = new RegistrationApplication(UUID.randomUUID(),
+                    companyDetails, accountAdministratorDetails,
                     RegistrationApplicationStatus.UNDER_REVIEW, LocalDateTime.now(),
                     request.getId(), null);
         }

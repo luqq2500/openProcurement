@@ -2,6 +2,8 @@ package domain.registration;
 
 import domain.address.Address;
 import domain.address.Country;
+import domain.administrator.Administrator;
+import domain.administrator.AdministratorRole;
 import domain.company.Structure;
 import domain.employee.Employee;
 import domain.employee.EmployeeRole;
@@ -19,52 +21,50 @@ import org.junit.Test;
 import port.IntegrationEventPublisher;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 import java.util.UUID;
 
 public class ApplyRegistrationApplicationTest {
     private RegistrationApplier applier;
     private RegistrationRepository registrationRepository;
-    private RegistrationRequestRepository registrationRequestRepository;
+    RegistrationRequestRepository registrationRequestRepository;
     private EmployeeRepository employeeRepository;
-    private IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher;
-    private RegistrationApplication initialRegistrationApplication;
+    private RegistrationApplication initialUnderReviewRegistration;
     private UUID registrationId;
-    private UUID guessAccountId;
+    private UUID requestId;
+    private UUID administratorId;
+    private Administrator mockIdentityAdministrator;
 
     @Before
     public void setUp() throws Exception {
         registrationRepository = new InMemoryRegistrationRepository();
         registrationRequestRepository = new InMemoryRegistrationRequestRepository();
         employeeRepository = new InMemoryEmployeeRepository();
-        integrationEventPublisher = new MockRegistrationSubmittedPublisher();
+        IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
         applier = new ApplyRegistration(registrationRepository, registrationRequestRepository, employeeRepository, integrationEventPublisher);
 
         registrationId = UUID.randomUUID();
-        guessAccountId = UUID.randomUUID();
-        initialRegistrationApplication = new RegistrationApplication(registrationId, guessAccountId,
+        requestId = UUID.randomUUID();
+        mockIdentityAdministrator = new Administrator(new PersonnelDetails("1", "1"), AdministratorRole.IDENTITY_ADMINISTRATOR);
+        initialUnderReviewRegistration = new RegistrationApplication(registrationId,
                 new CompanyDetails("Terra", new Address("1", "1", "1",
                         "1", "43900", "sel", Country.MALAYSIA), "2222", Structure.SOLE
                 ),
                 new AccountAdministratorDetails("1", "1", "username", "123"),
-                RegistrationApplicationStatus.UNDER_REVIEW, LocalDateTime.now(), 1);
+                RegistrationApplicationStatus.UNDER_REVIEW, LocalDateTime.now(), requestId, null);
     }
 
     @Test
     public void companyNameIsTaken_shouldThrowException(){
-        RegistrationApplication approvedRegistration = initialRegistrationApplication.updateStatus(RegistrationApplicationStatus.APPROVED);
+        RegistrationApplication approvedRegistration = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationApplicationStatus.APPROVED);
         registrationRepository.add(approvedRegistration);
 
         RegistrationApplierRequest request = new RegistrationApplierRequest(
-                registrationId,
-                "terra",
+                requestId,
+                "Terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                "22222",
-                Structure.SOLE,
-                "luqman",
-                "hakim",
-                "hakimluqq25@gmail.com",
-                "123"
+                "22222", Structure.SOLE,
+                "luqman", "hakim",
+                "hakimluqq25@gmail.com", "123"
         );
         InvalidRegistrationApplication exception = Assert.assertThrows(InvalidRegistrationApplication.class, ()-> applier.apply(request));
         System.out.println(exception.getMessage());
@@ -72,18 +72,16 @@ public class ApplyRegistrationApplicationTest {
 
     @Test
     public void companyBrnIsTaken_shouldThrowException(){
-        UUID requestId = UUID.randomUUID();
         RegistrationApplication registration = new RegistrationApplication(
-                requestId,
+                registrationId,
                 new CompanyDetails(
                         "terra",
                         new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                        "2222",
-                        Structure.SOLE
-                ),
-                new AccountAdministratorDetails("d", "d", "d", "d")
+                        "2222", Structure.SOLE),
+                new AccountAdministratorDetails("d", "d", "d", "d"),
+                RegistrationApplicationStatus.APPROVED, LocalDateTime.now(),
+                requestId, mockIdentityAdministrator.getAdministratorId()
         );
-        registration.updateStatus(RegistrationApplicationStatus.APPROVED);
         registrationRepository.add(registration);
 
         RegistrationApplierRequest request = new RegistrationApplierRequest(
@@ -128,20 +126,9 @@ public class ApplyRegistrationApplicationTest {
     }
 
     @Test
-    public void approveRegistration_shouldThrowException(){
-        UUID requestId = UUID.randomUUID();
-        RegistrationApplication registration = new RegistrationApplication(
-                requestId,
-                new CompanyDetails(
-                        "terra",
-                        new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                        "2222",
-                        Structure.SOLE
-                ),
-                new AccountAdministratorDetails("d", "d", "d", "d")
-        );
-        registration.updateStatus(RegistrationApplicationStatus.APPROVED);
-        registrationRepository.add(registration);
+    public void approveRequestId_shouldThrowException(){
+        RegistrationApplication approvedRegistration = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationApplicationStatus.APPROVED);
+        registrationRepository.add(approvedRegistration);
 
         RegistrationApplierRequest request = new RegistrationApplierRequest(
                 requestId,
@@ -160,19 +147,7 @@ public class ApplyRegistrationApplicationTest {
 
     @Test
     public void underReviewRegistration_shouldThrowException(){
-        UUID requestId = UUID.randomUUID();
-        RegistrationApplication registration = new RegistrationApplication(
-                requestId,
-                new CompanyDetails(
-                        "terra",
-                        new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                        "2222",
-                        Structure.SOLE
-                ),
-                new AccountAdministratorDetails("d", "d", "d", "d")
-        );
-        registrationRepository.add(registration);
-
+        registrationRepository.add(initialUnderReviewRegistration);
         RegistrationApplierRequest request = new RegistrationApplierRequest(
                 requestId,
                 "terra",
@@ -189,26 +164,34 @@ public class ApplyRegistrationApplicationTest {
     }
 
     @Test
-    public void updateRejectedApplication_versionShouldIncremented(){
-        UUID requestId = UUID.randomUUID();
-        RegistrationApplication rejectedRegistration = new RegistrationApplication(
-                requestId, new CompanyDetails("terra",
-                        new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                        "2222", Structure.SOLE
-                ), new AccountAdministratorDetails("d", "d", "d", "d")
-        );
-        rejectedRegistration.updateStatus(RegistrationApplicationStatus.REJECTED);
-        registrationRepository.add(rejectedRegistration);
-
+    public void changeDetailsFromPreviouslyRejected_shouldNotThrowException(){
+        RegistrationApplication rejectedApplication = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationApplicationStatus.REJECTED);
+        registrationRepository.add(rejectedApplication);
         RegistrationApplierRequest request = new RegistrationApplierRequest(
-                requestId, "Terra Sdn Bhd",
+                requestId,
+                "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222", Structure.SOLE,
-                "luqman", "hakim", "hakimluqq25@gmail.com", "123"
+                "luqman", "hakim",
+                "hakimluqq25@gmail.com", "123"
         );
         applier.apply(request);
-        Optional<RegistrationApplication> submittedRegistration = registrationRepository.findLatestByRequestId(requestId);
-        System.out.println(rejectedRegistration.getVersion());
-        System.out.println(submittedRegistration.get().getVersion());
     }
+
+    @Test
+    public void newRegistration_shouldNotThrowException(){
+        RegistrationRequest registrationRequest = new RegistrationRequest(UUID.randomUUID());
+        registrationRequestRepository.add(registrationRequest);
+        RegistrationApplierRequest request = new RegistrationApplierRequest(
+                registrationRequest.getId(),
+                "terra",
+                new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
+                "22222", Structure.SOLE,
+                "luqman", "hakim",
+                "hakimluqq25@gmail.com", "123"
+        );
+        applier.apply(request);
+    }
+
+
 }
