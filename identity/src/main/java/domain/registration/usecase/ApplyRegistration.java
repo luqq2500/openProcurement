@@ -1,12 +1,11 @@
 package domain.registration.usecase;
 
 import annotation.DomainService;
-import domain.administrator.Administrator;
 import domain.administrator.spi.AdministratorRepository;
 import domain.employee.Employee;
 import domain.employee.spi.EmployeeRepository;
 import domain.registration.*;
-import domain.registration.api.CompanyRegistrator;
+import domain.registration.api.RegistrationApplier;
 import domain.registration.events.RegistrationSubmitted;
 import domain.registration.exception.InvalidRegistrationApplication;
 import domain.registration.spi.RegistrationRepository;
@@ -31,18 +30,16 @@ import java.util.UUID;
 ///
 
 @DomainService
-public class RegisterCompany implements CompanyRegistrator {
+public class ApplyRegistration implements RegistrationApplier {
     private final RegistrationRepository registrationRepository;
     private final RegistrationRequestRepository registrationRequestRepository;
     private final EmployeeRepository employeeRepository;
-    private final AdministratorRepository administratorRepository;
     private final IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher;
 
-    public RegisterCompany(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, AdministratorRepository administratorRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
+    public ApplyRegistration(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
         this.registrationRepository = registrationRepository;
         this.registrationRequestRepository = registrationRequestRepository;
         this.employeeRepository = employeeRepository;
-        this.administratorRepository = administratorRepository;
         this.integrationEventPublisher = integrationEventPublisher;
     }
 

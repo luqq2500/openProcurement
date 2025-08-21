@@ -11,11 +11,11 @@ import domain.employee.EmployeeRole;
 import domain.employee.PersonnelDetails;
 import domain.employee.spi.EmployeeRepository;
 import domain.employee.spi.InMemoryEmployeeRepository;
-import domain.registration.api.CompanyRegistrator;
+import domain.registration.api.RegistrationApplier;
 import domain.registration.events.RegistrationSubmitted;
 import domain.registration.exception.InvalidRegistrationApplication;
 import domain.registration.spi.*;
-import domain.registration.usecase.RegisterCompany;
+import domain.registration.usecase.ApplyRegistration;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class ApplyRegistrationApplicationTest {
-    private CompanyRegistrator applier;
+    private RegistrationApplier applier;
     private RegistrationRepository registrationRepository;
     RegistrationRequestRepository registrationRequestRepository;
     private EmployeeRepository employeeRepository;
@@ -44,7 +44,7 @@ public class ApplyRegistrationApplicationTest {
         administratorRepository = new InMemoryAdministratorRepository();
 
         IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
-        applier = new RegisterCompany(registrationRepository, registrationRequestRepository, employeeRepository, administratorRepository,integrationEventPublisher);
+        applier = new ApplyRegistration(registrationRepository, registrationRequestRepository, employeeRepository, administratorRepository,integrationEventPublisher);
 
         registrationId = UUID.randomUUID();
         requestId = UUID.randomUUID();
