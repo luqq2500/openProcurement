@@ -5,7 +5,7 @@ import domain.company.Structure;
 
 import java.util.UUID;
 
-public record RegistrationApplierRequest(
+public record ApplyRegistrationDetails(
         UUID requestId,
         String companyName,
         Address address,

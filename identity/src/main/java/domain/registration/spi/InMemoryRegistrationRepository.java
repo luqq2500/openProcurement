@@ -1,6 +1,6 @@
-package domain.registration;
+package domain.registration.spi;
 
-import domain.registration.spi.RegistrationRepository;
+import domain.registration.RegistrationApplication;
 
 import java.util.*;
 

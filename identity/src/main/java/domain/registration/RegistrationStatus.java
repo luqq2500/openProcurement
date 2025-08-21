@@ -1,10 +1,8 @@
 package domain.registration;
 
-import domain.registration.exception.InvalidRegistrationApplicationStatus;
-
-public enum RegistrationApplicationStatus {
+public enum RegistrationStatus {
     UNDER_REVIEW, REJECTED, APPROVED;
-    public boolean checkStatusChangeTo(RegistrationApplicationStatus newStatus) {
+    public boolean checkStatusChangeTo(RegistrationStatus newStatus) {
         if (this.equals(newStatus)) {
             return false;
         }

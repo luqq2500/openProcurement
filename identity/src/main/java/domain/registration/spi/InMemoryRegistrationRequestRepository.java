@@ -1,6 +1,6 @@
-package domain.registration;
+package domain.registration.spi;
 
-import domain.registration.spi.RegistrationRequestRepository;
+import domain.registration.RegistrationRequest;
 
 import java.util.ArrayList;
 import java.util.List;

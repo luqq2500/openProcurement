@@ -34,9 +34,9 @@ public class RegistrationApplicationApplicationDomainTest {
                                 "1", "43900", "sel", Country.MALAYSIA), "2222", Structure.SOLE
                 ),
                 new AccountAdministratorDetails("1", "1", "username", "123"),
-                RegistrationApplicationStatus.UNDER_REVIEW, LocalDateTime.now(), identityAdministrator.getAdministratorId(), requestId);
-        approvedRegistration = initialRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.APPROVED);
-        rejectedRegistration = initialRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.REJECTED);
+                RegistrationStatus.UNDER_REVIEW, LocalDateTime.now(), identityAdministrator.getAdministratorId(), requestId);
+        approvedRegistration = initialRegistration.updateStatus(identityAdministrator, RegistrationStatus.APPROVED);
+        rejectedRegistration = initialRegistration.updateStatus(identityAdministrator, RegistrationStatus.REJECTED);
 
         newCompanyDetails = new CompanyDetails(",", new Address("10", "1", "1", "1", "43900", "sel", Country.MALAYSIA), "2222", Structure.SOLE);
         newAccountAdministratorDetails = new AccountAdministratorDetails("10", "1", "username", "123");
@@ -51,7 +51,7 @@ public class RegistrationApplicationApplicationDomainTest {
 
     @Test
     public void changeDetailsWhenRegistrationIsApproved_shouldThrowException() {
-        RegistrationApplication approvedRegistration = initialRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.APPROVED);
+        RegistrationApplication approvedRegistration = initialRegistration.updateStatus(identityAdministrator, RegistrationStatus.APPROVED);
         RuntimeException exception = Assert.assertThrows(
                 InvalidRegistrationApplication.class,
                 ()-> approvedRegistration.changeDetails(newCompanyDetails, newAccountAdministratorDetails));
@@ -61,18 +61,18 @@ public class RegistrationApplicationApplicationDomainTest {
     @Test
     public void invalidAdministratorRole_shouldThrowException() {
         RuntimeException exception = Assert.assertThrows(InvalidRegistrationApplication.class,
-                () -> initialRegistration.updateStatus(nonIdentityAdministrator, RegistrationApplicationStatus.REJECTED));
+                () -> initialRegistration.updateStatus(nonIdentityAdministrator, RegistrationStatus.REJECTED));
         System.out.println(exception.getMessage());
     }
 
     @Test
     public void invalidStatusUpdate_shouldThrowException() {
-        RuntimeException error1 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->initialRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.UNDER_REVIEW));
-        RuntimeException error2 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->rejectedRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.REJECTED));
-        RuntimeException error3 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->rejectedRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.APPROVED));
-        RuntimeException error4 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->approvedRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.UNDER_REVIEW));
-        RuntimeException error5 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->approvedRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.APPROVED));
-        RuntimeException error6 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->approvedRegistration.updateStatus(identityAdministrator, RegistrationApplicationStatus.REJECTED));
+        RuntimeException error1 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->initialRegistration.updateStatus(identityAdministrator, RegistrationStatus.UNDER_REVIEW));
+        RuntimeException error2 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->rejectedRegistration.updateStatus(identityAdministrator, RegistrationStatus.REJECTED));
+        RuntimeException error3 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->rejectedRegistration.updateStatus(identityAdministrator, RegistrationStatus.APPROVED));
+        RuntimeException error4 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->approvedRegistration.updateStatus(identityAdministrator, RegistrationStatus.UNDER_REVIEW));
+        RuntimeException error5 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->approvedRegistration.updateStatus(identityAdministrator, RegistrationStatus.APPROVED));
+        RuntimeException error6 = Assert.assertThrows(InvalidRegistrationApplication.class, ()->approvedRegistration.updateStatus(identityAdministrator, RegistrationStatus.REJECTED));
         System.out.println(error1.getMessage());
         System.out.println(error2.getMessage());
         System.out.println(error3.getMessage());

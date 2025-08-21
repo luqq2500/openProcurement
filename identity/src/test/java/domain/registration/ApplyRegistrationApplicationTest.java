@@ -9,11 +9,11 @@ import domain.employee.Employee;
 import domain.employee.EmployeeRole;
 import domain.employee.PersonnelDetails;
 import domain.employee.spi.EmployeeRepository;
+import domain.employee.spi.InMemoryEmployeeRepository;
 import domain.registration.api.RegistrationApplier;
 import domain.registration.events.RegistrationSubmitted;
 import domain.registration.exception.InvalidRegistrationApplication;
-import domain.registration.spi.RegistrationRepository;
-import domain.registration.spi.RegistrationRequestRepository;
+import domain.registration.spi.*;
 import domain.registration.usecase.ApplyRegistration;
 import org.junit.Assert;
 import org.junit.Before;
@@ -50,15 +50,15 @@ public class ApplyRegistrationApplicationTest {
                         "1", "43900", "sel", Country.MALAYSIA), "2222", Structure.SOLE
                 ),
                 new AccountAdministratorDetails("1", "1", "username", "123"),
-                RegistrationApplicationStatus.UNDER_REVIEW, LocalDateTime.now(), requestId, null);
+                RegistrationStatus.UNDER_REVIEW, LocalDateTime.now(), requestId, null);
     }
 
     @Test
     public void companyNameIsTaken_shouldThrowException(){
-        RegistrationApplication approvedRegistration = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationApplicationStatus.APPROVED);
+        RegistrationApplication approvedRegistration = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationStatus.APPROVED);
         registrationRepository.add(approvedRegistration);
 
-        RegistrationApplierRequest request = new RegistrationApplierRequest(
+        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId,
                 "Terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
@@ -79,12 +79,12 @@ public class ApplyRegistrationApplicationTest {
                         new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                         "2222", Structure.SOLE),
                 new AccountAdministratorDetails("d", "d", "d", "d"),
-                RegistrationApplicationStatus.APPROVED, LocalDateTime.now(),
+                RegistrationStatus.APPROVED, LocalDateTime.now(),
                 requestId, mockIdentityAdministrator.getAdministratorId()
         );
         registrationRepository.add(registration);
 
-        RegistrationApplierRequest request = new RegistrationApplierRequest(
+        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId,
                 "Lexus",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
@@ -110,7 +110,7 @@ public class ApplyRegistrationApplicationTest {
                 new PersonnelDetails("luqman", "hakim"));
         employeeRepository.add(employee);
 
-        RegistrationApplierRequest request = new RegistrationApplierRequest(
+        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId,
                 "Lexus",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
@@ -127,10 +127,10 @@ public class ApplyRegistrationApplicationTest {
 
     @Test
     public void approveRequestId_shouldThrowException(){
-        RegistrationApplication approvedRegistration = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationApplicationStatus.APPROVED);
+        RegistrationApplication approvedRegistration = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationStatus.APPROVED);
         registrationRepository.add(approvedRegistration);
 
-        RegistrationApplierRequest request = new RegistrationApplierRequest(
+        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId,
                 "terraForm",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
@@ -148,7 +148,7 @@ public class ApplyRegistrationApplicationTest {
     @Test
     public void underReviewRegistration_shouldThrowException(){
         registrationRepository.add(initialUnderReviewRegistration);
-        RegistrationApplierRequest request = new RegistrationApplierRequest(
+        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId,
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
@@ -165,9 +165,9 @@ public class ApplyRegistrationApplicationTest {
 
     @Test
     public void changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame(){
-        RegistrationApplication rejectedApplication = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationApplicationStatus.REJECTED);
+        RegistrationApplication rejectedApplication = initialUnderReviewRegistration.updateStatus(mockIdentityAdministrator, RegistrationStatus.REJECTED);
         registrationRepository.add(rejectedApplication);
-        RegistrationApplierRequest request = new RegistrationApplierRequest(
+        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId,
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
@@ -190,7 +190,7 @@ public class ApplyRegistrationApplicationTest {
     public void newRegistration_shouldNotThrowException(){
         RegistrationRequest registrationRequest = new RegistrationRequest(UUID.randomUUID());
         registrationRequestRepository.add(registrationRequest);
-        RegistrationApplierRequest request = new RegistrationApplierRequest(
+        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 registrationRequest.getId(),
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),

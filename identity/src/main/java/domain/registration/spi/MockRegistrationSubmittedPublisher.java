@@ -1,4 +1,4 @@
-package domain.registration;
+package domain.registration.spi;
 
 import domain.registration.events.RegistrationSubmitted;
 import port.IntegrationEventPublisher;

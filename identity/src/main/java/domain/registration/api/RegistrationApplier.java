@@ -1,7 +1,7 @@
 package domain.registration.api;
 
-import domain.registration.RegistrationApplierRequest;
+import domain.registration.ApplyRegistrationDetails;
 
 public interface RegistrationApplier {
-    void apply(RegistrationApplierRequest registrationRequest);
+    void apply(ApplyRegistrationDetails registrationRequest);
 }

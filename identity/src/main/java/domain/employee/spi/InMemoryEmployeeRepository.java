@@ -1,7 +1,6 @@
-package domain.registration;
+package domain.employee.spi;
 
 import domain.employee.Employee;
-import domain.employee.spi.EmployeeRepository;
 
 import java.util.ArrayList;
 import java.util.List;
