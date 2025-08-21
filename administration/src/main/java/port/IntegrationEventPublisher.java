@@ -2,6 +2,6 @@ package port;
 
 import event.IntegrationEvent;
 
-public interface IntegrationEventPublisher <T extends IntegrationEvent> {
-    void publish(T event);
+public interface IntegrationEventPublisher {
+    void publish(IntegrationEvent event);
 }

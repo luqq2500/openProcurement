@@ -9,9 +9,9 @@ import registration.event.RegistrationRejected;
 import java.util.UUID;
 
 public class UpdateRegistrationStatus implements RegistrationStatusUpdater {
-    private final IntegrationEventPublisher<RegistrationApproved> approvedEventPublisher;
-    private final IntegrationEventPublisher<RegistrationRejected> rejectedEventPublisher;
-    public UpdateRegistrationStatus(IntegrationEventPublisher<RegistrationApproved> approvedEventPublisher, IntegrationEventPublisher<RegistrationRejected> rejectedEventPublisher) {
+    private final IntegrationEventPublisher approvedEventPublisher;
+    private final IntegrationEventPublisher rejectedEventPublisher;
+    public UpdateRegistrationStatus(IntegrationEventPublisher approvedEventPublisher, IntegrationEventPublisher rejectedEventPublisher) {
         this.approvedEventPublisher = approvedEventPublisher;
         this.rejectedEventPublisher = rejectedEventPublisher;
     }

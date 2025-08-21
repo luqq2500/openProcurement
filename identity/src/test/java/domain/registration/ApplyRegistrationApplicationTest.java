@@ -4,17 +4,18 @@ import domain.address.Address;
 import domain.address.Country;
 import domain.administrator.Administrator;
 import domain.administrator.AdministratorRole;
+import domain.administrator.spi.AdministratorRepository;
 import domain.company.Structure;
 import domain.employee.Employee;
 import domain.employee.EmployeeRole;
 import domain.employee.PersonnelDetails;
 import domain.employee.spi.EmployeeRepository;
 import domain.employee.spi.InMemoryEmployeeRepository;
-import domain.registration.api.RegistrationApplier;
+import domain.registration.api.CompanyRegistrator;
 import domain.registration.events.RegistrationSubmitted;
 import domain.registration.exception.InvalidRegistrationApplication;
 import domain.registration.spi.*;
-import domain.registration.usecase.ApplyRegistration;
+import domain.registration.usecase.RegisterCompany;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,10 +25,11 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class ApplyRegistrationApplicationTest {
-    private RegistrationApplier applier;
+    private CompanyRegistrator applier;
     private RegistrationRepository registrationRepository;
     RegistrationRequestRepository registrationRequestRepository;
     private EmployeeRepository employeeRepository;
+    private AdministratorRepository administratorRepository;
     private RegistrationApplication initialUnderReviewRegistration;
     private UUID registrationId;
     private UUID requestId;
@@ -39,8 +41,10 @@ public class ApplyRegistrationApplicationTest {
         registrationRepository = new InMemoryRegistrationRepository();
         registrationRequestRepository = new InMemoryRegistrationRequestRepository();
         employeeRepository = new InMemoryEmployeeRepository();
+        administratorRepository = new InMemoryAdministratorRepository();
+
         IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
-        applier = new ApplyRegistration(registrationRepository, registrationRequestRepository, employeeRepository, integrationEventPublisher);
+        applier = new RegisterCompany(registrationRepository, registrationRequestRepository, employeeRepository, administratorRepository,integrationEventPublisher);
 
         registrationId = UUID.randomUUID();
         requestId = UUID.randomUUID();

@@ -1,10 +1,12 @@
 package domain.registration.usecase;
 
 import annotation.DomainService;
+import domain.administrator.Administrator;
+import domain.administrator.spi.AdministratorRepository;
 import domain.employee.Employee;
 import domain.employee.spi.EmployeeRepository;
 import domain.registration.*;
-import domain.registration.api.RegistrationApplier;
+import domain.registration.api.CompanyRegistrator;
 import domain.registration.events.RegistrationSubmitted;
 import domain.registration.exception.InvalidRegistrationApplication;
 import domain.registration.spi.RegistrationRepository;
@@ -29,16 +31,18 @@ import java.util.UUID;
 ///
 
 @DomainService
-public class ApplyRegistration implements RegistrationApplier {
+public class RegisterCompany implements CompanyRegistrator {
     private final RegistrationRepository registrationRepository;
     private final RegistrationRequestRepository registrationRequestRepository;
     private final EmployeeRepository employeeRepository;
+    private final AdministratorRepository administratorRepository;
     private final IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher;
 
-    public ApplyRegistration(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
+    public RegisterCompany(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, AdministratorRepository administratorRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
         this.registrationRepository = registrationRepository;
         this.registrationRequestRepository = registrationRequestRepository;
         this.employeeRepository = employeeRepository;
+        this.administratorRepository = administratorRepository;
         this.integrationEventPublisher = integrationEventPublisher;
     }
 
@@ -77,7 +81,6 @@ public class ApplyRegistration implements RegistrationApplier {
         Optional<RegistrationApplication> findCompanyName = registrationRepository.findLatestByCompanyName(registration.companyName());
         Optional<RegistrationApplication> findBrn = registrationRepository.findLatestByBrn(registration.brn());
         Optional<Employee> findEmail = employeeRepository.findByEmail(registration.email());
-
         if (findCompanyName.isPresent() && !findCompanyName.get().isRejected()){
             throw new InvalidRegistrationApplication("Company name is already in use.");}
         if (findBrn.isPresent() && !findBrn.get().isRejected()){
