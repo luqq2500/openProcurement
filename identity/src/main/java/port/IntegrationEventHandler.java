@@ -2,6 +2,6 @@ package port;
 
 import event.IntegrationEvent;
 
-public interface IntegrationEventHandler <T extends IntegrationEvent> {
-    public void handle(T event);
+public interface IntegrationEventHandler {
+    public void handle();
 }
