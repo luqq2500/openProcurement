@@ -1,6 +1,7 @@
 package registration;
 
-import registration.spi.RegistrationRepository;
+import identity.registration.Registration;
+import identity.registration.spi.RegistrationRepository;
 
 import java.util.ArrayList;
 import java.util.List;

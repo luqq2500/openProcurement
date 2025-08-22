@@ -11,6 +11,7 @@
     <modules>
         <module>identity</module>
         <module>administration</module>
+        <module>identity-infra</module>
     </modules>
     <properties>
         <maven.compiler.source>24</maven.compiler.source>

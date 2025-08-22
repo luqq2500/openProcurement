@@ -29,13 +29,13 @@ import java.util.UUID;
 ///
 
 @DomainService
-public class RegisterCompany implements RegistrationService {
+public class CompanyRegistrationService implements RegistrationService {
     private final RegistrationRepository registrationRepository;
     private final RegistrationRequestRepository registrationRequestRepository;
     private final EmployeeRepository employeeRepository;
     private final IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher;
 
-    public RegisterCompany(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
+    public CompanyRegistrationService(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
         this.registrationRepository = registrationRepository;
         this.registrationRequestRepository = registrationRequestRepository;
         this.employeeRepository = employeeRepository;
@@ -67,13 +67,6 @@ public class RegisterCompany implements RegistrationService {
 
         registrationRepository.add(application);
         integrationEventPublisher.publish(new RegistrationSubmitted(application));
-    }
-
-    @Override
-    public void administer(UUID administratorId, UUID requestId, RegistrationStatus status) {
-        RegistrationApplication registrationApplication = registrationRepository.getLatest(requestId);
-        RegistrationApplication administeredRegistration = registrationApplication.updateStatus(administratorId, status);
-        registrationRepository.add(administeredRegistration);
     }
 
     private Optional<RegistrationApplication> validateExistingRegistration(ApplyRegistrationDetails registration) {

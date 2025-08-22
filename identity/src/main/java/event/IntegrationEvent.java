@@ -5,6 +5,6 @@ import java.util.UUID;
 
 public interface IntegrationEvent {
     UUID getEventId();
-    String getEventName();
+    String getEventType();
     Instant getTimestamp();
 }

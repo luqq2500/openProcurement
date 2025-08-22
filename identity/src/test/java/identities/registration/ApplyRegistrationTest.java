@@ -12,7 +12,7 @@ import identities.registration.api.RegistrationService;
 import identities.registration.events.RegistrationSubmitted;
 import identities.registration.exception.InvalidRegistrationApplication;
 import identities.registration.spi.*;
-import identities.registration.usecase.RegisterCompany;
+import identities.registration.usecase.CompanyRegistrationService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +37,7 @@ public class ApplyRegistrationTest {
         employeeRepository = new InMemoryEmployeeRepository();
 
         IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
-        registrationService = new RegisterCompany(registrationRepository, registrationRequestRepository, employeeRepository,integrationEventPublisher);
+        registrationService = new CompanyRegistrationService(registrationRepository, registrationRequestRepository, employeeRepository,integrationEventPublisher);
 
         requestId = UUID.randomUUID();
         administratorId = UUID.randomUUID();

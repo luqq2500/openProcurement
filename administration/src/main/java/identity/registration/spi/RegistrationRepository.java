@@ -1,6 +1,6 @@
-package registration.spi;
+package identity.registration.spi;
 
-import registration.Registration;
+import identity.registration.Registration;
 
 import java.util.UUID;
 

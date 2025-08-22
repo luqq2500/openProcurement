@@ -6,6 +6,7 @@ import java.time.Instant;
 import java.util.UUID;
 
 public class RegistrationRequested implements IntegrationEvent {
+    private final static String EVENT_TYPE = "registration_requested";
     private final UUID eventId;
     private final String email;
     private final Instant requestedOn;
@@ -22,9 +23,7 @@ public class RegistrationRequested implements IntegrationEvent {
     }
 
     @Override
-    public String getEventName() {
-        return RegistrationRequested.class.getSimpleName();
-    }
+    public String getEventType() {return EVENT_TYPE;}
 
     @Override
     public Instant getTimestamp() {

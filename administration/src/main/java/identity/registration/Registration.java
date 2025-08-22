@@ -1,11 +1,11 @@
-package registration;
+package identity.registration;
 
 
 
 import address.Address;
 import administrator.Administrator;
 import administrator.AdministratorRole;
-import registration.exception.InvalidRegistrationAdministration;
+import identity.registration.exception.InvalidRegistrationAdministration;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

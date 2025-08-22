@@ -1,4 +1,4 @@
-package registration;
+package identity.registration;
 
 public enum RegistrationStatus {
     PENDING, APPROVE, REJECT;
