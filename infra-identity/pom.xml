@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>openprocurement</groupId>
-    <artifactId>identity-infra</artifactId>
+    <artifactId>infra-identity</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>identity-infra</name>
-    <description>identity-infra</description>
+    <name>infra-identity</name>
+    <description>infra-identity</description>
     <url/>
     <licenses>
         <license/>

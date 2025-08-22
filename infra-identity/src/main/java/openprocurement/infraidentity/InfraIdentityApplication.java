@@ -1,13 +1,13 @@
-package openprocurement.identityinfra;
+package openprocurement.infraidentity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class IdentityInfraApplication {
+public class InfraIdentityApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(IdentityInfraApplication.class, args);
+        SpringApplication.run(InfraIdentityApplication.class, args);
     }
 
 }

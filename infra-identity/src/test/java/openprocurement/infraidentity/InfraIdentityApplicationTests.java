@@ -1,10 +1,10 @@
-package openprocurement.identityinfra;
+package openprocurement.infraidentity;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class IdentityInfraApplicationTests {
+class InfraIdentityApplicationTests {
 
     @Test
     void contextLoads() {
