@@ -173,7 +173,7 @@ public class ApplyRegistrationTest {
                 "hakimluqq25@gmail.com", "123"
         );
         registrationService.apply(request);
-        RegistrationApplication submittedRegistration = registrationRepository.getLatest(requestId);
+        RegistrationApplication submittedRegistration = registrationRepository.getLatest(registrationRequest.getId());
         Assert.assertNotNull(submittedRegistration);
         Assert.assertEquals(1, submittedRegistration.version());
     }

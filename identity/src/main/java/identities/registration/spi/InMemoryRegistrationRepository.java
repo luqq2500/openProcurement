@@ -29,9 +29,10 @@ public class InMemoryRegistrationRepository implements RegistrationRepository {
         registrations.add(application);
     }
     @Override
-    public Optional<RegistrationApplication> getLatest(UUID requestId) {
+    public RegistrationApplication getLatest(UUID requestId) {
         return registrations.stream()
                 .filter(registration -> registration.requestId().equals(requestId))
-                .max(Comparator.comparing(RegistrationApplication::version));
+                .max(Comparator.comparing(RegistrationApplication::version))
+                .orElse(null);
     }
 }
