@@ -1,6 +1,6 @@
 package registration.event;
 
-import domain.registration.events.RegistrationSubmitted;
+import identities.registration.events.RegistrationSubmitted;
 import port.IntegrationEventHandler;
 import registration.Registration;
 import registration.spi.RegistrationRepository;

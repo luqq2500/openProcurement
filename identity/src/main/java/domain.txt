@@ -2,5 +2,5 @@ Identity
 
 1. Company company
     1.1 Create company company
-        1.1.1 Applicant request for company domain
+        1.1.1 Applicant request for company identities
         1.1.2
