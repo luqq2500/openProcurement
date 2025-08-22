@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/infra-identity/src/main/java/message/RegistrationSubmitted_KafkaPublisher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-identity/src/main/java/message/config/KafkaConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-identity/src/test/java/message/RegistrationSubmittedPublisherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-identity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra-identity/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra-identity/src/main/java/message/RegistrationSubmitted_KafkaPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra-identity/src/main/java/message/RegistrationSubmitted_KafkaPublisher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -367,7 +362,7 @@
       <workItem from="1755740378594" duration="6944000" />
       <workItem from="1755753177404" duration="2398000" />
       <workItem from="1755826558868" duration="8132000" />
-      <workItem from="1755847103943" duration="3551000" />
+      <workItem from="1755847103943" duration="4483000" />
     </task>
     <servers />
   </component>
