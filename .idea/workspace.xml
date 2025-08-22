@@ -5,30 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/infra-identity/src/main/java/message/RegistrationSubmitted_KafkaPublisher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra-identity/src/main/java/message/config/KafkaConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/infra-identity/src/test/java/message/RegistrationSubmittedPublisherTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/event/IntegrationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/event/IntegrationEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/port/IntegrationEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/port/IntegrationEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/port/IntegrationEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/port/IntegrationEventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/identity/registration/Registration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/RegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/identity/registration/RegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/api/RegistrationStatusUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/identity/registration/api/RegistrationStatusUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/event/MockRegistrationApprovedPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/identity/registration/event/MockRegistrationAdministeredPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/event/MockRegistrationRejectedPublisher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/event/MockRegistrationSubmittedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/identity/registration/event/MockRegistrationSubmittedHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/event/RegistrationApproved.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/identity/registration/event/RegistrationAdministered.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/event/RegistrationRejected.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/exception/InvalidRegistrationAdministration.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/identity/registration/exception/InvalidRegistrationAdministration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/identity/registration/spi/RegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/usecase/UpdateRegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/usecase/UpdateRegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/test/java/registration/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/test/java/registration/InMemoryRegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/test/java/registration/updateRegistrationStatusTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/test/java/registration/updateRegistrationStatusTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/event/IntegrationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/event/IntegrationEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/RegistrationRequested.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/RegistrationRequested.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/RegistrationSubmitted.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/RegistrationSubmitted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/usecase/RegisterCompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/usecase/CompanyRegistrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/usecase/RequestRegistration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/test/java/identities/registration/ApplyRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/identities/registration/ApplyRegistrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra-identity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra-identity/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +24,8 @@
         <option value="package-info" />
         <option value="Record" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -118,6 +101,7 @@
     "JUnit.RegistrationApplicationDomainTest.updateInvalidStatus_shouldThrowException.executor": "Run",
     "JUnit.RegistrationApplicationDomainTest.updateValidStatus_versionShouldEqual.executor": "Run",
     "JUnit.RegistrationServiceTest.testRegisterCompany.executor": "Run",
+    "JUnit.RegistrationSubmittedPublisherTest.test.executor": "Run",
     "JUnit.administratorUpdateCompanyRegistrationStatus.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException.executor": "Run",
     "JUnit.applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException.executor": "Run",
@@ -188,11 +172,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="message" />
       <recent name="identities.account" />
       <recent name="identities.registration.usecase" />
       <recent name="identities.registration.api" />
       <recent name="registration" />
-      <recent name="address" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hakim\code\java\openProcurement\administration\src\main\java\company" />
@@ -208,6 +192,12 @@
       <recent name="company" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean" />
+      <command value="mvn clean:clean" />
+    </option>
+  </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
@@ -218,7 +208,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ApplyRegistrationTest.applyNewRegistration_versionShouldBeOne">
+  <component name="RunManager" selected="JUnit.RegistrationSubmittedPublisherTest.test">
     <configuration name="ApplyRegistrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
@@ -282,17 +272,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="updateRegistrationStatusTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="administration" />
+    <configuration name="RegistrationSubmittedPublisherTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="infra-identity" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="registration.*" />
+          <option name="PATTERN" value="message.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="registration" />
-      <option name="MAIN_CLASS_NAME" value="registration.updateRegistrationStatusTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="message" />
+      <option name="MAIN_CLASS_NAME" value="message.RegistrationSubmittedPublisherTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -313,6 +304,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="InfraIdentityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="infra-identity" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="openprocurement.infraidentity.InfraIdentityApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="InfrastructureApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="infrastructure" />
@@ -323,11 +322,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.RegistrationSubmittedPublisherTest.test" />
         <item itemvalue="JUnit.ApplyRegistrationTest.applyNewRegistration_versionShouldBeOne" />
         <item itemvalue="JUnit.ApplyRegistrationTest" />
         <item itemvalue="JUnit.RegistrationApplicationDomainTest.updateStatus_versionShouldRemainSame" />
         <item itemvalue="JUnit.RegistrationApplicationDomainTest.changeDetails_versionShouldPlusOne" />
-        <item itemvalue="JUnit.updateRegistrationStatusTest" />
       </list>
     </recent_temporary>
   </component>
@@ -368,7 +367,7 @@
       <workItem from="1755740378594" duration="6944000" />
       <workItem from="1755753177404" duration="2398000" />
       <workItem from="1755826558868" duration="8132000" />
-      <workItem from="1755847103943" duration="1907000" />
+      <workItem from="1755847103943" duration="3551000" />
     </task>
     <servers />
   </component>
