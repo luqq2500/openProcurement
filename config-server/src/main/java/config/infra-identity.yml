@@ -1,0 +1,8 @@
+"infra-identity":
+  "messaging":
+    "kafka":
+      "consumer-group":"infra-identity"
+      "topics":
+        "registration-requested": ${messaging.events.registration-requested}
+        "registration-submitted": ${messaging.events.registration-requested}
+        "registration-administered": ${messaging.events.registration-administered}

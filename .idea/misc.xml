@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/administration-infra/pom.xml" />
         <option value="$PROJECT_DIR$/infra-identity/pom.xml" />
         <option value="$PROJECT_DIR$/infra-administration/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

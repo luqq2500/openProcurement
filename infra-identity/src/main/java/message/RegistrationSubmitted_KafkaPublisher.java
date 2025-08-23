@@ -1,7 +1,7 @@
 package message;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import identities.registration.events.RegistrationSubmitted;
+import registration.events.RegistrationSubmitted;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import port.IntegrationEventPublisher;
