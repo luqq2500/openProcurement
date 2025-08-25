@@ -1,6 +1,6 @@
-package registration.api;
+package identities.registration.api;
 
-import registration.ApplyRegistrationDetails;
+import identities.registration.ApplyRegistrationDetails;
 
 import java.util.UUID;
 

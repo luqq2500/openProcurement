@@ -1,17 +1,14 @@
-package registration;
+package identities.registration;
 
 public enum RegistrationStatus {
     UNDER_REVIEW, REJECTED, APPROVED;
     public boolean checkStatusChangeTo(RegistrationStatus newStatus) {
         if (this.equals(newStatus)) {
-            return false;
-        }
+            return false;}
         if (this.equals(UNDER_REVIEW) && !newStatus.equals(APPROVED) && !newStatus.equals(REJECTED)) {
-            return false;
-        }
+            return false;}
         if (this.equals(REJECTED) && !newStatus.equals(UNDER_REVIEW)) {
-            return false;
-        }
+            return false;}
         return !this.equals(APPROVED);
     }
 }

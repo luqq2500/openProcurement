@@ -1,4 +1,4 @@
-package registration;
+package identities.registration;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package registration.api;
+package identities.registration.api;
 
 import java.util.UUID;
 

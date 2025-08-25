@@ -8,18 +8,17 @@ import identities.employee.EmployeeRole;
 import identities.employee.PersonnelDetails;
 import identities.employee.spi.EmployeeRepository;
 import identities.employee.spi.InMemoryEmployeeRepository;
-import registration.*;
-import registration.api.RegistrationService;
-import registration.events.RegistrationSubmitted;
-import registration.exception.InvalidRegistrationApplication;
-import registration.spi.*;
-import registration.usecase.CompanyRegistrationService;
+import identities.registration.events.MockRegistrationSubmittedPublisher;
+import identities.registration.spi.*;
+import identities.registration.api.RegistrationService;
+import identities.registration.events.RegistrationSubmitted;
+import usecase.exception.InvalidCompanyRegistration;
+import usecase.RegisterACompany;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import port.IntegrationEventPublisher;
 
-import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class ApplyRegistrationTest {
@@ -27,7 +26,7 @@ public class ApplyRegistrationTest {
     private RegistrationRepository registrationRepository;
     RegistrationRequestRepository registrationRequestRepository;
     private EmployeeRepository employeeRepository;
-    private RegistrationApplication initialRegistration;
+    private RegistrationApplication registration;
     private UUID requestId;
     private UUID administratorId;
 
@@ -38,22 +37,21 @@ public class ApplyRegistrationTest {
         employeeRepository = new InMemoryEmployeeRepository();
 
         IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
-        registrationService = new CompanyRegistrationService(registrationRepository, registrationRequestRepository, employeeRepository,integrationEventPublisher);
+        registrationService = new RegisterACompany(registrationRepository, registrationRequestRepository, employeeRepository,integrationEventPublisher);
 
         requestId = UUID.randomUUID();
         administratorId = UUID.randomUUID();
-        initialRegistration = new RegistrationApplication(requestId,
+        registration = new RegistrationApplication(requestId,
                 new CompanyDetails("Terra", new Address("1", "1", "1",
                         "1", "43900", "sel", Country.MALAYSIA), "2222", Structure.SOLE
                 ),
-                new AccountAdministratorDetails("1", "1", "username", "123"),
-                RegistrationStatus.UNDER_REVIEW, LocalDateTime.now(), 1, null);
+                new AccountAdministratorDetails("1", "1", "username", "123"));
     }
 
     @Test
     public void applyTakenCompanyName_shouldThrowException(){
-        RegistrationApplication approvedRegistration = initialRegistration.updateStatus(administratorId, RegistrationStatus.APPROVED);
-        registrationRepository.add(approvedRegistration);
+        registration.administer(administratorId, RegistrationStatus.APPROVED, "");
+        registrationRepository.add(registration);
 
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId, "Terra",
@@ -62,24 +60,24 @@ public class ApplyRegistrationTest {
                 "luqman", "hakim",
                 "hakimluqq25@gmail.com", "123"
         );
-        InvalidRegistrationApplication exception = Assert.assertThrows(InvalidRegistrationApplication.class, ()-> registrationService.apply(request));
+        InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());
     }
 
     @Test
     public void applyTakenBrn_shouldThrowException(){
-        RegistrationApplication approvedRegistration = initialRegistration.updateStatus(administratorId, RegistrationStatus.APPROVED);
-        registrationRepository.add(approvedRegistration);
+        registration.administer(administratorId, RegistrationStatus.APPROVED, "");
+        registrationRepository.add(registration);
 
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId, "Lexus",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                approvedRegistration.getBrn(), Structure.SOLE,
+                registration.getBrn(), Structure.SOLE,
                 "luqman", "hakim",
                 "hakimluqq25@gmail.com", "123"
         );
 
-        InvalidRegistrationApplication exception = Assert.assertThrows(InvalidRegistrationApplication.class, ()-> registrationService.apply(request));
+        InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());
     }
 
@@ -104,17 +102,17 @@ public class ApplyRegistrationTest {
                 employee.getEmail(),
                 "123"
         );
-        InvalidRegistrationApplication exception = Assert.assertThrows(InvalidRegistrationApplication.class, ()-> registrationService.apply(request));
+        InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());
     }
 
     @Test
     public void approveRequestId_shouldThrowException(){
-        RegistrationApplication approvedRegistration = initialRegistration.updateStatus(administratorId, RegistrationStatus.APPROVED);
-        registrationRepository.add(approvedRegistration);
+        registration.administer(administratorId, RegistrationStatus.APPROVED, "");
+        registrationRepository.add(registration);
 
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
-                approvedRegistration.requestId(),
+                registration.getRequestId(),
                 "terraForm",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222",
@@ -124,15 +122,15 @@ public class ApplyRegistrationTest {
                 "hakimluqq25@gmail.com",
                 "123"
         );
-        InvalidRegistrationApplication exception = Assert.assertThrows(InvalidRegistrationApplication.class, ()-> registrationService.apply(request));
+        InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());
     }
 
     @Test
     public void underReviewRegistration_shouldThrowException(){
-        registrationRepository.add(initialRegistration);
+        registrationRepository.add(registration);
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
-                initialRegistration.requestId(),
+                registration.getRequestId(),
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222",
@@ -142,7 +140,7 @@ public class ApplyRegistrationTest {
                 "hakimluqq25@gmail.com",
                 "123"
         );
-        InvalidRegistrationApplication exception = Assert.assertThrows(InvalidRegistrationApplication.class, ()-> registrationService.apply(request));
+        InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());
     }
 
@@ -174,8 +172,7 @@ public class ApplyRegistrationTest {
                 "hakimluqq25@gmail.com", "123"
         );
         registrationService.apply(request);
-        RegistrationApplication submittedRegistration = registrationRepository.getLatest(registrationRequest.getId());
+        RegistrationApplication submittedRegistration = registrationRepository.get(registrationRequest.getId());
         Assert.assertNotNull(submittedRegistration);
-        Assert.assertEquals(1, submittedRegistration.version());
     }
 }

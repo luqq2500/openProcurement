@@ -6,11 +6,11 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import identities.address.Address;
 import identities.address.Country;
 import identities.company.Structure;
-import registration.AccountAdministratorDetails;
-import registration.CompanyDetails;
-import registration.RegistrationApplication;
-import registration.RegistrationStatus;
-import registration.events.RegistrationSubmitted;
+import identities.registration.AccountAdministratorDetails;
+import identities.registration.CompanyDetails;
+import identities.registration.RegistrationApplication;
+import identities.registration.RegistrationStatus;
+import identities.registration.events.RegistrationSubmitted;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -34,8 +34,7 @@ public class RegistrationSubmittedPublisherTest {
                 new CompanyDetails(",", new Address("1", "1", "1",
                         "1", "43900", "sel", Country.MALAYSIA), "2222", Structure.SOLE
                 ),
-                new AccountAdministratorDetails("1", "1", "username", "123"),
-                RegistrationStatus.UNDER_REVIEW, LocalDateTime.now(), 1, null);
+                new AccountAdministratorDetails("1", "1", "username", "123"));
 
         RegistrationSubmitted event = new RegistrationSubmitted(registrationApplication);
 

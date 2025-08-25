@@ -1,4 +1,4 @@
-package registration;
+package identities.registration;
 
 import identities.address.Address;
 import identities.company.Structure;

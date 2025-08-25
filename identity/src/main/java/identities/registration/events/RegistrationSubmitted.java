@@ -1,7 +1,7 @@
-package registration.events;
+package identities.registration.events;
 
-import registration.CompanyDetails;
-import registration.RegistrationApplication;
+import identities.registration.CompanyDetails;
+import identities.registration.RegistrationApplication;
 import event.IntegrationEvent;
 
 import java.time.Instant;
@@ -14,8 +14,8 @@ public class RegistrationSubmitted implements IntegrationEvent {
     private final Instant submittedOn;
     public RegistrationSubmitted(RegistrationApplication registration) {
         this.eventId = UUID.randomUUID();
-        this.registrationId = registration.requestId();
-        this.companyDetails = registration.companyDetails();
+        this.registrationId = registration.getRequestId();
+        this.companyDetails = registration.getCompanyDetails();
         this.submittedOn = Instant.now();
     }
 

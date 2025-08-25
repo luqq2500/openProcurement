@@ -1,4 +1,4 @@
-package registration.events;
+package identities.registration.events;
 
 import event.IntegrationEvent;
 

@@ -1,6 +1,5 @@
-package registration.spi;
+package identities.registration.events;
 
-import registration.events.RegistrationSubmitted;
 import port.IntegrationEventPublisher;
 
 public class MockRegistrationSubmittedPublisher implements IntegrationEventPublisher<RegistrationSubmitted> {

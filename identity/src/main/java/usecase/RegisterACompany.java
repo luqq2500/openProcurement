@@ -1,17 +1,16 @@
-package registration.usecase;
+package usecase;
 
 import annotation.DomainService;
 import identities.employee.Employee;
 import identities.employee.spi.EmployeeRepository;
-import registration.*;
-import registration.api.RegistrationService;
-import registration.events.RegistrationSubmitted;
-import registration.exception.InvalidRegistrationApplication;
-import registration.spi.RegistrationRepository;
-import registration.spi.RegistrationRequestRepository;
+import identities.registration.*;
+import identities.registration.api.RegistrationService;
+import identities.registration.events.RegistrationSubmitted;
+import usecase.exception.InvalidCompanyRegistration;
+import identities.registration.spi.RegistrationRepository;
+import identities.registration.spi.RegistrationRequestRepository;
 import port.IntegrationEventPublisher;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -29,13 +28,13 @@ import java.util.UUID;
 ///
 
 @DomainService
-public class CompanyRegistrationService implements RegistrationService {
+public class RegisterACompany implements RegistrationService {
     private final RegistrationRepository registrationRepository;
     private final RegistrationRequestRepository registrationRequestRepository;
     private final EmployeeRepository employeeRepository;
     private final IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher;
 
-    public CompanyRegistrationService(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
+    public RegisterACompany(RegistrationRepository registrationRepository, RegistrationRequestRepository registrationRequestRepository, EmployeeRepository employeeRepository, IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher) {
         this.registrationRepository = registrationRepository;
         this.registrationRequestRepository = registrationRequestRepository;
         this.employeeRepository = employeeRepository;
@@ -54,39 +53,39 @@ public class CompanyRegistrationService implements RegistrationService {
 
         CompanyDetails companyDetails = new CompanyDetails(registration.companyName(), registration.address(), registration.brn(), registration.structure());
         AccountAdministratorDetails accountAdministratorDetails = new AccountAdministratorDetails(registration.firstName(), registration.lastName(), registration.email(), registration.password());
-        RegistrationApplication application;
 
-        if (findRequestId.isPresent() && findRequestId.get().isRejected()){
-            application = findRequestId.get().changeDetails(companyDetails, accountAdministratorDetails);}
+
+        RegistrationApplication application;
+        if (findRequestId.isPresent() && findRequestId.get().validForResubmit()){
+           application = findRequestId.get();
+           application.resubmit(companyDetails, accountAdministratorDetails);
+        }
         else {
             RegistrationRequest request = registrationRequestRepository.getById(registration.requestId());
-            application = new RegistrationApplication(request.getId(),
-                    companyDetails, accountAdministratorDetails,
-                    RegistrationStatus.UNDER_REVIEW, LocalDateTime.now(),
-                    1, null);}
-
-        registrationRepository.add(application);
+            application = new RegistrationApplication(request.getId(), companyDetails, accountAdministratorDetails);
+            registrationRepository.add(application);
+        }
         integrationEventPublisher.publish(new RegistrationSubmitted(application));
     }
 
     private Optional<RegistrationApplication> validateExistingRegistration(ApplyRegistrationDetails registration) {
-        Optional<RegistrationApplication> findRequestId = registrationRepository.findLatest(registration.requestId());
+        Optional<RegistrationApplication> findRequestId = registrationRepository.find(registration.requestId());
         if (findRequestId.isPresent() && findRequestId.get().isApproved()){
-            throw new InvalidRegistrationApplication("Registration has been approved.");}
+            throw new InvalidCompanyRegistration("Registration has been approved.");}
         if (findRequestId.isPresent() && findRequestId.get().isUnderReview()){
-            throw new InvalidRegistrationApplication("Registration is under review.");}
+            throw new InvalidCompanyRegistration("Registration is under review.");}
         return findRequestId;
     }
 
     private void validateUniqueness(ApplyRegistrationDetails registration) {
-        Optional<RegistrationApplication> findCompanyName = registrationRepository.findLatestByCompanyName(registration.companyName());
-        Optional<RegistrationApplication> findBrn = registrationRepository.findLatestByBrn(registration.brn());
+        Optional<RegistrationApplication> findCompanyName = registrationRepository.findByCompanyName(registration.companyName());
+        Optional<RegistrationApplication> findBrn = registrationRepository.findByBrn(registration.brn());
         Optional<Employee> findEmail = employeeRepository.findByEmail(registration.email());
         if (findCompanyName.isPresent() && !findCompanyName.get().isRejected()){
-            throw new InvalidRegistrationApplication("Company name is already in use.");}
+            throw new InvalidCompanyRegistration("Company name is already in use.");}
         if (findBrn.isPresent() && !findBrn.get().isRejected()){
-            throw new InvalidRegistrationApplication("Brn is already in use.");}
+            throw new InvalidCompanyRegistration("Brn is already in use.");}
         if (findEmail.isPresent() && findEmail.get().isActive()){
-            throw new InvalidRegistrationApplication("Email is already in use.");}
+            throw new InvalidCompanyRegistration("Email is already in use.");}
     }
 }

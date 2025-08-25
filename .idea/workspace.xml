@@ -5,78 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/config/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/config/infra-administration.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/config/infra-identity.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/openprocurement/configserver/ConfigServerApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/test/java/openprocurement/configserver/ConfigServerApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-admin/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-admin/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-admin/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-admin/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-admin/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/InvalidRegistrationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationAdministration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/identity/src/test/java/identities/registration/RegistrationApplicationDT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/address/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/address/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/administrator/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/administrator/Administrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/administrator/AdministratorRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/administrator/AdministratorRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/administrator/spi/AdministratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/administrator/spi/AdministratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/event/IntegrationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/event/IntegrationEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/identity/registration/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/identity/registration/Registration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/identity/registration/RegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/identity/registration/RegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/identity/registration/api/RegistrationStatusUpdater.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/identity/registration/api/RegistrationStatusUpdater.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/identity/registration/event/MockRegistrationAdministeredPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/identity/registration/event/MockRegistrationAdministeredPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/identity/registration/event/MockRegistrationSubmittedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/identity/registration/event/MockRegistrationSubmittedHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/identity/registration/event/RegistrationAdministered.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/identity/registration/event/RegistrationAdministered.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/identity/registration/exception/InvalidRegistrationAdministration.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/identity/registration/exception/InvalidRegistrationAdministration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/identity/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/identity/registration/spi/RegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/port/IntegrationEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/port/IntegrationEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/port/IntegrationEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/port/IntegrationEventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/main/java/usecase/UpdateRegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/main/java/usecase/UpdateRegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/test/java/registration/InMemoryAdministratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/test/java/registration/InMemoryAdministratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/test/java/registration/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/test/java/registration/InMemoryRegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/administration/src/test/java/registration/updateRegistrationStatusTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/admin/src/test/java/registration/updateRegistrationStatusTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/AccountAdministratorDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/AccountAdministratorDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/ApplyRegistrationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/ApplyRegistrationDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/CompanyDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/CompanyDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/RegistrationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/RegistrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/RegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationAdministrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/api/RegistrationAdministrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationRequestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/api/RegistrationRequestor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/api/RegistrationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/RegistrationRequested.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/events/RegistrationRequested.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/RegistrationSubmitted.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/events/RegistrationSubmitted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/exception/InvalidRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/exception/InvalidRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/exception/InvalidRegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/exception/InvalidRegistrationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/exception/InvalidRegistrationApplicationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/exception/InvalidRegistrationApplicationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/spi/InMemoryRegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/InMemoryRegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/spi/InMemoryRegistrationRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/MockRegistrationSubmittedPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/spi/MockRegistrationSubmittedPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/spi/RegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/RegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/spi/RegistrationRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/usecase/CompanyRegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/registration/usecase/CompanyRegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/AccountAdministratorDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/AccountAdministratorDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/ApplyRegistrationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/ApplyRegistrationDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/CompanyDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/CompanyDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/RegistrationApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/RegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/RegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/api/RegistrationAdministrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationAdministrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/api/RegistrationRequestor.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationRequestor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/api/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/events/RegistrationRequested.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/RegistrationRequested.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/events/RegistrationSubmitted.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/RegistrationSubmitted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/exception/InvalidRegistration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/exception/InvalidRegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/usecase/exception/InvalidCompanyRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/exception/InvalidRegistrationApplicationStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/spi/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/InMemoryRegistrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/spi/InMemoryRegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/InMemoryRegistrationRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/spi/MockRegistrationSubmittedPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/events/MockRegistrationSubmittedPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/RegistrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/spi/RegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/RegistrationRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/main/java/registration/usecase/CompanyRegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/main/java/usecase/RegisterACompany.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/identity/src/test/java/identities/registration/ApplyRegistrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/identities/registration/ApplyRegistrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/test/java/identities/registration/RegistrationApplicationDomainTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/identity/src/test/java/identities/registration/RegistrationApplicationDomainTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/infra-admin/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/src/main/java/messaging/RegistrationSubmittedHandler_Kafka.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra-admin/src/main/java/messaging/RegistrationSubmittedHandler_Kafka.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/src/main/java/messaging/config/KafkaConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra-admin/src/main/java/messaging/config/KafkaConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/src/main/java/openprocurement/infraadministration/InfraAdministrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra-admin/src/main/java/openprocurement/infraadministration/InfraAdministrationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/infra-admin/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/src/test/java/message/RegistrationSubmittedHandler_KafkaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra-admin/src/test/java/message/RegistrationSubmittedHandler_KafkaTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/infra-administration/src/test/java/openprocurement/infraadministration/InfraAdministrationApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra-admin/src/test/java/openprocurement/infraadministration/InfraAdministrationApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/identity/src/test/java/identities/registration/RegistrationApplicationDomainTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/infra-identity/src/main/java/message/RegistrationSubmitted_KafkaPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra-identity/src/main/java/message/RegistrationSubmitted_KafkaPublisher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/infra-identity/src/test/java/message/RegistrationSubmittedPublisherTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/infra-identity/src/test/java/message/RegistrationSubmittedPublisherTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,10 +46,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Record" />
         <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -118,130 +77,144 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;HTTP Request.generated-requests | #1.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #10.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #2.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #3.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #4.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #5.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #6.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #8.executor&quot;: &quot;Run&quot;,
-    &quot;HTTP Request.generated-requests | #9.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationApplicationTest.companyNameIsTaken_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationApplicationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationApplicationTest.newRegistration_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.applyNewRegistration_versionShouldBeOne.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.approveRegistration_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.companyBrnIsTaken_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.companyNameIsTaken_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.expiredRequest_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.testApplyRegistration.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.underReviewRegistration_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.updateRejectedApplication_versionShouldIncremented.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ApplyRegistrationTest.usernameIsTaken_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CompanyRegistrationServiceTest.testRegisterCompany.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PreEvaluateRegistrationTest.testPreEvaluateRegistration.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationApplicationDomainTest.changeDetails_versionShouldPlusOne.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationApplicationDomainTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationApplicationDomainTest.invalidAdministratorRole_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationApplicationDomainTest.updateStatus_versionShouldRemainSame.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.approveToApproved_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.approveToRejected_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.approveToUnderReview_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.changeDetailWhenStatusUnderPreview_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.changeDetailsTwice_versionAfterShouldPlusTwo.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.changeDetailsWhenRegistrationIsApproved_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.changeDetailsWhenRegistrationIsRejected_versionAfterShouldPlusOne.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.changeDetailsWhenStatusUnderPreview_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.changeDetails_versionShouldBePlusOne.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.rejectedToApprove_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.rejectedToRejected_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.underPreviewToUnderPreview_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.updateInvalidStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationApplicationDomainTest.updateValidStatus_versionShouldEqual.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationServiceTest.testRegisterCompany.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RegistrationSubmittedPublisherTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.administratorUpdateCompanyRegistrationStatus.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.companyAlreadyRegistered_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.companyRegisteredAndActive_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.duplicateBrnAndCompanyAccountIsInactive_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.duplicateBrnAndNotUnderReview_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.expiredRegistrationRequest_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.applyRegistrationApplicationTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.pendingToInvalidStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.processingToInvalidStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.updateApprovedStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.updatePendingToValidStatus_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.updateProcessingToValidStatus_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationStatusTest.updateRejectedStatus_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.approvedToInvalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.invalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.processingToInvalidStatusUpdate_shouldThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.companyRegistrationTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.initiateVerificationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.mockOTPServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationFactoryTest.SMSType_shouldReturnSMSService.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationFactoryTest.emailType_shouldReturnEmailService.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationFactoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationFactoryTest.notificationFactoryShouldReturnNotificationImplementation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationServiceTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.notificationStrategyTest.emailType_shouldReturnEmailService.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.otpTokenTest.wrongOtp.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.registrationApplicationStatusTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.registrationApplicationStatusTest.pendingToProcessing_shouldNotThrowException.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.requestCompanyRegistrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.requestCompanyRegistrationTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tokenServiceTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tokenTest.expiredOtp.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tokenTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.tokenTest.tokenExpired.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.updateRegistrationStatusTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.updateRegistrationStatusTest.test.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.verifyCompanyRegistrationRequestTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.openProcurement [clean:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.openProcurement [clean].executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Spring Boot.IdentityInfraApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.InfrastructureApplication.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/hakim/code/java/openProcurement/administration/src/main/java/company&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "HTTP Request.generated-requests | #1.executor": "Run",
+    "HTTP Request.generated-requests | #10.executor": "Run",
+    "HTTP Request.generated-requests | #2.executor": "Run",
+    "HTTP Request.generated-requests | #3.executor": "Run",
+    "HTTP Request.generated-requests | #4.executor": "Run",
+    "HTTP Request.generated-requests | #5.executor": "Run",
+    "HTTP Request.generated-requests | #6.executor": "Run",
+    "HTTP Request.generated-requests | #8.executor": "Run",
+    "HTTP Request.generated-requests | #9.executor": "Run",
+    "JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame.executor": "Run",
+    "JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_shouldNotThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationApplicationTest.companyNameIsTaken_shouldThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationApplicationTest.executor": "Run",
+    "JUnit.ApplyRegistrationApplicationTest.newRegistration_shouldNotThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationTest.applyNewRegistration_versionShouldBeOne.executor": "Run",
+    "JUnit.ApplyRegistrationTest.approveRegistration_shouldThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationTest.companyBrnIsTaken_shouldThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationTest.companyNameIsTaken_shouldThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationTest.executor": "Run",
+    "JUnit.ApplyRegistrationTest.expiredRequest_shouldThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationTest.testApplyRegistration.executor": "Run",
+    "JUnit.ApplyRegistrationTest.underReviewRegistration_shouldThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationTest.updateRejectedApplication_versionShouldIncremented.executor": "Run",
+    "JUnit.ApplyRegistrationTest.usernameIsTaken_shouldThrowException.executor": "Run",
+    "JUnit.CompanyRegistrationDT.administerNotInProgress_shouldThrowException.executor": "Run",
+    "JUnit.CompanyRegistrationDT.administerOnce_administrationLengthMustBeOne.executor": "Run",
+    "JUnit.CompanyRegistrationDT.administerToApproved_currentStatusMustBeApproved.executor": "Run",
+    "JUnit.CompanyRegistrationDT.administerToApproved_statusBeforeMustBeUnderReview_andNewStatusMustBeApproved.executor": "Run",
+    "JUnit.CompanyRegistrationDT.administerToInProgress_shouldThrowException.executor": "Run",
+    "JUnit.CompanyRegistrationDT.administerToRejected_currentStatusMustBeRejected.executor": "Run",
+    "JUnit.CompanyRegistrationDT.administerToUnderReview_shouldThrowException.executor": "Run",
+    "JUnit.CompanyRegistrationDT.administerTwice_shouldThrowException.executor": "Run",
+    "JUnit.CompanyRegistrationDT.changeDetailNotRejectedRegistration_shouldThrowException.executor": "Run",
+    "JUnit.CompanyRegistrationDT.executor": "Run",
+    "JUnit.CompanyRegistrationDT.resubmitApproved_shouldThrowException.executor": "Run",
+    "JUnit.CompanyRegistrationDT.resubmitOnce_detailsHistoryLengthMustBePlusOne.executor": "Run",
+    "JUnit.CompanyRegistrationDT.resubmitOnce_detailsHistoryLengthMustBeTwo.executor": "Run",
+    "JUnit.CompanyRegistrationDT.resubmit_currentStatusMustBeInProgress.executor": "Run",
+    "JUnit.CompanyRegistrationServiceTest.testRegisterCompany.executor": "Run",
+    "JUnit.PreEvaluateRegistrationTest.testPreEvaluateRegistration.executor": "Run",
+    "JUnit.RegistrationApplicationApplicationDomainTest.changeDetails_versionShouldPlusOne.executor": "Run",
+    "JUnit.RegistrationApplicationApplicationDomainTest.executor": "Run",
+    "JUnit.RegistrationApplicationApplicationDomainTest.invalidAdministratorRole_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationApplicationDomainTest.updateStatus_versionShouldRemainSame.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.approveToApproved_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.approveToRejected_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.approveToUnderReview_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailWhenStatusUnderPreview_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailsTwice_versionAfterShouldPlusTwo.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailsWhenRegistrationIsApproved_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailsWhenRegistrationIsRejected_versionAfterShouldPlusOne.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetailsWhenStatusUnderPreview_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.changeDetails_versionShouldBePlusOne.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.rejectedToApprove_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.rejectedToRejected_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.underPreviewToUnderPreview_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.updateInvalidStatus_shouldThrowException.executor": "Run",
+    "JUnit.RegistrationApplicationDomainTest.updateValidStatus_versionShouldEqual.executor": "Run",
+    "JUnit.RegistrationServiceTest.testRegisterCompany.executor": "Run",
+    "JUnit.RegistrationSubmittedPublisherTest.test.executor": "Run",
+    "JUnit.administratorUpdateCompanyRegistrationStatus.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.appliedBrnAndUnderReview_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.appliedBrnApproved_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.companyAlreadyRegistered_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.companyRegisteredAndActive_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.duplicateBrnAndCompanyAccountIsInactive_shouldNotThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.duplicateBrnAndNotUnderReview_shouldNotThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.expiredRegistrationRequest_shouldThrowException.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.nullUsername_usernameShouldEqualEmail.executor": "Run",
+    "JUnit.applyRegistrationApplicationTest.test.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.pendingToInvalidStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.processingToInvalidStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateApprovedStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updatePendingToValidStatus_shouldNotThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateProcessingToValidStatus_shouldNotThrowException.executor": "Run",
+    "JUnit.companyRegistrationStatusTest.updateRejectedStatus_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.approvedToInvalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.executor": "Run",
+    "JUnit.companyRegistrationTest.invalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.processingToInvalidStatusUpdate_shouldThrowException.executor": "Run",
+    "JUnit.companyRegistrationTest.test.executor": "Run",
+    "JUnit.initiateVerificationTest.executor": "Run",
+    "JUnit.mockOTPServiceTest.executor": "Run",
+    "JUnit.notificationFactoryTest.SMSType_shouldReturnSMSService.executor": "Run",
+    "JUnit.notificationFactoryTest.emailType_shouldReturnEmailService.executor": "Run",
+    "JUnit.notificationFactoryTest.executor": "Run",
+    "JUnit.notificationFactoryTest.notificationFactoryShouldReturnNotificationImplementation.executor": "Run",
+    "JUnit.notificationServiceTest.test.executor": "Run",
+    "JUnit.notificationStrategyTest.emailType_shouldReturnEmailService.executor": "Run",
+    "JUnit.otpTokenTest.wrongOtp.executor": "Run",
+    "JUnit.registrationApplicationStatusTest.executor": "Run",
+    "JUnit.registrationApplicationStatusTest.pendingToProcessing_shouldNotThrowException.executor": "Run",
+    "JUnit.requestCompanyRegistrationTest.executor": "Run",
+    "JUnit.requestCompanyRegistrationTest.test.executor": "Run",
+    "JUnit.tokenServiceTest.test.executor": "Run",
+    "JUnit.tokenTest.expiredOtp.executor": "Run",
+    "JUnit.tokenTest.test.executor": "Run",
+    "JUnit.tokenTest.tokenExpired.executor": "Run",
+    "JUnit.updateRegistrationStatusTest.executor": "Run",
+    "JUnit.updateRegistrationStatusTest.test.executor": "Run",
+    "JUnit.verifyCompanyRegistrationRequestTest.executor": "Run",
+    "Maven.openProcurement [clean:clean].executor": "Run",
+    "Maven.openProcurement [clean].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.IdentityInfraApplication.executor": "Run",
+    "Spring Boot.InfrastructureApplication.executor": "Run",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/hakim/code/java/openProcurement/administration/src/main/java/company",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "run.configurations.included.in.services": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="identities.registration" />
       <recent name="message" />
       <recent name="identities.account" />
       <recent name="identities.registration.usecase" />
       <recent name="identities.registration.api" />
-      <recent name="registration" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hakim\code\java\openProcurement\administration\src\main\java\company" />
@@ -273,8 +246,8 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.RegistrationSubmittedPublisherTest.test">
-    <configuration name="ApplyRegistrationTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="RegistrationApplicationDT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -283,13 +256,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="identities.registration" />
-      <option name="MAIN_CLASS_NAME" value="identities.registration.ApplyRegistrationTest" />
+      <option name="MAIN_CLASS_NAME" value="identities.registration.RegistrationApplicationDT" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplyRegistrationTest.applyNewRegistration_versionShouldBeOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationApplicationDT.administerOnce_administrationLengthMustBeOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -298,14 +271,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="identities.registration" />
-      <option name="MAIN_CLASS_NAME" value="identities.registration.ApplyRegistrationTest" />
-      <option name="METHOD_NAME" value="applyNewRegistration_versionShouldBeOne" />
+      <option name="MAIN_CLASS_NAME" value="identities.registration.RegistrationApplicationDT" />
+      <option name="METHOD_NAME" value="administerOnce_administrationLengthMustBeOne" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegistrationApplicationDomainTest.changeDetails_versionShouldPlusOne" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationApplicationDT.administerToApproved_statusBeforeMustBeUnderReview_andNewStatusMustBeApproved" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -314,14 +287,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="identities.registration" />
-      <option name="MAIN_CLASS_NAME" value="identities.registration.RegistrationApplicationDomainTest" />
-      <option name="METHOD_NAME" value="changeDetails_versionShouldPlusOne" />
+      <option name="MAIN_CLASS_NAME" value="identities.registration.RegistrationApplicationDT" />
+      <option name="METHOD_NAME" value="administerToApproved_statusBeforeMustBeUnderReview_andNewStatusMustBeApproved" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegistrationApplicationDomainTest.updateStatus_versionShouldRemainSame" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RegistrationApplicationDT.administerToUnderReview_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="identity" />
       <extension name="coverage">
         <pattern>
@@ -330,76 +303,28 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="identities.registration" />
-      <option name="MAIN_CLASS_NAME" value="identities.registration.RegistrationApplicationDomainTest" />
-      <option name="METHOD_NAME" value="updateStatus_versionShouldRemainSame" />
+      <option name="MAIN_CLASS_NAME" value="identities.registration.RegistrationApplicationDT" />
+      <option name="METHOD_NAME" value="administerToUnderReview_shouldThrowException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RegistrationSubmittedPublisherTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="infra-identity" />
+    <configuration name="RegistrationApplicationDT.resubmitApproved_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="identity" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="message.*" />
+          <option name="PATTERN" value="identities.registration.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="message" />
-      <option name="MAIN_CLASS_NAME" value="message.RegistrationSubmittedPublisherTest" />
-      <option name="METHOD_NAME" value="test" />
+      <option name="PACKAGE_NAME" value="identities.registration" />
+      <option name="MAIN_CLASS_NAME" value="identities.registration.RegistrationApplicationDT" />
+      <option name="METHOD_NAME" value="resubmitApproved_shouldThrowException" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="admin" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="admin" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="admin" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="admin" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
     </configuration>
     <configuration name="AdministrationInfraApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
@@ -448,62 +373,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="admin" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Autodetect">
-      <module name="admin" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="admin" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.RegistrationSubmittedPublisherTest.test" />
-        <item itemvalue="JUnit.ApplyRegistrationTest.applyNewRegistration_versionShouldBeOne" />
-        <item itemvalue="JUnit.ApplyRegistrationTest" />
-        <item itemvalue="JUnit.RegistrationApplicationDomainTest.updateStatus_versionShouldRemainSame" />
-        <item itemvalue="JUnit.RegistrationApplicationDomainTest.changeDetails_versionShouldPlusOne" />
+        <item itemvalue="JUnit.RegistrationApplicationDT" />
+        <item itemvalue="JUnit.RegistrationApplicationDT.administerToApproved_statusBeforeMustBeUnderReview_andNewStatusMustBeApproved" />
+        <item itemvalue="JUnit.RegistrationApplicationDT.administerOnce_administrationLengthMustBeOne" />
+        <item itemvalue="JUnit.RegistrationApplicationDT.administerToUnderReview_shouldThrowException" />
+        <item itemvalue="JUnit.RegistrationApplicationDT.resubmitApproved_shouldThrowException" />
       </list>
     </recent_temporary>
   </component>
@@ -546,7 +422,8 @@
       <workItem from="1755826558868" duration="8132000" />
       <workItem from="1755847103943" duration="4709000" />
       <workItem from="1755855523264" duration="3350000" />
-      <workItem from="1755918018700" duration="8679000" />
+      <workItem from="1755918018700" duration="9050000" />
+      <workItem from="1756033961683" duration="13518000" />
     </task>
     <servers />
   </component>
