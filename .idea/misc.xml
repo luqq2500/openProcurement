@@ -17,8 +17,11 @@
       <set>
         <option value="$PROJECT_DIR$/administration-infra/pom.xml" />
         <option value="$PROJECT_DIR$/auth/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/entity/pom.xml" />
         <option value="$PROJECT_DIR$/identity-infra/pom.xml" />
+        <option value="$PROJECT_DIR$/infra-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/infra-identity/pom.xml" />
         <option value="$PROJECT_DIR$/infrastructure/pom.xml" />
         <option value="$PROJECT_DIR$/pending/pom.xml" />
         <option value="$PROJECT_DIR$/usecase/pom.xml" />

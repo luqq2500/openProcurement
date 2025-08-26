@@ -1,7 +1,7 @@
 package identity.registration.event;
 
 import event.IntegrationEvent;
-import identity.registration.Registration;
+import identity.registration.SubmittedRegistration;
 
 import java.time.Instant;
 import java.util.UUID;
@@ -13,11 +13,11 @@ public class RegistrationAdministered implements IntegrationEvent {
     private final boolean isApproved;
     private final UUID administeredBy;
     private final Instant administeredOn;
-    public RegistrationAdministered(Registration registration) {
+    public RegistrationAdministered(SubmittedRegistration submittedRegistration) {
         this.eventId = UUID.randomUUID();
-        this.registrationId = registration.registrationId();
-        this.isApproved = registration.isApproved();
-        this.administeredBy = registration.administratorId();
+        this.registrationId = submittedRegistration.requestId();
+        this.isApproved = submittedRegistration.isApproved();
+        this.administeredBy = submittedRegistration.administratorId();
         this.administeredOn = Instant.now();
     }
     @Override

@@ -3,58 +3,62 @@ package identities.registration;
 import identities.address.Address;
 import identities.address.Country;
 import identities.company.Structure;
-import identities.employee.Employee;
-import identities.employee.EmployeeRole;
-import identities.employee.PersonnelDetails;
-import identities.employee.spi.EmployeeRepository;
-import identities.employee.spi.InMemoryEmployeeRepository;
 import identities.registration.events.MockRegistrationSubmittedPublisher;
 import identities.registration.spi.*;
 import identities.registration.api.RegistrationService;
 import identities.registration.events.RegistrationSubmitted;
-import usecase.exception.InvalidCompanyRegistration;
-import usecase.RegisterACompany;
+import usecase.registerCompany.ApplyRegistrationDetails;
+import usecase.registerCompany.exception.InvalidCompanyRegistration;
+import usecase.registerCompany.RegisterACompany;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import port.IntegrationEventPublisher;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class ApplyRegistrationTest {
     private RegistrationService registrationService;
-    private RegistrationRepository registrationRepository;
-    RegistrationRequestRepository registrationRequestRepository;
-    private EmployeeRepository employeeRepository;
-    private RegistrationApplication registration;
+    private RegistrationRequestRepository requestRepository;
+    private RegistrationAdministrationRepository administrationRepository;
+    private RegistrationApplication appliedRegistration;
     private UUID requestId;
-    private UUID administratorId;
 
     @Before
     public void setUp() throws Exception {
-        registrationRepository = new InMemoryRegistrationRepository();
-        registrationRequestRepository = new InMemoryRegistrationRequestRepository();
-        employeeRepository = new InMemoryEmployeeRepository();
+        RegistrationRepository registrationRepository = new InMemoryRegistrationRepository();
+        requestRepository = new InMemoryRegistrationRequestRepository();
+        administrationRepository = new InMemoryRegistrationAdministrationRepository();
 
         IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
-        registrationService = new RegisterACompany(registrationRepository, registrationRequestRepository, employeeRepository,integrationEventPublisher);
+        registrationService = new RegisterACompany(
+                registrationRepository,
+                requestRepository,
+                administrationRepository,integrationEventPublisher);
 
+        UUID guessId = UUID.randomUUID();
         requestId = UUID.randomUUID();
-        administratorId = UUID.randomUUID();
-        registration = new RegistrationApplication(requestId,
-                new CompanyDetails("Terra", new Address("1", "1", "1",
-                        "1", "43900", "sel", Country.MALAYSIA), "2222", Structure.SOLE
-                ),
-                new AccountAdministratorDetails("1", "1", "username", "123"));
+        UUID applicationId = UUID.randomUUID();
+
+        RegistrationRequest registrationRequested = new RegistrationRequest(guessId);
+        requestRepository.add(registrationRequested);
+
+        appliedRegistration = new RegistrationApplication(registrationRequested.getId(), applicationId,
+                new CompanyDetails("1", new Address("1", "1", "1", "1", "43900", "sepang", Country.MALAYSIA),
+                        "222", Structure.SOLE),
+                new AccountAdminDetails("luqman", "hakim", "email", "***"),
+                LocalDateTime.now());
+        registrationRepository.add(appliedRegistration);
     }
 
     @Test
-    public void applyTakenCompanyName_shouldThrowException(){
-        registration.administer(administratorId, RegistrationStatus.APPROVED, "");
-        registrationRepository.add(registration);
+    public void companyNameRegistered_shouldThrowException(){
+        RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
+        administrationRepository.add(administration);
 
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
-                requestId, "Terra",
+                requestId, appliedRegistration.getCompanyName(),
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222", Structure.SOLE,
                 "luqman", "hakim",
@@ -63,44 +67,31 @@ public class ApplyRegistrationTest {
         InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());
     }
-
     @Test
-    public void applyTakenBrn_shouldThrowException(){
-        registration.administer(administratorId, RegistrationStatus.APPROVED, "");
-        registrationRepository.add(registration);
-
+    public void brnRegistered_shouldThrowException() {
+        RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
+        administrationRepository.add(administration);
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 requestId, "Lexus",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                registration.getBrn(), Structure.SOLE,
+                appliedRegistration.getBrn(), Structure.SOLE,
                 "luqman", "hakim",
                 "hakimluqq25@gmail.com", "123"
         );
-
-        InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
+        InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, () -> registrationService.apply(request));
         System.out.println(exception.getMessage());
     }
 
     @Test
-    public void usernameIsTaken_shouldThrowException(){
-        Employee employee = new Employee(
-                UUID.randomUUID(),
-                "email@taken.com",
-                "123",
-                EmployeeRole.PROCUREMENT_MANAGER,
-                new PersonnelDetails("luqman", "hakim"));
-        employeeRepository.add(employee);
-
+    public void emailRegistered_shouldThrowException(){
+        RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
+        administrationRepository.add(administration);
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
-                requestId,
-                "Lexus",
+                requestId, "Lexus",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                "2222",
-                Structure.SOLE,
-                "luqman",
-                "hakim",
-                employee.getEmail(),
-                "123"
+                "2222", Structure.SOLE,
+                "luqman", "hakim",
+                appliedRegistration.getEmail(), "123"
         );
         InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());
@@ -108,11 +99,11 @@ public class ApplyRegistrationTest {
 
     @Test
     public void approveRequestId_shouldThrowException(){
-        registration.administer(administratorId, RegistrationStatus.APPROVED, "");
-        registrationRepository.add(registration);
+        RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
+        administrationRepository.add(administration);
 
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
-                registration.getRequestId(),
+                appliedRegistration.getRequestId(),
                 "terraForm",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222",
@@ -128,9 +119,8 @@ public class ApplyRegistrationTest {
 
     @Test
     public void underReviewRegistration_shouldThrowException(){
-        registrationRepository.add(registration);
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
-                registration.getRequestId(),
+                appliedRegistration.getRequestId(),
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222",
@@ -147,7 +137,7 @@ public class ApplyRegistrationTest {
     @Test
     public void newRegistration_shouldNotThrowException(){
         RegistrationRequest registrationRequest = new RegistrationRequest(UUID.randomUUID());
-        registrationRequestRepository.add(registrationRequest);
+        requestRepository.add(registrationRequest);
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 registrationRequest.getId(),
                 "terra",
@@ -157,22 +147,5 @@ public class ApplyRegistrationTest {
                 "hakimluqq25@gmail.com", "123"
         );
         registrationService.apply(request);
-    }
-
-    @Test
-    public void applyNewRegistration_versionShouldBeOne(){
-        RegistrationRequest registrationRequest = new RegistrationRequest(UUID.randomUUID());
-        registrationRequestRepository.add(registrationRequest);
-        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
-                registrationRequest.getId(),
-                "terra",
-                new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                "22222", Structure.SOLE,
-                "luqman", "hakim",
-                "hakimluqq25@gmail.com", "123"
-        );
-        registrationService.apply(request);
-        RegistrationApplication submittedRegistration = registrationRepository.get(registrationRequest.getId());
-        Assert.assertNotNull(submittedRegistration);
     }
 }

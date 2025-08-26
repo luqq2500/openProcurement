@@ -7,23 +7,31 @@ import java.util.*;
 public class InMemoryRegistrationRepository implements RegistrationRepository {
     private final List<RegistrationApplication> registrations = new ArrayList<>();
     @Override
-    public Optional<RegistrationApplication> find(UUID requestId) {
+    public Optional<RegistrationApplication> findLatest(UUID requestId) {
         return registrations.stream()
                 .filter(registration -> registration.getRequestId().equals(requestId))
-                .findFirst();
+                .max(Comparator.comparing(RegistrationApplication::appliedOn));
     }
     @Override
-    public Optional<RegistrationApplication> findByBrn(String brn) {
+    public Optional<RegistrationApplication> findLatestByBrn(String brn) {
         return registrations.stream()
                 .filter(registration -> registration.getBrn().equals(brn))
-                .findFirst();
+                .max(Comparator.comparing(RegistrationApplication::appliedOn));
     }
     @Override
-    public Optional<RegistrationApplication> findByCompanyName(String name) {
+    public Optional<RegistrationApplication> findLatestByCompanyName(String name) {
         return registrations.stream()
                 .filter(registration -> registration.getCompanyName().equalsIgnoreCase(name))
-                .findFirst();
+                .max(Comparator.comparing(RegistrationApplication::appliedOn));
     }
+
+    @Override
+    public Optional<RegistrationApplication> findLatestByEmail(String email) {
+        return registrations.stream()
+                .filter(registration -> registration.getEmail().equalsIgnoreCase(email))
+                .max(Comparator.comparing(RegistrationApplication::appliedOn));
+    }
+
     @Override
     public void add(RegistrationApplication application) {
         registrations.add(application);

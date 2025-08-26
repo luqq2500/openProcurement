@@ -1,8 +1,0 @@
-"infra-admin":
-  "messaging":
-    "kafka":
-      "consumer-group":"infra-admin"
-      "topics":
-        "registration-requested": ${messaging.events.registration-requested}
-        "registration-submitted": ${messaging.events.registration-requested}
-        "registration-administered": ${messaging.events.registration-administered}

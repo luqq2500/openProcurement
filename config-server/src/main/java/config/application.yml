@@ -1,8 +1,0 @@
-"messaging":
-  "kafka":
-    "bootstrap-servers":"localhost:9092"
-    "schema-registry-url":"http://localhost:8081"
-  "events":
-    "registration-requested": "registration-requested"
-    "registration-submitted": "registration-submitted"
-    "registration-administered": "registration-administered"

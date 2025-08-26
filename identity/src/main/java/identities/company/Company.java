@@ -8,14 +8,12 @@ import java.util.List;
 import java.util.UUID;
 
 public class Company {
-    private final UUID registrationId;
     private final UUID id;
     private CompanyDetails companyDetails;
     private List<Employee> employees;
     private AccountStatus accountStatus;
-    public Company(UUID registrationId, CompanyDetails companyDetails) {
+    public Company(CompanyDetails companyDetails) {
         this.id = UUID.randomUUID();
-        this.registrationId = registrationId;
         this.companyDetails = companyDetails;
         this.accountStatus = AccountStatus.ACTIVE;
     }
@@ -28,4 +26,6 @@ public class Company {
     public void changeAddress(Address address) {
         this.companyDetails.changeAddress(address);
     }
+    public String getName(){return companyDetails.getCompanyName();}
+    public String getBrn(){return companyDetails.getBrn();}
 }

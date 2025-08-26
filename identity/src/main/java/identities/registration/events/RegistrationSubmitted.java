@@ -15,7 +15,7 @@ public class RegistrationSubmitted implements IntegrationEvent {
     public RegistrationSubmitted(RegistrationApplication registration) {
         this.eventId = UUID.randomUUID();
         this.registrationId = registration.getRequestId();
-        this.companyDetails = registration.getCompanyDetails();
+        this.companyDetails = registration.companyDetails();
         this.submittedOn = Instant.now();
     }
 
