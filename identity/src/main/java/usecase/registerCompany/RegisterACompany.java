@@ -58,7 +58,8 @@ public class RegisterACompany implements RegistrationService {
         if (registration.isPresent() && administrationRepository.findLatest(registration.get().applicationId()).get().applicableForResubmit()){
             registrationApplication = registration.get().resubmit(companyDetails, accountAdminDetails);}
         else{
-            registrationApplication = new RegistrationApplication(application.requestId(), UUID.randomUUID(),
+            registrationApplication = new RegistrationApplication(
+                    application.requestId(), UUID.randomUUID(),
                     companyDetails, accountAdminDetails, LocalDateTime.now());}
 
         registrationRepository.add(registrationApplication);
@@ -73,34 +74,27 @@ public class RegisterACompany implements RegistrationService {
             if (administration.isEmpty()) {
                 throw new InvalidCompanyRegistration("Application is not yet administered.");}
             if (administration.get().isApproved()) {
-                throw new InvalidCompanyRegistration("Application is already approved.");}
-        }
+                throw new InvalidCompanyRegistration("Application is already approved.");}}
         return registration;
     }
 
     private void validateUniqueness(ApplyRegistrationDetails application) {
         Optional<RegistrationApplication> findUsedCompanyNameInRegistration = registrationRepository.findLatestByCompanyName(application.companyName());
-        Optional<RegistrationApplication> findUsedBrnInRegistration = registrationRepository.findLatestByBrn(application.brn());
-        Optional<RegistrationApplication> findUsedEmail = registrationRepository.findLatestByEmail(application.email());
-
         if (findUsedCompanyNameInRegistration.isPresent()){
             RegistrationApplication registration = findUsedCompanyNameInRegistration.get();
             if (registration.getCompanyName().equals(application.companyName())
                     && administrationRepository.get(registration.applicationId()).isApproved()){
-                throw new InvalidCompanyRegistration(application.companyName() + " is already been used.");
-            }
-        }
+                throw new InvalidCompanyRegistration(application.companyName() + " is already been used.");}}
 
+        Optional<RegistrationApplication> findUsedBrnInRegistration = registrationRepository.findLatestByBrn(application.brn());
         if (findUsedBrnInRegistration.isPresent()){
             RegistrationApplication registration = findUsedBrnInRegistration.get();
             if (registration.getBrn().equals(application.brn())
             && administrationRepository.get(registration.applicationId()).isApproved()){
-                throw new InvalidCompanyRegistration(application.brn() + " is already been used.");
-            }
-        }
+                throw new InvalidCompanyRegistration(application.brn() + " is already been used.");}}
 
+        Optional<RegistrationApplication> findUsedEmail = registrationRepository.findLatestByEmail(application.email());
         if (findUsedEmail.isPresent() && administrationRepository.get(findUsedEmail.get().applicationId()).isApproved()){
-            throw new InvalidCompanyRegistration(application.email() + " is already been used.");
-        }
+            throw new InvalidCompanyRegistration(application.email() + " is already been used.");}
     }
 }

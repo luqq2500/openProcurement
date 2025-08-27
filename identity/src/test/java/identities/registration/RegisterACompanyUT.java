@@ -18,7 +18,7 @@ import port.IntegrationEventPublisher;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
-public class ApplyRegistrationTest {
+public class RegisterACompanyUT {
     private RegistrationService registrationService;
     private RegistrationRequestRepository requestRepository;
     private RegistrationAdministrationRepository administrationRepository;
@@ -30,20 +30,15 @@ public class ApplyRegistrationTest {
         RegistrationRepository registrationRepository = new InMemoryRegistrationRepository();
         requestRepository = new InMemoryRegistrationRequestRepository();
         administrationRepository = new InMemoryRegistrationAdministrationRepository();
-
         IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
-        registrationService = new RegisterACompany(
-                registrationRepository,
-                requestRepository,
-                administrationRepository,integrationEventPublisher);
+
+        registrationService = new RegisterACompany(registrationRepository, requestRepository, administrationRepository,integrationEventPublisher);
 
         UUID guessId = UUID.randomUUID();
         requestId = UUID.randomUUID();
         UUID applicationId = UUID.randomUUID();
-
         RegistrationRequest registrationRequested = new RegistrationRequest(guessId);
         requestRepository.add(registrationRequested);
-
         appliedRegistration = new RegistrationApplication(registrationRequested.getId(), applicationId,
                 new CompanyDetails("1", new Address("1", "1", "1", "1", "43900", "sepang", Country.MALAYSIA),
                         "222", Structure.SOLE),
@@ -53,7 +48,7 @@ public class ApplyRegistrationTest {
     }
 
     @Test
-    public void companyNameRegistered_shouldThrowException(){
+    public void companyNameApproved_shouldThrowException(){
         RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
         administrationRepository.add(administration);
 
@@ -68,7 +63,7 @@ public class ApplyRegistrationTest {
         System.out.println(exception.getMessage());
     }
     @Test
-    public void brnRegistered_shouldThrowException() {
+    public void brnApproved_shouldThrowException() {
         RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
         administrationRepository.add(administration);
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
@@ -83,7 +78,7 @@ public class ApplyRegistrationTest {
     }
 
     @Test
-    public void emailRegistered_shouldThrowException(){
+    public void emailApproved_shouldThrowException(){
         RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
         administrationRepository.add(administration);
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
@@ -98,37 +93,30 @@ public class ApplyRegistrationTest {
     }
 
     @Test
-    public void approveRequestId_shouldThrowException(){
+    public void requestApproved_shouldThrowException(){
         RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
         administrationRepository.add(administration);
 
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
-                appliedRegistration.getRequestId(),
-                "terraForm",
+                appliedRegistration.getRequestId(), "terraForm",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                "22222",
-                Structure.SOLE,
-                "luqman",
-                "hakim",
-                "hakimluqq25@gmail.com",
-                "123"
+                "22222", Structure.SOLE,
+                "luqman", "hakim",
+                "hakimluqq25@gmail.com", "123"
         );
         InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());
     }
 
     @Test
-    public void underReviewRegistration_shouldThrowException(){
+    public void registrationNotYetAdministered_shouldThrowException(){
         ApplyRegistrationDetails request = new ApplyRegistrationDetails(
                 appliedRegistration.getRequestId(),
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
-                "22222",
-                Structure.SOLE,
-                "luqman",
-                "hakim",
-                "hakimluqq25@gmail.com",
-                "123"
+                "22222", Structure.SOLE,
+                "luqman", "hakim",
+                "hakimluqq25@gmail.com", "123"
         );
         InvalidCompanyRegistration exception = Assert.assertThrows(InvalidCompanyRegistration.class, ()-> registrationService.apply(request));
         System.out.println(exception.getMessage());

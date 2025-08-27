@@ -1,4 +1,4 @@
-package identity.registration.exception;
+package administration.registration.usecase;
 
 public class InvalidRegistrationAdministration extends RuntimeException {
     public InvalidRegistrationAdministration(String message) {
