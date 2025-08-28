@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/infra-administration/pom.xml" />
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/infra-admin/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-config-server/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
@@ -20,7 +21,6 @@
         <option value="$PROJECT_DIR$/config-server/pom.xml" />
         <option value="$PROJECT_DIR$/entity/pom.xml" />
         <option value="$PROJECT_DIR$/identity-infra/pom.xml" />
-        <option value="$PROJECT_DIR$/infra-admin/pom.xml" />
         <option value="$PROJECT_DIR$/infra-identity/pom.xml" />
         <option value="$PROJECT_DIR$/infrastructure/pom.xml" />
         <option value="$PROJECT_DIR$/pending/pom.xml" />

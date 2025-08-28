@@ -10,7 +10,7 @@ import java.util.UUID;
 public class InMemoryRegistrationAdministrationRepository implements RegistrationAdministrationRepository {
     private final List<RegistrationAdministration> administrations = new ArrayList<>();
     @Override
-    public Optional<RegistrationAdministration> findLatest(UUID applicationId) {
+    public Optional<RegistrationAdministration> find(UUID applicationId) {
         return administrations.stream()
                 .filter(administration -> administration.applicationId().equals(applicationId))
                 .findFirst();

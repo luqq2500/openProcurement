@@ -1,12 +1,17 @@
 package identities.registration;
 
+import event.DomainEventHandler;
+import event.EventBus;
+import event.InMemoryEventBus;
 import identities.address.Address;
 import identities.address.Country;
 import identities.company.Structure;
-import identities.registration.events.MockRegistrationSubmittedPublisher;
+import usecase.registerCompany.events.MockRegistrationSubmittedPublisher;
 import identities.registration.spi.*;
 import identities.registration.api.RegistrationService;
-import identities.registration.events.RegistrationSubmitted;
+import usecase.registerCompany.events.RegistrationSubmitted;
+import usecase.registerCompany.events.RegistrationSubmittedHandler;
+import usecase.registerCompany.events.integration.RegistrationSubmittedIntegration;
 import usecase.registerCompany.ApplyRegistrationDetails;
 import usecase.registerCompany.exception.InvalidCompanyRegistration;
 import usecase.registerCompany.RegisterACompany;
@@ -30,9 +35,13 @@ public class RegisterACompanyUT {
         RegistrationRepository registrationRepository = new InMemoryRegistrationRepository();
         requestRepository = new InMemoryRegistrationRequestRepository();
         administrationRepository = new InMemoryRegistrationAdministrationRepository();
-        IntegrationEventPublisher<RegistrationSubmitted> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
+        EventBus eventBus = InMemoryEventBus.INSTANCE;
 
-        registrationService = new RegisterACompany(registrationRepository, requestRepository, administrationRepository,integrationEventPublisher);
+        IntegrationEventPublisher<RegistrationSubmittedIntegration> integrationEventPublisher = new MockRegistrationSubmittedPublisher();
+        DomainEventHandler<RegistrationSubmitted> registrationSubmittedHandler = new RegistrationSubmittedHandler(integrationEventPublisher);
+
+        eventBus.subscribe(registrationSubmittedHandler);
+        registrationService = new RegisterACompany(registrationRepository, requestRepository, administrationRepository);
 
         UUID guessId = UUID.randomUUID();
         requestId = UUID.randomUUID();

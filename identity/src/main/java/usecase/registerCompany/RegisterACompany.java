@@ -1,13 +1,15 @@
 package usecase.registerCompany;
 
 import annotation.DomainService;
+import event.EventBus;
+import event.InMemoryEventBus;
 import identities.registration.*;
 import identities.registration.api.RegistrationService;
-import identities.registration.events.RegistrationSubmitted;
+import usecase.registerCompany.events.RegistrationSubmitted;
+import usecase.registerCompany.events.integration.RegistrationSubmittedIntegration;
 import identities.registration.spi.RegistrationAdministrationRepository;
 import identities.registration.spi.RegistrationRepository;
 import identities.registration.spi.RegistrationRequestRepository;
-import port.IntegrationEventPublisher;
 import usecase.registerCompany.exception.InvalidCompanyRegistration;
 
 import java.time.LocalDateTime;
@@ -32,14 +34,12 @@ public class RegisterACompany implements RegistrationService {
     private final RegistrationRepository registrationRepository;
     private final RegistrationRequestRepository requestRepository;
     private final RegistrationAdministrationRepository administrationRepository;
-    private final IntegrationEventPublisher<RegistrationSubmitted> eventPublisher;
 
-    public RegisterACompany(RegistrationRepository registrationRepository, RegistrationRequestRepository requestRepository, RegistrationAdministrationRepository administrationRepository, IntegrationEventPublisher<RegistrationSubmitted> eventPublisher) {
+    public RegisterACompany(RegistrationRepository registrationRepository, RegistrationRequestRepository requestRepository, RegistrationAdministrationRepository administrationRepository) {
         this.registrationRepository = registrationRepository;
         this.requestRepository = requestRepository;
         this.administrationRepository = administrationRepository;
-        this.eventPublisher = eventPublisher;
-    }
+   }
 
     @Override
     public void request(UUID guessAccountId) {
@@ -48,53 +48,58 @@ public class RegisterACompany implements RegistrationService {
 
     @Override
     public void apply(ApplyRegistrationDetails application) {
-        validateUniqueness(application);
-        Optional<RegistrationApplication> registration = validateApplicationAdministration(application);
+        validateCompanyName(application);
+        validateBrn(application);
+        validateEmail(application);
+        Optional<RegistrationApplication> registration = validateExistingRequest(application);
 
         RegistrationApplication registrationApplication;
         CompanyDetails companyDetails = new CompanyDetails(application.companyName(), application.address(), application.brn(), application.structure());
         AccountAdminDetails accountAdminDetails = new AccountAdminDetails(application.firstName(), application.lastName(), application.email(), application.password());
 
-        if (registration.isPresent() && administrationRepository.findLatest(registration.get().applicationId()).get().applicableForResubmit()){
+        if (registration.isPresent() && administrationRepository.get(registration.get().getApplicationId()).applicableForResubmit()){
             registrationApplication = registration.get().resubmit(companyDetails, accountAdminDetails);}
         else{
-            registrationApplication = new RegistrationApplication(
-                    application.requestId(), UUID.randomUUID(),
-                    companyDetails, accountAdminDetails, LocalDateTime.now());}
+            registrationApplication = new RegistrationApplication(application.requestId(),
+                    UUID.randomUUID(), companyDetails, accountAdminDetails, LocalDateTime.now());}
 
         registrationRepository.add(registrationApplication);
-        eventPublisher.publish(new RegistrationSubmitted(registrationApplication));
+        InMemoryEventBus.INSTANCE.publish(new RegistrationSubmitted(registrationApplication));
     }
 
-    private Optional<RegistrationApplication> validateApplicationAdministration(ApplyRegistrationDetails application) {
-        Optional<RegistrationApplication> registration = registrationRepository.findLatest(application.requestId());
-        Optional<RegistrationAdministration> administration;
-        if (registration.isPresent()) {
-            administration = administrationRepository.findLatest(application.requestId());
-            if (administration.isEmpty()) {
-                throw new InvalidCompanyRegistration("Application is not yet administered.");}
-            if (administration.get().isApproved()) {
-                throw new InvalidCompanyRegistration("Application is already approved.");}}
-        return registration;
+    private void validateEmail(ApplyRegistrationDetails application) {
+        Optional<RegistrationApplication> findUsedEmail = registrationRepository.findLatestByEmail(application.email());
+        if (findUsedEmail.isPresent() && administrationRepository.get(findUsedEmail.get().applicationId()).isApproved()){
+            throw new InvalidCompanyRegistration(application.email() + " is already been used.");}
     }
 
-    private void validateUniqueness(ApplyRegistrationDetails application) {
+    private void validateBrn(ApplyRegistrationDetails application) {
+        Optional<RegistrationApplication> findUsedBrnInRegistration = registrationRepository.findLatestByBrn(application.brn());
+        if (findUsedBrnInRegistration.isPresent()){
+            RegistrationApplication registration = findUsedBrnInRegistration.get();
+            if (registration.getBrn().equals(application.brn())
+                    && administrationRepository.get(registration.applicationId()).isApproved()){
+                throw new InvalidCompanyRegistration(application.brn() + " is already been used.");}}
+    }
+
+    private void validateCompanyName(ApplyRegistrationDetails application) {
         Optional<RegistrationApplication> findUsedCompanyNameInRegistration = registrationRepository.findLatestByCompanyName(application.companyName());
         if (findUsedCompanyNameInRegistration.isPresent()){
             RegistrationApplication registration = findUsedCompanyNameInRegistration.get();
             if (registration.getCompanyName().equals(application.companyName())
                     && administrationRepository.get(registration.applicationId()).isApproved()){
                 throw new InvalidCompanyRegistration(application.companyName() + " is already been used.");}}
+    }
 
-        Optional<RegistrationApplication> findUsedBrnInRegistration = registrationRepository.findLatestByBrn(application.brn());
-        if (findUsedBrnInRegistration.isPresent()){
-            RegistrationApplication registration = findUsedBrnInRegistration.get();
-            if (registration.getBrn().equals(application.brn())
-            && administrationRepository.get(registration.applicationId()).isApproved()){
-                throw new InvalidCompanyRegistration(application.brn() + " is already been used.");}}
-
-        Optional<RegistrationApplication> findUsedEmail = registrationRepository.findLatestByEmail(application.email());
-        if (findUsedEmail.isPresent() && administrationRepository.get(findUsedEmail.get().applicationId()).isApproved()){
-            throw new InvalidCompanyRegistration(application.email() + " is already been used.");}
+    private Optional<RegistrationApplication> validateExistingRequest(ApplyRegistrationDetails application) {
+        Optional<RegistrationApplication> registration = registrationRepository.findLatest(application.requestId());
+        Optional<RegistrationAdministration> administration;
+        if (registration.isPresent()) {
+            administration = administrationRepository.find(registration.get().getApplicationId());
+            if (administration.isEmpty()) {
+                throw new InvalidCompanyRegistration("Application is not yet administered.");}
+            if (administration.get().isApproved()) {
+                throw new InvalidCompanyRegistration("Application is already approved.");}}
+        return registration;
     }
 }

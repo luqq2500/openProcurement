@@ -1,4 +1,4 @@
-package identities.registration.events;
+package usecase.registerCompany.events;
 
 import identities.registration.RegistrationStatus;
 

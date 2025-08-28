@@ -17,6 +17,7 @@
     <file url="file://$PROJECT_DIR$/infrastructure/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pending/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/pending/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/spring-config-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/usecase/src/main/java" charset="UTF-8" />
