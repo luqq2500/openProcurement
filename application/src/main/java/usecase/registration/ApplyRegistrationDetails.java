@@ -1,6 +1,6 @@
 package usecase.registration;
 
-import format.address.Address;
+import applications.address.Address;
 import applications.registration.Structure;
 
 import java.util.UUID;

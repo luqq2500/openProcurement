@@ -1,4 +1,4 @@
-package format.address;
+package applications.address;
 
 public record Address(
         String street1,
