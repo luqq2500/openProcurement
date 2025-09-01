@@ -5,114 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/application.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/Structure.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationRequested.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationRequestedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/integration/MockRegistrationSubmittedPublisher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-admin/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/main/java/controller/ApplyRegistrationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/main/java/ddd/DomainConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/main/java/ddd/EventConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/main/java/messaging/RegistrationSubmittedPublisher_Kafka.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/main/java/messaging/kafka/KafkaConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/main/java/messaging/kafka/KafkaProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/main/java/messaging/properties/MessagingProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/main/resources/bootstrap.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infra-application/src/test/java/messaging/RegistrationSubmittedIET.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T221421.404.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/2025-08-09T221425.200.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-client.cookies" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/httpRequests/http-requests-log.http" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administration/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/AdministrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/AdministrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/ApplicationAdministration.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/ApplicationAdministration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/ApplicationAdministrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/ApplicationAdministrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/address/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/address/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/registration/RegistrationAdministration.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/registration/RegistrationAdministration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/registration/RegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/registration/RegistrationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/registration/event/RegistrationAdministered.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/registration/event/RegistrationAdministered.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/registration/spi/RegistrationAdministrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/registration/spi/RegistrationAdministrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/registration/spi/RegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/registration/usecase/AdministerRegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/registration/usecase/AdministerRegistrationApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administration/registration/usecase/InvalidRegistrationAdministration.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/registration/usecase/InvalidRegistrationAdministration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administrator/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/Administrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administrator/AdministratorRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/AdministratorRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/administrator/spi/AdministratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/spi/AdministratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/event/IntegrationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/event/IntegrationEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/port/IntegrationEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/port/IntegrationEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/main/java/port/IntegrationEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/port/IntegrationEventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/test/java/registration/AdministerRegistrationApplicationUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/test/java/registration/AdministerRegistrationApplicationUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/test/java/registration/InMemoryAdministratorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/test/java/registration/InMemoryAdministratorRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/test/java/registration/InMemoryRegistrationAdministrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/test/java/registration/InMemoryRegistrationAdministrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/test/java/registration/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/test/java/registration/InMemoryRegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/admin/src/test/java/registration/MockRegistrationAdministeredPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/test/java/registration/MockRegistrationAdministeredPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/application/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/annotation/DomainService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/annotation/DomainService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/annotation/Stub.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/annotation/Stub.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/domain.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/event/DomainEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/event/DomainEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/event/DomainEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/event/DomainEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/event/EventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/event/EventBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/event/InMemoryEventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/event/InMemoryEventBus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/event/IntegrationEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/event/IntegrationEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/account/AccountStatus.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/address/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/format/address/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/address/Country.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/format/address/Country.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/company/Company.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/company/CompanyDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/company/Structure.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/company/spi/CompanyRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/employee/Employee.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/employee/EmployeeRole.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/employee/PersonnelDetails.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/employee/spi/EmployeeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/employee/spi/InMemoryEmployeeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/guess/Guess.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/guess/spi/GuessRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/AccountAdminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/AccountAdminDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/CompanyDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/CompanyDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationAdministration.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/RegistrationAdministration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/Registration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/RegistrationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/RegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/RegistrationStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationAdministrator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationRequestor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/api/RegistrationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/api/Registrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/exception/InvalidRegistrationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/exception/InvalidRegistrationException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/InMemoryCompanyRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/InMemoryRegistrationAdministrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/mock/InMemoryRegistrationAdministrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/mock/InMemoryRegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/InMemoryRegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/mock/InMemoryRegistrationRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/RegistrationAdministrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/spi/RegistrationAdministrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/spi/RegistrationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/identities/registration/spi/RegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/applications/registration/spi/RegistrationRequestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/port/IntegrationEventHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/port/IntegrationEventHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/port/IntegrationEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/port/IntegrationEventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/ApplyRegistrationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/ApplyRegistrationDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/RegisterACompany.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/ApplyRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/events/MockRegistrationSubmittedPublisher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/events/RegistrationAdministered.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationAdministered.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/events/RegistrationSubmitted.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationSubmitted.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/events/RegistrationSubmittedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationSubmittedHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/events/integration/RegistrationRequested.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/integration/RegistrationRequested_IE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/events/integration/RegistrationSubmittedIntegration.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/integration/RegistrationSubmitted_IE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/main/java/usecase/registerCompany/exception/InvalidCompanyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/exception/InvalidCompanyRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/identity/src/test/java/identities/registration/RegisterACompanyUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/test/java/applications/registration/ApplyRegistrationUT.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.gitattributes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/mvnw" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/src/main/java/openprocurement/springconfigserver/SpringConfigServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/java/openprocurement/springconfigserver/SpringConfigServerApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/spring-config-server/src/test/java/openprocurement/springconfigserver/SpringConfigServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/test/java/openprocurement/springconfigserver/SpringConfigServerApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/application.txt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/application.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/ApplyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/ApplyRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/ApplyRegistrationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/RegistrationDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/api/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/api/Registrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/test/java/applications/registration/ApplyRegistrationUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/test/java/applications/registration/ApplyRegistrationUT.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -192,6 +90,7 @@
     "JUnit.ApplyRegistrationTest.underReviewRegistration_shouldThrowException.executor": "Run",
     "JUnit.ApplyRegistrationTest.updateRejectedApplication_versionShouldIncremented.executor": "Run",
     "JUnit.ApplyRegistrationTest.usernameIsTaken_shouldThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationUT.executor": "Run",
     "JUnit.CompanyRegistrationDT.administerNotInProgress_shouldThrowException.executor": "Run",
     "JUnit.CompanyRegistrationDT.administerOnce_administrationLengthMustBeOne.executor": "Run",
     "JUnit.CompanyRegistrationDT.administerToApproved_currentStatusMustBeApproved.executor": "Run",
@@ -379,54 +278,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="administration" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="administration" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="administration" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Python.FlaskServer">
-      <module name="administration" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="launchJavascriptDebuger" value="false" />
-      <method v="2" />
-    </configuration>
     <configuration name="InfraAdminApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="infra-admin" />
@@ -455,55 +306,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="administration" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Autodetect">
-      <module name="administration" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <module name="administration" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
@@ -564,7 +366,8 @@
       <workItem from="1755918018700" duration="9050000" />
       <workItem from="1756033961683" duration="37569000" />
       <workItem from="1756257448635" duration="5278000" />
-      <workItem from="1756285633293" duration="25830000" />
+      <workItem from="1756285633293" duration="26388000" />
+      <workItem from="1756715782764" duration="3017000" />
     </task>
     <servers />
   </component>

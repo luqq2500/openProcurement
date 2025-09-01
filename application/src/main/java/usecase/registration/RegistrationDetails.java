@@ -5,7 +5,7 @@ import applications.registration.Structure;
 
 import java.util.UUID;
 
-public record ApplyRegistrationDetails(
+public record RegistrationDetails(
         UUID requestId,
         String companyName,
         Address address,

@@ -15,17 +15,8 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
 
-/// ApplyRegistration: Company registration application use case.
 ///
-/// 1. Check submitted information violates uniqueness: brn, company name, and email.
-/// 2. Check submitted information is new or an update from previous rejected application.
-/// 3. Save application.
-/// 4. Publish registration submitted event
-///
-/// Params:
-/// @ requestId: reference to registration request
-/// @ companyDetails: name, address, brn, structure
-/// @ administratorAccountDetails: first name, last name, email, password
+/// Registration application use case.
 ///
 
 @DomainService
@@ -42,41 +33,55 @@ public class ApplyRegistration implements Registrator {
         this.eventBus = eventBus;
     }
 
+    /// Method to request for registration application.
+    /// Params: @guessId: Guess account id.
     @Override
-    public void request(UUID guessAccountId) {
-        RegistrationRequest request = new RegistrationRequest(guessAccountId);
+    public void request(UUID guessId) {
+        RegistrationRequest request = new RegistrationRequest(guessId);
         requestRepository.add(request);
         eventBus.publish(new RegistrationRequested(request));
     }
 
+    /// Method to apply for registration application.
+    /// Params:
+    /// @registrationDetails:
+    ///     1. requestId: Requested registration application id.
+    ///     2. companyName: Legal company name.
+    ///     3. address: Legal company address.
+    ///     4. brn: Legal business registration number.
+    ///     5. structure: Legal business structure.
+    ///     6. firstName: Account administrator first name.
+    ///     7. lastName: Account administrator last name.
+    ///     8. email: Account administrator email.
+    ///     9. password: Account administrator password.
     @Override
-    public void apply(ApplyRegistrationDetails application) {
-        validateCompanyName(application);
-        validateBrn(application);
-        validateEmail(application);
-        Optional<Registration> registration = validateExistingRequest(application);
+    public void apply(RegistrationDetails details) {
+        Registration application;
+        CompanyDetails companyDetails = new CompanyDetails(details.companyName(), details.address(), details.brn(), details.structure());
+        AccountAdminDetails accountAdminDetails = new AccountAdminDetails(details.firstName(), details.lastName(), details.email(), details.password());
 
-        Registration registrationApplication;
-        CompanyDetails companyDetails = new CompanyDetails(application.companyName(), application.address(), application.brn(), application.structure());
-        AccountAdminDetails accountAdminDetails = new AccountAdminDetails(application.firstName(), application.lastName(), application.email(), application.password());
+        // validate information uniqueness: company name, business registration number, email.
+        validateCompanyName(details);
+        validateBrn(details);
+        validateEmail(details);
 
-        if (registration.isPresent() && administrationRepository.get(registration.get().getApplicationId()).applicableForResubmit()){
-            registrationApplication = registration.get().resubmit(companyDetails, accountAdminDetails);}
-        else{
-            registrationApplication = new Registration(application.requestId(),
-                    UUID.randomUUID(), companyDetails, accountAdminDetails, LocalDateTime.now());}
+        // validate existing registration application
+        Optional<Registration> registrationResubmit = validateExistingRequest(details);
 
-        registrationRepository.add(registrationApplication);
-        eventBus.publish(new RegistrationSubmitted(registrationApplication));
+        // (submit/resubmit) application
+        application = registrationResubmit.map(registration -> registration.resubmit(companyDetails, accountAdminDetails)).orElseGet(() -> new Registration(details.requestId(),
+                UUID.randomUUID(), companyDetails, accountAdminDetails, LocalDateTime.now()));
+        registrationRepository.add(application);
+        eventBus.publish(new RegistrationSubmitted(application));
     }
 
-    private void validateEmail(ApplyRegistrationDetails application) {
+    private void validateEmail(RegistrationDetails application) {
         Optional<Registration> findUsedEmail = registrationRepository.findLatestByEmail(application.email());
         if (findUsedEmail.isPresent() && administrationRepository.get(findUsedEmail.get().applicationId()).isApproved()){
             throw new InvalidCompanyRegistration(application.email() + " is already been used.");}
     }
 
-    private void validateBrn(ApplyRegistrationDetails application) {
+    private void validateBrn(RegistrationDetails application) {
         Optional<Registration> findUsedBrnInRegistration = registrationRepository.findLatestByBrn(application.brn());
         if (findUsedBrnInRegistration.isPresent()){
             Registration registration = findUsedBrnInRegistration.get();
@@ -85,7 +90,7 @@ public class ApplyRegistration implements Registrator {
                 throw new InvalidCompanyRegistration(application.brn() + " is already been used.");}}
     }
 
-    private void validateCompanyName(ApplyRegistrationDetails application) {
+    private void validateCompanyName(RegistrationDetails application) {
         Optional<Registration> findUsedCompanyNameInRegistration = registrationRepository.findLatestByCompanyName(application.companyName());
         if (findUsedCompanyNameInRegistration.isPresent()){
             Registration registration = findUsedCompanyNameInRegistration.get();
@@ -94,15 +99,17 @@ public class ApplyRegistration implements Registrator {
                 throw new InvalidCompanyRegistration(application.companyName() + " is already been used.");}}
     }
 
-    private Optional<Registration> validateExistingRequest(ApplyRegistrationDetails application) {
+    private Optional<Registration> validateExistingRequest(RegistrationDetails application) {
         Optional<Registration> registration = registrationRepository.findLatest(application.requestId());
         Optional<RegistrationAdministration> administration;
         if (registration.isPresent()) {
             administration = administrationRepository.find(registration.get().getApplicationId());
             if (administration.isEmpty()) {
                 throw new InvalidCompanyRegistration("Application is not yet administered.");}
-            if (administration.get().isApproved()) {
-                throw new InvalidCompanyRegistration("Application is already approved.");}}
+            if (!administration.get().applicableForResubmit()){
+                throw new InvalidCompanyRegistration("Application is not applicable to resubmit.");
+            }
+        }
         return registration;
     }
 }

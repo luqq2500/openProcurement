@@ -15,7 +15,7 @@ import usecase.registration.events.*;
 import usecase.registration.api.Registrator;
 import usecase.registration.events.integration.MockRegistrationSubmittedPublisher;
 import usecase.registration.events.integration.RegistrationSubmitted_IE;
-import usecase.registration.ApplyRegistrationDetails;
+import usecase.registration.RegistrationDetails;
 import usecase.registration.exception.InvalidCompanyRegistration;
 import usecase.registration.ApplyRegistration;
 import org.junit.Assert;
@@ -66,7 +66,7 @@ public class ApplyRegistrationUT {
         RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
         administrationRepository.add(administration);
 
-        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
+        RegistrationDetails request = new RegistrationDetails(
                 requestId, appliedRegistration.getCompanyName(),
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222", Structure.SOLE,
@@ -80,7 +80,7 @@ public class ApplyRegistrationUT {
     public void brnApproved_shouldThrowException() {
         RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
         administrationRepository.add(administration);
-        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
+        RegistrationDetails request = new RegistrationDetails(
                 requestId, "Lexus",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 appliedRegistration.getBrn(), Structure.SOLE,
@@ -95,7 +95,7 @@ public class ApplyRegistrationUT {
     public void emailApproved_shouldThrowException(){
         RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
         administrationRepository.add(administration);
-        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
+        RegistrationDetails request = new RegistrationDetails(
                 requestId, "Lexus",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "2222", Structure.SOLE,
@@ -111,7 +111,7 @@ public class ApplyRegistrationUT {
         RegistrationAdministration administration = new RegistrationAdministration(appliedRegistration.applicationId(), RegistrationStatus.APPROVED, LocalDateTime.now());
         administrationRepository.add(administration);
 
-        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
+        RegistrationDetails request = new RegistrationDetails(
                 appliedRegistration.getRequestId(), "terraForm",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
                 "22222", Structure.SOLE,
@@ -124,7 +124,7 @@ public class ApplyRegistrationUT {
 
     @Test
     public void registrationNotYetAdministered_shouldThrowException(){
-        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
+        RegistrationDetails request = new RegistrationDetails(
                 appliedRegistration.getRequestId(),
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
@@ -140,7 +140,7 @@ public class ApplyRegistrationUT {
     public void newRegistration_shouldNotThrowException(){
         RegistrationRequest registrationRequest = new RegistrationRequest(UUID.randomUUID());
         requestRepository.add(registrationRequest);
-        ApplyRegistrationDetails request = new ApplyRegistrationDetails(
+        RegistrationDetails request = new RegistrationDetails(
                 registrationRequest.getId(),
                 "terra",
                 new Address("1", "1", "1", "1", "1", "1", Country.MALAYSIA),
