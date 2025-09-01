@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: infra-admin  # must match the YAML name in config repo
+  cloud:
+    config:
+      uri: http://localhost:8888

@@ -1,0 +1,2 @@
+1. 'Application' is a domain bounded context module, that group related domains and use cases for business applications.
+2. Business applications including: registration, account creation invitation, procurement drafts, etc.
