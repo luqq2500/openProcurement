@@ -1,4 +1,4 @@
 /
 /
 /
-/ Application: Bounded context for business applications.
+/ Application: Bounded context for business usecase.

@@ -32,4 +32,8 @@ public enum InMemoryEventBus implements EventBus {
         Class<? extends DomainEvent> domainEvent = eventHandler.getEvent();
         handlers.computeIfAbsent(domainEvent, k -> new ConcurrentLinkedQueue<>()).add(eventHandler);
     }
+
+    public void clearSubscribers() {
+        handlers.clear();
+    }
 }

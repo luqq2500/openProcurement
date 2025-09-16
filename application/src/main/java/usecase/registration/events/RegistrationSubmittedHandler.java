@@ -13,7 +13,7 @@ public class RegistrationSubmittedHandler implements DomainEventHandler<Registra
 
     @Override
     public void handle(RegistrationSubmitted event) {
-        integrationEventPublisher.publish(new RegistrationSubmitted_IE(event.getApplicationId(), event.getCompanyDetails()));
+        System.out.println(getEvent().toString() + " is handling " + event.toString());
     }
 
     @Override

@@ -1,6 +1,6 @@
 package usecase.registration.events.integration;
 
-import applications.registration.CompanyDetails;
+import domain.registration.CompanyDetails;
 import event.IntegrationEvent;
 
 import java.time.Instant;

@@ -1,14 +1,12 @@
 package usecase.registration;
 
-import applications.address.Address;
-import applications.registration.Structure;
+import domain.registration.Structure;
 
 import java.util.UUID;
 
 public record RegistrationDetails(
         UUID requestId,
         String companyName,
-        Address address,
         String brn,
         Structure structure,
         String firstName,

@@ -1,8 +1,8 @@
 package usecase.registration.events;
 
 import event.DomainEvent;
-import applications.registration.CompanyDetails;
-import applications.registration.Registration;
+import domain.registration.CompanyDetails;
+import domain.registration.Registration;
 
 import java.time.Instant;
 import java.util.UUID;

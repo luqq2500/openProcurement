@@ -1,6 +1,6 @@
 package usecase.registration.events;
 
-import applications.registration.RegistrationStatus;
+import domain.registration.RegistrationStatus;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

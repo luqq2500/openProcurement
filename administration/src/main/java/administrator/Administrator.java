@@ -12,7 +12,6 @@ import java.util.UUID;
 public class Administrator {
     private final UUID administratorId;
     private final AdministratorRole role;
-    private List<Administration administration> administrations = new ArrayList<>();
     public Administrator(AdministratorRole role) {
         this.administratorId = UUID.randomUUID();
         this.role = role;

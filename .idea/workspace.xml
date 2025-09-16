@@ -5,12 +5,57 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="358caeac-27fc-49ec-addc-305aabf1d3c6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/domain/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/domain/account/Account.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/domain/account/AccountType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/domain/invitation/UserInvitation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/domain/registration/CompanyDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/event/DomainEventConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/account/spi/AccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/account/spi/mock/InMemoryAccountRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/invitation/InviteAUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/invitation/api/UserInviter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/invitation/events/UserInvited.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/invitation/events/UserInvitedDomainHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/invitation/events/UserInvitedIE.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/invitation/exception/InvalidUserInvitation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/invitation/spi/UserInvitationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/invitation/spi/mock/InMemoryUserInvitationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/exception/InvalidRegistrationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/src/test/java/usecase/invitation/AccountInvitationUT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration/src/main/java/administration/registration/RegistrationApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administration/registration/RegistrationApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration/src/main/java/administrator/Administrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/main/java/administrator/Administrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administration/src/test/java/registration/AdministerRegistrationApplicationUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/administration/src/test/java/registration/AdministerRegistrationApplicationUT.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/src/main/java/application.txt" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/application.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/address/Address.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/address/Country.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/AccountAdminDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/domain/registration/AccountAdminDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/CompanyDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/Registration.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/domain/registration/Registration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/RegistrationAdministration.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/domain/registration/RegistrationAdministration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/RegistrationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/domain/registration/RegistrationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/RegistrationStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/domain/registration/RegistrationStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/Structure.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/domain/registration/Structure.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/exception/InvalidRegistrationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/exception/InvalidRegistrationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/mock/InMemoryRegistrationAdministrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/spi/mock/InMemoryRegistrationAdministrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/mock/InMemoryRegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/spi/mock/InMemoryRegistrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/mock/InMemoryRegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/spi/mock/InMemoryRegistrationRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/spi/RegistrationAdministrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/spi/RegistrationAdministrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/spi/RegistrationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/spi/RegistrationRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/applications/registration/spi/RegistrationRequestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/spi/RegistrationRequestRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/event/InMemoryEventBus.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/event/InMemoryEventBus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/ApplyRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/ApplyRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/ApplyRegistrationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/RegistrationDetails.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/api/Registrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/api/Registrator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/src/test/java/applications/registration/ApplyRegistrationUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/test/java/applications/registration/ApplyRegistrationUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/RegistrationDetails.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/RegistrationDetails.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationAdministered.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationAdministered.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationRequested.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationRequested.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationRequestedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationRequestedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationSubmitted.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationSubmitted.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationSubmittedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/RegistrationSubmittedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/integration/MockRegistrationSubmittedPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/integration/MockRegistrationSubmittedIEPublisher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/integration/RegistrationSubmitted_IE.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/main/java/usecase/registration/events/integration/RegistrationSubmitted_IE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/src/test/java/applications/registration/ApplyRegistrationUT.java" beforeDir="false" afterPath="$PROJECT_DIR$/application/src/test/java/usecase/registration/ApplyRegistrationUT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/infra-application/src/main/java/ddd/EventConfig.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,11 +66,11 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
+        <option value="AnnotationType" />
         <option value="Enum" />
         <option value="Interface" />
-        <option value="AnnotationType" />
-        <option value="Class" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -69,10 +114,14 @@
     "HTTP Request.generated-requests | #6.executor": "Run",
     "HTTP Request.generated-requests | #8.executor": "Run",
     "HTTP Request.generated-requests | #9.executor": "Run",
+    "JUnit.AccountInvitationUT.executor": "Run",
+    "JUnit.AccountInvitationUT.invalidAccountType_shouldThrowException.executor": "Run",
+    "JUnit.AccountInvitationUT.validAccountType_shouldNotThrowException.executor": "Run",
     "JUnit.AccountRegistrationDT.test.executor": "Run",
     "JUnit.AdministerRegistrationApplicationUT.administerRegistrationTwice_shouldThrowException.executor": "Run",
     "JUnit.AdministerRegistrationApplicationUT.administratorRoleInvalid_shouldThrowException.executor": "Run",
     "JUnit.AdministerRegistrationApplicationUT.applicationHasBeenAdministered_shouldThrowException.executor": "Run",
+    "JUnit.AdministerRegistrationApplicationUT.executor": "Run",
     "JUnit.AdministerRegistrationApplicationUT.invalidAdminRole_shouldThrowException.executor": "Run",
     "JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_registrationIdShouldDifferAndRequestIdIsSame.executor": "Run",
     "JUnit.ApplyRegistrationApplicationTest.changeDetailsFromPreviouslyRejected_shouldNotThrowException.executor": "Run",
@@ -91,6 +140,8 @@
     "JUnit.ApplyRegistrationTest.updateRejectedApplication_versionShouldIncremented.executor": "Run",
     "JUnit.ApplyRegistrationTest.usernameIsTaken_shouldThrowException.executor": "Run",
     "JUnit.ApplyRegistrationUT.executor": "Run",
+    "JUnit.ApplyRegistrationUT.invalidAccountTypeRequestRegistration_shouldThrowException.executor": "Run",
+    "JUnit.ApplyRegistrationUT.validAccountTypeRequestRegistration_shouldBeSuccessful.executor": "Run",
     "JUnit.CompanyRegistrationDT.administerNotInProgress_shouldThrowException.executor": "Run",
     "JUnit.CompanyRegistrationDT.administerOnce_administrationLengthMustBeOne.executor": "Run",
     "JUnit.CompanyRegistrationDT.administerToApproved_currentStatusMustBeApproved.executor": "Run",
@@ -204,11 +255,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
-      <recent name="applications.registration" />
-      <recent name="messaging" />
-      <recent name="usecase.registerCompany.events" />
-      <recent name="administration" />
-      <recent name="registration" />
+      <recent name="usecase.registration.exception" />
+      <recent name="usecase.invitation.events" />
+      <recent name="usecase.account.spi.mock" />
+      <recent name="usecase.invitation.spi.mock" />
+      <recent name="usecase.invitation.exception" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\hakim\code\java\openProcurement\administration\src\main\java\company" />
@@ -242,38 +293,80 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.ApplyRegistrationUT">
-    <configuration name="generated-requests | #11" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#11" index="11" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="generated-requests | #12" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" executionIdentifier="#12" index="12" runType="Run single request">
-      <method v="2" />
-    </configuration>
-    <configuration name="ApplyRegistrationUT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AccountInvitationUT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="application" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="applications.registration.*" />
+          <option name="PATTERN" value="usecase.invitation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="applications.registration" />
-      <option name="MAIN_CLASS_NAME" value="applications.registration.ApplyRegistrationUT" />
+      <option name="PACKAGE_NAME" value="usecase.invitation" />
+      <option name="MAIN_CLASS_NAME" value="usecase.invitation.AccountInvitationUT" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CompanyRegistrationUT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AccountInvitationUT.validAccountType_shouldNotThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="application" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="identities.registration.*" />
+          <option name="PATTERN" value="usecase.invitation.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="identities.registration" />
-      <option name="MAIN_CLASS_NAME" value="identities.registration.CompanyRegistrationUT" />
+      <option name="PACKAGE_NAME" value="usecase.invitation" />
+      <option name="MAIN_CLASS_NAME" value="usecase.invitation.AccountInvitationUT" />
+      <option name="METHOD_NAME" value="validAccountType_shouldNotThrowException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplyRegistrationUT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="usecase.registration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="applications.registration" />
+      <option name="MAIN_CLASS_NAME" value="usecase.registration.ApplyRegistrationUT" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplyRegistrationUT.invalidAccountTypeRequestRegistration_shouldThrowException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="usecase.registration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="usecase.registration" />
+      <option name="MAIN_CLASS_NAME" value="usecase.registration.ApplyRegistrationUT" />
+      <option name="METHOD_NAME" value="invalidAccountTypeRequestRegistration_shouldThrowException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApplyRegistrationUT.validAccountTypeRequestRegistration_shouldBeSuccessful" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="application" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="usecase.registration.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="usecase.registration" />
+      <option name="MAIN_CLASS_NAME" value="usecase.registration.ApplyRegistrationUT" />
+      <option name="METHOD_NAME" value="validAccountTypeRequestRegistration_shouldBeSuccessful" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -282,20 +375,6 @@
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="infra-admin" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="openprocurement.infraadmin.InfraAdminApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="InfraIdentityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="infra-application" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="openprocurement.infraidentity.InfraIdentityApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="openprocurement.infraidentity.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -310,10 +389,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.ApplyRegistrationUT" />
-        <item itemvalue="JUnit.CompanyRegistrationUT" />
-        <item itemvalue="Spring Boot.InfraIdentityApplication" />
-        <item itemvalue="HTTP Request.generated-requests | #12" />
-        <item itemvalue="HTTP Request.generated-requests | #11" />
+        <item itemvalue="JUnit.ApplyRegistrationUT.invalidAccountTypeRequestRegistration_shouldThrowException" />
+        <item itemvalue="JUnit.ApplyRegistrationUT.validAccountTypeRequestRegistration_shouldBeSuccessful" />
+        <item itemvalue="JUnit.AccountInvitationUT" />
+        <item itemvalue="JUnit.AccountInvitationUT.validAccountType_shouldNotThrowException" />
       </list>
     </recent_temporary>
   </component>
@@ -367,7 +446,10 @@
       <workItem from="1756033961683" duration="37569000" />
       <workItem from="1756257448635" duration="5278000" />
       <workItem from="1756285633293" duration="26388000" />
-      <workItem from="1756715782764" duration="3017000" />
+      <workItem from="1756715782764" duration="3074000" />
+      <workItem from="1756779247094" duration="1504000" />
+      <workItem from="1757227773515" duration="97000" />
+      <workItem from="1758014085040" duration="12662000" />
     </task>
     <servers />
   </component>

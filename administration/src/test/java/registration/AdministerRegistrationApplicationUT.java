@@ -24,31 +24,26 @@ import java.util.UUID;
 
 public class AdministerRegistrationApplicationUT {
     private ApplicationAdministrator applicationAdministrator;
-    private RegistrationRepository registrationRepository;
     private RegistrationAdministrationRepository administrationRepository;
     private AdministratorRepository administratorRepository;
-    private IntegrationEventPublisher<RegistrationAdministered> eventPublisher;
     private RegistrationApplication appliedApplication;
     private Administrator identityAdministrator;
 
     @Before
     public void setUp() throws Exception {
-        registrationRepository = new InMemoryRegistrationRepository();
+        RegistrationRepository registrationRepository = new InMemoryRegistrationRepository();
         administrationRepository = new InMemoryRegistrationAdministrationRepository();
         administratorRepository = new InMemoryAdministratorRepository();
-        eventPublisher = new MockRegistrationAdministeredPublisher();
+        IntegrationEventPublisher<RegistrationAdministered> eventPublisher = new MockRegistrationAdministeredPublisher();
 
-        UUID identityAdministratorId = UUID.randomUUID();
         identityAdministrator = new Administrator(AdministratorRole.IDENTITY_ADMINISTRATOR);
         administratorRepository.add(identityAdministrator);
 
         UUID appliedApplicationId = UUID.randomUUID();
-        appliedApplication = new RegistrationApplication(
-                appliedApplicationId, "name", new Address("1", "1", "1", "1", "1", "1", "1"),
-                "brn", "sole", LocalDateTime.now());
+        appliedApplication = new RegistrationApplication(appliedApplicationId, "name", "brn", "sole", LocalDateTime.now());
         registrationRepository.add(appliedApplication);
 
-        applicationAdministrator = new AdministerRegistrationApplication(registrationRepository, administrationRepository, administratorRepository,eventPublisher);
+        applicationAdministrator = new AdministerRegistrationApplication(registrationRepository, administrationRepository, administratorRepository, eventPublisher);
     }
 
     @Test

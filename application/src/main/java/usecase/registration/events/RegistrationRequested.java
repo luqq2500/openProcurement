@@ -1,7 +1,7 @@
 package usecase.registration.events;
 
 import event.DomainEvent;
-import applications.registration.RegistrationRequest;
+import domain.registration.RegistrationRequest;
 
 import java.time.Instant;
 
