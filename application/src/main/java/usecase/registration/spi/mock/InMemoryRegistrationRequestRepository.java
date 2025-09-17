@@ -12,7 +12,7 @@ import java.util.UUID;
 public class InMemoryRegistrationRequestRepository implements RegistrationRequestRepository {
     private final List<RegistrationRequest> requests = new ArrayList<>();
     @Override
-    public RegistrationRequest getById(UUID id) {
+    public RegistrationRequest get(UUID id) {
         return requests.stream()
                 .filter(request -> request.getId().equals(id))
                 .findFirst()

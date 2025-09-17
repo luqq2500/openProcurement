@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface RegistrationAdministrationRepository {
-    Optional<RegistrationAdministration> find(UUID applicationId);
-    RegistrationAdministration get(UUID applicationId);
-    void add(RegistrationAdministration registration);
+    Optional<RegistrationAdministration> findLatestVersion(UUID registrationId);
+    RegistrationAdministration get(UUID registrationId);
+    void add(RegistrationAdministration administration);
 }

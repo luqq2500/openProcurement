@@ -8,21 +8,21 @@ import java.time.Instant;
 import java.util.UUID;
 
 public class RegistrationSubmitted implements DomainEvent {
-    private final Registration application;
+    private final Registration registration;
     private final Instant submittedOn;
 
-    public RegistrationSubmitted(Registration application) {
-        this.application = application;
+    public RegistrationSubmitted(Registration registration) {
+        this.registration = registration;
         this.submittedOn = Instant.now();
     }
     @Override
     public Instant getTimestamp() {
         return submittedOn;
     }
-    public UUID getApplicationId() {
-        return application.getApplicationId();
+    public UUID getRegistrationId() {
+        return registration.registrationId();
     }
     public CompanyDetails getCompanyDetails(){
-        return application.companyDetails();
+        return registration.companyDetails();
     }
 }

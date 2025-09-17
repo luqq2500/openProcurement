@@ -1,11 +1,10 @@
-package usecase.registration;
-
-import domain.registration.Structure;
+package domain.registration;
 
 import java.util.UUID;
 
-public record RegistrationDetails(
-        UUID requestId,
+public record ReApplyRegistrationDetails(
+        UUID registrationId,
+        UUID accountId,
         String companyName,
         String brn,
         Structure structure,
